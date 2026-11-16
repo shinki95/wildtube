@@ -10,177 +10,265 @@
 <title>야생튜브</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%232f5d3a'/><path d='M26 20l20 12-20 12z' fill='%23f6f3ec'/></svg>">
 <style>
-  :root{--bg:#f6f3ec;--card:#fff;--ink:#1f2421;--sub:#6b716c;--line:#e4dfd4;--green:#2f5d3a;--chip:#eef2ec}
+  :root{--bg:#f6f3ec;--card:#fff;--ink:#1f2421;--sub:#6b716c;--line:#e4dfd4;--green:#2f5d3a;--chip:#eef2ec;--warm:#fffbea}
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;-webkit-text-size-adjust:100%}
-  header{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:calc(10px + env(safe-area-inset-top)) 16px 10px}
-  .brand{display:flex;align-items:baseline;gap:8px}
-  .brand a{color:var(--ink);text-decoration:none;font-weight:800;font-size:20px}
-  .brand small{color:var(--sub);font-size:12px}
-  main{max-width:720px;margin:0 auto;padding:12px 16px 80px}
-  h1{font-size:20px;margin:8px 0 4px}
+  header{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:calc(10px + env(safe-area-inset-top)) 16px 10px;display:flex;align-items:baseline;gap:8px}
+  header a{color:var(--ink);text-decoration:none;font-weight:800;font-size:20px}
+  header small{color:var(--sub);font-size:12px;flex:1}
+  #sync{font-size:12px;color:var(--sub)}
+  main{max-width:720px;margin:0 auto;padding:12px 16px 90px}
+  h1{font-size:21px;margin:8px 0 2px;line-height:1.3}
   .meta{color:var(--sub);font-size:13px}
   .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:12px 0}
   .label{font-size:12px;font-weight:700;color:var(--green);margin-bottom:2px}
-  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-  .chip{background:var(--chip);border-radius:999px;padding:3px 10px;font-size:13px}
-  .topic{display:block;color:inherit;text-decoration:none}
+  .chip{display:inline-block;background:var(--chip);border-radius:999px;padding:2px 9px;font-size:12px;font-weight:600;color:var(--green);white-space:nowrap}
   .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-top:8px}
   .bar i{display:block;height:100%;background:var(--green)}
-  .vid{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:14px 0}
-  .thumb{position:relative;display:block;width:100%;aspect-ratio:16/9;background:#ddd center/cover no-repeat;border:0;padding:0;cursor:pointer}
+  a.topic{display:block;color:inherit;text-decoration:none}
+  .branch{margin-left:18px;border-left:2px dashed var(--line);padding-left:10px}
+  .iter{margin:22px 0 6px}
+  .iter h2{font-size:17px;margin:0}
+  .seq{position:relative;margin-left:14px;border-left:2px solid var(--line)}
+  .q{position:relative;margin:0 0 12px 18px}
+  .dot{position:absolute;left:-33px;top:12px;width:28px;height:28px;border-radius:50%;background:var(--bg);border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--sub)}
+  .q.done .dot{background:var(--green);border-color:var(--green);color:#fff}
+  .q.now .dot{border-color:var(--green);color:var(--green);background:#fff}
+  .qc{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .q.now .qc{border-color:var(--green);box-shadow:0 1px 0 var(--green)}
+  .q.later .qh{opacity:.6}
+  .qh{display:flex;gap:8px;align-items:center;padding:12px 14px;cursor:pointer}
+  .qh .t{font-weight:700;flex:1;line-height:1.35}
+  .qh .s{font-size:12px;color:var(--sub);max-width:34%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .qb{padding:0 14px 14px}
+  .qb[hidden]{display:none}
+  .opt{display:block;width:100%;text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:9px 11px;margin:6px 0;font:inherit;font-size:15px;color:var(--ink)}
+  .opt.on{border-color:var(--green);background:var(--chip);font-weight:700}
+  .vid{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:12px 0;background:#fff}
+  .thumb{position:relative;display:block;width:100%;aspect-ratio:16/9;background:#ddd center/cover no-repeat;border:0;padding:0}
   .thumb .len{position:absolute;right:8px;bottom:8px;background:rgba(0,0,0,.75);color:#fff;font-size:12px;border-radius:6px;padding:1px 6px}
-  .thumb .done{position:absolute;left:8px;top:8px;background:var(--green);color:#fff;font-size:12px;border-radius:6px;padding:2px 8px}
-  .thumb .play{position:absolute;inset:0;margin:auto;width:56px;height:56px;border-radius:50%;background:rgba(0,0,0,.55)}
-  .thumb .play:after{content:"";position:absolute;left:22px;top:17px;border-left:18px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent}
-  .vbody{padding:12px 14px 14px}
-  .vtitle{font-weight:700;line-height:1.35}
-  .scenes{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-  .scenes button{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:5px 9px;font-size:13px;color:var(--ink)}
-  .scenes b{color:var(--green);font-weight:700;margin-right:4px}
-  textarea{width:100%;min-height:64px;border:1px solid var(--line);border-radius:10px;padding:8px;font:inherit;font-size:15px;background:#fffdf8}
-  .row{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+  .thumb .play{position:absolute;inset:0;margin:auto;width:54px;height:54px;border-radius:50%;background:rgba(0,0,0,.55)}
+  .thumb .play:after{content:"";position:absolute;left:21px;top:16px;border-left:18px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent}
+  .frame{position:relative;aspect-ratio:16/9;background:#000}
+  .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .vb{padding:10px 12px 12px}
+  .vt{font-weight:700;line-height:1.35}
+  .scenes{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .scenes button,.mini{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:5px 9px;font-size:13px;color:var(--ink)}
+  .scenes b{color:var(--green);margin-right:4px}
+  .mini.on{background:var(--green);border-color:var(--green);color:#fff}
+  .mini.bad.on{background:#8a4b2a;border-color:#8a4b2a}
+  textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:10px;padding:8px;font:inherit;font-size:16px;background:#fffdf8}
+  textarea{min-height:70px;margin-top:10px}
+  .row{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;align-items:center}
+  .row input{flex:1;min-width:0}
   .btn{border:0;border-radius:10px;padding:9px 14px;font-weight:700;font-size:14px;background:var(--green);color:#fff}
   .btn.ghost{background:var(--chip);color:var(--ink)}
-  #player-wrap{position:sticky;top:calc(52px + env(safe-area-inset-top));z-index:4;background:#000;border-radius:12px;overflow:hidden;margin:8px 0;display:none}
-  #player-wrap.on{display:block}
-  #player-wrap .ratio{position:relative;aspect-ratio:16/9}
-  #player-wrap iframe,#player{position:absolute;inset:0;width:100%;height:100%}
-  #player-wrap .close{display:block;width:100%;border:0;background:#222;color:#ddd;padding:8px;font-size:13px}
-  .end{background:#fffbea;border:1px solid #efe2b3}
-  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#222;color:#fff;padding:8px 14px;border-radius:10px;font-size:14px;opacity:0;transition:.2s}
+  .btn.wide{width:100%;padding:12px;margin-top:4px}
+  .note{border-left:3px solid var(--line);padding:4px 0 4px 10px;margin:8px 0;font-size:15px;white-space:pre-wrap}
+  .note .when{font-size:11px;color:var(--sub)}
+  .coach{background:var(--chip);border-radius:8px;padding:6px 10px;margin:4px 0 0}
+  .wait{font-size:11px;color:var(--sub)}
+  .alt{background:var(--warm);border:1px solid #efe2b3;border-radius:10px;padding:8px;margin-top:8px}
+  .next{background:var(--warm);border:1px dashed #d9c98a;border-radius:14px;padding:14px;margin:8px 0 0 18px}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#222;color:#fff;padding:8px 14px;border-radius:10px;font-size:14px;opacity:0;transition:.2s;pointer-events:none}
   .toast.on{opacity:1}
-  footer{color:var(--sub);font-size:12px;text-align:center;margin-top:28px}
 </style>
 </head>
 <body>
-<header><div class="brand"><a href="#/">야생튜브</a><small>추천 피드 없음 · 주제마다 5개까지</small></div></header>
+<header><a href="#/">야생튜브</a><small>보고, 남기고, 다음으로</small><span id="sync"></span></header>
 <main id="app">불러오는 중…</main>
 <div class="toast" id="toast"></div>
 <script>
+const API = 'https://script.google.com/macros/s/AKfycbwQr12XmnLV5E-u6FDC0jC-7TpDzmBLmhaOAZfzztkl47yARxnEWLtPv3w5JgC94A94/exec';
 const $ = (s, r=document) => r.querySelector(s);
-const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt = t => `${Math.floor(t/60)}:${String(t%60).padStart(2,'0')}`;
-const store = {
-  get(k, d){ try { return JSON.parse(localStorage.getItem('wt:'+k)) ?? d } catch { return d } },
-  set(k, v){ localStorage.setItem('wt:'+k, JSON.stringify(v)) }
-};
-let DATA = null, player = null, current = null, ytReady = null;
+const LS = { get(k,d){ try { return JSON.parse(localStorage.getItem('wt2:'+k)) ?? d } catch { return d } }, set(k,v){ localStorage.setItem('wt2:'+k, JSON.stringify(v)) } };
 
-function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('on'); setTimeout(()=>t.classList.remove('on'),1600); }
-function watched(id){ return !!store.get('seen:'+id, false); }
+// 키: 슬랙 링크(?k=...)로 한 번 열면 이 폰에 저장
+(() => { const u = new URL(location.href); const k = u.searchParams.get('k'); if (k) { LS.set('key', k); u.searchParams.delete('k'); history.replaceState(null, '', u.pathname + u.search + u.hash); } })();
+const KEY = LS.get('key', '');
 
-function loadYT(){
-  if (ytReady) return ytReady;
-  ytReady = new Promise(res => {
-    window.onYouTubeIframeAPIReady = res;
-    const s = document.createElement('script'); s.src = 'https://www.youtube.com/iframe_api'; document.head.appendChild(s);
-  });
-  return ytReady;
+let DB = LS.get('cache', { topics: [], events: [] });
+let QUEUE = LS.get('queue', []);
+const open = new Set(LS.get('open', []));
+
+function toast(m){ const t=$('#toast'); t.textContent=m; t.classList.add('on'); setTimeout(()=>t.classList.remove('on'),1700); }
+function setSync(){ $('#sync').textContent = QUEUE.length ? `저장 대기 ${QUEUE.length}` : ''; }
+function allEvents(){ const ids = new Set(DB.events.map(e=>e.id)); return DB.events.concat(QUEUE.filter(e=>!ids.has(e.id))); }
+function evs(f){ return allEvents().filter(e => Object.entries(f).every(([k,v]) => String(e[k] ?? '') === String(v ?? ''))); }
+function last(list){ return list.slice().sort((a,b)=> String(a.ts).localeCompare(String(b.ts))).pop(); }
+const playing = () => !!document.querySelector('.frame iframe');
+
+async function pull(){
+  if (!KEY) return;
+  try {
+    const d = await (await fetch(`${API}?k=${encodeURIComponent(KEY)}`)).json();
+    if (d.ok) { DB = { topics: d.topics, events: d.events }; LS.set('cache', DB); if (!playing() && !document.activeElement?.matches('textarea,input')) render(); }
+    else if (d.err === 'key') { $('#app').innerHTML = '<div class="box">링크 키가 맞지 않아요. 슬랙에서 받은 링크로 다시 열어 주세요.</div>'; }
+  } catch {}
+}
+async function flush(){
+  if (!QUEUE.length || !KEY) return setSync();
+  const batch = QUEUE.slice();
+  try {
+    const d = await (await fetch(API, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify({ k: KEY, a: 'events', events: batch }) })).json();
+    if (d.ok) { const sent = new Set(batch.map(e=>e.id)); DB.events = DB.events.concat(batch); QUEUE = QUEUE.filter(e => !sent.has(e.id)); LS.set('queue', QUEUE); LS.set('cache', DB); }
+  } catch {}
+  setSync();
+}
+function add(ev){
+  const e = { id: Math.random().toString(36).slice(2,10), ts: new Date().toISOString(), by: 'me', ...ev };
+  QUEUE.push(e); LS.set('queue', QUEUE); setSync(); flush();
 }
 
-async function play(topic, v, start=0){
-  const wrap = $('#player-wrap'); wrap.classList.add('on');
-  current = { topic, v };
-  await loadYT();
-  if (player && player.getVideoData && player.getVideoData().video_id === v.id) { player.seekTo(start, true); player.playVideo(); return; }
-  if (player) { player.destroy(); player = null; $('#player-host').innerHTML = '<div id="player"></div>'; }
-  player = new YT.Player('player', {
-    host: 'https://www.youtube-nocookie.com',
-    videoId: v.id,
-    playerVars: { start, autoplay: 1, rel: 0, playsinline: 1, modestbranding: 1, iv_load_policy: 3 },
-    events: { onStateChange: e => { if (e.data === YT.PlayerState.ENDED) ended(); } }
-  });
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+// ---- 상태 계산
+const T = slug => DB.topics.find(x => x.slug === slug);
+function ctx(k){ const [topic, iter, quest, video] = k.split('|'); const t = T(topic); const it = t.iterations.find(i => String(i.n) === iter); const q = it.quests.find(x => x.id === quest); const v = video ? q.videos.find(x => x.id === video) : null; return { t, it, q, v, b: { topic, iter: Number(iter), quest, video: video || '' } }; }
+function checked(f){ const e = last(evs(f).filter(e => e.type==='check' || e.type==='uncheck')); return e?.type === 'check'; }
+const qDone = (t,it,q) => checked({topic:t.slug, iter:it.n, quest:q.id, video:''});
+const vSeen = (t,it,q,v) => checked({topic:t.slug, iter:it.n, quest:q.id, video:v.id});
+const vRate = (t,it,q,v) => last(evs({topic:t.slug, iter:it.n, quest:q.id, video:v.id, type:'rate'}))?.text || '';
+const choice = (t,it,q) => last(evs({topic:t.slug, iter:it.n, quest:q.id, type:'choice'}))?.text || '';
+function progress(t){
+  let n=0, d=0, cur=null;
+  for (const it of t.iterations) for (const q of it.quests) { n++; if (qDone(t,it,q)) d++; else if (!cur) cur = { it, q }; }
+  return { n, d, cur };
 }
+function unseen(){ const rep = new Set(allEvents().filter(e=>e.type==='coach').map(e=>e.reply_to)); return allEvents().filter(e => e.by==='me' && (e.type==='note' || e.type==='alt') && !e.processed && !rep.has(e.id) && !String(e.topic).startsWith('_')).length; }
 
-function closePlayer(){ if (player) { try { player.destroy(); } catch {} player = null; const h=$('#player-host'); if (h) h.innerHTML = '<div id="player"></div>'; } const w=$('#player-wrap'); if (w) w.classList.remove('on'); }
-
-function ended(){
-  if (!current) return;
-  const { topic, v } = current;
-  store.set('seen:'+v.id, true);
-  closePlayer();
-  renderTopic(topic.slug, v.id);
-}
-
-function obsText(topic){
-  const lines = topic.videos.map(v => { const o = store.get('obs:'+v.id, ''); return o ? `- ${v.title}: ${o}` : null; }).filter(Boolean);
-  return lines.length ? `[야생튜브] ${topic.title}\n본 것:\n${lines.join('\n')}` : '';
-}
-
+// ---- 홈: 주제 지도 (주제에서 갈라진 주제가 아래로 이어짐)
 function renderHome(){
-  const html = DATA.topics.map(t => {
-    const n = t.videos.filter(v => watched(v.id)).length;
+  if (!KEY) { $('#app').innerHTML = `<div class="box">슬랙에서 받은 링크로 한 번 열어 주세요. 그 뒤로는 이 폰에서 바로 열려요.</div>`; return; }
+  const ts = DB.topics.filter(t => t.status !== 'hidden');
+  const kids = s => ts.filter(t => t.from && t.from.slug === s);
+  const card = t => {
+    const p = progress(t); const it = p.cur?.it || t.iterations[t.iterations.length-1];
     return `<a class="box topic" href="#/t/${t.slug}">
-      <div class="label">${esc(t.stage)}</div>
-      <div class="vtitle">${esc(t.title)}</div>
-      <div class="meta">시연 영상 ${t.videos.length}개 · 본 것 ${n}개</div>
-      <div class="bar"><i style="width:${t.videos.length ? n/t.videos.length*100 : 0}%"></i></div>
-    </a>`;
-  }).join('');
-  $('#app').innerHTML = `<div id="player-wrap"><div class="ratio" id="player-host"><div id="player"></div></div><button class="close" onclick="closePlayer()">닫기</button></div>
-    <h1>배우는 주제</h1><div class="meta">실제로 하는 장면을 보는 곳. 다 보면 끝나요.</div>${html}
-    <footer>업데이트 ${esc(DATA.updated)}</footer>`;
+      <div class="label">${esc(it.title)}${t.status==='done' ? ' · 끝남' : t.status==='paused' ? ' · 쉬는 중' : ''}</div>
+      <div class="vt">${esc(t.title)}</div>
+      <div class="meta">${p.cur ? `지금: ${esc(p.cur.q.mode)} · ${esc(p.cur.q.title)}` : '이번 바퀴 다 함'}</div>
+      <div class="bar"><i style="width:${p.n ? p.d/p.n*100 : 0}%"></i></div>
+    </a>${kids(t.slug).map(k => `<div class="branch"><div class="meta">↳ 여기서 넘어감${k.from.why ? ': '+esc(k.from.why) : ''}</div>${card(k)}</div>`).join('')}`;
+  };
+  const w = unseen();
+  $('#app').innerHTML = `<h1>배우는 주제</h1>
+    <div class="meta">주제를 누르면 퀘스트가 위에서 아래로 이어져요.${w ? ` Aside가 아직 안 본 노트 ${w}개.` : ''}</div>
+    ${ts.filter(t => !t.from || !ts.some(x => x.slug === t.from.slug)).map(card).join('') || '<div class="box">아직 주제가 없어요.</div>'}`;
 }
 
-function renderTopic(slug, endedId){
-  const t = DATA.topics.find(x => x.slug === slug); if (!t) return renderHome();
-  const n = t.videos.filter(v => watched(v.id)).length;
-  const allDone = n === t.videos.length;
-  const cards = t.videos.map((v, i) => {
-    const seen = watched(v.id), obs = store.get('obs:'+v.id, '');
-    const endBox = endedId === v.id ? `<div class="box end"><div class="label">다 봤어요</div>방금 본 것 한 줄: 무엇을 봤고, 나라면 어떻게 할지.</div>` : '';
-    return `<div class="vid" id="v-${v.id}">
-      <button class="thumb" style="background-image:url(https://i.ytimg.com/vi/${v.id}/hq2.jpg)" onclick="playIdx('${t.slug}',${i},0)" aria-label="재생">
-        <span class="play"></span><span class="len">${v.minutes}분</span>${seen ? '<span class="done">봤음</span>' : ''}
-      </button>
-      <div class="vbody">
-        <div class="vtitle">${esc(v.title)}</div>
-        <div class="meta">${esc(v.channel)} · ${esc(v.kind)}</div>
-        <div class="chips">${v.links.map(l => `<span class="chip">${esc(l)}</span>`).join('')}</div>
-        <div style="margin-top:10px"><div class="label">볼 것</div>${esc(v.look)}</div>
-        <div class="scenes">${v.scenes.map(s => `<button onclick="playIdx('${t.slug}',${i},${s.t})"><b>${fmt(s.t)}</b>${esc(s.label)}</button>`).join('')}</div>
-        ${endBox}
-        <div style="margin-top:12px"><div class="label">본 것 한 줄</div>
-          <textarea data-id="${v.id}" placeholder="무엇을 봤고, 나라면 어떻게 할지">${esc(obs)}</textarea>
-          <div class="row"><button class="btn ghost" onclick="toggleSeen('${t.slug}','${v.id}')">${seen ? '안 본 걸로' : '봤음 표시'}</button></div>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-  $('#app').innerHTML = `<div id="player-wrap"><div class="ratio" id="player-host"><div id="player"></div></div><button class="close" onclick="closePlayer()">닫기</button></div>
-    <div class="meta"><a href="#/" style="color:var(--sub)">← 주제 목록</a></div>
+// ---- 주제: 퀘스트 시퀀스
+function noteList(t, it, q, video=''){
+  const coach = allEvents().filter(e => e.type==='coach');
+  return evs({topic:t.slug, iter:it.n, quest:q.id, video}).filter(e => e.type==='note' || e.type==='alt')
+    .sort((a,b)=>String(a.ts).localeCompare(String(b.ts))).map(n => {
+      const rep = coach.filter(c => c.reply_to === n.id);
+      return `<div class="note"><div class="when">${new Date(n.ts).toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'numeric',minute:'2-digit'})}${n.type==='alt' ? ' · 대신 찾아볼 것' : ''}</div>${esc(n.text)}${
+        rep.map(r => `<div class="coach"><b>Aside</b> ${esc(r.text)}</div>`).join('') || `<div class="wait">${n.processed ? 'Aside가 반영함' : 'Aside가 아직 안 봄'}</div>`}</div>`;
+    }).join('');
+}
+function videoBody(t, it, q, v, key){
+  const seen = vSeen(t,it,q,v), rate = vRate(t,it,q,v);
+  return `<div class="vt">${esc(v.title)}</div>
+    <div class="meta">${esc(v.channel)} · ${esc(v.kind)}${(v.links||[]).length ? ' · '+v.links.map(esc).join(' ') : ''}</div>
+    <div style="margin-top:6px;font-size:15px"><span class="label">볼 것</span> ${esc(v.look)}</div>
+    <div class="scenes">${(v.scenes||[]).map(s => `<button onclick="playV(this,'${v.id}',${s.t})"><b>${fmt(s.t)}</b>${esc(s.label)}</button>`).join('')}</div>
+    <div class="row">
+      <button class="mini ${seen?'on':''}" onclick="vact('seen','${key}')">${seen ? '봤음' : '봤음 표시'}</button>
+      <button class="mini ${rate==='good'?'on':''}" onclick="vact('good','${key}')">도움됨</button>
+      <button class="mini bad ${rate==='bad'?'on':''}" onclick="vact('bad','${key}')">별로</button>
+    </div>
+    ${rate==='bad' ? `<div class="alt"><div class="label">대신 뭘 찾아볼까?</div><div class="row"><input type="text" data-alt="${key}" placeholder="예: 한국어로, 실제 장면, 더 짧게"><button class="btn" onclick="vact('alt','${key}')">남기기</button></div></div>` : ''}
+    ${noteList(t,it,q,v.id)}
+    <div class="row"><input type="text" data-vn="${key}" placeholder="이 영상에서 본 것 한 줄"><button class="btn ghost" onclick="vact('note','${key}')">저장</button></div>`;
+}
+function questCard(t, it, q, idx, state){
+  const k = `${t.slug}|${it.n}|${q.id}`;
+  const isOpen = state==='now' ? !open.has('x:'+k) : open.has(k);
+  const ch = choice(t,it,q);
+  const ln = last(evs({topic:t.slug, iter:it.n, quest:q.id, video:'', type:'note'}));
+  const sub = state==='done' ? (ch || ln?.text || '완료') : state==='now' ? '지금' : '';
+  let body = `<div style="font-size:15px">${esc(q.body||'')}</div>`;
+  if (q.kind === 'choose') body += (q.options||[]).map(o => `<button class="opt ${ch===o?'on':''}" data-o="${esc(o)}" onclick="qact('choice','${k}',this.dataset.o)">${esc(o)}</button>`).join('');
+  if (q.kind === 'watch') body += (q.videos||[]).map(v => { const vk = `${k}|${v.id}`; return `<div class="vid" data-key="${vk}">
+      <div class="vslot"><button class="thumb" style="background-image:url(https://i.ytimg.com/vi/${v.id}/hq2.jpg)" onclick="playV(this,'${v.id}',0)" aria-label="재생"><span class="play"></span><span class="len">${v.minutes}분</span></button></div>
+      <div class="vb">${videoBody(t,it,q,v,vk)}</div></div>`; }).join('');
+  body += `${noteList(t,it,q)}
+    <textarea data-qn="${k}" placeholder="${esc(q.prompt || '노트')}"></textarea>
+    <div class="row"><button class="btn ghost" onclick="qact('note','${k}')">노트 저장</button></div>
+    ${state==='done' ? `<div class="row"><button class="btn ghost" onclick="qact('undo','${k}')">다시 열기</button></div>`
+      : `<button class="btn wide" onclick="qact('done','${k}')">퀘스트 완료, 다음으로</button>`}`;
+  return `<div class="q ${state}" data-q="${k}">
+    <div class="dot">${state==='done' ? '✓' : idx}</div>
+    <div class="qc">
+      <div class="qh" onclick="toggle('${k}','${state}')"><span class="chip">${esc(q.mode)}</span><span class="t">${esc(q.title)}</span><span class="s">${esc(sub)}</span></div>
+      <div class="qb" ${isOpen ? '' : 'hidden'}>${body}</div>
+    </div></div>`;
+}
+function renderTopic(slug){
+  const t = T(slug); if (!t) return renderHome();
+  const p = progress(t);
+  const from = t.from && T(t.from.slug);
+  const kids = DB.topics.filter(x => x.from && x.from.slug === t.slug);
+  let html = `<div class="meta"><a href="#/" style="color:var(--sub)">← 주제 지도</a></div>
     <h1>${esc(t.title)}</h1>
-    <div class="meta">${esc(t.stage)} · 본 것 ${n}/${t.videos.length}</div>
-    <div class="box">
-      <div class="label">이번 단계 갈래</div>
-      <div class="chips">${t.options.map(o => `<span class="chip">${esc(o)}</span>`).join('')}</div>
-      <div style="margin-top:10px"><div class="label">볼 때 눈여겨볼 것</div>${esc(t.watchFor)}</div>
-    </div>
-    ${cards}
-    <div class="box ${allDone ? 'end' : ''}">
-      <div class="label">${allDone ? '이 주제 영상은 여기까지예요' : '보고 나서 해 보기'}</div>${esc(t.tryIt)}
-      <div class="row"><button class="btn" onclick="copyObs('${t.slug}')">본 것 복사해서 슬랙에 붙이기</button></div>
-    </div>
-    <footer>업데이트 ${esc(DATA.updated)}</footer>`;
-  document.querySelectorAll('textarea[data-id]').forEach(el => el.addEventListener('input', () => store.set('obs:'+el.dataset.id, el.value.trim())));
-  if (endedId) { const el = $('#v-'+endedId); if (el) { el.scrollIntoView({ block: 'start' }); const ta = el.querySelector('textarea'); ta && ta.focus({ preventScroll: true }); } }
+    <div class="meta">퀘스트 ${p.d}/${p.n}${from ? ` · <a href="#/t/${from.slug}" style="color:var(--sub)">${esc(from.title)}</a>에서 넘어옴` : ''}</div>
+    ${t.outcome ? `<div class="box"><div class="label">아웃컴</div>${esc(t.outcome)}</div>` : ''}`;
+  let no = 0;
+  for (const it of t.iterations) {
+    const doneAll = it.quests.every(q => qDone(t,it,q));
+    html += `<div class="iter"><h2>${esc(it.title)}${doneAll ? ' · 끝' : ''}</h2>${it.goal ? `<div class="meta">${esc(it.goal)}</div>` : ''}${it.retro ? `<div class="box"><div class="label">돌아보기</div>${esc(it.retro)}</div>` : ''}</div><div class="seq">`;
+    for (const q of it.quests) { no++; html += questCard(t, it, q, no, qDone(t,it,q) ? 'done' : (p.cur && p.cur.q === q && p.cur.it === it) ? 'now' : 'later'); }
+    html += `</div>`;
+  }
+  html += `<div class="next"><div class="label">그다음</div>${
+    kids.length ? kids.map(k => `<div><a href="#/t/${k.slug}">${esc(k.title)}</a>${k.from.why ? ` <span class="meta">${esc(k.from.why)}</span>` : ''}</div>`).join('')
+    : '마지막 퀘스트(다시 지도)에 적으면 Aside가 다음 바퀴나 새 주제를 여기 이어 붙여요.'}</div>`;
+  $('#app').innerHTML = html;
 }
 
-function playIdx(slug, i, start){ const t = DATA.topics.find(x => x.slug === slug); play(t, t.videos[i], start); }
-function toggleSeen(slug, id){ store.set('seen:'+id, !watched(id)); renderTopic(slug); }
-async function copyObs(slug){
-  const t = DATA.topics.find(x => x.slug === slug); const txt = obsText(t);
-  if (!txt) return toast('아직 적은 게 없어요');
-  try { await navigator.clipboard.writeText(txt); toast('복사했어요. 슬랙 스레드에 붙여 주세요'); }
-  catch { prompt('복사해서 붙여 주세요', txt); }
+// ---- 동작
+function render(){ const m = location.hash.match(/^#\/t\/([\w-]+)/); m ? renderTopic(m[1]) : renderHome(); setSync(); }
+function keepScroll(fn){ const y = window.scrollY; fn(); window.scrollTo(0, y); }
+function qact(kind, k, val){
+  const { b } = ctx(k);
+  if (kind === 'note') { const el = document.querySelector(`[data-qn="${k}"]`); const v = el.value.trim(); if (!v) return toast('적은 게 없어요'); add({...b, type:'note', text:v}); toast('저장했어요'); }
+  if (kind === 'choice') { add({...b, type:'choice', text:val}); toast('골랐어요'); }
+  if (kind === 'undo') add({...b, type:'uncheck'});
+  if (kind === 'done') {
+    const el = document.querySelector(`[data-qn="${k}"]`); if (el && el.value.trim()) add({...b, type:'note', text: el.value.trim()});
+    add({...b, type:'check'}); open.delete(k); LS.set('open', [...open]); render();
+    const nx = document.querySelector('.q.now'); toast(nx ? '완료. 다음 퀘스트로' : '이번 바퀴 끝!'); nx && nx.scrollIntoView({behavior:'smooth', block:'start'}); return;
+  }
+  if (playing()) { const card = document.querySelector(`[data-q="${k}"]`); if (card && !card.querySelector('.frame')) { const { t, it, q } = ctx(k); const st = card.classList.contains('done') ? 'done' : card.classList.contains('now') ? 'now' : 'later'; const tmp = document.createElement('div'); tmp.innerHTML = questCard(t,it,q, card.querySelector('.dot').textContent, st); card.replaceWith(tmp.firstElementChild); return; } }
+  keepScroll(render);
 }
-
-function route(){ closePlayer(); const m = location.hash.match(/^#\/t\/([\w-]+)/); m ? renderTopic(m[1]) : renderHome(); window.scrollTo(0, 0); }
-window.addEventListener('hashchange', route);
-fetch('data.json', { cache: 'no-store' }).then(r => r.json()).then(d => { DATA = d; route(); })
-  .catch(() => { $('#app').textContent = '목록을 못 불러왔어요. 잠시 뒤 새로고침해 주세요.'; });
+function vact(kind, key){
+  const { t, it, q, v, b } = ctx(key);
+  if (kind === 'seen') add({...b, type: vSeen(t,it,q,v) ? 'uncheck' : 'check'});
+  if (kind === 'good' || kind === 'bad') add({...b, type:'rate', text: kind});
+  if (kind === 'alt') { const el = document.querySelector(`[data-alt="${key}"]`); const s = el.value.trim(); if (!s) return; add({...b, type:'alt', text:s}); toast('남겼어요. Aside가 찾아서 붙일게요'); }
+  if (kind === 'note') { const el = document.querySelector(`[data-vn="${key}"]`); const s = el.value.trim(); if (!s) return; add({...b, type:'note', text:s}); toast('저장했어요'); }
+  // 영상 아래 부분만 다시 그림 (재생 중인 영상은 그대로)
+  document.querySelector(`.vid[data-key="${key}"] .vb`).innerHTML = videoBody(t,it,q,v,key);
+}
+function toggle(k, state){
+  const id = state === 'now' ? 'x:'+k : k;
+  open.has(id) ? open.delete(id) : open.add(id); LS.set('open', [...open]);
+  const el = document.querySelector(`[data-q="${k}"] .qb`); el.hidden = !el.hidden;
+}
+function playV(btn, id, start){
+  // 다른 영상은 멈추고 썸네일로 되돌림
+  document.querySelectorAll('.vid').forEach(vd => { if (!vd.contains(btn) && vd.querySelector('.frame')) { const vid = vd.dataset.key.split('|')[3]; const len = vd.dataset.len || ''; vd.querySelector('.vslot').innerHTML = `<button class="thumb" style="background-image:url(https://i.ytimg.com/vi/${vid}/hq2.jpg)" onclick="playV(this,'${vid}',0)" aria-label="재생"><span class="play"></span></button>`; } });
+  const slot = btn.closest('.vid').querySelector('.vslot');
+  slot.innerHTML = `<div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/${id}?start=${start}&autoplay=1&rel=0&playsinline=1&modestbranding=1&iv_load_policy=3" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>`;
+  slot.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+window.addEventListener('hashchange', () => { render(); window.scrollTo(0,0); });
+window.addEventListener('online', flush);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) { flush(); pull(); } });
+render(); flush(); pull();
 </script>
 </body>
 </html>
