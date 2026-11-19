@@ -250,14 +250,15 @@ const hash = s => { let h=0; for (const c of String(s)) h = (h*31 + c.charCodeAt
 const thumb = v => `https://i.ytimg.com/vi/${v}/hqdefault.jpg`;
 const embed = (v, t=0) => `https://www.youtube-nocookie.com/embed/${v}?start=${t}&autoplay=1&playsinline=1&rel=0&modestbranding=1`;
 
-const ALL = () => [...FEED.asks, ...FEED.reads, ...FEED.videos, ...(FEED.games||[]), ...(FEED.disc||[]), ...(FEED.insights||[])];
+const ALL = () => [...(FEED.asks||[]), ...FEED.reads, ...FEED.videos, ...(FEED.games||[]), ...(FEED.disc||[]), ...(FEED.insights||[]), ...(FEED.studies||[])];
 const GAMES = LS.get('games', {});   // id -> {score, at}
 function items(){
   if (!FEED) return [];
   const all = ALL().filter(x => !(R[x.id]||{}).meh);
-  if (FILTER !== 'all') return all.filter(x => x.kind === FILTER).sort((a,b)=>(b.ts||0)-(a.ts||0));
+  const FK = { video:['study','video'], game:['game'], read:['read','disc'] };
+  if (FILTER.startsWith('t:')) return all.filter(x => x.kind==='study' && x.topic===FILTER.slice(2)).sort((a,b)=> SEEN.has(a.id)-SEEN.has(b.id));
+  if (FILTER !== 'all') return all.filter(x => (FK[FILTER]||[FILTER]).includes(x.kind)).sort((a,b)=> (SEEN.has(a.id)-SEEN.has(b.id)) || ((b.ts||0)-(a.ts||0)));
   // 섞기: 물어본 것(최근) 먼저 2개, 그 뒤 영상·읽을거리·물어본 것 번갈아. 좋아요 받은 결 앞으로.
-  const asks = FEED.asks.filter(x=>!(R[x.id]||{}).meh);
   const reads = FEED.reads.filter(x=>!(R[x.id]||{}).meh);
   const likedSec = new Set(reads.filter(r=>(R[r.id]||{}).like||(R[r.id]||{}).save).map(r=>r.section.split(' · ')[0]));
   reads.sort((a,b)=> (likedSec.has(b.section.split(' · ')[0]) - likedSec.has(a.section.split(' · ')[0])) || (b.ts-a.ts));
@@ -265,20 +266,25 @@ function items(){
   const games = (FEED.games||[]).filter(x=>!(R[x.id]||{}).meh).sort((a,b)=> gameDue(b) - gameDue(a));
   const insights = (FEED.insights||[]).filter(x=>!(R[x.id]||{}).meh);
   const disc = (FEED.disc||[]).filter(x=>!(R[x.id]||{}).meh && !SEEN.has(x.id)).concat((FEED.disc||[]).filter(x=>!(R[x.id]||{}).meh && SEEN.has(x.id)));
+  // 공부 영상: 주제별로 번갈아(안 본 것 먼저)
+  const byT = {}; (FEED.studies||[]).filter(x=>!(R[x.id]||{}).meh).forEach(x => (byT[x.topic] = byT[x.topic] || []).push(x));
+  Object.values(byT).forEach(l => l.sort((a,b)=> (SEEN.has(a.id)-SEEN.has(b.id)) || (hash(a.id+FEED.built)%97 - hash(b.id+FEED.built)%97)));
+  const order = Object.keys(byT).sort((a,b)=> hash(a+FEED.built)%13 - hash(b+FEED.built)%13);
+  const studies = []; for (let r = 0; order.some(k => byT[k].length > r); r++) order.forEach(k => { if (byT[k][r]) studies.push(byT[k][r]); });
+  const arts = []; while (reads.length || disc.length) { if (reads.length) arts.push(reads.shift()); if (disc.length) arts.push(disc.shift()); }
   const out = [];
-  out.push(...asks.splice(0,2));
-  if (insights.length) out.unshift(insights[0]);
-  if (games.length && gameDue(games[0])) out.push(games.shift());
+  if (insights.length) out.push(insights[0]);
+  const firstGame = games.length && gameDue(games[0]) ? games.shift() : null;
   let n = 0;
-  while (asks.length || reads.length || vids.length || games.length) {
-    if (vids.length) out.push(vids.shift());
-    if (reads.length) out.push(reads.shift());
-    if (disc.length) out.push(disc.shift());
-    if (reads.length) out.push(reads.shift());
-    if (asks.length) out.push(asks.shift());
-    if (++n % 2 === 0 && games.length) out.push(games.shift());
+  while (studies.length || vids.length || arts.length || games.length) {
+    if (studies.length) out.push(studies.shift());
+    if (studies.length) out.push(studies.shift());
+    if (n % 2 === 0 && vids.length) out.push(vids.shift());
+    if (arts.length) out.push(arts.shift());
+    if (++n % 3 === 0 && games.length) out.push(games.shift());
   }
-  out.push(...disc);   // 긴 꼬리: 발견 풀 (8개씩 계속 붙음)
+  if (firstGame) out.splice(Math.min(3, out.length), 0, firstGame);   // 영상 먼저, 게임은 네 번째
+  return out;
   return out;
 }
 const isNew = x => x.ts && x.ts*1000 > LAST && !SEEN.has(x.id);
@@ -294,25 +300,30 @@ function render(){
   if (TAB === 'reels') renderReels();
 }
 function renderStories(){
-  const today = FEED.asks.filter(a => Date.now()/1000 - a.ts < 36*3600);
-  const st = [];
-  st.push({ key:'asks', name:'오늘 물어본 것', icon:'?', bg:'linear-gradient(135deg,#f09433,#bc1888)', seen: today.every(a=>SEEN.has(a.id)), p: today.length+'개' });
-  st.push({ key:'reads', name:'읽을거리', icon:'¶', bg:'linear-gradient(135deg,#4f46e5,#9333ea)', seen: FEED.reads.slice(0,10).every(a=>SEEN.has(a.id)), p: FEED.reads.filter(r=>Date.now()/1000-r.ts<36*3600).length+'개 새로' });
-  for (const t of FEED.topics) {
-    const v = FEED.videos.find(x=>x.topic===t.slug);
-    st.push({ key:'t:'+t.slug, name:t.title.split(' · ')[0], img: v ? thumb(v.vid) : '', icon: t.title[0], bg:'#999', seen: FEED.videos.filter(x=>x.topic===t.slug).every(x=>SEEN.has(x.id)), p: `${t.done}/${t.total}` });
+  const st = [{ key:'add', name:'+ 주제', icon:'+', bg:'#efefef', seen:true, p:'더 공부할 것', plain:true }];
+  for (const t of (FEED.studyTopics||[])) {
+    const vs = (FEED.studies||[]).filter(x=>x.topic===t.slug); if (!vs.length) continue;
+    const un = vs.filter(x=>!SEEN.has(x.id));
+    st.push({ key:'s:'+t.slug, name:t.title, img: thumb((un[0]||vs[0]).vid), seen: !un.length, p: un.length ? `새 영상 ${un.length}` : '다 봄' });
   }
-  $('#stories').innerHTML = st.map(s => `<button class="st" data-st="${esc(s.key)}"><div class="ring ${s.seen?'seen':''}"><div style="${s.img?`background-image:url(${s.img})`:`background:${s.bg}`}">${s.img?'':esc(s.icon)}</div></div><div class="n">${esc(s.name)}</div><div class="p">${esc(s.p)}</div></button>`).join('');
-  $('#stories').querySelectorAll('[data-st]').forEach(b => b.onclick = () => openStory(b.dataset.st));
+  st.push({ key:'reads', name:'읽을거리', icon:'¶', bg:'linear-gradient(135deg,#4f46e5,#9333ea)', seen: FEED.reads.slice(0,10).every(a=>SEEN.has(a.id)), p: FEED.reads.filter(r=>Date.now()/1000-r.ts<36*3600).length+'개 새로' });
+  $('#stories').innerHTML = st.map(s => `<button class="st" data-st="${esc(s.key)}"><div class="ring ${s.seen?'seen':''}" ${s.plain?'style="background:#dbdbdb"':''}><div style="${s.img?`background-image:url(${s.img})`:`background:${s.bg};color:${s.plain?'#111':'#fff'}`}">${s.img?'':esc(s.icon)}</div></div><div class="n">${esc(s.name)}</div><div class="p">${esc(s.p)}</div></button>`).join('');
+  $('#stories').querySelectorAll('[data-st]').forEach(b => b.onclick = () => b.dataset.st==='add' ? addTopic() : openStory(b.dataset.st));
+}
+function addTopic(){
+  const t = (prompt('더 공부하고 싶은 주제 (예: 재즈 즉흥 리듬, 협상 심리)') || '').trim(); if (!t) return;
+  QUEUE.push({ id: Math.random().toString(36).slice(2,10), topic:'_feed', type:'topic_add', text:t, by:'me' }); LS.set('fq', QUEUE); flush();
+  toast('추가했어요. 다음 갱신(2시간 안쪽) 때 영상이 들어와요');
 }
 function renderChips(){
-  const c = [['all','전체'],['game','결정 게임'],['ask','물어본 것'],['disc','발견'],['video','영상'],['read','읽을거리']];
+  const c = [['all','전체'],['video','영상'],['game','결정 게임'],['read','글']];
+  if (FILTER.startsWith('t:')) c.push([FILTER, ((FEED.studyTopics||[]).find(t=>'t:'+t.slug===FILTER)||{}).title||'주제']);
   $('#chips').innerHTML = c.map(([k,n]) => `<button class="chip ${FILTER===k?'on':''}" data-f="${k}">${n}</button>`).join('');
   $('#chips').querySelectorAll('[data-f]').forEach(b => b.onclick = () => { FILTER = b.dataset.f; render(); scrollTo(0,0); });
 }
 function acts(x){
   const r = R[x.id] || {};
-  const share = x.kind==='ask' ? x.link : x.kind==='read' ? (x.url||x.thread) : x.kind==='disc' ? (x.url) : x.kind==='game' ? './feed.html' : `https://youtu.be/${x.vid}`;
+  const share = x.kind==='study' ? `https://youtu.be/${x.vid}` : x.kind==='ask' ? x.link : x.kind==='read' ? (x.url||x.thread) : x.kind==='disc' ? (x.url) : x.kind==='game' ? './feed.html' : `https://youtu.be/${x.vid}`;
   return `<div class="acts"><button data-a="like" class="${r.like?'on lk':''}" title="좋아요">${r.like?'♥':'♡'}</button><button data-a="note" title="스레드로">💬</button><a href="${esc(share)}" target="_blank" rel="noopener" style="text-decoration:none;font-size:22px" title="원문">↗</a><button data-a="meh" title="별로, 숨기기" style="font-size:19px;color:#8e8e8e">✕</button><button data-a="save" class="r ${r.save?'on':''}" title="저장">${r.save?'⚑':'⚐'}</button></div>`;
 }
 function postHTML(x){
@@ -338,6 +349,14 @@ function postHTML(x){
       ${x.replies ? `<div class="cmt" data-open="${esc(x.thread)}">스레드 댓글 ${x.replies}개 보기</div>` : ''}
       <div class="lnk">${x.url?`<a href="${esc(x.url)}" target="_blank" rel="noopener">원문 읽기</a>`:''}<a href="${esc(x.thread)}" target="_blank" rel="noopener">슬랙에서 이야기하기</a></div>
       <div class="time">${esc(x.day)}</div></article>`;
+  }
+  if (x.kind === 'study') {
+    return `<article class="post" data-id="${esc(x.id)}">
+      <div class="ph"><div class="av"><span style="background:url(${thumb(x.vid)}) center/cover"></span></div><div class="who">${esc(x.topicTitle)}<small>${esc(x.channel)} · 조회 ${x.views>=10000?Math.round(x.views/10000)+'만':x.views}</small></div>${SEEN.has(x.id)?'':'<span class="new">새로</span>'}</div>
+      <div class="media v" data-vid="${esc(x.vid)}"><img loading="lazy" src="${thumb(x.vid)}" alt=""><div class="play"><b>▶</b></div><span class="dur">${x.minutes}분</span></div>
+      ${acts(x)}
+      <div class="cap"><b>${esc(x.title)}</b></div>
+      <div class="lnk"><button onclick="FILTER='t:${esc(x.topic)}';render();scrollTo(0,0)">이 주제 더 보기</button></div></article>`;
   }
   if (x.kind === 'insight') {
     return `<article class="post" data-id="${esc(x.id)}">
@@ -391,7 +410,7 @@ function more(){
 }
 function endHTML(){
   const t = FEED.topics.find(t=>t.status==='active');
-  return `<div class="end"><div class="ok">✓</div><h3>오늘 피드는 여기까지예요</h3><p>더 내릴 건 없어요. 본 것 하나를 해 보는 쪽으로 갈까요?</p>${t?`<a class="btn" href="./#${esc(t.slug)}">「${esc(t.title.split(' · ')[0])}」 다음 퀘스트</a>`:''} <button class="btn g" onclick="openStory('asks')">오늘 물어본 것 다시 보기</button></div>`;
+  return `<div class="end"><div class="ok">✓</div><h3>오늘 피드는 여기까지예요</h3><p>더 내릴 건 없어요. 본 것 하나를 해 보는 쪽으로 갈까요?</p>${t?`<a class="btn" href="./#${esc(t.slug)}">「${esc(t.title.split(' · ')[0])}」 다음 퀘스트</a>`:''} <button class="btn g" onclick="addTopic()">+ 더 공부할 주제</button></div>`;
 }
 function wire(root){
   root.querySelectorAll('.more').forEach(b => b.onclick = e => { const s = e.target.closest('.cx'); s.textContent = s.dataset.full; });
@@ -425,7 +444,7 @@ function renderSaved(){
   const all = ALL().filter(x => (R[x.id]||{}).save);
   if (!all.length) { $('#main').innerHTML = `<div class="empty">저장한 게 아직 없어요.<br>게시물 오른쪽 ⚐ 를 누르면 여기 모여요.</div>`; return; }
   $('#main').innerHTML = `<div class="grid">${all.map(x => {
-    const bg = x.kind==='game' ? 'background:#111' : x.kind==='video' ? `background-image:linear-gradient(transparent 50%,rgba(0,0,0,.7)),url(${thumb(x.vid)})` : x.img ? `background-image:linear-gradient(transparent 40%,rgba(0,0,0,.75)),url('${esc(x.img)}')` : `background:${x.kind==='read'?secGrad(x.section):ASK_GRADS[hash(x.id)%ASK_GRADS.length]}`;
+    const bg = x.kind==='game' ? 'background:#111' : (x.kind==='video'||x.kind==='study') ? `background-image:linear-gradient(transparent 50%,rgba(0,0,0,.7)),url(${thumb(x.vid)})` : x.img ? `background-image:linear-gradient(transparent 40%,rgba(0,0,0,.75)),url('${esc(x.img)}')` : `background:${x.kind==='read'?secGrad(x.section):ASK_GRADS[hash(x.id)%ASK_GRADS.length]}`;
     const t = x.kind==='ask' ? x.q : x.kind==='disc' ? (x.ko||x.title) : x.title;
     return `<div class="g" style="${bg}" data-go="${esc(x.id)}">${esc(t.slice(0,48))}</div>`; }).join('')}</div>`;
   $('#main').querySelectorAll('[data-go]').forEach(g => g.onclick = () => { FILTER='all'; TAB='home'; setNav(); LIST=ALL().filter(x=>x.id===g.dataset.go); shown=0; $('#main').innerHTML=''; more(); });
@@ -433,11 +452,12 @@ function renderSaved(){
 
 // ---------- reels ----------
 function renderReels(){
-  const L = items().filter(x => x.kind !== 'game').slice(0, 60);
+  const L = items().filter(x => ['study','video','read','disc'].includes(x.kind)).slice(0, 60);
   const el = $('#reels');
   el.innerHTML = L.map(x => {
     const r = R[x.id]||{};
     const side = `<div class="side"><button data-a="like" class="${r.like?'on lk':''}">${r.like?'♥':'♡'}<small>좋아요</small></button><button data-a="save" class="${r.save?'on':''}">${r.save?'⚑':'⚐'}<small>저장</small></button><a href="${esc(x.kind==='video'?'./#'+x.topic:(x.link||x.thread))}" target="_blank">💬<small>노트</small></a><button data-a="meh">✕<small>별로</small></button></div>`;
+    if (x.kind === 'study') x = {...x, kind:'video', look:'', scenes:[]};
     if (x.kind === 'disc' && x.vid) x = {...x, kind:'video', topicTitle:'발견 · '+x.secName, channel:x.src, look:x.hook||'', scenes:[]};
     if (x.kind === 'disc') x = {...x, section:'발견 · '+x.secName, title:x.ko||x.title, what:x.hook||x.desc, ch:x.src};
     if (x.kind === 'video') return `<section class="rl" data-id="${esc(x.id)}"><div class="bgimg" style="background-image:url(${thumb(x.vid)})"></div><div class="frame" data-vid="${esc(x.vid)}"><img loading="lazy" src="${thumb(x.vid)}"><div class="play"><b>▶</b></div></div><div class="meta"><b>${esc(x.topicTitle.split(' · ')[0])} · ${esc(x.channel)}</b><p>${esc(x.title)}${x.look?' · 볼 곳: '+esc(x.look):''}</p>${x.scenes?.length?`<div class="scenes" style="padding:8px 0 0">${x.scenes.map(s=>`<button data-seek="${s.t}" style="background:rgba(255,255,255,.2);color:#fff">${fmt(s.t)} ${esc(s.label)}</button>`).join('')}</div>`:''}</div>${side}</section>`;
@@ -461,6 +481,9 @@ let SV = null;
 function openStory(key){
   let slides = [], name = '', av = '';
   if (key === 'asks') { name = '오늘 물어본 것'; slides = FEED.asks.filter(a=>Date.now()/1000-a.ts<36*3600); if (!slides.length) slides = FEED.asks.slice(0,6); slides = slides.map(x=>({x, bg: ASK_GRADS[hash(x.id)%ASK_GRADS.length], t: x.q, b: x.a || (x.follow.find(f=>f.a)||{}).a || '', cta: [['슬랙 스레드', x.link]]})); }
+  else if (key.startsWith('s:')) { const slug = key.slice(2); const t = (FEED.studyTopics||[]).find(t=>t.slug===slug); name = t.title;
+    const vs = (FEED.studies||[]).filter(v=>v.topic===slug).sort((a,b)=> SEEN.has(a.id)-SEEN.has(b.id));
+    slides = vs.map(x=>({x, bg:'#111', vid:x.vid, k:`${x.channel} · ${x.minutes}분`, t:x.title, b:'', cta:[['주제 빼기', '#rm:'+slug]]})); }
   else if (key === 'reads') { name = '읽을거리'; slides = FEED.reads.slice(0,12).map(x=>({x, bg: secGrad(x.section), k: x.section, t: x.title, b: x.what, cta: [x.url?['원문', x.url]:null, ['슬랙', x.thread]].filter(Boolean)})); }
   else { const slug = key.slice(2); const t = FEED.topics.find(t=>t.slug===slug); name = t.title.split(' · ')[0];
     slides = FEED.videos.filter(v=>v.topic===slug).map(x=>({x, bg:'#111', vid:x.vid, k:`퀘스트 ${x.quest} · ${x.questTitle}`, t:x.title, b: x.look ? '볼 곳: '+x.look : '', cta:[['퀘스트판', './#'+slug]]})); }
@@ -476,8 +499,9 @@ function showSlide(){
     <div class="top"><span>${esc(name)}</span><span style="font-weight:400;opacity:.7">${i+1}/${slides.length}</span><button id="svx">×</button></div>
     <div class="slide">${s.vid?`<div class="vthumb" id="svv"><img src="${thumb(s.vid)}"><div class="play"><b>▶</b></div></div>`:''}${s.k?`<div style="font-size:12.5px;font-weight:700;opacity:.8;margin:${s.vid?'18px':'0'} 0 10px">${esc(s.k)}</div>`:''}<div class="t" style="${s.vid?'font-size:20px':''}">${esc(s.t)}</div>${s.b?`<div class="b">${esc(s.b)}</div>`:''}</div>
     <div class="tap l" id="svl"></div><div class="tap r" id="svr"></div>
-    <div class="cta">${s.cta.map(([n,u])=>`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(n)}</a>`).join('')}<button id="svs">${(R[s.x.id]||{}).save?'⚑ 저장됨':'⚐ 저장'}</button></div></div>`;
+    <div class="cta">${s.cta.map(([n,u])=> u.startsWith('#rm:') ? `<button data-rm="${esc(u.slice(4))}">${esc(n)}</button>` : `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(n)}</a>`).join('')}<button id="svs">${(R[s.x.id]||{}).save?'⚑ 저장됨':'⚐ 저장'}</button></div></div>`;
   $('#svx').onclick = closeStory;
+  const rm = $('#sv [data-rm]'); if (rm) rm.onclick = () => { if (!confirm('이 주제를 피드에서 뺄까요?')) return; QUEUE.push({ id: Math.random().toString(36).slice(2,10), topic:'_feed', type:'topic_remove', text: rm.dataset.rm, by:'me' }); LS.set('fq', QUEUE); flush(); FEED.studies = FEED.studies.filter(x=>x.topic!==rm.dataset.rm); closeStory(); toast('뺐어요'); };
   $('#svl').onclick = () => go(-1); $('#svr').onclick = () => go(1);
   $('#svs').onclick = () => { const on = react(s.x.id,'save'); $('#svs').textContent = on?'⚑ 저장됨':'⚐ 저장'; };
   if (s.vid) $('#svv').onclick = () => { SV.paused = true; $('#svv').innerHTML = `<iframe src="${embed(s.vid, s.x.scenes?.[0]?.t||0)}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`; };
