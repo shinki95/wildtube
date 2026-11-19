@@ -150,6 +150,12 @@
   /* saved grid */
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
   .grid .g{aspect-ratio:1/1;overflow:hidden;position:relative;cursor:pointer;color:#fff;font-size:12px;font-weight:700;padding:8px;display:flex;align-items:flex-end;background-size:cover;background-position:center}
+  .sf{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 14px 4px;background:#fff}
+  .sf input[type=search]{flex:1;min-width:0;padding:9px 12px;border:1px solid #dbdbdb;border-radius:10px;font-size:15px;background:#efefef}
+  .sf button{border:0;background:#0095f6;color:#fff;font-weight:700;border-radius:10px;padding:9px 14px;font-size:14px;cursor:pointer}
+  .sf .lg{flex-basis:100%;font-size:12px;color:#737373;display:flex;align-items:center;gap:6px}
+  .srh{padding:10px 14px;font-size:14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .srh b{font-size:15px}.srh button,.srh a{border:1px solid #dbdbdb;background:#fff;border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600;color:#111;text-decoration:none;cursor:pointer}
   .empty{padding:60px 30px;text-align:center;color:var(--sub)}
   .toast{position:fixed;left:50%;top:70px;transform:translateX(-50%) translateY(-20px);background:#262626;color:#fff;padding:10px 16px;border-radius:10px;font-size:13.5px;opacity:0;transition:.25s;z-index:60;pointer-events:none;max-width:90vw;text-align:center}
   .toast.on{opacity:1;transform:translateX(-50%)}
@@ -166,6 +172,7 @@
     <div class="logo">야생</div>
     <div class="hx"><span id="built"></span><button id="refresh" title="새로고침">↻</button></div>
   </header>
+  <form class="sf" id="sf"><input id="sq" type="search" placeholder="유튜브에서 공부할 것 찾기 (예: adaptive expertise)" autocomplete="off" enterkeyhint="search"><label class="lg"><input type="checkbox" id="slong">긴 강연 120분까지</label><button type="submit">검색</button></form>
   <div class="stories" id="stories"></div>
   <div class="chips" id="chips"></div>
   <main id="main"><div class="sk"></div><div class="sk"></div></main>
@@ -419,6 +426,46 @@ function more(){
   if (shown >= LIST.length) box.innerHTML += endHTML();
   $('#main').appendChild(box); wire(box); observeSeen(box);
 }
+// ---------- 유튜브 검색 (A: 공식 API 백엔드, C: 유튜브 결과로 넘기기) ----------
+const SC = LS.get('sc', {});   // 6시간 저장
+const ytLink = q => `https://www.youtube.com/results?search_query=${encodeURIComponent(q)}`;
+function srHTML(x, q){
+  return `<article class="post" data-id="srch:${esc(x.vid)}">
+    <div class="ph"><div class="av"><span style="background:url(${thumb(x.vid)}) center/cover"></span></div><div class="who">검색 · ${esc(q)}<small>${esc(x.channel)} · 조회 ${x.views>=10000?Math.round(x.views/10000)+'만':x.views}</small></div></div>
+    <div class="media v" data-vid="${esc(x.vid)}"><img loading="lazy" src="${thumb(x.vid)}" alt=""><div class="play"><b>▶</b></div><span class="dur">${x.minutes}분</span></div>
+    <div class="cap"><b>${esc(x.title)}</b></div>
+    <div class="lnk"><a href="https://youtu.be/${esc(x.vid)}" target="_blank" rel="noopener">유튜브에서 열기</a></div></article>`;
+}
+async function doSearch(q, long){
+  q = q.trim(); if (q.length < 2) return;
+  TAB = 'home'; setNav();
+  const head = (extra='') => `<div class="srh"><button id="sback">← 피드</button><b>「${esc(q)}」</b>${extra}</div>`;
+  $('#main').innerHTML = head() + '<div class="sk"></div>';
+  $('#sback').onclick = () => { $('#sq').value=''; render(); scrollTo(0,0); };
+  const ck = (long?'L:':'S:') + q.toLowerCase(); let res = SC[ck] && Date.now() - SC[ck].at < 6*3600*1000 ? SC[ck] : null;
+  if (!res) {
+    try {
+      const d = await (await fetch(`${API}?k=${encodeURIComponent(KEY)}&a=search&q=${encodeURIComponent(q)}&long=${long?1:0}`)).json();
+      if (d.ok) { res = { at: Date.now(), items: d.items }; SC[ck] = res; LS.set('sc', SC); QUEUE.push({ id: Math.random().toString(36).slice(2,10), topic:'_feed', type:'search', text:q, by:'me' }); LS.set('fq', QUEUE); flush(); }
+      else res = { err: d.err };
+    } catch { res = { err: 'net' }; }
+  }
+  const yt = `<a href="${esc(ytLink(q))}" target="_blank" rel="noopener">유튜브에서 직접 보기 ↗</a>`;
+  const box = $('#main'); $('#sback') && 0;
+  if (res.err) {
+    box.innerHTML = head() + `<div class="empty">${res.err==='quota'?'오늘 검색 한도(100번)를 다 썼어요.':'검색이 안 됐어요.'}<br><br>${yt}</div>`;
+  } else if (!res.items.length) {
+    box.innerHTML = head(yt) + `<div class="empty">걸러진 뒤 남은 영상이 없어요. (쇼츠·4분 미만·조회 1천 미만은 뺐어요)<br>검색어를 바꾸거나 위 링크로 유튜브에서 봐요.</div>`;
+  } else {
+    box.innerHTML = head(`<button id="sadd">이 주제로 추가</button><button id="sbad">결과가 별로예요</button>`) + res.items.map(x => srHTML(x, q)).join('') + `<div class="end"><p>${res.items.length}개까지만 보여 드려요. 끝없이 내리지 않게요.</p>${yt}</div>`;
+    $('#sadd').onclick = () => { QUEUE.push({ id: Math.random().toString(36).slice(2,10), topic:'_feed', type:'topic_add', text:q, by:'me' }); LS.set('fq', QUEUE); flush(); toast('주제로 추가했어요. 다음 갱신 때 영상이 쌓여요'); };
+    $('#sbad').onclick = () => { QUEUE.push({ id: Math.random().toString(36).slice(2,10), topic:'_feed', type:'search_bad', text:q, by:'me' }); LS.set('fq', QUEUE); flush(); toast('기록했어요. 새 주제 후보로 다시 보여 드릴게요'); };
+    wire(box);
+  }
+  $('#sback').onclick = () => { $('#sq').value=''; render(); scrollTo(0,0); };
+  scrollTo(0,0);
+}
+$('#sf').onsubmit = e => { e.preventDefault(); doSearch($('#sq').value, $('#slong').checked); $('#sq').blur(); };
 function endHTML(){
   const t = FEED.topics.find(t=>t.status==='active');
   return `<div class="end"><div class="ok">✓</div><h3>오늘 피드는 여기까지예요</h3><p>더 내릴 건 없어요. 본 것 하나를 해 보는 쪽으로 갈까요?</p>${t?`<a class="btn" href="./#${esc(t.slug)}">「${esc(t.title.split(' · ')[0])}」 다음 퀘스트</a>`:''} <button class="btn g" onclick="addTopic()">+ 더 공부할 주제</button></div>`;
