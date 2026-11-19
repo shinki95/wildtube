@@ -446,7 +446,7 @@ function playIn(m, vid, t){
   m.innerHTML = `<iframe src="${embed(vid,t)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
   const id = m.closest('[data-id]')?.dataset.id; if (id) markSeen(id);
 }
-function markSeen(id){ if (SEEN.has(id)) return; SEEN.add(id); LS.set('seenIds', [...SEEN].slice(-2000)); }
+function markSeen(id){ if (SEEN.has(id)) return; SEEN.add(id); LS.set('seenIds', [...SEEN].slice(-2000)); if (String(id).startsWith('visual:')) { QUEUE.push({ id: Math.random().toString(36).slice(2,10), topic:'_feed', video:id, type:'view', by:'me' }); LS.set('fq', QUEUE); flush(); } }
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && e.intersectionRatio > .6) { const id = e.target.dataset.id; setTimeout(()=>{ if (e.target.isConnected) markSeen(id); }, 1500); } }), { threshold: [.6] });
 function observeSeen(root){ root.querySelectorAll('[data-id]').forEach(p => io.observe(p)); }
 const sentinel = new IntersectionObserver(es => { if (TAB==='home' && es[0].isIntersecting && shown < LIST.length) more(); }, { rootMargin: '600px' });
