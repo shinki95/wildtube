@@ -249,7 +249,7 @@ const hash = s => { let h=0; for (const c of String(s)) h = (h*31 + c.charCodeAt
 const thumb = v => `https://i.ytimg.com/vi/${v}/hqdefault.jpg`;
 const embed = (v, t=0) => `https://www.youtube-nocookie.com/embed/${v}?start=${t}&autoplay=1&playsinline=1&rel=0&modestbranding=1`;
 
-const ALL = () => [...FEED.asks, ...FEED.reads, ...FEED.videos, ...(FEED.games||[]), ...(FEED.disc||[])];
+const ALL = () => [...FEED.asks, ...FEED.reads, ...FEED.videos, ...(FEED.games||[]), ...(FEED.disc||[]), ...(FEED.insights||[])];
 const GAMES = LS.get('games', {});   // id -> {score, at}
 function items(){
   if (!FEED) return [];
@@ -261,11 +261,13 @@ function items(){
   const likedSec = new Set(reads.filter(r=>(R[r.id]||{}).like||(R[r.id]||{}).save).map(r=>r.section.split(' · ')[0]));
   reads.sort((a,b)=> (likedSec.has(b.section.split(' · ')[0]) - likedSec.has(a.section.split(' · ')[0])) || (b.ts-a.ts));
   const vids = FEED.videos.filter(x=>!(R[x.id]||{}).meh).sort((a,b)=> (SEEN.has(a.id)-SEEN.has(b.id)) || (hash(a.id+FEED.built)%97 - hash(b.id+FEED.built)%97));
-  const games = (FEED.games||[]).filter(x=>!(R[x.id]||{}).meh).sort((a,b)=> (!!GAMES[a.id]) - (!!GAMES[b.id]));
+  const games = (FEED.games||[]).filter(x=>!(R[x.id]||{}).meh).sort((a,b)=> gameDue(b) - gameDue(a));
+  const insights = (FEED.insights||[]).filter(x=>!(R[x.id]||{}).meh);
   const disc = (FEED.disc||[]).filter(x=>!(R[x.id]||{}).meh && !SEEN.has(x.id)).concat((FEED.disc||[]).filter(x=>!(R[x.id]||{}).meh && SEEN.has(x.id)));
   const out = [];
   out.push(...asks.splice(0,2));
-  if (games.length && !GAMES[games[0].id]) out.push(games.shift());
+  if (insights.length) out.unshift(insights[0]);
+  if (games.length && gameDue(games[0])) out.push(games.shift());
   let n = 0;
   while (asks.length || reads.length || vids.length || games.length) {
     if (vids.length) out.push(vids.shift());
@@ -336,10 +338,16 @@ function postHTML(x){
       <div class="lnk">${x.url?`<a href="${esc(x.url)}" target="_blank" rel="noopener">원문 읽기</a>`:''}<a href="${esc(x.thread)}" target="_blank" rel="noopener">슬랙에서 이야기하기</a></div>
       <div class="time">${esc(x.day)}</div></article>`;
   }
+  if (x.kind === 'insight') {
+    return `<article class="post" data-id="${esc(x.id)}">
+      <div class="ph"><div class="av" style="background:linear-gradient(135deg,#f59e0b,#ef4444)"><span>✎</span></div><div class="who">이번 주 내 판단 패턴<small>${esc(x.week||'')} · 푼 판 ${x.n||0}개에서</small></div></div>
+      <div class="media" style="background:linear-gradient(135deg,#111,#3b2a05)"><div class="card"><div class="k">연결 · 모순 · 다음 한 가지</div>${(x.lines||[]).map(l=>`<div style="font-size:17px;font-weight:700;line-height:1.45;margin:8px 0;word-break:keep-all">${esc(l)}</div>`).join('')}</div></div>
+      ${acts(x)}${x.note?`<div class="cap">${esc(x.note)}</div>`:''}</article>`;
+  }
   if (x.kind === 'game') {
     const g = GAMES[x.id];
     return `<article class="post" data-id="${esc(x.id)}">
-      <div class="ph"><div class="av" style="background:linear-gradient(135deg,#111,#444)"><span>♟</span></div><div class="who">${x.replay?'내 일 복기':'결정 게임'} · ${esc(x.area.replace(' · 내 일 복기',''))}<small>${x.sec}초 · ${x.replay?'그때 나 vs 전문가':'전문가 순서와 맞춰 보기'}</small></div>${g?`<span class="new" style="background:#16a34a">${g.score}점</span>`:'<span class="new" style="background:#111">새 판</span>'}</div>
+      <div class="ph"><div class="av" style="background:linear-gradient(135deg,#111,#444)"><span>♟</span></div><div class="who">${x.replay?'내 일 복기':'결정 게임'} · ${esc(x.area.replace(' · 내 일 복기',''))}<small>${x.sec}초 · ${x.replay?'그때 나 vs 전문가':'전문가 순서와 맞춰 보기'}</small></div>${!g?'<span class="new" style="background:#111">새 판</span>':gameDue(x)?'<span class="new" style="background:#f59e0b;color:#111">3일 전 놓친 판 다시</span>':`<span class="new" style="background:#16a34a">${g.score}점</span>`}</div>
       <div class="media" style="background:${x.replay?'radial-gradient(circle at 70% 20%,#4a1d1d,#0b0b0b)':'radial-gradient(circle at 30% 20%,#3b3b3b,#0b0b0b)'}" data-game="${esc(x.id)}"><div class="card"><div class="k">${x.replay?'복기 TDG · '+esc(x.when||''):'TDG · '+esc(x.area)}</div><div class="t">${esc(x.title)}</div><div class="f" style="margin-top:22px"><span class="btn" style="background:#fff;color:#111">${g?'다시 풀기':'▶ 풀어 보기'}</span></div></div></div>
       ${acts(x)}
       <div class="cap"><span class="cx" data-full="${esc(x.situation)}">${esc(x.situation.slice(0,110))}… <button class="more">더 보기</button></span></div>
@@ -481,63 +489,108 @@ function go(d){ SV.i += d; if (SV.i < 0) SV.i = 0; if (SV.i >= SV.slides.length)
 function closeStory(){ clearInterval(SV?.timer); $('#sv').classList.remove('on'); $('#sv').innerHTML=''; document.body.style.overflow=''; renderStories(); }
 document.addEventListener('keydown', e => { if (!$('#sv').classList.contains('on')) return; if (e.key==='ArrowRight') go(1); if (e.key==='ArrowLeft') go(-1); if (e.key==='Escape') closeStory(); });
 
-// ---------- decision game (ShadowBox식: 단서 → 순서 → 전문가와 비교) ----------
+// ---------- decision game ----------
+// 설계 근거(2026-11-19): TDG 규칙(시간 제한·먼저 지시로 결정·정답 하나 없음), ShadowBox(순서+이유 기록 → 전문가 순서·이유와 비교 → 전문가가 본 것 적기),
+// 확신도 + 즉시 재시험(과잉교정 효과·오류 재발 막기), 놓친 판은 3일 뒤 다시(간격), 주간 패턴 카드(Klein 통찰 3경로: 연결·모순).
 let GM = null;
+const rid = () => Math.random().toString(36).slice(2,10);
 function openGame(id){
   const g = ALL().find(x=>x.id===id); if (!g) return;
-  GM = { g, cues: new Set(), rank: [], why: '', t0: Date.now(), done: null, tick: null };
+  GM = { g, stage:'decide', order:'', cues:new Set(), rank:[], why:'', conf:0, eyes:'', t0:Date.now(), tDecide:0, tw:null, saved:false, tick:null };
   $('#gm').classList.add('on'); document.body.style.overflow='hidden'; markSeen(id); drawGame();
-  GM.tick = setInterval(() => { const c = $('#gm .clock'); if (!c || GM.done) return; const left = GM.g.sec - Math.floor((Date.now()-GM.t0)/1000); c.textContent = left >= 0 ? fmt(left) : '+'+fmt(-left); c.classList.toggle('late', left < 0); }, 250);
+  GM.tick = setInterval(() => { const c = $('#gm .clock'); if (!c) return; const lim = GM.stage==='twist' ? (GM.g.twist.sec||40) : GM.g.sec; const base = GM.stage==='twist' ? GM.tTwist : GM.t0; const left = lim - Math.floor((Date.now()-base)/1000); c.textContent = left >= 0 ? fmt(left) : '+'+fmt(-left); c.classList.toggle('late', left < 0); }, 250);
 }
-function closeGame(){ clearInterval(GM?.tick); $('#gm').classList.remove('on'); $('#gm').innerHTML=''; document.body.style.overflow=''; if (TAB==='home') { const y = scrollY; renderHome(); scrollTo(0,y); } }
+function finalize(){
+  if (!GM || GM.saved || !GM.done) return; GM.saved = true;
+  const g = GM.g, d = GM.done;
+  const prev = GAMES[g.id] || {};
+  GAMES[g.id] = { score:d.score, top1:d.top1, conf:GM.conf, at:Date.now(), again:(prev.at ? (prev.again||0)+1 : 0), twistOk: GM.tw ? GM.tw.ok : null };
+  LS.set('games', GAMES);
+  QUEUE.push({ id: rid(), topic:'_feed', video:g.id, type:'game', by:'me', text: JSON.stringify({ score:d.score, top1:d.top1, conf:GM.conf, order:GM.order, decideSecs:GM.tDecide, cues:[...GM.cues], rank:GM.rank, why:GM.why, eyes:GM.eyes, twist:GM.tw, secs:d.secs, hit:d.hit, rk:d.rk, retry:!!prev.at }) });
+  LS.set('fq', QUEUE); flush();
+}
+function closeGame(){ finalize(); clearInterval(GM?.tick); $('#gm').classList.remove('on'); $('#gm').innerHTML=''; document.body.style.overflow=''; if (TAB==='home') { const y = scrollY; renderHome(); scrollTo(0,y); } }
+function keep(fn){ const y = $('#gm').scrollTop; fn(); $('#gm').scrollTop = y; }
+const gmTop = (g, label) => `<div class="top"><b>♟ ${esc(g.area.replace(' · 내 일 복기',''))}</b><span>${label}</span><span class="clock">${fmt(g.sec)}</span><button id="gmx">×</button></div>`;
 function drawGame(){
   const { g } = GM;
-  const opts = g.options.map(o => { const i = GM.rank.indexOf(o.id); return `<button class="opt ${i>=0?'on':''}" data-o="${o.id}"><span class="n">${i>=0?i+1:''}</span><span>${esc(o.t)}</span></button>`; }).join('');
-  const cues = g.cues.map((c,i) => `<button class="opt ${GM.cues.has(i)?'on':''}" data-c="${i}"><span class="n">${GM.cues.has(i)?'✓':''}</span><span>${esc(c.t)}</span></button>`).join('');
-  $('#gm').innerHTML = `<div class="in">
-    <div class="top"><b>♟ ${esc(g.area)}</b><span>결정 게임</span><span class="clock">${fmt(g.sec)}</span><button id="gmx">×</button></div>
-    <h2>${esc(g.title)}</h2><div class="sit">${esc(g.situation)}</div>
-    ${g.facts?.length?`<div class="facts">${g.facts.map(f=>`<div>· ${esc(f)}</div>`).join('')}</div>`:''}
-    <div class="step">1. 단서</div><div class="q">판단에 중요한 것만 고르세요 (여러 개)</div>${cues}
-    <div class="step">2. 순서</div><div class="q">먼저 할 것부터 3개를 차례로 누르세요</div>${opts}
-    <div class="step">3. 한 줄 이유 (선택)</div><textarea id="gmw" placeholder="왜 그 순서인지 한 줄">${esc(GM.why)}</textarea>
-  </div><div class="go"><button id="gmgo" ${GM.rank.length<3?'disabled':''}>${GM.rank.length<3?`순서 ${3-GM.rank.length}개 더 고르기`:'전문가 순서와 맞춰 보기'}</button></div>`;
-  $('#gmx').onclick = closeGame;
-  $('#gmw').oninput = e => GM.why = e.target.value;
-  $('#gm').querySelectorAll('[data-c]').forEach(b => b.onclick = () => { const i=+b.dataset.c; GM.cues.has(i)?GM.cues.delete(i):GM.cues.add(i); keep(drawGame); });
-  $('#gm').querySelectorAll('[data-o]').forEach(b => b.onclick = () => { const o=b.dataset.o; const i=GM.rank.indexOf(o); if (i>=0) GM.rank.splice(i,1); else if (GM.rank.length<3) GM.rank.push(o); keep(drawGame); });
-  $('#gmgo').onclick = () => GM.rank.length===3 && reveal();
+  if (GM.stage === 'decide') {
+    $('#gm').innerHTML = `<div class="in">${gmTop(g, g.replay?'내 일 복기':'결정 게임')}
+      <h2>${esc(g.title)}</h2><div class="sit">${esc(g.situation)}</div>
+      ${g.facts?.length?`<div class="facts">${g.facts.map(f=>`<div>· ${esc(f)}</div>`).join('')}</div>`:''}
+      <div class="step">먼저 결정</div><div class="q">지금 실제로 보낼 말이나 내릴 지시를 한 줄로. 설명은 나중에.</div>
+      <textarea id="gmo" placeholder="예: 손님께 \u201c...\u201d / 주방에 \u201c...\u201d">${esc(GM.order)}</textarea>
+    </div><div class="go"><button id="gmgo" ${GM.order.trim().length<4?'disabled':''}>결정했어요</button></div>`;
+    $('#gmo').oninput = e => { GM.order = e.target.value; $('#gmgo').disabled = GM.order.trim().length < 4; };
+    $('#gmgo').onclick = () => { GM.tDecide = Math.round((Date.now()-GM.t0)/1000); GM.stage = 'rank'; drawGame(); $('#gm').scrollTop = 0; };
+  } else if (GM.stage === 'rank') {
+    const opts = g.options.map(o => { const i = GM.rank.indexOf(o.id); return `<button class="opt ${i>=0?'on':''}" data-o="${o.id}"><span class="n">${i>=0?i+1:''}</span><span>${esc(o.t)}</span></button>`; }).join('');
+    const cues = g.cues.map((c,i) => `<button class="opt ${GM.cues.has(i)?'on':''}" data-c="${i}"><span class="n">${GM.cues.has(i)?'✓':''}</span><span>${esc(c.t)}</span></button>`).join('');
+    const ready = GM.rank.length===3 && GM.conf;
+    $('#gm').innerHTML = `<div class="in">${gmTop(g, '내 판단 적기')}
+      <div class="facts" style="margin-top:4px"><b style="color:#fff">내 결정</b><div>${esc(GM.order)}</div></div>
+      <div class="step">1. 단서</div><div class="q">판단에 중요했던 것만 고르세요</div>${cues}
+      <div class="step">2. 순서</div><div class="q">보기 중 먼저 할 것부터 3개를 차례로</div>${opts}
+      <div class="step">3. 확신</div><div class="q">1번이 전문가 1번과 같을 확률은?</div>
+      <div style="display:flex;gap:8px">${[50,70,90].map(c=>`<button class="opt ${GM.conf===c?'on':''}" data-f="${c}" style="justify-content:center"><span>${c}%</span></button>`).join('')}</div>
+      <div class="step">4. 이유 한 줄 (선택)</div><textarea id="gmw" placeholder="왜 그 순서인지">${esc(GM.why)}</textarea>
+    </div><div class="go"><button id="gmgo" ${ready?'':'disabled'}>${GM.rank.length<3?`순서 ${3-GM.rank.length}개 더`:!GM.conf?'확신 고르기':'전문가와 맞춰 보기'}</button></div>`;
+    $('#gmw').oninput = e => GM.why = e.target.value;
+    $('#gm').querySelectorAll('[data-c]').forEach(b => b.onclick = () => { const i=+b.dataset.c; GM.cues.has(i)?GM.cues.delete(i):GM.cues.add(i); keep(drawGame); });
+    $('#gm').querySelectorAll('[data-o]').forEach(b => b.onclick = () => { const o=b.dataset.o; const i=GM.rank.indexOf(o); if (i>=0) GM.rank.splice(i,1); else if (GM.rank.length<3) GM.rank.push(o); keep(drawGame); });
+    $('#gm').querySelectorAll('[data-f]').forEach(b => b.onclick = () => { GM.conf = +b.dataset.f; keep(drawGame); });
+    $('#gmgo').onclick = () => { if (ready) { score(); GM.stage='reveal'; drawGame(); $('#gm').scrollTop=0; } };
+  } else if (GM.stage === 'reveal') {
+    const d = GM.done, name = id => g.options.find(o=>o.id===id)?.t || id;
+    const keyIdx = g.cues.map((c,i)=>c.key?i:-1).filter(i=>i>=0);
+    const hyper = !d.top1 && GM.conf >= 90;
+    $('#gm').innerHTML = `<div class="in">
+      <div class="top"><b>♟ 결과</b><span>${GM.conf}% 확신 · 1번 ${d.top1?'<span class="ok">일치</span>':'<span class="no">불일치</span>'}</span><button id="gmx" style="margin-left:auto">×</button></div>
+      <h2>${d.score}점</h2>
+      ${hyper?`<div class="why" style="border-left:3px solid #f59e0b;margin-bottom:10px">확신 90%로 틀린 판이에요. 이런 판이 가장 잘 고쳐지고 오래 남아요. 아래 다음 장면에서 바로 한 번 더 해 봐요.</div>`:''}
+      <div class="score"><div><b>${d.hit}/${keyIdx.length}</b><small>단서${d.falsePick?` · 헛짚음 ${d.falsePick}`:''}</small></div><div><b>${d.rk}/6</b><small>순서 일치</small></div><div><b class="${GM.tDecide>g.sec?'no':''}">${GM.tDecide}초</b><small>결정까지 (${g.sec}초)</small></div></div>
+      <div class="step">전문가 순서</div>${g.expert.map((o,i)=>`<div class="opt" style="cursor:default"><span class="n" style="background:${GM.rank[i]===o?'#22c55e':GM.rank.includes(o)?'#f59e0b':'#333'};color:#111">${i+1}</span><span>${esc(name(o))}</span></div>`).join('')}
+      <div class="step">내 순서</div>${GM.rank.map((o,i)=>`<div class="opt" style="cursor:default;opacity:.85"><span class="n">${i+1}</span><span>${esc(name(o))}</span></div>`).join('')}
+      <div class="step">놓친 단서</div>${keyIdx.filter(i=>!GM.cues.has(i)).map(i=>`<div class="opt" style="cursor:default"><span class="n no">!</span><span>${esc(g.cues[i].t)}</span></div>`).join('') || '<div class="q ok">다 봤어요</div>'}
+      <div class="step">전문가 이유</div><div class="why">${esc(g.why)}</div>
+      ${g.minority?`<div class="step">다르게 보는 전문가</div><div class="why" style="color:#bbb">${esc(g.minority)}</div>`:''}
+      ${g.replay ? `<div class="step">그때 실제로 일어난 것 · ${esc(g.when||'')}</div><div class="why" style="border-left:3px solid #ef4444">${esc(g.actual)}</div>
+      <div class="step">전문가 버전</div><div class="why" style="border-left:3px solid #22c55e">${esc(g.expert_version)}</div>
+      <div class="step">차이 한 줄</div><div class="why" style="font-weight:700;color:#fff">${esc(g.gap)}</div>` : ''}
+      <div class="why" style="background:none;padding:8px 0 0;color:#999;font-size:13px">근거: ${esc(g.source)}</div>
+      <div class="step">전문가는 보고 나는 못 본 것</div><div class="q">한 줄 (이게 이 판의 핵심이에요)</div><textarea id="gme" placeholder="예: '했어요'를 결과로 착각했다">${esc(GM.eyes)}</textarea>
+    </div><div class="go"><button id="gmgo" ${GM.eyes.trim().length<3?'disabled':''}>${g.twist?'다음 장면 (상황이 바뀝니다)':'저장하고 피드로'}</button></div>`;
+    $('#gme').oninput = e => { GM.eyes = e.target.value; $('#gmgo').disabled = GM.eyes.trim().length < 3; };
+    $('#gmgo').onclick = () => { if (g.twist) { GM.stage='twist'; GM.tTwist=Date.now(); drawGame(); $('#gm').scrollTop=0; } else { closeGame(); toast('저장했어요'); } };
+  } else if (GM.stage === 'twist') {
+    const t = g.twist;
+    $('#gm').innerHTML = `<div class="in"><div class="top"><b>♟ 다음 장면</b><span>바로 다시</span><span class="clock">${fmt(t.sec||40)}</span><button id="gmx">×</button></div>
+      <div class="sit" style="margin-top:8px">${esc(t.t)}</div><div class="step">지금 하나만 고르세요</div>
+      ${t.options.map(o=>`<button class="opt" data-t="${o.id}"><span class="n"></span><span>${esc(o.t)}</span></button>`).join('')}</div>`;
+    $('#gm').querySelectorAll('[data-t]').forEach(b => b.onclick = () => { GM.tw = { pick:b.dataset.t, ok: b.dataset.t===t.expert, secs: Math.round((Date.now()-GM.tTwist)/1000) }; GM.stage='twistres'; drawGame(); });
+  } else {
+    const t = g.twist, name = id => t.options.find(o=>o.id===id)?.t || id;
+    $('#gm').innerHTML = `<div class="in"><div class="top"><b>♟ 다음 장면 결과</b><span>${GM.tw.secs}초</span><button id="gmx" style="margin-left:auto">×</button></div>
+      <h2 class="${GM.tw.ok?'ok':'no'}">${GM.tw.ok?'전문가와 같아요':'전문가는 달랐어요'}</h2>
+      <div class="step">전문가 선택</div><div class="opt" style="cursor:default"><span class="n" style="background:#22c55e;color:#111">✓</span><span>${esc(name(t.expert))}</span></div>
+      ${GM.tw.ok?'':`<div class="step">내 선택</div><div class="opt" style="cursor:default;opacity:.8"><span class="n">·</span><span>${esc(name(GM.tw.pick))}</span></div>`}
+      <div class="step">이유</div><div class="why">${esc(t.why)}</div>
+      ${!GM.done.top1 || !GM.tw.ok ? '<div class="q" style="margin-top:14px;color:#aaa">이 판은 3일 뒤에 한 번 더 나와요.</div>' : ''}
+    </div><div class="go"><button id="gmgo">저장하고 피드로</button></div>`;
+    $('#gmgo').onclick = () => { closeGame(); toast('저장했어요'); };
+  }
+  const x = $('#gmx'); if (x) x.onclick = closeGame;
 }
-function keep(fn){ const y = $('#gm').scrollTop; fn(); $('#gm').scrollTop = y; }
-function reveal(){
+function score(){
   const { g } = GM; const secs = Math.round((Date.now()-GM.t0)/1000);
   const keyIdx = g.cues.map((c,i)=>c.key?i:-1).filter(i=>i>=0);
   const hit = keyIdx.filter(i=>GM.cues.has(i)).length, falsePick = [...GM.cues].filter(i=>!g.cues[i].key).length;
   let rk = 0; GM.rank.forEach((o,i) => { if (g.expert.includes(o)) rk += 1; if (g.expert[i] === o) rk += 1; });
-  const score = Math.round(100 * (0.4 * Math.max(0, hit - falsePick*0.5) / keyIdx.length + 0.6 * rk / 6));
-  GM.done = { score, hit, keys: keyIdx.length, falsePick, rk, secs };
-  GAMES[g.id] = { score, at: Date.now() }; LS.set('games', GAMES);
-  QUEUE.push({ id: Math.random().toString(36).slice(2,10), topic: '_feed', video: g.id, type: 'game', by: 'me',
-    text: JSON.stringify({ score, cues: [...GM.cues], rank: GM.rank, why: GM.why, secs, hit, rk }) }); LS.set('fq', QUEUE); flush();
-  const name = id => g.options.find(o=>o.id===id)?.t || id;
-  $('#gm').innerHTML = `<div class="in">
-    <div class="top"><b>♟ ${esc(g.area)}</b><span>결과</span><button id="gmx" style="margin-left:auto">×</button></div>
-    <h2>${score}점</h2>
-    <div class="score"><div><b>${hit}/${keyIdx.length}</b><small>단서 적중${falsePick?` · 헛짚음 ${falsePick}`:''}</small></div><div><b>${rk}/6</b><small>순서 일치</small></div><div><b class="${secs>g.sec?'no':''}">${secs}초</b><small>결정 시간 (${g.sec}초 기준)</small></div></div>
-    <div class="step">전문가 순서</div>${g.expert.map((o,i)=>`<div class="opt" style="cursor:default"><span class="n" style="background:${GM.rank[i]===o?'#22c55e':GM.rank.includes(o)?'#f59e0b':'#333'};color:#111">${i+1}</span><span>${esc(name(o))}</span></div>`).join('')}
-    <div class="step">내 순서</div>${GM.rank.map((o,i)=>`<div class="opt" style="cursor:default;opacity:.85"><span class="n">${i+1}</span><span>${esc(name(o))}</span></div>`).join('')}
-    <div class="step">놓친 단서</div>${keyIdx.filter(i=>!GM.cues.has(i)).map(i=>`<div class="opt" style="cursor:default"><span class="n no">!</span><span>${esc(g.cues[i].t)}</span></div>`).join('') || '<div class="q ok">다 봤어요</div>'}
-    <div class="step">왜 이 순서인가</div><div class="why">${esc(g.why)}</div>
-    ${g.replay ? `<div class="step">그때 실제로 일어난 것 · ${esc(g.when||'')}</div><div class="why" style="border-left:3px solid #ef4444">${esc(g.actual)}</div>
-    <div class="step">전문가 버전</div><div class="why" style="border-left:3px solid #22c55e">${esc(g.expert_version)}</div>
-    <div class="step">차이 한 줄</div><div class="why" style="font-weight:700;color:#fff">${esc(g.gap)}</div>` : ''}
-    <div class="why" style="background:none;padding:8px 0 0;color:#999;font-size:13px">근거: ${esc(g.source)}</div>
-    <div class="step">10초 복기</div><div class="q">${esc(g.debrief)}</div><textarea id="gmd" placeholder="한 줄"></textarea>
-  </div><div class="go"><button id="gmend">저장하고 피드로</button></div>`;
-  $('#gmx').onclick = closeGame;
-  $('#gmend').onclick = () => { const t = $('#gmd').value.trim(); if (t) { QUEUE.push({ id: Math.random().toString(36).slice(2,10), topic: '_feed', video: g.id, type: 'debrief', text: t, by: 'me' }); LS.set('fq', QUEUE); flush(); } closeGame(); toast('저장했어요'); };
-  $('#gm').scrollTop = 0;
+  const sc = Math.round(100 * (0.4 * Math.max(0, hit - falsePick*0.5) / keyIdx.length + 0.6 * rk / 6));
+  GM.done = { score: sc, top1: GM.rank[0] === g.expert[0], hit, falsePick, rk, secs };
 }
+// 3일 뒤 다시: 1번 불일치·점수 60 미만·다음 장면 틀림이면 최대 2번 더
+function gameDue(x){ const r = GAMES[x.id]; if (!r) return true; const need = !r.top1 || r.score < 60 || r.twistOk === false; return need && (r.again||0) < 2 && Date.now() - r.at > 3*86400000; }
 
 // ---------- nav ----------
 function setNav(){ document.querySelectorAll('nav [data-tab]').forEach(b => b.classList.toggle('on', b.dataset.tab===TAB)); $('#reels').classList.toggle('on', TAB==='reels'); }
