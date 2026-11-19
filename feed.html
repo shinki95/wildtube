@@ -118,6 +118,35 @@
   .sv .tap.l{left:0}.sv .tap.r{right:0}
   .sv .cta{position:absolute;left:0;right:0;bottom:calc(28px + env(safe-area-inset-bottom));text-align:center;z-index:3}
   .sv .cta a,.sv .cta button{display:inline-block;border:1px solid rgba(255,255,255,.6);color:#fff;background:rgba(255,255,255,.12);border-radius:999px;padding:9px 18px;font-weight:700;font-size:14px;text-decoration:none;margin:0 4px;cursor:pointer}
+  /* game */
+  .gm{position:fixed;inset:0;z-index:45;background:#0b0b0b;color:#fff;display:none;overflow-y:auto}
+  .gm.on{display:block}
+  .gm .in{max-width:470px;margin:0 auto;padding:18px 18px 120px}
+  .gm .top{display:flex;align-items:center;gap:10px;font-size:13px;color:#aaa;position:sticky;top:0;background:#0b0b0b;padding:8px 0 10px;z-index:2}
+  .gm .top b{color:#fff;font-size:14px}
+  .gm .top .clock{margin-left:auto;font:700 15px ui-monospace,Menlo,monospace;color:#fff;background:#222;border-radius:8px;padding:4px 9px}
+  .gm .top .clock.late{background:#b91c1c}
+  .gm .top button{border:0;background:none;color:#fff;font-size:26px;cursor:pointer;margin-left:6px}
+  .gm h2{font-size:22px;line-height:1.35;margin:10px 0 12px;letter-spacing:-.3px;word-break:keep-all}
+  .gm .sit{font-size:16px;line-height:1.6;color:#eee;word-break:keep-all}
+  .gm .facts{margin:14px 0;padding:12px 14px;background:#1a1a1a;border-radius:12px;font-size:14px;color:#ccc}
+  .gm .facts div{margin:4px 0}
+  .gm .step{margin-top:22px;font-size:13px;font-weight:800;letter-spacing:.4px;color:#f59e0b}
+  .gm .q{font-size:15px;margin:4px 0 10px;color:#fff}
+  .gm .opt{display:flex;align-items:flex-start;gap:10px;width:100%;text-align:left;background:#1a1a1a;color:#fff;border:1.5px solid #2a2a2a;border-radius:12px;padding:12px;margin:8px 0;font-size:15px;line-height:1.45;cursor:pointer;word-break:keep-all}
+  .gm .opt.on{border-color:#f59e0b;background:#2a1f05}
+  .gm .opt .n{flex:0 0 24px;height:24px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800}
+  .gm .opt.on .n{background:#f59e0b;color:#111}
+  .gm textarea{width:100%;min-height:64px;background:#1a1a1a;color:#fff;border:1.5px solid #2a2a2a;border-radius:12px;padding:12px;font:15px/1.5 inherit}
+  .gm .go{position:fixed;left:0;right:0;bottom:0;padding:12px 18px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(transparent,#0b0b0b 30%)}
+  .gm .go button{display:block;width:100%;max-width:434px;margin:0 auto;border:0;border-radius:12px;padding:15px;font-weight:800;font-size:16px;background:#f59e0b;color:#111;cursor:pointer}
+  .gm .go button:disabled{opacity:.35}
+  .gm .score{display:flex;gap:8px;margin:14px 0}
+  .gm .score div{flex:1;background:#1a1a1a;border-radius:12px;padding:12px 8px;text-align:center}
+  .gm .score b{display:block;font-size:24px}
+  .gm .score small{color:#aaa;font-size:12px}
+  .gm .ok{color:#22c55e}.gm .no{color:#ef4444}
+  .gm .why{background:#1a1a1a;border-radius:12px;padding:14px;font-size:14.5px;line-height:1.6;color:#ddd;word-break:keep-all}
   /* saved grid */
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
   .grid .g{aspect-ratio:1/1;overflow:hidden;position:relative;cursor:pointer;color:#fff;font-size:12px;font-weight:700;padding:8px;display:flex;align-items:flex-end;background-size:cover;background-position:center}
@@ -144,6 +173,7 @@
 <div class="reels" id="reels"></div>
 <div class="rclose" id="rclose">야생</div>
 <div class="sv" id="sv"></div>
+<div class="gm" id="gm"></div>
 <nav><div class="in">
   <button data-tab="home" class="on"><i>⌂</i>홈</button>
   <button data-tab="reels"><i>▶</i>릴스</button>
@@ -219,9 +249,11 @@ const hash = s => { let h=0; for (const c of String(s)) h = (h*31 + c.charCodeAt
 const thumb = v => `https://i.ytimg.com/vi/${v}/hqdefault.jpg`;
 const embed = (v, t=0) => `https://www.youtube-nocookie.com/embed/${v}?start=${t}&autoplay=1&playsinline=1&rel=0&modestbranding=1`;
 
+const ALL = () => [...FEED.asks, ...FEED.reads, ...FEED.videos, ...(FEED.games||[]), ...(FEED.disc||[])];
+const GAMES = LS.get('games', {});   // id -> {score, at}
 function items(){
   if (!FEED) return [];
-  const all = [...FEED.asks, ...FEED.reads, ...FEED.videos].filter(x => !(R[x.id]||{}).meh);
+  const all = ALL().filter(x => !(R[x.id]||{}).meh);
   if (FILTER !== 'all') return all.filter(x => x.kind === FILTER).sort((a,b)=>(b.ts||0)-(a.ts||0));
   // 섞기: 물어본 것(최근) 먼저 2개, 그 뒤 영상·읽을거리·물어본 것 번갈아. 좋아요 받은 결 앞으로.
   const asks = FEED.asks.filter(x=>!(R[x.id]||{}).meh);
@@ -229,14 +261,21 @@ function items(){
   const likedSec = new Set(reads.filter(r=>(R[r.id]||{}).like||(R[r.id]||{}).save).map(r=>r.section.split(' · ')[0]));
   reads.sort((a,b)=> (likedSec.has(b.section.split(' · ')[0]) - likedSec.has(a.section.split(' · ')[0])) || (b.ts-a.ts));
   const vids = FEED.videos.filter(x=>!(R[x.id]||{}).meh).sort((a,b)=> (SEEN.has(a.id)-SEEN.has(b.id)) || (hash(a.id+FEED.built)%97 - hash(b.id+FEED.built)%97));
-  const out = []; const q = [asks.slice(0,2)];
+  const games = (FEED.games||[]).filter(x=>!(R[x.id]||{}).meh).sort((a,b)=> (!!GAMES[a.id]) - (!!GAMES[b.id]));
+  const disc = (FEED.disc||[]).filter(x=>!(R[x.id]||{}).meh && !SEEN.has(x.id)).concat((FEED.disc||[]).filter(x=>!(R[x.id]||{}).meh && SEEN.has(x.id)));
+  const out = [];
   out.push(...asks.splice(0,2));
-  while (asks.length || reads.length || vids.length) {
+  if (games.length && !GAMES[games[0].id]) out.push(games.shift());
+  let n = 0;
+  while (asks.length || reads.length || vids.length || games.length) {
     if (vids.length) out.push(vids.shift());
     if (reads.length) out.push(reads.shift());
+    if (disc.length) out.push(disc.shift());
     if (reads.length) out.push(reads.shift());
     if (asks.length) out.push(asks.shift());
+    if (++n % 2 === 0 && games.length) out.push(games.shift());
   }
+  out.push(...disc);   // 긴 꼬리: 발견 풀 (8개씩 계속 붙음)
   return out;
 }
 const isNew = x => x.ts && x.ts*1000 > LAST && !SEEN.has(x.id);
@@ -264,13 +303,13 @@ function renderStories(){
   $('#stories').querySelectorAll('[data-st]').forEach(b => b.onclick = () => openStory(b.dataset.st));
 }
 function renderChips(){
-  const c = [['all','전체'],['ask','물어본 것'],['video','영상'],['read','읽을거리']];
+  const c = [['all','전체'],['game','결정 게임'],['ask','물어본 것'],['disc','발견'],['video','영상'],['read','읽을거리']];
   $('#chips').innerHTML = c.map(([k,n]) => `<button class="chip ${FILTER===k?'on':''}" data-f="${k}">${n}</button>`).join('');
   $('#chips').querySelectorAll('[data-f]').forEach(b => b.onclick = () => { FILTER = b.dataset.f; render(); scrollTo(0,0); });
 }
 function acts(x){
   const r = R[x.id] || {};
-  const share = x.kind==='ask' ? x.link : x.kind==='read' ? (x.url||x.thread) : `https://youtu.be/${x.vid}`;
+  const share = x.kind==='ask' ? x.link : x.kind==='read' ? (x.url||x.thread) : x.kind==='disc' ? (x.url) : x.kind==='game' ? './feed.html' : `https://youtu.be/${x.vid}`;
   return `<div class="acts"><button data-a="like" class="${r.like?'on lk':''}" title="좋아요">${r.like?'♥':'♡'}</button><button data-a="note" title="스레드로">💬</button><a href="${esc(share)}" target="_blank" rel="noopener" style="text-decoration:none;font-size:22px" title="원문">↗</a><button data-a="meh" title="별로, 숨기기" style="font-size:19px;color:#8e8e8e">✕</button><button data-a="save" class="r ${r.save?'on':''}" title="저장">${r.save?'⚑':'⚐'}</button></div>`;
 }
 function postHTML(x){
@@ -296,6 +335,28 @@ function postHTML(x){
       ${x.replies ? `<div class="cmt" data-open="${esc(x.thread)}">스레드 댓글 ${x.replies}개 보기</div>` : ''}
       <div class="lnk">${x.url?`<a href="${esc(x.url)}" target="_blank" rel="noopener">원문 읽기</a>`:''}<a href="${esc(x.thread)}" target="_blank" rel="noopener">슬랙에서 이야기하기</a></div>
       <div class="time">${esc(x.day)}</div></article>`;
+  }
+  if (x.kind === 'game') {
+    const g = GAMES[x.id];
+    return `<article class="post" data-id="${esc(x.id)}">
+      <div class="ph"><div class="av" style="background:linear-gradient(135deg,#111,#444)"><span>♟</span></div><div class="who">결정 게임 · ${esc(x.area)}<small>${x.sec}초 · 전문가 순서와 맞춰 보기</small></div>${g?`<span class="new" style="background:#16a34a">${g.score}점</span>`:'<span class="new" style="background:#111">새 판</span>'}</div>
+      <div class="media" style="background:radial-gradient(circle at 30% 20%,#3b3b3b,#0b0b0b)" data-game="${esc(x.id)}"><div class="card"><div class="k">TDG · ${esc(x.area)}</div><div class="t">${esc(x.title)}</div><div class="f" style="margin-top:22px"><span class="btn" style="background:#fff;color:#111">${g?'다시 풀기':'▶ 풀어 보기'}</span></div></div></div>
+      ${acts(x)}
+      <div class="cap"><span class="cx" data-full="${esc(x.situation)}">${esc(x.situation.slice(0,110))}… <button class="more">더 보기</button></span></div>
+      <div class="time">${esc(x.made)}</div></article>`;
+  }
+  if (x.kind === 'disc') {
+    const t = x.ko || x.title, cap = x.hook || x.desc || '';
+    const host = (()=>{ try { return new URL(x.url).hostname.replace('www.','') } catch { return '' } })();
+    return `<article class="post" data-id="${esc(x.id)}">
+      <div class="ph"><div class="av" style="background:${secGrad(x.secName)}"><span>✦</span></div><div class="who">발견 · ${esc(x.secName)}<small>${esc(x.src)} · ${ago(x.ts)}</small></div>${isNew(x)?'<span class="new">새로</span>':''}</div>
+      ${x.vid ? `<div class="media v" data-vid="${esc(x.vid)}"><img loading="lazy" src="${thumb(x.vid)}" alt=""><div class="play"><b>▶</b></div></div>` :
+      `<div class="media" style="${x.img?`background:linear-gradient(180deg,rgba(0,0,0,.05) 25%,rgba(0,0,0,.82)),url('${esc(x.img)}') center/cover,${secGrad(x.secName)}`:`background:${secGrad(x.secName)}`}" data-open="${esc(x.url)}"><div class="card" style="${x.img?'justify-content:flex-end':''}"><div class="k">✦ ${esc(host)}</div><div class="t" style="${x.img?'font-size:20px;text-shadow:0 1px 8px rgba(0,0,0,.5)':''}">${esc(t)}</div>${x.ko&&x.ko!==x.title?`<div class="f">${esc(x.title)}</div>`:''}</div></div>`}
+      ${acts(x)}
+      ${x.vid?`<div class="cap"><b>${esc(t)}</b></div>`:''}
+      ${cap ? `<div class="cap"><span class="cx" data-full="${esc(cap)}">${esc(cap.slice(0,150))}${cap.length>150?'… <button class="more">더 보기</button>':''}</span></div>` : ''}
+      <div class="lnk"><a href="${esc(x.url)}" target="_blank" rel="noopener">원문 읽기</a>${x.hn?`<a href="${esc(x.hn)}" target="_blank" rel="noopener">HN 댓글</a>`:''}</div>
+      <div class="time">물어보지 않았지만 관심 가질 것 같아서</div></article>`;
   }
   // video
   return `<article class="post" data-id="${esc(x.id)}">
@@ -328,11 +389,12 @@ function wire(root){
   root.querySelectorAll('[data-cm]').forEach(b => b.onclick = () => { b.nextElementSibling.hidden = !b.nextElementSibling.hidden; });
   root.querySelectorAll('[data-open]').forEach(b => b.onclick = e => { if (e.target.closest('button,a')) return; window.open(b.dataset.open, '_blank'); });
   root.querySelectorAll('[data-vid]').forEach(m => m.onclick = () => playIn(m, m.dataset.vid, 0));
+  root.querySelectorAll('[data-game]').forEach(m => m.onclick = () => openGame(m.dataset.game));
   root.querySelectorAll('[data-seek]').forEach(b => b.onclick = () => { const m = b.closest('.post').querySelector('[data-vid]'); playIn(m, m.dataset.vid, +b.dataset.seek); });
   root.querySelectorAll('.acts [data-a]').forEach(b => b.onclick = () => {
     const post = b.closest('[data-id]'); const id = post.dataset.id; const a = b.dataset.a;
-    const x = [...FEED.asks, ...FEED.reads, ...FEED.videos].find(i=>i.id===id);
-    if (a === 'note') { window.open(x.kind==='video' ? `./#${x.topic}` : (x.link||x.thread), '_blank'); return; }
+    const x = ALL().find(i=>i.id===id);
+    if (a === 'note') { if (x.kind==='game') return openGame(x.id); window.open(x.kind==='video' ? `./#${x.topic}` : (x.link||x.thread||x.url), '_blank'); return; }
     const on = react(id, a);
     if (a === 'meh') { post.style.transition='.3s'; post.style.opacity=0; setTimeout(()=>post.remove(),300); toast('이런 건 덜 보여 드릴게요'); return; }
     if (a === 'like') { b.textContent = on?'♥':'♡'; b.classList.toggle('on',on); b.classList.toggle('lk',on); }
@@ -351,27 +413,30 @@ function observeSeen(root){ root.querySelectorAll('[data-id]').forEach(p => io.o
 const sentinel = new IntersectionObserver(es => { if (TAB==='home' && es[0].isIntersecting && shown < LIST.length) more(); }, { rootMargin: '600px' });
 
 function renderSaved(){
-  const all = [...FEED.asks, ...FEED.reads, ...FEED.videos].filter(x => (R[x.id]||{}).save);
+  const all = ALL().filter(x => (R[x.id]||{}).save);
   if (!all.length) { $('#main').innerHTML = `<div class="empty">저장한 게 아직 없어요.<br>게시물 오른쪽 ⚐ 를 누르면 여기 모여요.</div>`; return; }
   $('#main').innerHTML = `<div class="grid">${all.map(x => {
-    const bg = x.kind==='video' ? `background-image:linear-gradient(transparent 50%,rgba(0,0,0,.7)),url(${thumb(x.vid)})` : x.img ? `background-image:linear-gradient(transparent 40%,rgba(0,0,0,.75)),url('${esc(x.img)}')` : `background:${x.kind==='read'?secGrad(x.section):ASK_GRADS[hash(x.id)%ASK_GRADS.length]}`;
-    const t = x.kind==='video' ? x.title : x.kind==='read' ? x.title : x.q;
+    const bg = x.kind==='game' ? 'background:#111' : x.kind==='video' ? `background-image:linear-gradient(transparent 50%,rgba(0,0,0,.7)),url(${thumb(x.vid)})` : x.img ? `background-image:linear-gradient(transparent 40%,rgba(0,0,0,.75)),url('${esc(x.img)}')` : `background:${x.kind==='read'?secGrad(x.section):ASK_GRADS[hash(x.id)%ASK_GRADS.length]}`;
+    const t = x.kind==='ask' ? x.q : x.kind==='disc' ? (x.ko||x.title) : x.title;
     return `<div class="g" style="${bg}" data-go="${esc(x.id)}">${esc(t.slice(0,48))}</div>`; }).join('')}</div>`;
-  $('#main').querySelectorAll('[data-go]').forEach(g => g.onclick = () => { FILTER='all'; TAB='home'; setNav(); LIST=[...FEED.asks,...FEED.reads,...FEED.videos].filter(x=>x.id===g.dataset.go); shown=0; $('#main').innerHTML=''; more(); });
+  $('#main').querySelectorAll('[data-go]').forEach(g => g.onclick = () => { FILTER='all'; TAB='home'; setNav(); LIST=ALL().filter(x=>x.id===g.dataset.go); shown=0; $('#main').innerHTML=''; more(); });
 }
 
 // ---------- reels ----------
 function renderReels(){
-  const L = items().filter(x => x.kind==='video' || x.kind==='read' || x.kind==='ask');
+  const L = items().filter(x => x.kind !== 'game').slice(0, 60);
   const el = $('#reels');
   el.innerHTML = L.map(x => {
     const r = R[x.id]||{};
     const side = `<div class="side"><button data-a="like" class="${r.like?'on lk':''}">${r.like?'♥':'♡'}<small>좋아요</small></button><button data-a="save" class="${r.save?'on':''}">${r.save?'⚑':'⚐'}<small>저장</small></button><a href="${esc(x.kind==='video'?'./#'+x.topic:(x.link||x.thread))}" target="_blank">💬<small>노트</small></a><button data-a="meh">✕<small>별로</small></button></div>`;
+    if (x.kind === 'disc' && x.vid) x = {...x, kind:'video', topicTitle:'발견 · '+x.secName, channel:x.src, look:x.hook||'', scenes:[]};
+    if (x.kind === 'disc') x = {...x, section:'발견 · '+x.secName, title:x.ko||x.title, what:x.hook||x.desc, ch:x.src};
     if (x.kind === 'video') return `<section class="rl" data-id="${esc(x.id)}"><div class="bgimg" style="background-image:url(${thumb(x.vid)})"></div><div class="frame" data-vid="${esc(x.vid)}"><img loading="lazy" src="${thumb(x.vid)}"><div class="play"><b>▶</b></div></div><div class="meta"><b>${esc(x.topicTitle.split(' · ')[0])} · ${esc(x.channel)}</b><p>${esc(x.title)}${x.look?' · 볼 곳: '+esc(x.look):''}</p>${x.scenes?.length?`<div class="scenes" style="padding:8px 0 0">${x.scenes.map(s=>`<button data-seek="${s.t}" style="background:rgba(255,255,255,.2);color:#fff">${fmt(s.t)} ${esc(s.label)}</button>`).join('')}</div>`:''}</div>${side}</section>`;
-    const bg = x.kind==='read' ? secGrad(x.section) : ASK_GRADS[hash(x.id)%ASK_GRADS.length];
-    const t = x.kind==='read' ? x.title : 'Q. ' + x.q;
-    const b = x.kind==='read' ? (x.what || x.why) : (x.a || (x.follow.find(f=>f.a)||{}).a || '');
-    return `<section class="rl" data-id="${esc(x.id)}" style="background:${x.img?`linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.8)),url('${esc(x.img)}') center/cover`:bg}"><div class="txt"><div style="font-size:12.5px;font-weight:700;opacity:.8;margin-bottom:12px">${esc(x.kind==='read'?x.section:'내가 물어본 것 · #'+x.ch)}</div><div class="t">${esc(t)}</div>${b?`<div class="b">${esc(x.kind==='ask'?'Aside: ':'')}${esc(b)}</div>`:''}</div><div class="meta"><b>${esc(x.kind==='read'?(x.src||x.ch):x.day)}</b>${x.kind==='read'&&x.url?`<p><a href="${esc(x.url)}" target="_blank" style="color:#fff">원문 읽기 ↗</a></p>`:''}</div>${side}</section>`;
+    const isR = x.kind==='read' || x.kind==='disc';
+    const bg = isR ? secGrad(x.section) : ASK_GRADS[hash(x.id)%ASK_GRADS.length];
+    const t = isR ? x.title : 'Q. ' + x.q;
+    const b = isR ? (x.what || x.why) : (x.a || (x.follow.find(f=>f.a)||{}).a || '');
+    return `<section class="rl" data-id="${esc(x.id)}" style="background:${x.img?`linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.8)),url('${esc(x.img)}') center/cover`:bg}"><div class="txt"><div style="font-size:12.5px;font-weight:700;opacity:.8;margin-bottom:12px">${esc(isR?x.section:'내가 물어본 것 · #'+x.ch)}</div><div class="t">${esc(t)}</div>${b?`<div class="b">${esc(x.kind==='ask'?'Aside: ':'')}${esc(b)}</div>`:''}</div><div class="meta"><b>${esc(isR?(x.src||x.ch):x.day)}</b>${isR&&x.url?`<p><a href="${esc(x.url)}" target="_blank" style="color:#fff">원문 읽기 ↗</a></p>`:''}</div>${side}</section>`;
   }).join('') + `<section class="rl" style="background:#111"><div class="end" style="color:#fff"><div class="ok">✓</div><h3>릴스 끝</h3><p style="color:#bbb">여기서 멈추고, 본 것 하나를 해 봐요.</p><button class="btn" onclick="switchTab('home')">홈으로</button></div></section>`;
   el.querySelectorAll('.frame').forEach(f => f.onclick = () => playIn(f, f.dataset.vid, 0));
   el.querySelectorAll('[data-seek]').forEach(b => b.onclick = () => { const f = b.closest('.rl').querySelector('.frame'); playIn(f, f.dataset.vid, +b.dataset.seek); });
@@ -415,6 +480,60 @@ function showSlide(){
 function go(d){ SV.i += d; if (SV.i < 0) SV.i = 0; if (SV.i >= SV.slides.length) return closeStory(); showSlide(); }
 function closeStory(){ clearInterval(SV?.timer); $('#sv').classList.remove('on'); $('#sv').innerHTML=''; document.body.style.overflow=''; renderStories(); }
 document.addEventListener('keydown', e => { if (!$('#sv').classList.contains('on')) return; if (e.key==='ArrowRight') go(1); if (e.key==='ArrowLeft') go(-1); if (e.key==='Escape') closeStory(); });
+
+// ---------- decision game (ShadowBox식: 단서 → 순서 → 전문가와 비교) ----------
+let GM = null;
+function openGame(id){
+  const g = ALL().find(x=>x.id===id); if (!g) return;
+  GM = { g, cues: new Set(), rank: [], why: '', t0: Date.now(), done: null, tick: null };
+  $('#gm').classList.add('on'); document.body.style.overflow='hidden'; markSeen(id); drawGame();
+  GM.tick = setInterval(() => { const c = $('#gm .clock'); if (!c || GM.done) return; const left = GM.g.sec - Math.floor((Date.now()-GM.t0)/1000); c.textContent = left >= 0 ? fmt(left) : '+'+fmt(-left); c.classList.toggle('late', left < 0); }, 250);
+}
+function closeGame(){ clearInterval(GM?.tick); $('#gm').classList.remove('on'); $('#gm').innerHTML=''; document.body.style.overflow=''; if (TAB==='home') { const y = scrollY; renderHome(); scrollTo(0,y); } }
+function drawGame(){
+  const { g } = GM;
+  const opts = g.options.map(o => { const i = GM.rank.indexOf(o.id); return `<button class="opt ${i>=0?'on':''}" data-o="${o.id}"><span class="n">${i>=0?i+1:''}</span><span>${esc(o.t)}</span></button>`; }).join('');
+  const cues = g.cues.map((c,i) => `<button class="opt ${GM.cues.has(i)?'on':''}" data-c="${i}"><span class="n">${GM.cues.has(i)?'✓':''}</span><span>${esc(c.t)}</span></button>`).join('');
+  $('#gm').innerHTML = `<div class="in">
+    <div class="top"><b>♟ ${esc(g.area)}</b><span>결정 게임</span><span class="clock">${fmt(g.sec)}</span><button id="gmx">×</button></div>
+    <h2>${esc(g.title)}</h2><div class="sit">${esc(g.situation)}</div>
+    ${g.facts?.length?`<div class="facts">${g.facts.map(f=>`<div>· ${esc(f)}</div>`).join('')}</div>`:''}
+    <div class="step">1. 단서</div><div class="q">판단에 중요한 것만 고르세요 (여러 개)</div>${cues}
+    <div class="step">2. 순서</div><div class="q">먼저 할 것부터 3개를 차례로 누르세요</div>${opts}
+    <div class="step">3. 한 줄 이유 (선택)</div><textarea id="gmw" placeholder="왜 그 순서인지 한 줄">${esc(GM.why)}</textarea>
+  </div><div class="go"><button id="gmgo" ${GM.rank.length<3?'disabled':''}>${GM.rank.length<3?`순서 ${3-GM.rank.length}개 더 고르기`:'전문가 순서와 맞춰 보기'}</button></div>`;
+  $('#gmx').onclick = closeGame;
+  $('#gmw').oninput = e => GM.why = e.target.value;
+  $('#gm').querySelectorAll('[data-c]').forEach(b => b.onclick = () => { const i=+b.dataset.c; GM.cues.has(i)?GM.cues.delete(i):GM.cues.add(i); keep(drawGame); });
+  $('#gm').querySelectorAll('[data-o]').forEach(b => b.onclick = () => { const o=b.dataset.o; const i=GM.rank.indexOf(o); if (i>=0) GM.rank.splice(i,1); else if (GM.rank.length<3) GM.rank.push(o); keep(drawGame); });
+  $('#gmgo').onclick = () => GM.rank.length===3 && reveal();
+}
+function keep(fn){ const y = $('#gm').scrollTop; fn(); $('#gm').scrollTop = y; }
+function reveal(){
+  const { g } = GM; const secs = Math.round((Date.now()-GM.t0)/1000);
+  const keyIdx = g.cues.map((c,i)=>c.key?i:-1).filter(i=>i>=0);
+  const hit = keyIdx.filter(i=>GM.cues.has(i)).length, falsePick = [...GM.cues].filter(i=>!g.cues[i].key).length;
+  let rk = 0; GM.rank.forEach((o,i) => { if (g.expert.includes(o)) rk += 1; if (g.expert[i] === o) rk += 1; });
+  const score = Math.round(100 * (0.4 * Math.max(0, hit - falsePick*0.5) / keyIdx.length + 0.6 * rk / 6));
+  GM.done = { score, hit, keys: keyIdx.length, falsePick, rk, secs };
+  GAMES[g.id] = { score, at: Date.now() }; LS.set('games', GAMES);
+  QUEUE.push({ id: Math.random().toString(36).slice(2,10), topic: '_feed', video: g.id, type: 'game', by: 'me',
+    text: JSON.stringify({ score, cues: [...GM.cues], rank: GM.rank, why: GM.why, secs, hit, rk }) }); LS.set('fq', QUEUE); flush();
+  const name = id => g.options.find(o=>o.id===id)?.t || id;
+  $('#gm').innerHTML = `<div class="in">
+    <div class="top"><b>♟ ${esc(g.area)}</b><span>결과</span><button id="gmx" style="margin-left:auto">×</button></div>
+    <h2>${score}점</h2>
+    <div class="score"><div><b>${hit}/${keyIdx.length}</b><small>단서 적중${falsePick?` · 헛짚음 ${falsePick}`:''}</small></div><div><b>${rk}/6</b><small>순서 일치</small></div><div><b class="${secs>g.sec?'no':''}">${secs}초</b><small>결정 시간 (${g.sec}초 기준)</small></div></div>
+    <div class="step">전문가 순서</div>${g.expert.map((o,i)=>`<div class="opt" style="cursor:default"><span class="n" style="background:${GM.rank[i]===o?'#22c55e':GM.rank.includes(o)?'#f59e0b':'#333'};color:#111">${i+1}</span><span>${esc(name(o))}</span></div>`).join('')}
+    <div class="step">내 순서</div>${GM.rank.map((o,i)=>`<div class="opt" style="cursor:default;opacity:.85"><span class="n">${i+1}</span><span>${esc(name(o))}</span></div>`).join('')}
+    <div class="step">놓친 단서</div>${keyIdx.filter(i=>!GM.cues.has(i)).map(i=>`<div class="opt" style="cursor:default"><span class="n no">!</span><span>${esc(g.cues[i].t)}</span></div>`).join('') || '<div class="q ok">다 봤어요</div>'}
+    <div class="step">왜 이 순서인가</div><div class="why">${esc(g.why)}<br><br><span style="color:#999;font-size:13px">근거: ${esc(g.source)}</span></div>
+    <div class="step">10초 복기</div><div class="q">${esc(g.debrief)}</div><textarea id="gmd" placeholder="한 줄"></textarea>
+  </div><div class="go"><button id="gmend">저장하고 피드로</button></div>`;
+  $('#gmx').onclick = closeGame;
+  $('#gmend').onclick = () => { const t = $('#gmd').value.trim(); if (t) { QUEUE.push({ id: Math.random().toString(36).slice(2,10), topic: '_feed', video: g.id, type: 'debrief', text: t, by: 'me' }); LS.set('fq', QUEUE); flush(); } closeGame(); toast('저장했어요'); };
+  $('#gm').scrollTop = 0;
+}
 
 // ---------- nav ----------
 function setNav(){ document.querySelectorAll('nav [data-tab]').forEach(b => b.classList.toggle('on', b.dataset.tab===TAB)); $('#reels').classList.toggle('on', TAB==='reels'); }
