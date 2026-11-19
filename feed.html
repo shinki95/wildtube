@@ -250,12 +250,12 @@ const hash = s => { let h=0; for (const c of String(s)) h = (h*31 + c.charCodeAt
 const thumb = v => `https://i.ytimg.com/vi/${v}/hqdefault.jpg`;
 const embed = (v, t=0) => `https://www.youtube-nocookie.com/embed/${v}?start=${t}&autoplay=1&playsinline=1&rel=0&modestbranding=1`;
 
-const ALL = () => [...(FEED.asks||[]), ...FEED.reads, ...FEED.videos, ...(FEED.games||[]), ...(FEED.disc||[]), ...(FEED.insights||[]), ...(FEED.studies||[])];
+const ALL = () => [...(FEED.asks||[]), ...FEED.reads, ...FEED.videos, ...(FEED.games||[]), ...(FEED.disc||[]), ...(FEED.insights||[]), ...(FEED.studies||[]), ...(FEED.visuals||[])];
 const GAMES = LS.get('games', {});   // id -> {score, at}
 function items(){
   if (!FEED) return [];
   const all = ALL().filter(x => !(R[x.id]||{}).meh);
-  const FK = { video:['study','video'], game:['game'], read:['read','disc'] };
+  const FK = { video:['study','video'], game:['game'], read:['visual','read','disc'] };
   if (FILTER.startsWith('t:')) return all.filter(x => x.kind==='study' && x.topic===FILTER.slice(2)).sort((a,b)=> SEEN.has(a.id)-SEEN.has(b.id));
   if (FILTER !== 'all') return all.filter(x => (FK[FILTER]||[FILTER]).includes(x.kind)).sort((a,b)=> (SEEN.has(a.id)-SEEN.has(b.id)) || ((b.ts||0)-(a.ts||0)));
   // 섞기: 물어본 것(최근) 먼저 2개, 그 뒤 영상·읽을거리·물어본 것 번갈아. 좋아요 받은 결 앞으로.
@@ -272,6 +272,8 @@ function items(){
   const order = Object.keys(byT).sort((a,b)=> hash(a+FEED.built)%13 - hash(b+FEED.built)%13);
   const studies = []; for (let r = 0; order.some(k => byT[k].length > r); r++) order.forEach(k => { if (byT[k][r]) studies.push(byT[k][r]); });
   const arts = []; while (reads.length || disc.length) { if (reads.length) arts.push(reads.shift()); if (disc.length) arts.push(disc.shift()); }
+  const vis = (FEED.visuals||[]).filter(x=>!(R[x.id]||{}).meh).sort((a,b)=> SEEN.has(a.id)-SEEN.has(b.id));
+  vis.slice(1).forEach((v,i)=> arts.splice(Math.min(arts.length, 3 + i*6), 0, v));
   const out = [];
   if (insights.length) out.push(insights[0]);
   const firstGame = games.length && gameDue(games[0]) ? games.shift() : null;
@@ -283,7 +285,8 @@ function items(){
     if (arts.length) out.push(arts.shift());
     if (++n % 3 === 0 && games.length) out.push(games.shift());
   }
-  if (firstGame) out.splice(Math.min(3, out.length), 0, firstGame);   // 영상 먼저, 게임은 네 번째
+  if (vis[0]) out.splice(Math.min(2, out.length), 0, vis[0]);
+  if (firstGame) out.splice(Math.min(4, out.length), 0, firstGame);   // 영상 먼저, 게임은 네 번째
   return out;
   return out;
 }
@@ -323,7 +326,7 @@ function renderChips(){
 }
 function acts(x){
   const r = R[x.id] || {};
-  const share = x.kind==='study' ? `https://youtu.be/${x.vid}` : x.kind==='ask' ? x.link : x.kind==='read' ? (x.url||x.thread) : x.kind==='disc' ? (x.url) : x.kind==='game' ? './feed.html' : `https://youtu.be/${x.vid}`;
+  const share = x.kind==='visual' ? (x.url||'./feed.html') : x.kind==='study' ? `https://youtu.be/${x.vid}` : x.kind==='ask' ? x.link : x.kind==='read' ? (x.url||x.thread) : x.kind==='disc' ? (x.url) : x.kind==='game' ? './feed.html' : `https://youtu.be/${x.vid}`;
   return `<div class="acts"><button data-a="like" class="${r.like?'on lk':''}" title="좋아요">${r.like?'♥':'♡'}</button><button data-a="note" title="스레드로">💬</button><a href="${esc(share)}" target="_blank" rel="noopener" style="text-decoration:none;font-size:22px" title="원문">↗</a><button data-a="meh" title="별로, 숨기기" style="font-size:19px;color:#8e8e8e">✕</button><button data-a="save" class="r ${r.save?'on':''}" title="저장">${r.save?'⚑':'⚐'}</button></div>`;
 }
 function postHTML(x){
@@ -349,6 +352,14 @@ function postHTML(x){
       ${x.replies ? `<div class="cmt" data-open="${esc(x.thread)}">스레드 댓글 ${x.replies}개 보기</div>` : ''}
       <div class="lnk">${x.url?`<a href="${esc(x.url)}" target="_blank" rel="noopener">원문 읽기</a>`:''}<a href="${esc(x.thread)}" target="_blank" rel="noopener">슬랙에서 이야기하기</a></div>
       <div class="time">${esc(x.day)}</div></article>`;
+  }
+  if (x.kind === 'visual') {
+    return `<article class="post" data-id="${esc(x.id)}">
+      <div class="ph"><div class="av" style="background:linear-gradient(135deg,#b45309,#fbbf24)"><span>◧</span></div><div class="who">한 장 그림 · ${esc(x.area||'')}<small>${esc(x.source||'')}</small></div>${SEEN.has(x.id)?'':'<span class="new">새로</span>'}</div>
+      <div class="media" style="aspect-ratio:4/5;background:#fbf7ef;cursor:default"><iframe sandbox="" srcdoc="${esc(x.html)}" style="position:absolute;inset:0;width:100%;height:100%;border:0" loading="lazy"></iframe></div>
+      ${acts(x)}
+      <div class="cap"><b>${esc(x.title)}</b>${x.caption?'\n'+esc(x.caption):''}</div>
+      <div class="lnk">${x.url?`<a href="${esc(x.url)}" target="_blank" rel="noopener">원문</a>`:''}</div></article>`;
   }
   if (x.kind === 'study') {
     return `<article class="post" data-id="${esc(x.id)}">
@@ -444,7 +455,7 @@ function renderSaved(){
   const all = ALL().filter(x => (R[x.id]||{}).save);
   if (!all.length) { $('#main').innerHTML = `<div class="empty">저장한 게 아직 없어요.<br>게시물 오른쪽 ⚐ 를 누르면 여기 모여요.</div>`; return; }
   $('#main').innerHTML = `<div class="grid">${all.map(x => {
-    const bg = x.kind==='game' ? 'background:#111' : (x.kind==='video'||x.kind==='study') ? `background-image:linear-gradient(transparent 50%,rgba(0,0,0,.7)),url(${thumb(x.vid)})` : x.img ? `background-image:linear-gradient(transparent 40%,rgba(0,0,0,.75)),url('${esc(x.img)}')` : `background:${x.kind==='read'?secGrad(x.section):ASK_GRADS[hash(x.id)%ASK_GRADS.length]}`;
+    const bg = x.kind==='visual' ? 'background:linear-gradient(135deg,#b45309,#fbbf24)' : x.kind==='game' ? 'background:#111' : (x.kind==='video'||x.kind==='study') ? `background-image:linear-gradient(transparent 50%,rgba(0,0,0,.7)),url(${thumb(x.vid)})` : x.img ? `background-image:linear-gradient(transparent 40%,rgba(0,0,0,.75)),url('${esc(x.img)}')` : `background:${x.kind==='read'?secGrad(x.section):ASK_GRADS[hash(x.id)%ASK_GRADS.length]}`;
     const t = x.kind==='ask' ? x.q : x.kind==='disc' ? (x.ko||x.title) : x.title;
     return `<div class="g" style="${bg}" data-go="${esc(x.id)}">${esc(t.slice(0,48))}</div>`; }).join('')}</div>`;
   $('#main').querySelectorAll('[data-go]').forEach(g => g.onclick = () => { FILTER='all'; TAB='home'; setNav(); LIST=ALL().filter(x=>x.id===g.dataset.go); shown=0; $('#main').innerHTML=''; more(); });
