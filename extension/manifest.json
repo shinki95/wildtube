@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "야생 피드로",
+  "version": "0.1.0",
+  "description": "인스타그램·유튜브 홈, 릴스, 쇼츠, 탐색을 열면 내 야생 피드로 보냅니다. 누가 보낸 게시물·영상·DM 링크는 그대로 열립니다.",
+  "permissions": ["declarativeNetRequest", "storage", "alarms"],
+  "host_permissions": ["*://*.instagram.com/*", "*://*.youtube.com/*"],
+  "background": { "service_worker": "background.js" },
+  "declarative_net_request": { "rule_resources": [{ "id": "redirects", "enabled": true, "path": "rules.json" }] },
+  "content_scripts": [{
+    "matches": ["*://*.instagram.com/*", "*://*.youtube.com/*"],
+    "js": ["content.js"], "css": ["content.css"], "run_at": "document_start"
+  }],
+  "action": { "default_title": "야생 피드로", "default_popup": "popup.html" },
+  "icons": { "128": "icon128.png" }
+}

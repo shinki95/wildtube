@@ -4,7 +4,7 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 export PATH=$HOME/.local/bin:$HOME/.aside/runtime/bin:$PATH
-git add -A index.html README.md .nojekyll publish.sh
+git add -A index.html feed.html extension README.md .nojekyll publish.sh
 git -c user.name=shinki95 -c user.email=shinki95@users.noreply.github.com commit -qm "${1:-야생튜브 화면 갱신}" || echo "바뀐 것 없음"
 git push -q origin main
 echo "PUBLISHED https://shinki95.github.io/wildtube/"

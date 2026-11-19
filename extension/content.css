@@ -1,0 +1,9 @@
+/* 켜져 있을 때: 영상 옆·끝 추천, 쇼츠 칸, 인스타 추천 게시물 숨김 */
+html.yasaeng-on ytd-watch-flexy #secondary,
+html.yasaeng-on .ytp-endscreen-content,
+html.yasaeng-on .ytp-ce-element,
+html.yasaeng-on ytd-reel-shelf-renderer,
+html.yasaeng-on ytd-rich-shelf-renderer[is-shorts],
+html.yasaeng-on a[title="Shorts"],
+html.yasaeng-on ytd-guide-entry-renderer a[title="Shorts"] { display: none !important; }
+html.yasaeng-on a[href="/explore/"], html.yasaeng-on a[href="/reels/"] { display: none !important; }
