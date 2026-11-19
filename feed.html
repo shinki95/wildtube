@@ -339,8 +339,8 @@ function postHTML(x){
   if (x.kind === 'game') {
     const g = GAMES[x.id];
     return `<article class="post" data-id="${esc(x.id)}">
-      <div class="ph"><div class="av" style="background:linear-gradient(135deg,#111,#444)"><span>♟</span></div><div class="who">결정 게임 · ${esc(x.area)}<small>${x.sec}초 · 전문가 순서와 맞춰 보기</small></div>${g?`<span class="new" style="background:#16a34a">${g.score}점</span>`:'<span class="new" style="background:#111">새 판</span>'}</div>
-      <div class="media" style="background:radial-gradient(circle at 30% 20%,#3b3b3b,#0b0b0b)" data-game="${esc(x.id)}"><div class="card"><div class="k">TDG · ${esc(x.area)}</div><div class="t">${esc(x.title)}</div><div class="f" style="margin-top:22px"><span class="btn" style="background:#fff;color:#111">${g?'다시 풀기':'▶ 풀어 보기'}</span></div></div></div>
+      <div class="ph"><div class="av" style="background:linear-gradient(135deg,#111,#444)"><span>♟</span></div><div class="who">${x.replay?'내 일 복기':'결정 게임'} · ${esc(x.area.replace(' · 내 일 복기',''))}<small>${x.sec}초 · ${x.replay?'그때 나 vs 전문가':'전문가 순서와 맞춰 보기'}</small></div>${g?`<span class="new" style="background:#16a34a">${g.score}점</span>`:'<span class="new" style="background:#111">새 판</span>'}</div>
+      <div class="media" style="background:${x.replay?'radial-gradient(circle at 70% 20%,#4a1d1d,#0b0b0b)':'radial-gradient(circle at 30% 20%,#3b3b3b,#0b0b0b)'}" data-game="${esc(x.id)}"><div class="card"><div class="k">${x.replay?'복기 TDG · '+esc(x.when||''):'TDG · '+esc(x.area)}</div><div class="t">${esc(x.title)}</div><div class="f" style="margin-top:22px"><span class="btn" style="background:#fff;color:#111">${g?'다시 풀기':'▶ 풀어 보기'}</span></div></div></div>
       ${acts(x)}
       <div class="cap"><span class="cx" data-full="${esc(x.situation)}">${esc(x.situation.slice(0,110))}… <button class="more">더 보기</button></span></div>
       <div class="time">${esc(x.made)}</div></article>`;
@@ -527,7 +527,11 @@ function reveal(){
     <div class="step">전문가 순서</div>${g.expert.map((o,i)=>`<div class="opt" style="cursor:default"><span class="n" style="background:${GM.rank[i]===o?'#22c55e':GM.rank.includes(o)?'#f59e0b':'#333'};color:#111">${i+1}</span><span>${esc(name(o))}</span></div>`).join('')}
     <div class="step">내 순서</div>${GM.rank.map((o,i)=>`<div class="opt" style="cursor:default;opacity:.85"><span class="n">${i+1}</span><span>${esc(name(o))}</span></div>`).join('')}
     <div class="step">놓친 단서</div>${keyIdx.filter(i=>!GM.cues.has(i)).map(i=>`<div class="opt" style="cursor:default"><span class="n no">!</span><span>${esc(g.cues[i].t)}</span></div>`).join('') || '<div class="q ok">다 봤어요</div>'}
-    <div class="step">왜 이 순서인가</div><div class="why">${esc(g.why)}<br><br><span style="color:#999;font-size:13px">근거: ${esc(g.source)}</span></div>
+    <div class="step">왜 이 순서인가</div><div class="why">${esc(g.why)}</div>
+    ${g.replay ? `<div class="step">그때 실제로 일어난 것 · ${esc(g.when||'')}</div><div class="why" style="border-left:3px solid #ef4444">${esc(g.actual)}</div>
+    <div class="step">전문가 버전</div><div class="why" style="border-left:3px solid #22c55e">${esc(g.expert_version)}</div>
+    <div class="step">차이 한 줄</div><div class="why" style="font-weight:700;color:#fff">${esc(g.gap)}</div>` : ''}
+    <div class="why" style="background:none;padding:8px 0 0;color:#999;font-size:13px">근거: ${esc(g.source)}</div>
     <div class="step">10초 복기</div><div class="q">${esc(g.debrief)}</div><textarea id="gmd" placeholder="한 줄"></textarea>
   </div><div class="go"><button id="gmend">저장하고 피드로</button></div>`;
   $('#gmx').onclick = closeGame;
