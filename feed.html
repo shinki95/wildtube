@@ -68,6 +68,35 @@
   .scenes button{border:0;background:#efefef;border-radius:8px;padding:5px 9px;font-size:12.5px;cursor:pointer}
   .time{padding:4px 12px 0;font-size:11px;color:var(--sub);text-transform:uppercase;letter-spacing:.2px}
   .end{padding:40px 24px 30px;text-align:center}
+  /* 오늘 온 읽을거리 (11/20 사장님 #04-읽을거리 "읽을거리도 관심 갖고 볼 수 있게") */
+  .rd{border-bottom:1px solid var(--line);padding:12px 0 14px}
+  .rd .rh{display:flex;align-items:baseline;gap:8px;padding:0 12px 9px}
+  .rd .rh b{font-size:15px}
+  .rd .rh small{color:var(--sub);font-size:12px}
+  .rd .rh button{margin-left:auto;border:0;background:none;color:#0095f6;font-weight:700;font-size:13px;cursor:pointer;padding:0}
+  .rrow{display:flex;gap:9px;overflow-x:auto;padding:0 12px;scrollbar-width:none;scroll-snap-type:x mandatory}
+  .rrow::-webkit-scrollbar{display:none}
+  .rt{flex:0 0 150px;height:214px;border-radius:14px;overflow:hidden;position:relative;color:#fff;cursor:pointer;scroll-snap-align:start;background:#333 center/cover;display:flex;flex-direction:column;justify-content:flex-end;padding:11px;border:0;text-align:left;font:inherit}
+  .rt .sx{position:absolute;top:9px;left:9px;right:9px;font-size:10.5px;font-weight:700;opacity:.92;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rt .hk{font-size:14.5px;font-weight:800;line-height:1.3;letter-spacing:-.3px;word-break:keep-all;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;text-shadow:0 1px 6px rgba(0,0,0,.45)}
+  .rt .dt{position:absolute;top:8px;right:8px;width:8px;height:8px;border-radius:50%;background:#ff3040}
+  .rt.seen{opacity:.62}
+  .card .sb{margin-top:10px;font-size:15px;line-height:1.4;font-weight:600;opacity:.9;word-break:keep-all;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .pts{margin:4px 12px 0;padding:0;list-style:none;font-size:14px;word-break:keep-all}
+  .pts li{position:relative;padding-left:14px;margin:5px 0;line-height:1.45}
+  .pts li:before{content:"";position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:50%;background:#8e8e8e}
+  .pts em,.sv .pts em{font-style:normal;font-weight:800;background:linear-gradient(transparent 58%,#ffe58a 58%)}
+  .me{margin:8px 12px 2px;padding:9px 11px;border-radius:10px;background:#fff8e1;border:1px solid #f3e2a6;font-size:13.5px;line-height:1.45;word-break:keep-all}
+  .me b{color:#9a6700;margin-right:4px}
+  .xp[hidden]{display:none}
+  .xp{padding:2px 12px;font-size:13.5px;color:#333;white-space:pre-wrap;word-break:keep-all}
+  .sv .pts{margin:14px 0 0}
+  .sv .pts li{color:#fff;font-size:14.5px;opacity:.95}
+  .sv .pts li:before{background:#fff}
+  .sv .pts em{color:#111}
+  .sv .me{margin:14px 0 0;background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.3);color:#fff}
+  .sv .me b{color:#ffe58a}
+  .sv .sbt{margin-top:10px;font-size:16px;font-weight:600;opacity:.88;line-height:1.4;word-break:keep-all}
   .end .ok{width:64px;height:64px;border-radius:50%;margin:0 auto 12px;background:var(--ig);display:flex;align-items:center;justify-content:center;color:#fff;font-size:30px}
   .end h3{margin:6px 0;font-size:18px}
   .end p{color:var(--sub);margin:4px 0 16px;font-size:14px}
@@ -262,13 +291,13 @@ const GAMES = LS.get('games', {});   // id -> {score, at}
 function items(){
   if (!FEED) return [];
   const all = ALL().filter(x => !(R[x.id]||{}).meh);
-  const FK = { video:['study','video'], game:['game'], read:['visual','read','disc'] };
+  const FK = { video:['study','video'], game:['game'], read:['visual','read','disc'], myread:['read'] };
   if (FILTER.startsWith('t:')) return all.filter(x => x.kind==='study' && x.topic===FILTER.slice(2)).sort((a,b)=> SEEN.has(a.id)-SEEN.has(b.id));
   if (FILTER !== 'all') return all.filter(x => (FK[FILTER]||[FILTER]).includes(x.kind)).sort((a,b)=> (SEEN.has(a.id)-SEEN.has(b.id)) || ((b.ts||0)-(a.ts||0)));
   // 섞기: 물어본 것(최근) 먼저 2개, 그 뒤 영상·읽을거리·물어본 것 번갈아. 좋아요 받은 결 앞으로.
   const reads = FEED.reads.filter(x=>!(R[x.id]||{}).meh);
   const likedSec = new Set(reads.filter(r=>(R[r.id]||{}).like||(R[r.id]||{}).save).map(r=>r.section.split(' · ')[0]));
-  reads.sort((a,b)=> (likedSec.has(b.section.split(' · ')[0]) - likedSec.has(a.section.split(' · ')[0])) || (b.ts-a.ts));
+  reads.sort((a,b)=> (SEEN.has(a.id)-SEEN.has(b.id)) || (likedSec.has(b.section.split(' · ')[0]) - likedSec.has(a.section.split(' · ')[0])) || (b.ts-a.ts));
   const vids = FEED.videos.filter(x=>!(R[x.id]||{}).meh).sort((a,b)=> (SEEN.has(a.id)-SEEN.has(b.id)) || (upT(b.up)-upT(a.up)) || (hash(a.id+FEED.built)%97 - hash(b.id+FEED.built)%97));
   const games = (FEED.games||[]).filter(x=>!(R[x.id]||{}).meh).sort((a,b)=> gameDue(b) - gameDue(a));
   const insights = (FEED.insights||[]).filter(x=>!(R[x.id]||{}).meh);
@@ -302,6 +331,27 @@ function items(){
   return out;
 }
 const isNew = x => x.ts && x.ts*1000 > LAST && !SEEN.has(x.id);
+// 읽을거리: 숫자에 형광펜, 오늘 온 것(안 본 것·좋아한 결 먼저). 11/20
+const hi = t => { let n = 0; return esc(t).replace(/(?<![A-Za-z0-9.])((?:g=|\$)?-?[0-9][0-9,.]*\s?(?:%p|%|배|점|명|개|편|건|분|시간|위안|달러|만|억|조)|g=-?[0-9.]+|\$[0-9][0-9,.]*)/g, m => ++n <= 2 ? `<em>${m}</em>` : m); };
+const tileT = x => (x.hook && x.hook.length < 25 && x.sub) ? `${x.hook}: ${x.sub}` : hook(x);
+const hook = x => x.hook || x.title;
+function todayReads(){
+  const L = (FEED.reads||[]).filter(x => !(R[x.id]||{}).meh);
+  const liked = new Set(L.filter(r=>(R[r.id]||{}).like||(R[r.id]||{}).save).map(r=>r.section.split(' · ')[0]));
+  const fresh = L.filter(r => Date.now()/1000 - r.ts < 36*3600);
+  return (fresh.length >= 5 ? fresh : L.slice(0, 15)).sort((a,b)=> (SEEN.has(a.id)-SEEN.has(b.id)) || (liked.has(b.section.split(' · ')[0]) - liked.has(a.section.split(' · ')[0])) || (b.ts-a.ts)).slice(0, 20);
+}
+function wireRd(){
+  const rd = $('#main .rd'); if (!rd) return;
+  rd.querySelectorAll('[data-ri]').forEach(b => b.onclick = () => openStory('reads', +b.dataset.ri));
+  rd.querySelector('[data-rall]').onclick = () => { FILTER = 'myread'; render(); scrollTo(0,0); };
+}
+function readsRowHTML(){
+  const L = todayReads(); if (!L.length) return '';
+  const un = L.filter(x=>!SEEN.has(x.id)).length;
+  return `<section class="rd"><div class="rh"><b>오늘 온 읽을거리</b><small>${L.length}개${un?` · 안 본 것 ${un}`:' · 다 봄'}</small><button data-rall>모아 보기</button></div>
+    <div class="rrow">${L.map((x,i)=>`<button class="rt ${SEEN.has(x.id)?'seen':''}" data-ri="${i}" style="background:${x.img?`linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.1) 30%,rgba(0,0,0,.85)),url('${esc(x.img)}') center/cover,`:''}${secGrad(x.section)}">${SEEN.has(x.id)?'':'<i class="dt"></i>'}<span class="sx">${esc(x.section)}</span><span class="hk">${esc(tileT(x))}</span></button>`).join('')}</div></section>`;
+}
 // 유튜브 올린 날짜 'YYYYMMDD' -> '3주 전 올림' (11/19 사장님 "날짜가 보이면 좋겠다")
 function upAgo(d){ if(!d||d.length<8) return ''; const t=Date.UTC(+d.slice(0,4), +d.slice(4,6)-1, +d.slice(6,8)); const days=(Date.now()-t)/864e5; const s = days<1?'오늘': days<14?Math.round(days)+'일 전': days<60?Math.round(days/7)+'주 전': days<365?Math.round(days/30)+'개월 전': (days/365).toFixed(days<730?1:0).replace('.0','')+'년 전'; return s+' 올림'; }
 const upT = d => d ? +d : 0;
@@ -318,12 +368,12 @@ function render(){
 }
 function renderStories(){
   const st = [{ key:'add', name:'+ 주제', icon:'+', bg:'#efefef', seen:true, p:'더 공부할 것', plain:true }];
+  { const tr = todayReads(); const un = tr.filter(a=>!SEEN.has(a.id)).length; st.push({ key:'reads', name:'읽을거리', icon:'¶', img: (tr.find(a=>!SEEN.has(a.id)&&a.img)||tr.find(a=>a.img)||{}).img, bg:'linear-gradient(135deg,#4f46e5,#9333ea)', seen: !un, p: un ? `새 글 ${un}` : '다 봄' }); }
   for (const t of (FEED.studyTopics||[])) {
     const vs = (FEED.studies||[]).filter(x=>x.topic===t.slug); if (!vs.length) continue;
     const un = vs.filter(x=>!SEEN.has(x.id));
     st.push({ key:'s:'+t.slug, name:t.title, img: thumb((un[0]||vs[0]).vid), seen: !un.length, p: un.length ? `새 영상 ${un.length}` : '다 봄' });
   }
-  st.push({ key:'reads', name:'읽을거리', icon:'¶', bg:'linear-gradient(135deg,#4f46e5,#9333ea)', seen: FEED.reads.slice(0,10).every(a=>SEEN.has(a.id)), p: FEED.reads.filter(r=>Date.now()/1000-r.ts<36*3600).length+'개 새로' });
   $('#stories').innerHTML = st.map(s => `<button class="st" data-st="${esc(s.key)}"><div class="ring ${s.seen?'seen':''}" ${s.plain?'style="background:#dbdbdb"':''}><div style="${s.img?`background-image:url(${s.img})`:`background:${s.bg};color:${s.plain?'#111':'#fff'}`}">${s.img?'':esc(s.icon)}</div></div><div class="n">${esc(s.name)}</div><div class="p">${esc(s.p)}</div></button>`).join('');
   $('#stories').querySelectorAll('[data-st]').forEach(b => b.onclick = () => b.dataset.st==='add' ? addTopic() : openStory(b.dataset.st));
 }
@@ -333,7 +383,7 @@ function addTopic(){
   toast('추가했어요. 다음 갱신(2시간 안쪽) 때 영상이 들어와요');
 }
 function renderChips(){
-  const c = [['all','전체'],['video','영상'],['game','결정 게임'],['read','글']];
+  const c = [['all','전체'],['myread','읽을거리'],['video','영상'],['game','결정 게임'],['read','글·발견']];
   if (FILTER.startsWith('t:')) c.push([FILTER, ((FEED.studyTopics||[]).find(t=>'t:'+t.slug===FILTER)||{}).title||'주제']);
   $('#chips').innerHTML = c.map(([k,n]) => `<button class="chip ${FILTER===k?'on':''}" data-f="${k}">${n}</button>`).join('');
   $('#chips').querySelectorAll('[data-f]').forEach(b => b.onclick = () => { FILTER = b.dataset.f; render(); scrollTo(0,0); });
@@ -357,12 +407,15 @@ function postHTML(x){
       <div class="time">${esc(x.day)}</div></article>`;
   }
   if (x.kind === 'read') {
-    const cap = [x.what, x.num ? '숫자: '+x.num : '', x.why ? '왜 볼 만한가: '+x.why : ''].filter(Boolean).join('\n\n');
+    const pts = (x.pts||[]).slice(0,2).map(p=>p.length>140?p.slice(0,140)+'…':p);
+    const full = [x.what, ...(x.pts||[]), x.ev ? '증거 강도: '+x.ev : ''].filter(Boolean).join('\n\n');
     return `<article class="post" data-id="${esc(x.id)}">
-      <div class="ph"><div class="av" style="background:${secGrad(x.section)}"><span>${esc((x.section||'읽')[0])}</span></div><div class="who">${esc(x.section)}<small>${esc(x.src||x.ch)} · ${ago(x.ts)}</small></div>${nw}</div>
-      <div class="media" style="${x.img?`background:linear-gradient(180deg,rgba(0,0,0,.05) 20%,rgba(0,0,0,.82)),url('${esc(x.img)}') center/cover,${secGrad(x.section)}`:`background:${secGrad(x.section)}`}" data-open="${esc(x.url||x.thread)}"><div class="card" style="${x.img?'justify-content:flex-end':''}"><div class="k">#${esc(x.ch)} · ${esc(x.src)}</div><div class="t" style="${x.img?'font-size:20px;text-shadow:0 1px 8px rgba(0,0,0,.5)':''}">${esc(x.title)}</div></div></div>
+      <div class="ph"><div class="av" style="background:${secGrad(x.section)}"><span>${esc((x.section||'읽')[0])}</span></div><div class="who">${esc(x.section)}<small>${esc(x.note||x.src||x.ch)} · ${ago(x.ts)}</small></div>${nw}</div>
+      <div class="media" style="aspect-ratio:4/5;${x.img?`background:linear-gradient(180deg,rgba(0,0,0,.15) 10%,rgba(0,0,0,.86) 62%),url('${esc(x.img)}') center/cover,${secGrad(x.section)}`:`background:${secGrad(x.section)}`}" data-open="${esc(x.url||x.thread)}"><div class="card" style="justify-content:${x.img?'flex-end':'center'}"><div class="k">${esc(x.section)}${x.src?' · '+esc(x.src):''}</div><div class="t" style="font-size:${hook(x).length>70?21:25}px;${x.img?'text-shadow:0 1px 8px rgba(0,0,0,.5)':''}">${esc(hook(x))}</div>${x.sub?`<div class="sb">${esc(x.sub)}</div>`:''}</div></div>
       ${acts(x)}
-      ${cap ? `<div class="cap"><span class="cx" data-full="${esc(cap)}">${esc(cap.slice(0,150))}${cap.length>150?'… <button class="more">더 보기</button>':''}</span></div>` : ''}
+      ${pts.length ? `<ul class="pts">${pts.map(p=>`<li>${hi(p)}</li>`).join('')}</ul>` : (x.what ? `<div class="cap">${esc(x.what.slice(0,160))}${x.what.length>160?'…':''}</div>` : '')}
+      ${x.me ? `<div class="me"><b>나한테</b>${esc(x.me)}</div>` : ''}
+      ${full ? `<div class="cmt" data-cm>자세히 보기</div><div class="xp" hidden>${esc(full)}</div>` : ''}
       ${x.replies ? `<div class="cmt" data-open="${esc(x.thread)}">스레드 댓글 ${x.replies}개 보기</div>` : ''}
       <div class="lnk">${x.url?`<a href="${esc(x.url)}" target="_blank" rel="noopener">원문 읽기</a>`:''}<a href="${esc(x.thread)}" target="_blank" rel="noopener">슬랙에서 이야기하기</a></div>
       <div class="time">${esc(x.day)}</div></article>`;
@@ -431,7 +484,8 @@ function postHTML(x){
 let shown = 0, LIST = [];
 function renderHome(){
   LIST = items(); shown = 0;
-  $('#main').innerHTML = '';
+  $('#main').innerHTML = FILTER === 'all' ? readsRowHTML() : '';
+  wireRd();
   more();
 }
 function more(){
@@ -560,17 +614,17 @@ function renderReels(){
 
 // ---------- stories ----------
 let SV = null;
-function openStory(key){
+function openStory(key, at=0){
   let slides = [], name = '', av = '';
   if (key === 'asks') { name = '오늘 물어본 것'; slides = FEED.asks.filter(a=>Date.now()/1000-a.ts<36*3600); if (!slides.length) slides = FEED.asks.slice(0,6); slides = slides.map(x=>({x, bg: ASK_GRADS[hash(x.id)%ASK_GRADS.length], t: x.q, b: x.a || (x.follow.find(f=>f.a)||{}).a || '', cta: [['슬랙 스레드', x.link]]})); }
   else if (key.startsWith('s:')) { const slug = key.slice(2); const t = (FEED.studyTopics||[]).find(t=>t.slug===slug); name = t.title;
     const vs = (FEED.studies||[]).filter(v=>v.topic===slug).sort((a,b)=> (SEEN.has(a.id)-SEEN.has(b.id)) || (upT(b.up)-upT(a.up)));
     slides = vs.map(x=>({x, bg:'#111', vid:x.vid, k:`${x.channel} · ${x.minutes}분${x.up?' · '+upAgo(x.up):''}`, t:x.title, b:'', cta:[['주제 빼기', '#rm:'+slug]]})); }
-  else if (key === 'reads') { name = '읽을거리'; slides = FEED.reads.slice(0,12).map(x=>({x, bg: secGrad(x.section), k: x.section, t: x.title, b: x.what, cta: [x.url?['원문', x.url]:null, ['슬랙', x.thread]].filter(Boolean)})); }
+  else if (key === 'reads') { name = '오늘 온 읽을거리'; slides = todayReads().map(x=>({x, read:1, bg: x.img ? `linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.72) 40%,rgba(0,0,0,.9)),url('${x.img}') center/cover,${secGrad(x.section)}` : secGrad(x.section), k: x.section + (x.note ? ' · '+x.note : ''), t: hook(x), b: '', cta: [x.url?['원문', x.url]:null, ['슬랙', x.thread]].filter(Boolean)})); }
   else { const slug = key.slice(2); const t = FEED.topics.find(t=>t.slug===slug); name = t.title.split(' · ')[0];
     slides = FEED.videos.filter(v=>v.topic===slug).map(x=>({x, bg:'#111', vid:x.vid, k:`퀘스트 ${x.quest} · ${x.questTitle}`, t:x.title, b: x.look ? '볼 곳: '+x.look : '', cta:[['퀘스트판', './#'+slug]]})); }
   if (!slides.length) { toast('아직 없어요'); return; }
-  SV = { slides, i: 0, name, timer: null, start: 0, paused: false };
+  SV = { slides, i: Math.min(at, slides.length-1), name, timer: null, start: 0, paused: false };
   $('#sv').classList.add('on'); document.body.style.overflow='hidden'; showSlide();
 }
 function showSlide(){
@@ -579,7 +633,7 @@ function showSlide(){
   $('#sv').innerHTML = `<div class="box" style="background:${s.bg}">
     <div class="bars">${slides.map((_,j)=>`<i><b style="width:${j<i?100:0}%"></b></i>`).join('')}</div>
     <div class="top"><span>${esc(name)}</span><span style="font-weight:400;opacity:.7">${i+1}/${slides.length}</span><button id="svx">×</button></div>
-    <div class="slide">${s.vid?`<div class="vthumb" id="svv"><img src="${thumb(s.vid)}"><div class="play"><b>▶</b></div></div>`:''}${s.k?`<div style="font-size:12.5px;font-weight:700;opacity:.8;margin:${s.vid?'18px':'0'} 0 10px">${esc(s.k)}</div>`:''}<div class="t" style="${s.vid?'font-size:20px':''}">${esc(s.t)}</div>${s.b?`<div class="b">${esc(s.b)}</div>`:''}</div>
+    <div class="slide">${s.vid?`<div class="vthumb" id="svv"><img src="${thumb(s.vid)}"><div class="play"><b>▶</b></div></div>`:''}${s.k?`<div style="font-size:12.5px;font-weight:700;opacity:.8;margin:${s.vid?'18px':'0'} 0 10px">${esc(s.k)}</div>`:''}<div class="t" style="${s.vid?'font-size:20px':s.read?'font-size:24px':''}">${esc(s.t)}</div>${s.b?`<div class="b">${esc(s.b)}</div>`:''}${s.read?readSlide(s.x):''}</div>
     <div class="tap l" id="svl"></div><div class="tap r" id="svr"></div>
     <div class="cta">${s.cta.map(([n,u])=> u.startsWith('#rm:') ? `<button data-rm="${esc(u.slice(4))}">${esc(n)}</button>` : `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(n)}</a>`).join('')}<button id="svs">${(R[s.x.id]||{}).save?'⚑ 저장됨':'⚐ 저장'}</button></div></div>`;
   $('#svx').onclick = closeStory;
@@ -589,11 +643,15 @@ function showSlide(){
   if (s.vid) $('#svv').onclick = () => { SV.paused = true; $('#svv').innerHTML = `<iframe src="${embed(s.vid, s.x.scenes?.[0]?.t||0)}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`; };
   const box = $('#sv .box'); box.onpointerdown = e => { if (!e.target.closest('a,button,iframe,#svv')) SV.hold = true; }; box.onpointerup = () => SV.hold = false;
   clearInterval(SV.timer); SV.start = Date.now(); SV.paused = false; let el = 0;
-  const dur = Math.min(14000, 5000 + (s.t.length + (s.b||'').length) * 25);
+  const dur = s.read ? 16000 : Math.min(14000, 5000 + (s.t.length + (s.b||'').length) * 25);
   SV.timer = setInterval(() => { if (SV.paused || SV.hold) return; el += 50; const p = Math.min(100, el/dur*100); const bar = $('#sv .bars i:nth-child('+(i+1)+') b'); if (bar) bar.style.width = p+'%'; if (p >= 100) go(1); }, 50);
 }
+function readSlide(x){
+  const pts = (x.pts||[]).slice(0,2).map(p=>p.length>150?p.slice(0,150)+'…':p);
+  return `${x.sub?`<div class="sbt">${esc(x.sub)}</div>`:''}${pts.length?`<ul class="pts">${pts.map(p=>`<li>${hi(p)}</li>`).join('')}</ul>`:''}${x.me?`<div class="me"><b>나한테</b>${esc(x.me.length>170?x.me.slice(0,170)+'…':x.me)}</div>`:''}`;
+}
 function go(d){ SV.i += d; if (SV.i < 0) SV.i = 0; if (SV.i >= SV.slides.length) return closeStory(); showSlide(); }
-function closeStory(){ clearInterval(SV?.timer); $('#sv').classList.remove('on'); $('#sv').innerHTML=''; document.body.style.overflow=''; renderStories(); }
+function closeStory(){ clearInterval(SV?.timer); $('#sv').classList.remove('on'); $('#sv').innerHTML=''; document.body.style.overflow=''; renderStories(); const rd = $('#main .rd'); if (rd) { const x = rd.querySelector('.rrow').scrollLeft; rd.outerHTML = readsRowHTML(); wireRd(); const r2 = $('#main .rrow'); if (r2) r2.scrollLeft = x; } }
 document.addEventListener('keydown', e => { if (!$('#sv').classList.contains('on')) return; if (e.key==='ArrowRight') go(1); if (e.key==='ArrowLeft') go(-1); if (e.key==='Escape') closeStory(); });
 
 // ---------- decision game ----------
@@ -757,6 +815,8 @@ $('#refresh').onclick = () => { toast('새로 불러오는 중'); pull(); };
 
 const sen = document.createElement('div'); sen.style.height='1px'; document.querySelector('.app').appendChild(sen); sentinel.observe(sen);
 render(); pull(); flush();
+// 야생튜브 퀘스트판·슬랙에서 feed.html#reads 로 오면 오늘 온 읽을거리를 바로 넘겨 보기 (11/20)
+if (location.hash === '#reads') { history.replaceState(null, '', location.pathname + location.search); const wr = setInterval(() => { if (FEED && KEY) { clearInterval(wr); openStory('reads'); } }, 200); setTimeout(() => clearInterval(wr), 15000); }
 if (FROM) { const c = LS.get('redir', {}); const d = new Date().toLocaleDateString('en-CA'); c[d] = (c[d]||0) + 1; LS.set('redir', c); toast(`${FROM==='youtube'?'유튜브':'인스타'} 대신 왔어요 · 오늘 ${c[d]}번째`); const u = new URL(location.href); u.searchParams.delete('from'); history.replaceState(null,'',u.pathname + u.search); }
 window.addEventListener('pagehide', () => LS.set('lastVisit', Date.now()));
 document.addEventListener('visibilitychange', () => { if (document.hidden) { if (PLAY) { const p = PLAY; endPlay(); RESUME = p; } LS.set('lastVisit', Date.now()); } else { if (RESUME && RESUME.el.isConnected && RESUME.el.querySelector('iframe')) PLAY = { ...RESUME, t0: Date.now() }; RESUME = null; flush(); pull(); } });

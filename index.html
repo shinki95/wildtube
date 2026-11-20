@@ -71,6 +71,14 @@
   .wait{font-size:11px;color:var(--sub)}
   .alt{background:var(--warm);border:1px solid #efe2b3;border-radius:10px;padding:8px;margin-top:8px}
   .next{background:var(--warm);border:1px dashed #d9c98a;border-radius:14px;padding:14px;margin:8px 0 0 18px}
+  .rdx{display:block;color:#fff;text-decoration:none;border-radius:16px;padding:14px;margin:12px 0 4px;background:linear-gradient(135deg,#4f46e5,#9333ea)}
+  .rdx .h{display:flex;align-items:baseline;gap:8px;font-weight:800;font-size:16px}
+  .rdx .h small{font-weight:600;font-size:12px;opacity:.85}
+  .rdx .h span{margin-left:auto;font-size:13px}
+  .rdx ul{list-style:none;margin:8px 0 0;padding:0}
+  .rdx li{margin:7px 0;font-size:14.5px;line-height:1.4;font-weight:600;word-break:keep-all}
+  .rdx li i{font-style:normal;font-size:11px;font-weight:700;background:rgba(255,255,255,.2);border-radius:999px;padding:1px 7px;margin-right:6px;white-space:nowrap}
+  .rdx li.seen{opacity:.6}
   .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#222;color:#fff;padding:8px 14px;border-radius:10px;font-size:14px;opacity:0;transition:.2s;pointer-events:none}
   .toast.on{opacity:1}
 </style>
@@ -138,6 +146,26 @@ function progress(t){
 }
 function unseen(){ const rep = new Set(allEvents().filter(e=>e.type==='coach').map(e=>e.reply_to)); return allEvents().filter(e => e.by==='me' && (e.type==='note' || e.type==='alt') && !e.processed && !rep.has(e.id) && !String(e.topic).startsWith('_')).length; }
 
+// ---- 오늘 온 읽을거리 (피드 데이터에서, 11/20 사장님 #04-읽을거리 요청)
+let _fr = null;
+function todayReads(){
+  try {
+    const parts = DB.topics.filter(t => /^_feed_\d+$/.test(t.slug) && t.part).sort((a,b)=> +a.slug.split('_')[2] - +b.slug.split('_')[2]);
+    if (!parts.length) return [];
+    const n = parts[0].n || parts.length, raw = parts.slice(0, n).map(p=>p.part).join('');
+    if (!_fr || _fr.raw.length !== raw.length) _fr = { raw, reads: JSON.parse(raw).reads || [] };
+    const seen = new Set(LS.get('seenIds', [])), meh = LS.get('react', {});
+    const L = _fr.reads.filter(r => !(meh[r.id]||{}).meh), fresh = L.filter(r => Date.now()/1000 - r.ts < 36*3600);
+    return (fresh.length >= 5 ? fresh : L.slice(0, 15)).map(r => ({...r, seen: seen.has(r.id)})).sort((a,b)=> (a.seen-b.seen) || (b.ts-a.ts)).slice(0, 20);
+  } catch { return []; }
+}
+function readsStrip(){
+  const L = todayReads(); if (!L.length) return '';
+  const un = L.filter(r=>!r.seen).length;
+  return `<a class="rdx" href="./feed.html#reads"><div class="h">오늘 온 읽을거리<small>${L.length}개${un ? ` · 안 본 것 ${un}` : ' · 다 봄'}</small><span>넘겨 보기 →</span></div>
+    <ul>${L.slice(0,3).map(r => `<li class="${r.seen?'seen':''}"><i>${esc(r.section.split(' · ')[0])}</i>${esc(r.hook && r.hook.length < 25 && r.sub ? r.hook+': '+r.sub : (r.hook || r.title))}</li>`).join('')}</ul></a>`;
+}
+
 // ---- 홈: 주제 지도 (주제에서 갈라진 주제가 아래로 이어짐)
 function renderHome(){
   if (!KEY) { $('#app').innerHTML = `<div class="box">슬랙에서 받은 링크로 한 번 열어 주세요. 그 뒤로는 이 폰에서 바로 열려요.</div>`; return; }
@@ -153,7 +181,7 @@ function renderHome(){
     </a>${kids(t.slug).map(k => `<div class="branch"><div class="meta">↳ 여기서 넘어감${k.from.why ? ': '+esc(k.from.why) : ''}</div>${card(k)}</div>`).join('')}`;
   };
   const w = unseen();
-  $('#app').innerHTML = `<h1>배우는 주제</h1>
+  $('#app').innerHTML = `${readsStrip()}<h1>배우는 주제</h1>
     <div class="meta">주제를 누르면 퀘스트가 위에서 아래로 이어져요.${w ? ` Aside가 아직 안 본 노트 ${w}개.` : ''}</div>
     ${ts.filter(t => !t.from || !ts.some(x => x.slug === t.from.slug)).map(card).join('') || '<div class="box">아직 주제가 없어요.</div>'}`;
 }
