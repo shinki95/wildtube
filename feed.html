@@ -399,7 +399,7 @@ function postHTML(x){
   if (x.kind === 'game') {
     const g = GAMES[x.id];
     return `<article class="post" data-id="${esc(x.id)}">
-      <div class="ph"><div class="av" style="background:linear-gradient(135deg,#111,#444)"><span>♟</span></div><div class="who">${x.replay?'내 일 복기':'결정 게임'} · ${esc(x.area.replace(' · 내 일 복기',''))}<small>${x.sec}초 · ${x.replay?'그때 나 vs 전문가':'전문가 순서와 맞춰 보기'}</small></div>${!g?'<span class="new" style="background:#111">새 판</span>':gameDue(x)?'<span class="new" style="background:#f59e0b;color:#111">3일 전 놓친 판 다시</span>':`<span class="new" style="background:#16a34a">${g.score}점</span>`}</div>
+      <div class="ph"><div class="av" style="background:linear-gradient(135deg,#111,#444)"><span>♟</span></div><div class="who">${x.replay?'내 일 복기':'결정 게임'} · ${esc(x.area.replace(' · 내 일 복기',''))}<small>${x.sec}초 · ${x.replay?'그때 나 vs 전문가':x.probe?'물어보고 확인하기':x.spot?'이상한 곳 찾기':x.run?'프롬프트 써 보고 결과 비교':'전문가 순서와 맞춰 보기'}</small></div>${!g?'<span class="new" style="background:#111">새 판</span>':gameDue(x)?'<span class="new" style="background:#f59e0b;color:#111">3일 전 놓친 판 다시</span>':`<span class="new" style="background:#16a34a">${g.score}점</span>`}</div>
       <div class="media" style="background:${x.replay?'radial-gradient(circle at 70% 20%,#4a1d1d,#0b0b0b)':'radial-gradient(circle at 30% 20%,#3b3b3b,#0b0b0b)'}" data-game="${esc(x.id)}"><div class="card"><div class="k">${x.replay?'복기 TDG · '+esc(x.when||''):'TDG · '+esc(x.area)}</div><div class="t">${esc(x.title)}</div><div class="f" style="margin-top:22px"><span class="btn" style="background:#fff;color:#111">${g?'다시 풀기':'▶ 풀어 보기'}</span></div></div></div>
       ${acts(x)}
       <div class="cap"><span class="cx" data-full="${esc(x.situation)}">${esc(x.situation.slice(0,110))}… <button class="more">더 보기</button></span></div>
@@ -603,7 +603,7 @@ let GM = null;
 const rid = () => Math.random().toString(36).slice(2,10);
 function openGame(id){
   const g = ALL().find(x=>x.id===id); if (!g) return;
-  GM = { g, stage:'decide', order:'', cues:new Set(), rank:[], why:'', conf:0, eyes:'', t0:Date.now(), tDecide:0, tw:null, saved:false, tick:null };
+  GM = { g, stage: g.probe ? 'probe' : g.spot ? 'spot' : 'decide', asked:[], spotted:new Set(), order:'', cues:new Set(), rank:[], why:'', conf:0, eyes:'', t0:Date.now(), tDecide:0, tw:null, saved:false, tick:null };
   $('#gm').classList.add('on'); document.body.style.overflow='hidden'; markSeen(id); drawGame();
   GM.tick = setInterval(() => { const c = $('#gm .clock'); if (!c) return; const lim = GM.stage==='twist' ? (GM.g.twist.sec||40) : GM.g.sec; const base = GM.stage==='twist' ? GM.tTwist : GM.t0; const left = lim - Math.floor((Date.now()-base)/1000); c.textContent = left >= 0 ? fmt(left) : '+'+fmt(-left); c.classList.toggle('late', left < 0); }, 250);
 }
@@ -613,7 +613,7 @@ function finalize(){
   const prev = GAMES[g.id] || {};
   GAMES[g.id] = { score:d.score, top1:d.top1, conf:GM.conf, at:Date.now(), again:(prev.at ? (prev.again||0)+1 : 0), twistOk: GM.tw ? GM.tw.ok : null };
   LS.set('games', GAMES);
-  QUEUE.push({ id: rid(), topic:'_feed', video:g.id, type:'game', by:'me', text: JSON.stringify({ score:d.score, top1:d.top1, conf:GM.conf, order:GM.order, decideSecs:GM.tDecide, cues:[...GM.cues], rank:GM.rank, why:GM.why, eyes:GM.eyes, twist:GM.tw, secs:d.secs, hit:d.hit, rk:d.rk, retry:!!prev.at }) });
+  QUEUE.push({ id: rid(), topic:'_feed', video:g.id, type:'game', by:'me', text: JSON.stringify({ score:d.score, top1:d.top1, conf:GM.conf, order:GM.order, decideSecs:GM.tDecide, cues:[...GM.cues], rank:GM.rank, why:GM.why, eyes:GM.eyes, twist:GM.tw, asked:GM.asked, spotted:[...GM.spotted], probe:d.probe, spot:d.spot, secs:d.secs, hit:d.hit, rk:d.rk, retry:!!prev.at }) });
   LS.set('fq', QUEUE); flush();
 }
 function closeGame(){ finalize(); clearInterval(GM?.tick); $('#gm').classList.remove('on'); $('#gm').innerHTML=''; document.body.style.overflow=''; if (TAB==='home') { const y = scrollY; renderHome(); scrollTo(0,y); } }
@@ -621,10 +621,36 @@ function keep(fn){ const y = $('#gm').scrollTop; fn(); $('#gm').scrollTop = y; }
 const gmTop = (g, label) => `<div class="top"><b>♟ ${esc(g.area.replace(' · 내 일 복기',''))}</b><span>${label}</span><span class="clock">${fmt(g.sec)}</span><button id="gmx">×</button></div>`;
 function drawGame(){
   const { g } = GM;
+  // 형식 변주 (11/19 사장님 "어떤 것들을 물어보고 확인해야 하는지, 다양한 variation"): probe = 질문 골라 정보 얻기, spot = 이상한 줄 찾기
+  if (GM.stage === 'probe') {
+    const P = g.probe, left = P.budget - GM.asked.length;
+    $('#gm').innerHTML = `<div class="in">${gmTop(g, '물어보고 확인하기')}
+      <h2>${esc(g.title)}</h2><div class="sit">${esc(g.situation)}</div>
+      ${g.facts?.length?`<div class="facts">${g.facts.map(f=>`<div>· ${esc(f)}</div>`).join('')}</div>`:''}
+      <div class="step">결정 전에 무엇을 물어보거나 확인할까요?</div><div class="q">${left>0?`${left}개 더 고를 수 있어요. 고르면 답이 바로 보여요.`:'다 썼어요. 이제 결정으로.'}</div>
+      ${P.qs.map(q => { const on = GM.asked.includes(q.id); return `<button class="opt ${on?'on':''}" data-pq="${q.id}" ${!on&&left<=0?'disabled style="opacity:.45"':''}><span class="n">${on?GM.asked.indexOf(q.id)+1:''}</span><span>${esc(q.t)}${on?`<div style="margin-top:6px;color:#fbbf24;font-weight:600">→ ${esc(q.a)}</div>`:''}</span></button>`; }).join('')}
+    </div><div class="go"><button id="gmgo" ${GM.asked.length?'':'disabled'}>${left>0?'이 정도면 결정할게요':'결정하러 가기'}</button></div>`;
+    $('#gm').querySelectorAll('[data-pq]').forEach(b => b.onclick = () => { const id=b.dataset.pq; if (GM.asked.includes(id)) return; if (GM.asked.length < P.budget) { GM.asked.push(id); keep(drawGame); } });
+    $('#gmgo').onclick = () => { GM.stage='decide'; drawGame(); $('#gm').scrollTop=0; };
+    return;
+  }
+  if (GM.stage === 'spot') {
+    const S = g.spot;
+    $('#gm').innerHTML = `<div class="in">${gmTop(g, '이상한 곳 찾기')}
+      <h2>${esc(g.title)}</h2><div class="sit">${esc(g.situation)}</div>
+      <div class="step">${esc(S.intro||'보내기 전에 걸리는 줄을 모두 누르세요')}</div>
+      ${S.lines.map((l,i) => `<button class="opt ${GM.spotted.has(i)?'on':''}" data-sp="${i}" style="font-family:ui-monospace,Menlo,monospace;font-size:13.5px"><span class="n">${GM.spotted.has(i)?'!':''}</span><span style="white-space:pre-wrap">${esc(l.t)}</span></button>`).join('')}
+    </div><div class="go"><button id="gmgo">${GM.spotted.size?`${GM.spotted.size}곳 골랐어요 · 결정하러`:'걸리는 곳 없음 · 결정하러'}</button></div>`;
+    $('#gm').querySelectorAll('[data-sp]').forEach(b => b.onclick = () => { const i=+b.dataset.sp; GM.spotted.has(i)?GM.spotted.delete(i):GM.spotted.add(i); keep(drawGame); });
+    $('#gmgo').onclick = () => { GM.stage='decide'; drawGame(); $('#gm').scrollTop=0; };
+    return;
+  }
   if (GM.stage === 'decide') {
     $('#gm').innerHTML = `<div class="in">${gmTop(g, g.replay?'내 일 복기':'결정 게임')}
       <h2>${esc(g.title)}</h2><div class="sit">${esc(g.situation)}</div>
       ${g.facts?.length?`<div class="facts">${g.facts.map(f=>`<div>· ${esc(f)}</div>`).join('')}</div>`:''}
+      ${g.probe&&GM.asked.length?`<div class="step">확인한 것</div><div class="facts">${GM.asked.map(id=>{ const q=g.probe.qs.find(q=>q.id===id); return `<div>· ${esc(q.t)} → <b>${esc(q.a)}</b></div>`; }).join('')}</div>`:''}
+      ${g.spot&&GM.spotted.size?`<div class="step">내가 걸린 곳</div><div class="facts">${[...GM.spotted].map(i=>`<div>· ${esc(g.spot.lines[i].t)}</div>`).join('')}</div>`:''}
       ${g.run?`<div class="step">맡길 재료</div><div class="facts" style="white-space:pre-wrap">${esc(g.run.input)}</div>`:''}
       <div class="step">먼저 결정</div><div class="q">${esc(g.decide_q || '지금 실제로 보낼 말이나 내릴 지시를 한 줄로. 설명은 나중에.')}</div>
       <textarea id="gmo" ${g.run?'style="min-height:150px"':''} placeholder="${g.run?'AI에게 보낼 프롬프트를 그대로 써 보세요':'예: 손님께 \u201c...\u201d / 주방에 \u201c...\u201d'}">${esc(GM.order)}</textarea>
@@ -659,6 +685,8 @@ function drawGame(){
       <div class="score"><div><b>${d.hit}/${keyIdx.length}</b><small>단서${d.falsePick?` · 헛짚음 ${d.falsePick}`:''}</small></div><div><b>${d.rk}/6</b><small>순서 일치</small></div><div><b class="${GM.tDecide>g.sec?'no':''}">${GM.tDecide}초</b><small>결정까지 (${g.sec}초)</small></div></div>
       <div class="step">전문가 순서</div>${g.expert.map((o,i)=>`<div class="opt" style="cursor:default"><span class="n" style="background:${GM.rank[i]===o?'#22c55e':GM.rank.includes(o)?'#f59e0b':'#333'};color:#111">${i+1}</span><span>${esc(name(o))}</span></div>`).join('')}
       <div class="step">내 순서</div>${GM.rank.map((o,i)=>`<div class="opt" style="cursor:default;opacity:.85"><span class="n">${i+1}</span><span>${esc(name(o))}</span></div>`).join('')}
+      ${g.probe?`<div class="step">질문 비교 · 전문가 질문 ${d.probe.hit}/${d.probe.of} 겹침</div>${g.probe.expert.map((id,i)=>{ const q=g.probe.qs.find(q=>q.id===id); const mine=GM.asked.includes(id); return `<div class="opt" style="cursor:default"><span class="n" style="background:${mine?'#22c55e':'#333'};color:#111">${i+1}</span><span>${esc(q.t)}${q.why?`<div style="margin-top:4px;color:#aaa;font-size:13px">${esc(q.why)}</div>`:''}</span></div>`; }).join('')}${GM.asked.filter(id=>!g.probe.expert.includes(id)).map(id=>`<div class="opt" style="cursor:default;opacity:.7"><span class="n">·</span><span>내가 물은 것: ${esc(g.probe.qs.find(q=>q.id===id).t)}</span></div>`).join('')}${g.probe.why?`<div class="why">${esc(g.probe.why)}</div>`:''}`:''}
+      ${g.spot?`<div class="step">걸리는 곳 · ${d.spot.hit}/${d.spot.of} 찾음${d.spot.false?` · 괜찮은 줄 ${d.spot.false}개 고름`:''}</div>${g.spot.lines.map((l,i)=> l.bad||GM.spotted.has(i) ? `<div class="opt" style="cursor:default"><span class="n" style="background:${l.bad&&GM.spotted.has(i)?'#22c55e':l.bad?'#ef4444':'#f59e0b'};color:#111">${l.bad?(GM.spotted.has(i)?'✓':'!'):'·'}</span><span><span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;white-space:pre-wrap">${esc(l.t)}</span>${l.note?`<div style="margin-top:4px;color:#aaa;font-size:13px">${esc(l.note)}</div>`:''}</span></div>` : '').join('')}`:''}
       ${g.expert_line?`<div class="step">첫 결정 비교</div><div class="why" style="border-left:3px solid #ef4444;white-space:pre-wrap"><b>나</b> · ${esc(GM.order)}</div><div class="why" style="border-left:3px solid #22c55e;white-space:pre-wrap;margin-top:6px"><b>전문가</b> · ${esc(g.expert_line)}</div>${g.run?'<div class="q" style="color:#aaa;margin-top:6px">내 프롬프트와 전문가 프롬프트를 같은 재료로 실제로 돌려서, 결과 비교 카드를 내일 아침(6:30) 피드 맨 위에 올려 둘게요.</div>':''}`:''}
       <div class="step">놓친 단서</div>${keyIdx.filter(i=>!GM.cues.has(i)).map(i=>`<div class="opt" style="cursor:default"><span class="n no">!</span><span>${esc(g.cues[i].t)}</span></div>`).join('') || '<div class="q ok">다 봤어요</div>'}
       <div class="step">전문가 이유</div><div class="why">${esc(g.why)}</div>
@@ -695,8 +723,10 @@ function score(){
   const keyIdx = g.cues.map((c,i)=>c.key?i:-1).filter(i=>i>=0);
   const hit = keyIdx.filter(i=>GM.cues.has(i)).length, falsePick = [...GM.cues].filter(i=>!g.cues[i].key).length;
   let rk = 0; GM.rank.forEach((o,i) => { if (g.expert.includes(o)) rk += 1; if (g.expert[i] === o) rk += 1; });
-  const sc = Math.round(100 * (0.4 * Math.max(0, hit - falsePick*0.5) / keyIdx.length + 0.6 * rk / 6));
-  GM.done = { score: sc, top1: GM.rank[0] === g.expert[0], hit, falsePick, rk, secs };
+  let sc = 0.4 * Math.max(0, hit - falsePick*0.5) / keyIdx.length + 0.6 * rk / 6, probe = null, spot = null;
+  if (g.probe) { const ex = g.probe.expert; const ph = GM.asked.filter(id => ex.includes(id)).length; probe = { hit: ph, of: ex.length, asked: GM.asked }; sc = 0.3 * ph / ex.length + 0.7 * sc; }
+  if (g.spot) { const bad = g.spot.lines.map((l,i)=>l.bad?i:-1).filter(i=>i>=0); const sh = bad.filter(i=>GM.spotted.has(i)).length, sf = [...GM.spotted].filter(i=>!g.spot.lines[i].bad).length; spot = { hit: sh, of: bad.length, false: sf }; sc = 0.35 * Math.max(0, sh - sf*0.5) / bad.length + 0.65 * sc; }
+  GM.done = { score: Math.round(100 * sc), top1: GM.rank[0] === g.expert[0], hit, falsePick, rk, secs, probe, spot };
 }
 // 3일 뒤 다시: 1번 불일치·점수 60 미만·다음 장면 틀림이면 최대 2번 더
 function gameDue(x){ const r = GAMES[x.id]; if (!r) return true; const need = !r.top1 || r.score < 60 || r.twistOk === false; return need && (r.again||0) < 2 && Date.now() - r.at > 3*86400000; }
