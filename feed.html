@@ -274,7 +274,7 @@ function items(){
   const insights = (FEED.insights||[]).filter(x=>!(R[x.id]||{}).meh);
   const disc = (FEED.disc||[]).filter(x=>!(R[x.id]||{}).meh && !SEEN.has(x.id)).concat((FEED.disc||[]).filter(x=>!(R[x.id]||{}).meh && SEEN.has(x.id)));
   // 공부 영상: 주제별로 번갈아(안 본 것 먼저)
-  const byT = {}; (FEED.studies||[]).filter(x=>!(R[x.id]||{}).meh).forEach(x => (byT[x.topic] = byT[x.topic] || []).push(x));
+  const byT = {}; (FEED.studies||[]).filter(x=>!(R[x.id]||{}).meh && !x.explore).forEach(x => (byT[x.topic] = byT[x.topic] || []).push(x));
   Object.values(byT).forEach(l => l.sort((a,b)=> (SEEN.has(a.id)-SEEN.has(b.id)) || (hash(a.id+FEED.built)%97 - hash(b.id+FEED.built)%97)));
   const order = Object.keys(byT).sort((a,b)=> hash(a+FEED.built)%13 - hash(b+FEED.built)%13);
   const studies = []; for (let r = 0; order.some(k => byT[k].length > r); r++) order.forEach(k => { if (byT[k][r]) studies.push(byT[k][r]); });
@@ -294,6 +294,9 @@ function items(){
   }
   if (vis[0]) out.splice(Math.min(2, out.length), 0, vis[0]);
   if (firstGame) out.splice(Math.min(4, out.length), 0, firstGame);   // 영상 먼저, 게임은 네 번째
+  // 새로운 것 칸: 10칸 중 1칸(관심 주제 밖, 안 본 것 먼저). 11/19
+  const ex = (FEED.studies||[]).filter(x => x.explore && !(R[x.id]||{}).meh).sort((a,b)=> SEEN.has(a.id)-SEEN.has(b.id));
+  for (let p = 9; ex.length && p <= out.length; p += 10) out.splice(p, 0, ex.shift());
   return out;
   return out;
 }
@@ -488,10 +491,20 @@ function wire(root){
   });
   root.querySelectorAll('.media').forEach(m => m.addEventListener('dblclick', () => { const id = m.closest('[data-id]').dataset.id; if (!(R[id]||{}).like) { react(id,'like'); const b = m.closest('.post').querySelector('[data-a=like]'); b.textContent='♥'; b.classList.add('on','lk'); } toast('♥'); }));
 }
+// 본 시간 (11/19): 영상을 연 뒤 닫거나·다른 영상·화면 밖·앱 나감까지의 초. 일시정지도 들어가서 서버는 약하게만 씀(20초 안 닫기 -1, 3분 이상 +1)
+let PLAY = null;
+function endPlay(){
+  if (!PLAY) return; const p = PLAY; PLAY = null;
+  const s = Math.round((Date.now() - p.t0) / 1000); if (s < 2) return;
+  QUEUE.push({ id: Math.random().toString(36).slice(2,10), topic:'_feed', video:p.id, type:'watch', text:String(Math.min(s, p.max)), by:'me' }); LS.set('fq', QUEUE); flush();
+}
+const pio = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting && PLAY && PLAY.el === e.target) { endPlay(); const m = e.target; pio.unobserve(m); if (m.classList.contains('media')) { m.innerHTML = `<img src="${thumb(m.dataset.vid)}" alt=""><div class="play"><b>▶</b></div>`; } } }), { threshold: 0 });
 function playIn(m, vid, t){
+  endPlay();
   document.querySelectorAll('.media.v iframe, .frame iframe').forEach(f => { if (!m.contains(f)) f.remove(); });
   m.innerHTML = `<iframe src="${embed(vid,t)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
   const id = m.closest('[data-id]')?.dataset.id; if (id) markSeen(id);
+  if (id) { const x = ALL().find(i => i.id === id); PLAY = { id, el: m, t0: Date.now(), max: Math.max(60, ((x && x.minutes) || 120) * 60) }; pio.observe(m); }
 }
 function markSeen(id){ if (SEEN.has(id)) return; SEEN.add(id); LS.set('seenIds', [...SEEN].slice(-2000)); if (String(id).startsWith('visual:')) { QUEUE.push({ id: Math.random().toString(36).slice(2,10), topic:'_feed', video:id, type:'view', by:'me' }); LS.set('fq', QUEUE); flush(); } }
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && e.intersectionRatio > .6) { const id = e.target.dataset.id; setTimeout(()=>{ if (e.target.isConnected) markSeen(id); }, 1500); } }), { threshold: [.6] });
@@ -677,7 +690,7 @@ function gameDue(x){ const r = GAMES[x.id]; if (!r) return true; const need = !r
 
 // ---------- nav ----------
 function setNav(){ document.querySelectorAll('nav [data-tab]').forEach(b => b.classList.toggle('on', b.dataset.tab===TAB)); $('#reels').classList.toggle('on', TAB==='reels'); }
-function switchTab(t){ TAB = t; setNav(); if (t !== 'reels') { $('#reels').innerHTML=''; } render(); if (t!=='reels') scrollTo(0,0); }
+function switchTab(t){ endPlay(); TAB = t; setNav(); if (t !== 'reels') { $('#reels').innerHTML=''; } render(); if (t!=='reels') scrollTo(0,0); }
 document.querySelectorAll('nav [data-tab]').forEach(b => b.onclick = () => switchTab(b.dataset.tab));
 $('#rclose').onclick = () => switchTab('home');
 $('#refresh').onclick = () => { toast('새로 불러오는 중'); pull(); };
@@ -686,7 +699,9 @@ const sen = document.createElement('div'); sen.style.height='1px'; document.quer
 render(); pull(); flush();
 if (FROM) { const c = LS.get('redir', {}); const d = new Date().toLocaleDateString('en-CA'); c[d] = (c[d]||0) + 1; LS.set('redir', c); toast(`${FROM==='youtube'?'유튜브':'인스타'} 대신 왔어요 · 오늘 ${c[d]}번째`); const u = new URL(location.href); u.searchParams.delete('from'); history.replaceState(null,'',u.pathname + u.search); }
 window.addEventListener('pagehide', () => LS.set('lastVisit', Date.now()));
-document.addEventListener('visibilitychange', () => { if (document.hidden) LS.set('lastVisit', Date.now()); else { flush(); pull(); } });
+document.addEventListener('visibilitychange', () => { if (document.hidden) { if (PLAY) { const p = PLAY; endPlay(); RESUME = p; } LS.set('lastVisit', Date.now()); } else { if (RESUME && RESUME.el.isConnected && RESUME.el.querySelector('iframe')) PLAY = { ...RESUME, t0: Date.now() }; RESUME = null; flush(); pull(); } });
+let RESUME = null;
+addEventListener('pagehide', () => endPlay());
 </script>
 </body>
 </html>
