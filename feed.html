@@ -399,7 +399,7 @@ function postHTML(x){
   if (x.kind === 'game') {
     const g = GAMES[x.id];
     return `<article class="post" data-id="${esc(x.id)}">
-      <div class="ph"><div class="av" style="background:linear-gradient(135deg,#111,#444)"><span>♟</span></div><div class="who">${x.replay?'내 일 복기':'결정 게임'} · ${esc(x.area.replace(' · 내 일 복기',''))}<small>${x.sec}초 · ${x.replay?'그때 나 vs 전문가':x.probe?'물어보고 확인하기':x.spot?'이상한 곳 찾기':x.run?'프롬프트 써 보고 결과 비교':'전문가 순서와 맞춰 보기'}</small></div>${!g?'<span class="new" style="background:#111">새 판</span>':gameDue(x)?'<span class="new" style="background:#f59e0b;color:#111">3일 전 놓친 판 다시</span>':`<span class="new" style="background:#16a34a">${g.score}점</span>`}</div>
+      <div class="ph"><div class="av" style="background:linear-gradient(135deg,#111,#444)"><span>♟</span></div><div class="who">${x.replay?'내 일 복기':'결정 게임'} · ${esc(x.area.replace(' · 내 일 복기',''))}<small>${x.brief?'브리핑 노트 · ':''}${x.sec}초 · ${x.replay?'그때 나 vs 전문가':x.probe?'물어보고 확인하기':x.spot?'이상한 곳 찾기':x.run?'프롬프트 써 보고 결과 비교':'전문가 순서와 맞춰 보기'}</small></div>${!g?'<span class="new" style="background:#111">새 판</span>':gameDue(x)?'<span class="new" style="background:#f59e0b;color:#111">3일 전 놓친 판 다시</span>':`<span class="new" style="background:#16a34a">${g.score}점</span>`}</div>
       <div class="media" style="background:${x.replay?'radial-gradient(circle at 70% 20%,#4a1d1d,#0b0b0b)':'radial-gradient(circle at 30% 20%,#3b3b3b,#0b0b0b)'}" data-game="${esc(x.id)}"><div class="card"><div class="k">${x.replay?'복기 TDG · '+esc(x.when||''):'TDG · '+esc(x.area)}</div><div class="t">${esc(x.title)}</div><div class="f" style="margin-top:22px"><span class="btn" style="background:#fff;color:#111">${g?'다시 풀기':'▶ 풀어 보기'}</span></div></div></div>
       ${acts(x)}
       <div class="cap"><span class="cx" data-full="${esc(x.situation)}">${esc(x.situation.slice(0,110))}… <button class="more">더 보기</button></span></div>
@@ -603,9 +603,9 @@ let GM = null;
 const rid = () => Math.random().toString(36).slice(2,10);
 function openGame(id){
   const g = ALL().find(x=>x.id===id); if (!g) return;
-  GM = { g, stage: g.probe ? 'probe' : g.spot ? 'spot' : 'decide', asked:[], spotted:new Set(), order:'', cues:new Set(), rank:[], why:'', conf:0, eyes:'', t0:Date.now(), tDecide:0, tw:null, saved:false, tick:null };
+  GM = { g, stage: g.brief ? 'brief' : g.probe ? 'probe' : g.spot ? 'spot' : 'decide', asked:[], spotted:new Set(), order:'', cues:new Set(), rank:[], why:'', conf:0, eyes:'', t0:Date.now(), tDecide:0, tw:null, saved:false, tick:null };
   $('#gm').classList.add('on'); document.body.style.overflow='hidden'; markSeen(id); drawGame();
-  GM.tick = setInterval(() => { const c = $('#gm .clock'); if (!c) return; const lim = GM.stage==='twist' ? (GM.g.twist.sec||40) : GM.g.sec; const base = GM.stage==='twist' ? GM.tTwist : GM.t0; const left = lim - Math.floor((Date.now()-base)/1000); c.textContent = left >= 0 ? fmt(left) : '+'+fmt(-left); c.classList.toggle('late', left < 0); }, 250);
+  GM.tick = setInterval(() => { const c = $('#gm .clock'); if (!c) return; if (GM.stage==='brief') { c.textContent='브리핑'; return; } const lim = GM.stage==='twist' ? (GM.g.twist.sec||40) : GM.g.sec; const base = GM.stage==='twist' ? GM.tTwist : GM.t0; const left = lim - Math.floor((Date.now()-base)/1000); c.textContent = left >= 0 ? fmt(left) : '+'+fmt(-left); c.classList.toggle('late', left < 0); }, 250);
 }
 function finalize(){
   if (!GM || GM.saved || !GM.done) return; GM.saved = true;
@@ -622,6 +622,23 @@ const gmTop = (g, label) => `<div class="top"><b>♟ ${esc(g.area.replace(' · �
 function drawGame(){
   const { g } = GM;
   // 형식 변주 (11/19 사장님 "어떤 것들을 물어보고 확인해야 하는지, 다양한 variation"): probe = 질문 골라 정보 얻기, spot = 이상한 줄 찾기
+  // 브리핑 노트 (11/19 사장님 "전술게임은 맵을 본다든지, 처음에 보고 시작할 노트"). TDG 형식: 너는 누구·가진 것 → 지도 → 상황(전체→구체) → 의도 → 모르는 것 → 결정을 부르는 사건 → 요구. 시계는 '시작'부터.
+  if (GM.stage === 'brief') {
+    const B = g.brief, sec = (t, body) => body ? `<div class="step">${t}</div>${body}` : '';
+    const list = a => a?.length ? `<div class="facts">${a.map(x=>`<div>· ${esc(x)}</div>`).join('')}</div>` : '';
+    $('#gm').innerHTML = `<div class="in">${gmTop(g, '브리핑 노트 · 시간 안 감')}
+      <h2>${esc(g.title)}</h2>
+      ${sec('나는', B.who ? `<div class="sit">${esc(B.who)}</div>` : '')}
+      ${sec('가진 것', list(B.have))}
+      ${B.map ? `<div class="step">지도 · ${esc(B.map.label||'')}</div><div style="background:#fff;border-radius:12px;overflow:hidden;aspect-ratio:${B.map.ratio||'4/3'}"><iframe sandbox="" srcdoc="${esc(B.map.html)}" style="width:100%;height:100%;border:0"></iframe></div>${B.map.note?`<div class="q" style="color:#aaa;margin-top:6px">${esc(B.map.note)}</div>`:''}` : ''}
+      ${sec('상황', list(B.situation))}
+      ${sec('사장님 의도 · 성공 기준', B.intent ? `<div class="why">${esc(B.intent)}</div>` : '')}
+      ${sec('모르는 것 (가정해야 함)', list(B.unknown))}
+      <div class="q" style="color:#aaa;margin-top:14px">다 봤으면 시작을 누르세요. 그때부터 ${g.sec}초가 갑니다.</div>
+    </div><div class="go"><button id="gmgo">시작</button></div>`;
+    $('#gmgo').onclick = () => { GM.t0 = Date.now(); GM.stage = g.probe ? 'probe' : g.spot ? 'spot' : 'decide'; drawGame(); $('#gm').scrollTop=0; };
+    return;
+  }
   if (GM.stage === 'probe') {
     const P = g.probe, left = P.budget - GM.asked.length;
     $('#gm').innerHTML = `<div class="in">${gmTop(g, '물어보고 확인하기')}
