@@ -298,7 +298,8 @@ function items(){
   const reads = FEED.reads.filter(x=>!(R[x.id]||{}).meh);
   const likedSec = new Set(reads.filter(r=>(R[r.id]||{}).like||(R[r.id]||{}).save).map(r=>r.section.split(' · ')[0]));
   reads.sort((a,b)=> (SEEN.has(a.id)-SEEN.has(b.id)) || (likedSec.has(b.section.split(' · ')[0]) - likedSec.has(a.section.split(' · ')[0])) || (b.ts-a.ts));
-  const vids = FEED.videos.filter(x=>!(R[x.id]||{}).meh).sort((a,b)=> (SEEN.has(a.id)-SEEN.has(b.id)) || (upT(b.up)-upT(a.up)) || (hash(a.id+FEED.built)%97 - hash(b.id+FEED.built)%97));
+  const sw = x => SEEN.has(x.id) || (FEED.watched||[]).includes(x.id);
+  const vids = FEED.videos.filter(x=>!(R[x.id]||{}).meh).sort((a,b)=> (sw(a)-sw(b)) || (upT(b.up)-upT(a.up)) || (hash(a.id+FEED.built)%97 - hash(b.id+FEED.built)%97));
   const games = (FEED.games||[]).filter(x=>!(R[x.id]||{}).meh).sort((a,b)=> gameDue(b) - gameDue(a));
   const insights = (FEED.insights||[]).filter(x=>!(R[x.id]||{}).meh);
   const disc = (FEED.disc||[]).filter(x=>!(R[x.id]||{}).meh && !SEEN.has(x.id)).concat((FEED.disc||[]).filter(x=>!(R[x.id]||{}).meh && SEEN.has(x.id)));
