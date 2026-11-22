@@ -303,10 +303,18 @@ function items(){
   const insights = (FEED.insights||[]).filter(x=>!(R[x.id]||{}).meh);
   const disc = (FEED.disc||[]).filter(x=>!(R[x.id]||{}).meh && !SEEN.has(x.id)).concat((FEED.disc||[]).filter(x=>!(R[x.id]||{}).meh && SEEN.has(x.id)));
   // 공부 영상: 주제별로 번갈아(안 본 것 먼저)
-  const byT = {}; (FEED.studies||[]).filter(x=>!(R[x.id]||{}).meh && !x.explore).forEach(x => (byT[x.topic] = byT[x.topic] || []).push(x));
-  Object.values(byT).forEach(l => l.sort((a,b)=> (SEEN.has(a.id)-SEEN.has(b.id)) || (upT(b.up)-upT(a.up)) || (hash(a.id+FEED.built)%97 - hash(b.id+FEED.built)%97)));
-  const order = Object.keys(byT).sort((a,b)=> hash(a+FEED.built)%13 - hash(b+FEED.built)%13);
-  const studies = []; for (let r = 0; order.some(k => byT[k].length > r); r++) order.forEach(k => { if (byT[k][r]) studies.push(byT[k][r]); });
+  // 11/21 사장님 "피드가 별로": 주제를 무작위로 돌리던 것 -> 점수순(본 시간·좋아요·시연/장면·제목 품질·따라보는 채널), 같은 주제는 연달아 안 나오게
+  const sp = (FEED.studies||[]).filter(x=>!(R[x.id]||{}).meh && !x.explore);
+  const WATCHED = new Set(FEED.watched||[]), done = x => SEEN.has(x.id) || WATCHED.has(x.id) || (R[x.id]||{}).like || (R[x.id]||{}).save;
+  const rk = x => (x.rank||5) - (done(x)?100:0) - (x.ok===false?3:0) + (hash(x.id+FEED.built)%10)/20;
+  sp.sort((a,b)=> rk(b)-rk(a));
+  const studies = [], recentT = [];
+  const cntT = {};   // 같은 주제가 이미 나온 만큼 1.5점씩 내려 한 주제가 피드를 덮지 않게
+  while (sp.length) {
+    let bi = -1, bv = -1e9;
+    sp.forEach((x, j) => { if (recentT.includes(x.topic) && sp.some(y => !recentT.includes(y.topic))) return; const v = rk(x) - 1.5 * (cntT[x.topic]||0); if (v > bv) { bv = v; bi = j; } });
+    const x = sp.splice(Math.max(0, bi), 1)[0]; studies.push(x); cntT[x.topic] = (cntT[x.topic]||0) + 1; recentT.push(x.topic); if (recentT.length > 3) recentT.shift();
+  }
   const arts = []; while (reads.length || disc.length) { if (reads.length) arts.push(reads.shift()); if (disc.length) arts.push(disc.shift()); }
   const vis = (FEED.visuals||[]).filter(x=>!(R[x.id]||{}).meh).sort((a,b)=> SEEN.has(a.id)-SEEN.has(b.id));
   vis.slice(1).forEach((v,i)=> arts.splice(Math.min(arts.length, 3 + i*6), 0, v));
@@ -318,11 +326,11 @@ function items(){
   while (studies.length || vids.length || arts.length || games.length) {
     if (studies.length) out.push(studies.shift());
     if (studies.length) out.push(studies.shift());
-    if (n % 2 === 0 && vids.length) out.push(vids.shift());
+    if (n % 3 === 1 && vids.length) out.push(vids.shift());   // 퀘스트 영상은 세 바퀴에 한 번 (11/21: 바로 닫는 일이 많음)
     if (arts.length) out.push(arts.shift());
     if (++n % 3 === 0 && games.length) out.push(games.shift());
   }
-  if (vis[0]) out.splice(Math.min(2, out.length), 0, vis[0]);
+  if (vis[0]) out.splice(Math.min(9, out.length), 0, vis[0]);   // 한 장 그림: 11/21 두 장 다 ✕ 받아서 세 번째 칸 -> 열 번째 칸
   if (firstGame) out.splice(Math.min(4, out.length), 0, firstGame);   // 영상 먼저, 게임은 네 번째
   // 새로운 것 칸: 10칸 중 1칸(관심 주제 밖, 안 본 것 먼저). 11/19
   const ex = (FEED.studies||[]).filter(x => x.explore && !(R[x.id]||{}).meh).sort((a,b)=> SEEN.has(a.id)-SEEN.has(b.id));
@@ -430,7 +438,7 @@ function postHTML(x){
   }
   if (x.kind === 'study') {
     return `<article class="post" data-id="${esc(x.id)}">
-      <div class="ph"><div class="av"><span style="background:url(${thumb(x.vid)}) center/cover"></span></div><div class="who">${esc(x.topicTitle)}<small>${esc(x.channel)} · 조회 ${x.views>=10000?Math.round(x.views/10000)+'만':x.views}${x.up?' · '+upAgo(x.up):''}</small></div>${SEEN.has(x.id)?'':'<span class="new">새로</span>'}</div>
+      <div class="ph"><div class="av"><span style="background:url(${thumb(x.vid)}) center/cover"></span></div><div class="who">${esc(x.topicTitle)}<small>${esc(x.channel)} · 조회 ${x.views>=10000?Math.round(x.views/10000)+'만':x.views}${x.up?' · '+upAgo(x.up):''}${x.follow&&x.why?' · '+esc(x.why)+' → 따라봄':''}</small></div>${SEEN.has(x.id)?'':'<span class="new">새로</span>'}</div>
       <div class="media v" data-vid="${esc(x.vid)}"><img loading="lazy" src="${thumb(x.vid)}" alt=""><div class="play"><b>▶</b></div><span class="dur">${x.minutes}분</span></div>
       ${acts(x)}
       <div class="cap"><b>${esc(x.title)}</b></div>
