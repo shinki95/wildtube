@@ -790,13 +790,13 @@
    "part": "",
    "performers": [
     {
-     "name": "블라디미르 호로비츠",
-     "year": null,
+     "name": "블라디미르 호로비츠 (모스크바 실황)",
+     "year": 1986,
      "en": "Vladimir Horowitz"
     },
     {
      "name": "마르타 아르헤리치",
-     "year": null,
+     "year": 1983,
      "en": "Martha Argerich"
     }
    ],
@@ -804,8 +804,8 @@
     "피아노",
     "독주"
    ],
-   "lesson": null,
-   "contrast": "아주 느리게 꿈꾸듯 끄는 호로비츠와, 흐름을 살려 더 담백하게 가는 아르헤리치.",
+   "lesson": "schumann-traumerei",
+   "contrast": "말년 모스크바 실황의 담백하게 흐르는 호로비츠와, 반복에서 한층 더 느리고 부드러워지는 아르헤리치.",
    "listen": "첫 선율이 위로 올라가는 첫 프레이즈의 끝을 얼마나 늘이는지."
   },
   {
@@ -836,7 +836,7 @@
     "건반",
     "같은 연주자"
    ],
-   "lesson": null,
+   "lesson": "bach-goldberg-aria",
    "contrast": "같은 굴드의 데뷔 녹음과 마지막 녹음으로, 젊을 때는 빠르고 가볍게, 말년에는 아주 느리고 깊게.",
    "listen": "아리아 첫 선율의 빠르기와 꾸밈음 처리, 굴드의 허밍이 들리는 정도."
   },
@@ -3872,7 +3872,7 @@
     {
      "name": "발터 기제킹",
      "en": "Walter Gieseking",
-     "year": null
+     "year": 1953
     },
     {
      "name": "조성진",
@@ -3884,7 +3884,7 @@
     "피아노",
     "독주"
    ],
-   "lesson": null,
+   "lesson": "debussy-clair-de-lune",
    "contrast": "흐릿하게 번지는 기제킹의 옛 녹음과, 선명하고 맑게 소리를 세우는 조성진.",
    "listen": "첫 화음이 울리는 처음 부분의 페달 양과 가운데 흐르는 부분의 빠르기."
   },
@@ -6258,7 +6258,7 @@
     {
      "name": "마우리치오 폴리니",
      "en": "Maurizio Pollini",
-     "year": null
+     "year": 1974
     }
    ],
    "tags": [
@@ -6266,7 +6266,7 @@
     "독주",
     "실황"
    ],
-   "lesson": null,
+   "lesson": "chopin-prelude-15",
    "contrast": "콩쿠르 무대의 조성진과, 단단하고 절제된 폴리니의 스튜디오판.",
    "listen": "같은 음이 빗방울처럼 계속 되풀이되는 가운데 어두운 부분이 얼마나 커지는지."
   },
