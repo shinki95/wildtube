@@ -4530,6 +4530,4880 @@
    "listen": "현의 화음 뒤 노래가 처음 '엄마, 울지 마세요'를 부르는 대목의 목소리 색."
   },
   {
+   "id": "beethoven-9-4-toscanini-karajan",
+   "genre": "classical",
+   "composer": {
+    "en": "Beethoven",
+    "ko": "베토벤"
+   },
+   "work": {
+    "en": "Symphony No.9 'Choral'",
+    "ko": "교향곡 9번 합창"
+   },
+   "part": "4악장",
+   "performers": [
+    {
+     "name": "아르투로 토스카니니 / NBC 교향악단",
+     "en": "Arturo Toscanini",
+     "year": null
+    },
+    {
+     "name": "헤르베르트 폰 카라얀 / 베를린 필",
+     "en": "Herbert von Karajan",
+     "year": null
+    }
+   ],
+   "tags": [
+    "교향곡",
+    "합창"
+   ],
+   "lesson": null,
+   "contrast": "박을 곧게 지키며 빠르게 달리는 토스카니니와, 두텁고 매끈한 소리로 크게 쌓는 카라얀.",
+   "listen": "바리톤 독창이 처음 '오 친구들이여'를 외치는 대목과, 합창이 환희의 주제를 처음 함께 부르는 부분의 빠르기."
+  },
+  {
+   "id": "beethoven-9-4-furtwangler-1942-1951",
+   "genre": "classical",
+   "composer": {
+    "en": "Beethoven",
+    "ko": "베토벤"
+   },
+   "work": {
+    "en": "Symphony No.9 'Choral'",
+    "ko": "교향곡 9번 합창"
+   },
+   "part": "4악장 끝부분",
+   "performers": [
+    {
+     "name": "빌헬름 푸르트벵글러 (베를린 실황)",
+     "en": "Wilhelm Furtwängler",
+     "year": 1942
+    },
+    {
+     "name": "빌헬름 푸르트벵글러 (바이로이트 실황)",
+     "en": "Wilhelm Furtwängler",
+     "year": 1951
+    }
+   ],
+   "tags": [
+    "교향곡",
+    "합창",
+    "같은 연주자",
+    "실황"
+   ],
+   "lesson": null,
+   "contrast": "같은 푸르트벵글러가 전쟁 중 베를린과 전쟁 뒤 바이로이트에서 남긴 두 실황으로, 앞은 더 격하고 어둡고 뒤는 더 넓다.",
+   "listen": "맨 끝 프레스티시모 질주에서 빠르기를 얼마나 몰아붙이는지와 마지막 화음의 거친 정도."
+  },
+  {
+   "id": "beethoven-5-liszt-gould",
+   "genre": "classical",
+   "composer": {
+    "en": "Beethoven",
+    "ko": "베토벤"
+   },
+   "work": {
+    "en": "Symphony No.5",
+    "ko": "교향곡 5번"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "글렌 굴드 (리스트 피아노 편곡)",
+     "en": "Glenn Gould",
+     "year": null
+    },
+    {
+     "name": "카를로스 클라이버 / 빈 필 (관현악 원곡)",
+     "en": "Carlos Kleiber",
+     "year": null
+    }
+   ],
+   "tags": [
+    "교향곡",
+    "피아노",
+    "편곡",
+    "편성 비교"
+   ],
+   "lesson": null,
+   "contrast": "리스트가 피아노 한 대로 옮긴 판을 굴드가 느리고 또박또박 친 연주와, 관현악 원곡을 몰아치는 클라이버.",
+   "listen": "첫 네 음 동기를 피아노와 오케스트라가 어떻게 다르게 내리치는지, 늘임표 길이."
+  },
+  {
+   "id": "beethoven-7-2",
+   "genre": "classical",
+   "composer": {
+    "en": "Beethoven",
+    "ko": "베토벤"
+   },
+   "work": {
+    "en": "Symphony No.7",
+    "ko": "교향곡 7번"
+   },
+   "part": "2악장 알레그레토",
+   "performers": [
+    {
+     "name": "빌헬름 푸르트벵글러 / 베를린 필",
+     "en": "Wilhelm Furtwängler",
+     "year": null
+    },
+    {
+     "name": "파보 예르비 / 도이치 카머필하모니 브레멘",
+     "en": "Paavo Järvi",
+     "year": null
+    }
+   ],
+   "tags": [
+    "교향곡",
+    "시대악기 해석"
+   ],
+   "lesson": null,
+   "contrast": "느리고 장송 행진처럼 무겁게 걷는 푸르트벵글러와, 작은 악단으로 가볍고 걷듯이 가는 예르비.",
+   "listen": "낮은 현이 같은 리듬을 되풀이하며 시작하는 처음 부분의 빠르기와 무게."
+  },
+  {
+   "id": "beethoven-3-1-klemperer-gardiner",
+   "genre": "classical",
+   "composer": {
+    "en": "Beethoven",
+    "ko": "베토벤"
+   },
+   "work": {
+    "en": "Symphony No.3 'Eroica'",
+    "ko": "교향곡 3번 영웅"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "오토 클렘페러 / 필하모니아",
+     "en": "Otto Klemperer",
+     "year": null
+    },
+    {
+     "name": "존 엘리엇 가디너 (시대악기)",
+     "en": "John Eliot Gardiner",
+     "year": null
+    }
+   ],
+   "tags": [
+    "교향곡",
+    "시대악기 해석"
+   ],
+   "lesson": null,
+   "contrast": "아주 느리고 거대한 건축물처럼 쌓는 클렘페러와, 빠르고 날렵한 시대악기 가디너.",
+   "listen": "첫 두 화음 뒤 첼로 주제가 나오는 처음 부분의 빠르기 차이."
+  },
+  {
+   "id": "beethoven-moonlight-3",
+   "genre": "classical",
+   "composer": {
+    "en": "Beethoven",
+    "ko": "베토벤"
+   },
+   "work": {
+    "en": "Piano Sonata No.14 'Moonlight'",
+    "ko": "피아노 소나타 14번 월광"
+   },
+   "part": "3악장",
+   "performers": [
+    {
+     "name": "빌헬름 박하우스 (현대 피아노)",
+     "en": "Wilhelm Backhaus",
+     "year": null
+    },
+    {
+     "name": "로날드 브라우티함 (포르테피아노)",
+     "en": "Ronald Brautigam",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주",
+    "시대악기 해석"
+   ],
+   "lesson": null,
+   "contrast": "현대 피아노로 묵직하게 몰아치는 박하우스와, 베토벤 시대 악기로 날카롭고 거칠게 튀는 브라우티함.",
+   "listen": "첫 아르페지오가 위로 치솟고 화음을 내리찍는 처음 부분의 음색과 소리 크기."
+  },
+  {
+   "id": "beethoven-hammerklavier-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Beethoven",
+    "ko": "베토벤"
+   },
+   "work": {
+    "en": "Piano Sonata No.29 'Hammerklavier'",
+    "ko": "피아노 소나타 29번 함머클라비어"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "김선욱",
+     "en": "Sunwook Kim",
+     "year": null
+    },
+    {
+     "name": "아르투르 슈나벨",
+     "en": "Artur Schnabel",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주",
+    "말년"
+   ],
+   "lesson": null,
+   "contrast": "단단하게 구조를 쌓는 김선욱과, 악보의 매우 빠른 지시를 따르려다 거칠어지는 것도 감수한 슈나벨의 옛 녹음.",
+   "listen": "첫 큰 화음 도약이 나오는 처음 몇 마디의 빠르기와 소리의 정확함."
+  },
+  {
+   "id": "beethoven-pc5-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Beethoven",
+    "ko": "베토벤"
+   },
+   "work": {
+    "en": "Piano Concerto No.5 'Emperor'",
+    "ko": "피아노 협주곡 5번 황제"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "글렌 굴드 / 레오폴드 스토코프스키",
+     "en": "Glenn Gould",
+     "year": null
+    },
+    {
+     "name": "루돌프 제르킨 / 레너드 번스타인",
+     "en": "Rudolf Serkin",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "협주곡"
+   ],
+   "lesson": null,
+   "contrast": "느리고 위엄 있게 늘인 굴드와 스토코프스키, 힘차고 곧게 가는 제르킨과 번스타인.",
+   "listen": "오케스트라 화음 사이로 피아노가 카덴차처럼 쏟아지는 첫 도입의 빠르기."
+  },
+  {
+   "id": "beethoven-vc-cadenza",
+   "genre": "classical",
+   "composer": {
+    "en": "Beethoven",
+    "ko": "베토벤"
+   },
+   "work": {
+    "en": "Violin Concerto",
+    "ko": "바이올린 협주곡"
+   },
+   "part": "1악장 카덴차",
+   "performers": [
+    {
+     "name": "예후디 메뉴인 / 빌헬름 푸르트벵글러",
+     "en": "Yehudi Menuhin",
+     "year": null
+    },
+    {
+     "name": "기돈 크레머 / 네빌 마리너 (슈니트케 카덴차)",
+     "en": "Gidon Kremer",
+     "year": 1980
+    }
+   ],
+   "tags": [
+    "바이올린",
+    "협주곡"
+   ],
+   "lesson": null,
+   "contrast": "전통적인 카덴차로 고전의 틀을 지키는 메뉴인과, 다른 협주곡 조각까지 끌어온 현대 작곡가의 카덴차를 쓴 크레머.",
+   "listen": "1악장 끝 관현악이 멈추고 바이올린 혼자 카덴차를 시작하는 대목."
+  },
+  {
+   "id": "beethoven-grosse-fuge",
+   "genre": "classical",
+   "composer": {
+    "en": "Beethoven",
+    "ko": "베토벤"
+   },
+   "work": {
+    "en": "Grosse Fuge, Op.133",
+    "ko": "대푸가 작품 133"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "타카치 4중주단 (현악 4중주 원곡)",
+     "en": "Takács Quartet",
+     "year": null
+    },
+    {
+     "name": "헤르베르트 폰 카라얀 / 베를린 필 (현악 합주)",
+     "en": "Herbert von Karajan",
+     "year": null
+    }
+   ],
+   "tags": [
+    "실내악",
+    "현악4중주",
+    "편성 비교",
+    "말년"
+   ],
+   "lesson": null,
+   "contrast": "원래 편성인 네 대의 현악기와, 현악 합주 전체로 크게 부풀린 판.",
+   "listen": "짧은 서주 뒤 거친 푸가 주제가 몰아치는 첫 부분의 소리 두께와 날카로움."
+  },
+  {
+   "id": "beethoven-archduke-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Beethoven",
+    "ko": "베토벤"
+   },
+   "work": {
+    "en": "Piano Trio Op.97 'Archduke'",
+    "ko": "피아노 3중주 작품 97 대공"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "코르토 / 티보 / 카잘스",
+     "en": "Cortot Thibaud Casals",
+     "year": null
+    },
+    {
+     "name": "보자르 트리오",
+     "en": "Beaux Arts Trio",
+     "year": null
+    }
+   ],
+   "tags": [
+    "실내악"
+   ],
+   "lesson": null,
+   "contrast": "박을 자유롭게 늘이는 옛 거장 셋의 녹음과, 고르고 균형 잡힌 현대 상설 트리오.",
+   "listen": "피아노가 혼자 넓은 첫 주제를 꺼내는 처음 부분의 빠르기와 현이 들어올 때의 소리."
+  },
+  {
+   "id": "beethoven-kreutzer-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Beethoven",
+    "ko": "베토벤"
+   },
+   "work": {
+    "en": "Violin Sonata No.9 'Kreutzer'",
+    "ko": "바이올린 소나타 9번 크로이처"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "다비트 오이스트라흐 / 레프 오보린",
+     "en": "David Oistrakh Lev Oborin",
+     "year": null
+    },
+    {
+     "name": "이자벨 파우스트 / 알렉산더 멜니코프",
+     "en": "Isabelle Faust Alexander Melnikov",
+     "year": null
+    }
+   ],
+   "tags": [
+    "바이올린",
+    "실내악"
+   ],
+   "lesson": null,
+   "contrast": "넉넉하고 따뜻한 소리의 오이스트라흐와 오보린, 날카롭고 빠르게 부딪치는 파우스트와 멜니코프.",
+   "listen": "바이올린 혼자 화음으로 시작하는 느린 도입 뒤 프레스토로 넘어가는 순간의 빠르기."
+  },
+  {
+   "id": "bach-goldberg-three-ways",
+   "genre": "classical",
+   "composer": {
+    "en": "J. S. Bach",
+    "ko": "바흐"
+   },
+   "work": {
+    "en": "Goldberg Variations, BWV988",
+    "ko": "골드베르크 변주곡 BWV988"
+   },
+   "part": "아리아",
+   "performers": [
+    {
+     "name": "구스타프 레온하르트 (하프시코드)",
+     "en": "Gustav Leonhardt",
+     "year": null
+    },
+    {
+     "name": "글렌 굴드 (피아노)",
+     "en": "Glenn Gould",
+     "year": 1981
+    },
+    {
+     "name": "임윤찬 (피아노 실황)",
+     "en": "Yunchan Lim",
+     "year": 2025
+    }
+   ],
+   "tags": [
+    "건반",
+    "하프시코드",
+    "피아노"
+   ],
+   "lesson": null,
+   "contrast": "원래 악기인 하프시코드의 레온하르트, 말년 굴드의 느린 피아노, 노래하는 임윤찬의 실황.",
+   "listen": "아리아 첫 선율의 꾸밈음과, 하프시코드와 피아노에서 음이 얼마나 오래 울리는지."
+  },
+  {
+   "id": "bach-goldberg-arrangements",
+   "genre": "classical",
+   "composer": {
+    "en": "J. S. Bach",
+    "ko": "바흐"
+   },
+   "work": {
+    "en": "Goldberg Variations, BWV988",
+    "ko": "골드베르크 변주곡 BWV988"
+   },
+   "part": "아리아와 첫 변주",
+   "performers": [
+    {
+     "name": "글렌 굴드 (피아노 원곡)",
+     "en": "Glenn Gould",
+     "year": 1955
+    },
+    {
+     "name": "자크 루시에 트리오 (재즈 편곡)",
+     "en": "Jacques Loussier Trio",
+     "year": 2000
+    }
+   ],
+   "tags": [
+    "건반",
+    "편곡",
+    "피아노"
+   ],
+   "lesson": null,
+   "contrast": "원곡 그대로 치는 젊은 굴드와, 베이스와 드럼을 더해 재즈로 바꾼 루시에 트리오.",
+   "listen": "아리아 뒤 1변주에서 박자가 스윙으로 바뀌는지와 베이스가 하는 역할."
+  },
+  {
+   "id": "bach-wtc1-c-prelude",
+   "genre": "classical",
+   "composer": {
+    "en": "J. S. Bach",
+    "ko": "바흐"
+   },
+   "work": {
+    "en": "Well-Tempered Clavier I: Prelude in C major",
+    "ko": "평균율 1권 다장조 전주곡"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "반다 란도프스카 (하프시코드)",
+     "en": "Wanda Landowska",
+     "year": null
+    },
+    {
+     "name": "글렌 굴드 (피아노)",
+     "en": "Glenn Gould",
+     "year": null
+    }
+   ],
+   "tags": [
+    "건반",
+    "하프시코드",
+    "피아노",
+    "독주"
+   ],
+   "lesson": null,
+   "contrast": "20세기 하프시코드 부활을 이끈 란도프스카의 화려한 소리와, 음을 떼어 담담하게 치는 굴드.",
+   "listen": "같은 펼침화음이 마디마다 되풀이되는 처음 부분의 빠르기와 화음이 섞이는 정도."
+  },
+  {
+   "id": "bach-suite3-air",
+   "genre": "classical",
+   "composer": {
+    "en": "J. S. Bach",
+    "ko": "바흐"
+   },
+   "work": {
+    "en": "Orchestral Suite No.3, BWV1068",
+    "ko": "관현악 모음곡 3번 BWV1068"
+   },
+   "part": "2곡 아리아 (G선상의 아리아)",
+   "performers": [
+    {
+     "name": "헤르베르트 폰 카라얀 / 베를린 필",
+     "en": "Herbert von Karajan",
+     "year": null
+    },
+    {
+     "name": "라인하르트 괴벨 / 무지카 안티콰 쾰른",
+     "en": "Reinhard Goebel Musica Antiqua Köln",
+     "year": null
+    }
+   ],
+   "tags": [
+    "관현악",
+    "시대악기 해석"
+   ],
+   "lesson": null,
+   "contrast": "느리고 두꺼운 현으로 길게 노래하는 카라얀과, 빠르고 가볍게 춤추듯 가는 시대악기 괴벨.",
+   "listen": "첫 바이올린 긴 음이 울리는 처음 부분의 빠르기와 비브라토."
+  },
+  {
+   "id": "bach-cello-suite-1-ma",
+   "genre": "classical",
+   "composer": {
+    "en": "J. S. Bach",
+    "ko": "바흐"
+   },
+   "work": {
+    "en": "Cello Suite No.1, BWV1007",
+    "ko": "무반주 첼로 모음곡 1번 BWV1007"
+   },
+   "part": "프렐류드",
+   "performers": [
+    {
+     "name": "요요 마 (첫 녹음)",
+     "en": "Yo-Yo Ma",
+     "year": null
+    },
+    {
+     "name": "요요 마 (세 번째 녹음)",
+     "en": "Yo-Yo Ma",
+     "year": 2018
+    }
+   ],
+   "tags": [
+    "첼로",
+    "독주",
+    "같은 연주자"
+   ],
+   "lesson": null,
+   "contrast": "같은 요요 마가 20대에 녹음한 첫 판과, 60대에 다시 녹음한 세 번째 판.",
+   "listen": "첫 펼침화음의 빠르기와 박을 늘이는 정도, 끝 절정에서 숨을 쉬는 자리."
+  },
+  {
+   "id": "bach-chaconne-busoni",
+   "genre": "classical",
+   "composer": {
+    "en": "J. S. Bach",
+    "ko": "바흐"
+   },
+   "work": {
+    "en": "Chaconne from Partita No.2, BWV1004",
+    "ko": "파르티타 2번 중 샤콘"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "힐러리 한 (바이올린 원곡)",
+     "en": "Hilary Hahn",
+     "year": null
+    },
+    {
+     "name": "아르투로 베네데티 미켈란젤리 (부조니 피아노 편곡)",
+     "en": "Arturo Benedetti Michelangeli",
+     "year": null
+    }
+   ],
+   "tags": [
+    "바이올린",
+    "피아노",
+    "편곡",
+    "편성 비교"
+   ],
+   "lesson": null,
+   "contrast": "바이올린 한 대로 연주하는 원곡과, 부조니가 오르간처럼 웅장하게 옮긴 피아노판.",
+   "listen": "첫 화음 주제가 바이올린과 피아노에서 얼마나 다른 두께로 울리는지."
+  },
+  {
+   "id": "bach-john-passion-opening",
+   "genre": "classical",
+   "composer": {
+    "en": "J. S. Bach",
+    "ko": "바흐"
+   },
+   "work": {
+    "en": "St John Passion, BWV245",
+    "ko": "요한수난곡 BWV245"
+   },
+   "part": "첫 합창 Herr, unser Herrscher",
+   "performers": [
+    {
+     "name": "카를 리히터",
+     "en": "Karl Richter",
+     "year": null
+    },
+    {
+     "name": "존 엘리엇 가디너",
+     "en": "John Eliot Gardiner",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "합창",
+    "수난곡",
+    "시대악기 해석"
+   ],
+   "lesson": null,
+   "contrast": "큰 합창과 현대 악기로 무겁게 가는 리히터와, 작은 합창과 시대악기로 긴장을 빠르게 끌어올리는 가디너.",
+   "listen": "현이 소용돌이치고 오보에가 부딪치는 기악 서주의 빠르기와, 합창이 '주여'를 외치는 순간."
+  },
+  {
+   "id": "bach-bwv565",
+   "genre": "classical",
+   "composer": {
+    "en": "J. S. Bach",
+    "ko": "바흐"
+   },
+   "work": {
+    "en": "Toccata and Fugue in D minor, BWV565",
+    "ko": "토카타와 푸가 라단조 BWV565"
+   },
+   "part": "토카타",
+   "performers": [
+    {
+     "name": "카를 리히터 (오르간 원곡)",
+     "en": "Karl Richter",
+     "year": null
+    },
+    {
+     "name": "레오폴드 스토코프스키 (관현악 편곡)",
+     "en": "Leopold Stokowski",
+     "year": null
+    }
+   ],
+   "tags": [
+    "건반",
+    "오르간",
+    "편곡",
+    "편성 비교"
+   ],
+   "lesson": null,
+   "contrast": "오르간 원곡의 리히터와, 지휘자가 직접 대관현악으로 옮긴 스토코프스키판.",
+   "listen": "첫 세 음 꾸밈 동기와 낮은 저음이 깔리는 처음 부분을 오르간과 관현악이 어떻게 다르게 울리는지."
+  },
+  {
+   "id": "bach-brandenburg-5-1",
+   "genre": "classical",
+   "composer": {
+    "en": "J. S. Bach",
+    "ko": "바흐"
+   },
+   "work": {
+    "en": "Brandenburg Concerto No.5, BWV1050",
+    "ko": "브란덴부르크 협주곡 5번 BWV1050"
+   },
+   "part": "1악장 하프시코드 카덴차",
+   "performers": [
+    {
+     "name": "아돌프 부시 실내악단 (피아노 제르킨)",
+     "en": "Adolf Busch Chamber Players",
+     "year": null
+    },
+    {
+     "name": "트레버 피노크 / 잉글리시 콘서트",
+     "en": "Trevor Pinnock",
+     "year": null
+    }
+   ],
+   "tags": [
+    "관현악",
+    "협주곡",
+    "건반",
+    "시대악기 해석"
+   ],
+   "lesson": null,
+   "contrast": "1930년대 피아노로 건반 독주를 맡긴 옛 녹음과, 하프시코드와 시대악기로 되돌린 피노크.",
+   "listen": "1악장 끝 건반이 혼자 긴 카덴차를 치는 대목의 소리와 빠르기."
+  },
+  {
+   "id": "bach-double-1",
+   "genre": "classical",
+   "composer": {
+    "en": "J. S. Bach",
+    "ko": "바흐"
+   },
+   "work": {
+    "en": "Concerto for Two Violins, BWV1043",
+    "ko": "두 대의 바이올린을 위한 협주곡 BWV1043"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "예후디 메뉴인 / 조르주 에네스쿠",
+     "en": "Yehudi Menuhin George Enescu",
+     "year": null
+    },
+    {
+     "name": "야샤 하이페츠 (두 파트 모두 연주)",
+     "en": "Jascha Heifetz",
+     "year": null
+    }
+   ],
+   "tags": [
+    "바이올린",
+    "협주곡"
+   ],
+   "lesson": null,
+   "contrast": "어린 제자와 스승이 함께 연주한 옛 녹음과, 한 사람이 두 파트를 겹쳐 녹음한 판.",
+   "listen": "두 번째 바이올린이 첫 바이올린을 쫓아 들어오는 대목에서 두 소리가 얼마나 다르게 들리는지."
+  },
+  {
+   "id": "vivaldi-spring-recomposed",
+   "genre": "classical",
+   "composer": {
+    "en": "Vivaldi",
+    "ko": "비발디"
+   },
+   "work": {
+    "en": "The Four Seasons: Spring",
+    "ko": "사계 중 봄"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "이 무지치",
+     "en": "I Musici",
+     "year": null
+    },
+    {
+     "name": "다니엘 호프 / 막스 리히터 재작곡",
+     "en": "Daniel Hope Max Richter",
+     "year": 2012
+    }
+   ],
+   "tags": [
+    "바이올린",
+    "협주곡",
+    "편곡"
+   ],
+   "lesson": null,
+   "contrast": "원곡을 그대로 연주한 고전적인 판과, 원곡의 조각을 되풀이하고 늘려 새로 쓴 현대 작곡판.",
+   "listen": "봄의 첫 주제가 원곡과 재작곡판에서 얼마나 같은 모양으로 나오는지와 반복의 방식."
+  },
+  {
+   "id": "pachelbel-canon",
+   "genre": "classical",
+   "composer": {
+    "en": "Pachelbel",
+    "ko": "파헬벨"
+   },
+   "work": {
+    "en": "Canon in D major",
+    "ko": "캐논 라장조"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "헤르베르트 폰 카라얀 / 베를린 필",
+     "en": "Herbert von Karajan",
+     "year": null
+    },
+    {
+     "name": "라인하르트 괴벨 / 무지카 안티콰 쾰른",
+     "en": "Reinhard Goebel Musica Antiqua Köln",
+     "year": null
+    }
+   ],
+   "tags": [
+    "관현악",
+    "시대악기 해석"
+   ],
+   "lesson": null,
+   "contrast": "큰 현악 합주로 느리고 감상적으로 가는 카라얀과, 한 파트 한 명으로 빠르고 춤추듯 가는 괴벨.",
+   "listen": "첫 저음 반복 위로 바이올린이 들어오는 처음 부분의 빠르기."
+  },
+  {
+   "id": "corelli-christmas-concerto",
+   "genre": "classical",
+   "composer": {
+    "en": "Corelli",
+    "ko": "코렐리"
+   },
+   "work": {
+    "en": "Concerto Grosso Op.6 No.8 'Christmas'",
+    "ko": "합주 협주곡 작품 6의 8 크리스마스"
+   },
+   "part": "마지막 파스토랄",
+   "performers": [
+    {
+     "name": "이 무지치",
+     "en": "I Musici",
+     "year": null
+    },
+    {
+     "name": "트레버 피노크 / 잉글리시 콘서트",
+     "en": "Trevor Pinnock",
+     "year": null
+    }
+   ],
+   "tags": [
+    "관현악",
+    "협주곡",
+    "시대악기 해석"
+   ],
+   "lesson": null,
+   "contrast": "현대 악기로 부드럽게 노래하는 이 무지치와, 시대악기로 투명하고 가볍게 흔들리는 피노크.",
+   "listen": "마지막 목가 악장에서 흔들리는 12/8 리듬의 빠르기와 현의 비브라토."
+  },
+  {
+   "id": "scarlatti-k141",
+   "genre": "classical",
+   "composer": {
+    "en": "D. Scarlatti",
+    "ko": "도메니코 스카를라티"
+   },
+   "work": {
+    "en": "Keyboard Sonata in D minor, K.141",
+    "ko": "건반 소나타 라단조 K.141"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "마르타 아르헤리치 (피아노)",
+     "en": "Martha Argerich",
+     "year": null
+    },
+    {
+     "name": "스콧 로스 (하프시코드)",
+     "en": "Scott Ross",
+     "year": null
+    }
+   ],
+   "tags": [
+    "건반",
+    "하프시코드",
+    "피아노",
+    "독주"
+   ],
+   "lesson": null,
+   "contrast": "피아노로 폭발하듯 몰아치는 아르헤리치와, 하프시코드로 기타처럼 반복음을 튕기는 로스.",
+   "listen": "같은 음을 빠르게 되풀이하는 첫 부분의 빠르기와 소리."
+  },
+  {
+   "id": "couperin-barricades",
+   "genre": "classical",
+   "composer": {
+    "en": "Couperin",
+    "ko": "쿠프랭"
+   },
+   "work": {
+    "en": "Les Barricades mystérieuses",
+    "ko": "신비로운 바리케이드"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "케네스 길버트 (하프시코드)",
+     "en": "Kenneth Gilbert",
+     "year": null
+    },
+    {
+     "name": "알렉상드르 타로 (피아노)",
+     "en": "Alexandre Tharaud",
+     "year": null
+    }
+   ],
+   "tags": [
+    "건반",
+    "하프시코드",
+    "피아노",
+    "독주"
+   ],
+   "lesson": null,
+   "contrast": "원래 악기인 하프시코드의 또렷한 길버트와, 피아노로 음을 번지게 하는 타로.",
+   "listen": "성부가 엇갈리며 이어지는 첫 주제에서 음이 얼마나 겹쳐 울리는지."
+  },
+  {
+   "id": "rameau-sauvages",
+   "genre": "classical",
+   "composer": {
+    "en": "Rameau",
+    "ko": "라모"
+   },
+   "work": {
+    "en": "Pièces de clavecin: Les Sauvages",
+    "ko": "클라브생 모음곡: 미개인들"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "크리스토프 루세 (하프시코드)",
+     "en": "Christophe Rousset",
+     "year": null
+    },
+    {
+     "name": "알렉상드르 타로 (피아노)",
+     "en": "Alexandre Tharaud",
+     "year": null
+    }
+   ],
+   "tags": [
+    "건반",
+    "하프시코드",
+    "피아노",
+    "독주"
+   ],
+   "lesson": null,
+   "contrast": "하프시코드로 춤곡 리듬을 날카롭게 살린 루세와, 피아노로 셈여림을 더해 노래하듯 친 타로.",
+   "listen": "첫 행진풍 주제의 리듬과 왼손 저음의 무게."
+  },
+  {
+   "id": "zelenka-trio-sonata",
+   "genre": "classical",
+   "composer": {
+    "en": "Zelenka",
+    "ko": "젤렌카"
+   },
+   "work": {
+    "en": "Trio Sonatas, ZWV181",
+    "ko": "트리오 소나타 ZWV181"
+   },
+   "part": "5번 첫 악장",
+   "performers": [
+    {
+     "name": "하인츠 홀리거 (첫 녹음)",
+     "en": "Heinz Holliger",
+     "year": 1972
+    },
+    {
+     "name": "하인츠 홀리거 (다시 녹음)",
+     "en": "Heinz Holliger",
+     "year": 1997
+    }
+   ],
+   "tags": [
+    "실내악",
+    "같은 연주자"
+   ],
+   "lesson": null,
+   "contrast": "잊혔던 이 곡을 되살린 홀리거의 첫 녹음과, 25년 뒤 같은 홀리거가 새 악보로 다시 녹음한 판.",
+   "listen": "두 오보에와 바순이 얽히는 첫 부분의 빠르기와 저음 반주의 편성."
+  },
+  {
+   "id": "handel-ombra-mai-fu",
+   "genre": "classical",
+   "composer": {
+    "en": "Handel",
+    "ko": "헨델"
+   },
+   "work": {
+    "en": "Serse: Ombra mai fù",
+    "ko": "세르세: 그리운 나무 그늘이여"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "엔리코 카루소",
+     "en": "Enrico Caruso",
+     "year": null
+    },
+    {
+     "name": "안드레아스 숄",
+     "en": "Andreas Scholl",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "오페라",
+    "시대악기 해석"
+   ],
+   "lesson": null,
+   "contrast": "원래 카스트라토 노래를 테너가 오케스트라 반주로 길게 부른 옛 녹음과, 카운터테너가 시대악기와 부른 판.",
+   "listen": "첫 '옴브라 마이 푸'를 길게 끄는 음의 비브라토와 음색."
+  },
+  {
+   "id": "purcell-dido-flagstad-otter",
+   "genre": "classical",
+   "composer": {
+    "en": "Purcell",
+    "ko": "퍼셀"
+   },
+   "work": {
+    "en": "Dido and Aeneas",
+    "ko": "디도와 에네아스"
+   },
+   "part": "디도의 탄식",
+   "performers": [
+    {
+     "name": "키르스텐 플라그스타드",
+     "en": "Kirsten Flagstad",
+     "year": null
+    },
+    {
+     "name": "안네 소피 폰 오터 / 피노크",
+     "en": "Anne Sofie von Otter",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "오페라",
+    "시대악기 해석"
+   ],
+   "lesson": null,
+   "contrast": "바그너 가수의 크고 장엄한 목소리와, 시대악기 반주의 담백한 메조소프라노.",
+   "listen": "되풀이되는 하강 저음 위로 '날 기억해 줘'를 부르는 절정의 목소리 크기."
+  },
+  {
+   "id": "dowland-flow-my-tears",
+   "genre": "classical",
+   "composer": {
+    "en": "Dowland",
+    "ko": "도울랜드"
+   },
+   "work": {
+    "en": "Flow, my tears (Lachrimae)",
+    "ko": "흘러라 나의 눈물이여"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "앨프리드 델러 (카운터테너)",
+     "en": "Alfred Deller",
+     "year": null
+    },
+    {
+     "name": "스팅 / 에딘 카라마조프 (류트)",
+     "en": "Sting",
+     "year": 2006
+    }
+   ],
+   "tags": [
+    "성악",
+    "가곡",
+    "편성 비교"
+   ],
+   "lesson": null,
+   "contrast": "카운터테너 부흥을 이끈 델러의 고음악 노래와, 록 가수 스팅이 류트 반주로 부른 판.",
+   "listen": "첫 하강 선율 '흘러라'를 부를 때 목소리 음역과 꾸밈."
+  },
+  {
+   "id": "tallis-spem-in-alium",
+   "genre": "classical",
+   "composer": {
+    "en": "Tallis",
+    "ko": "탈리스"
+   },
+   "work": {
+    "en": "Spem in alium",
+    "ko": "스펨 인 알리움 (40성부 모테트)"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "킹스 칼리지 합창단 (소년 소프라노)",
+     "en": "Choir of King's College Cambridge",
+     "year": null
+    },
+    {
+     "name": "탈리스 스콜라스 (여성 소프라노)",
+     "en": "The Tallis Scholars",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "합창"
+   ],
+   "lesson": null,
+   "contrast": "소년 소프라노가 윗성부를 맡은 성가대와, 성인 여성 소프라노의 고음악 합창단.",
+   "listen": "성부가 하나씩 더해지다 40성부가 한꺼번에 울리는 첫 큰 합창 대목의 음색."
+  },
+  {
+   "id": "allegri-miserere",
+   "genre": "classical",
+   "composer": {
+    "en": "Allegri",
+    "ko": "알레그리"
+   },
+   "work": {
+    "en": "Miserere mei, Deus",
+    "ko": "미제레레"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "킹스 칼리지 합창단 (트레블 로이 굿먼)",
+     "en": "Choir of King's College Cambridge",
+     "year": 1963
+    },
+    {
+     "name": "탈리스 스콜라스",
+     "en": "The Tallis Scholars",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "합창"
+   ],
+   "lesson": null,
+   "contrast": "소년 트레블이 높은 음을 내는 성가대의 첫 유명 녹음과, 여성 소프라노가 부르는 고음악 합창단.",
+   "listen": "독창이 맨 위 높은 음까지 올라가는 대목의 목소리 색."
+  },
+  {
+   "id": "machaut-messe-kyrie",
+   "genre": "classical",
+   "composer": {
+    "en": "Machaut",
+    "ko": "마쇼"
+   },
+   "work": {
+    "en": "Messe de Nostre Dame",
+    "ko": "노트르담 미사"
+   },
+   "part": "키리에",
+   "performers": [
+    {
+     "name": "힐리어드 앙상블",
+     "en": "The Hilliard Ensemble",
+     "year": null
+    },
+    {
+     "name": "앙상블 오르가눔 / 마르셀 페레스",
+     "en": "Ensemble Organum",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "합창"
+   ],
+   "lesson": null,
+   "contrast": "맑고 곧게 다듬은 영국식 소리의 힐리어드와, 꾸밈음과 거친 음색을 넣은 오르가눔.",
+   "listen": "키리에 첫 화음이 울리는 부분에서 목소리의 꾸밈과 음색 차이."
+  },
+  {
+   "id": "pergolesi-stabat-mater-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Pergolesi",
+    "ko": "페르골레시"
+   },
+   "work": {
+    "en": "Stabat Mater",
+    "ko": "스타바트 마테르"
+   },
+   "part": "1곡",
+   "performers": [
+    {
+     "name": "마거릿 마셜 / 루치아 발렌티니 테라니 / 아바도",
+     "en": "Claudio Abbado",
+     "year": null
+    },
+    {
+     "name": "바버라 보니 / 안드레아스 숄 / 크리스토프 루세",
+     "en": "Christophe Rousset",
+     "year": 1999
+    }
+   ],
+   "tags": [
+    "성악",
+    "시대악기 해석"
+   ],
+   "lesson": null,
+   "contrast": "두 여성 가수와 현대 오케스트라의 넓은 소리, 소프라노와 카운터테너에 시대악기의 가벼운 소리.",
+   "listen": "현의 불협화음이 겹치는 서주와 두 목소리가 엇갈리며 들어오는 첫 부분."
+  },
+  {
+   "id": "gluck-che-faro",
+   "genre": "classical",
+   "composer": {
+    "en": "Gluck",
+    "ko": "글루크"
+   },
+   "work": {
+    "en": "Orfeo ed Euridice: Che farò senza Euridice",
+    "ko": "오르페오와 에우리디체: 에우리디체 없이 어찌 살리"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "캐슬린 페리어 (콘트랄토)",
+     "en": "Kathleen Ferrier",
+     "year": null
+    },
+    {
+     "name": "필리프 자루스키 (카운터테너)",
+     "en": "Philippe Jaroussky",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "오페라"
+   ],
+   "lesson": null,
+   "contrast": "깊고 어두운 여성 콘트랄토의 옛 녹음과, 맑고 높은 남성 카운터테너의 최근 녹음.",
+   "listen": "첫 선율이 되돌아오는 대목에서 꾸밈음을 넣는지와 빠르기."
+  },
+  {
+   "id": "mozart-41-4",
+   "genre": "classical",
+   "composer": {
+    "en": "Mozart",
+    "ko": "모차르트"
+   },
+   "work": {
+    "en": "Symphony No.41 'Jupiter'",
+    "ko": "교향곡 41번 주피터"
+   },
+   "part": "4악장",
+   "performers": [
+    {
+     "name": "카를 뵘 / 베를린 필",
+     "en": "Karl Böhm",
+     "year": null
+    },
+    {
+     "name": "르네 야콥스 / 프라이부르크 바로크 오케스트라",
+     "en": "René Jacobs",
+     "year": null
+    }
+   ],
+   "tags": [
+    "교향곡",
+    "시대악기 해석"
+   ],
+   "lesson": null,
+   "contrast": "넓고 당당하게 가는 뵘과, 빠르고 대비가 날카로운 시대악기 야콥스.",
+   "listen": "네 음 주제가 푸가처럼 겹쳐 쌓이는 마지막 코다에서 성부가 얼마나 또렷한지."
+  },
+  {
+   "id": "mozart-pc23-2",
+   "genre": "classical",
+   "composer": {
+    "en": "Mozart",
+    "ko": "모차르트"
+   },
+   "work": {
+    "en": "Piano Concerto No.23 in A major, K.488",
+    "ko": "피아노 협주곡 23번 가장조 K.488"
+   },
+   "part": "2악장 아다지오",
+   "performers": [
+    {
+     "name": "블라디미르 호로비츠 / 카를로 마리아 줄리니",
+     "en": "Vladimir Horowitz",
+     "year": 1987
+    },
+    {
+     "name": "마우리치오 폴리니 / 카를 뵘",
+     "en": "Maurizio Pollini",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "협주곡"
+   ],
+   "lesson": null,
+   "contrast": "말년의 호로비츠가 자유롭게 박을 늘이며 노래한 판과, 단정하고 곧은 폴리니.",
+   "listen": "피아노 혼자 시칠리아노 선율을 꺼내는 첫 부분의 빠르기와 왼손 반주."
+  },
+  {
+   "id": "mozart-clarinet-concerto-2",
+   "genre": "classical",
+   "composer": {
+    "en": "Mozart",
+    "ko": "모차르트"
+   },
+   "work": {
+    "en": "Clarinet Concerto, K.622",
+    "ko": "클라리넷 협주곡 K.622"
+   },
+   "part": "2악장 아다지오",
+   "performers": [
+    {
+     "name": "베니 굿먼 / 샤를 뮌슈",
+     "en": "Benny Goodman",
+     "year": null
+    },
+    {
+     "name": "자비네 마이어 (바셋 클라리넷)",
+     "en": "Sabine Meyer",
+     "year": null
+    }
+   ],
+   "tags": [
+    "협주곡",
+    "클라리넷"
+   ],
+   "lesson": null,
+   "contrast": "스윙 시대 재즈 클라리넷 연주자가 클래식 악단과 녹음한 판과, 원래 악기에 가까운 바셋 클라리넷 판.",
+   "listen": "느린 첫 선율의 비브라토 양과, 낮은 음역으로 내려갈 때 소리가 얼마나 깊어지는지."
+  },
+  {
+   "id": "mozart-k330-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Mozart",
+    "ko": "모차르트"
+   },
+   "work": {
+    "en": "Piano Sonata No.10 in C major, K.330",
+    "ko": "피아노 소나타 10번 다장조 K.330"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "블라디미르 호로비츠 (모스크바 실황)",
+     "en": "Vladimir Horowitz",
+     "year": 1986
+    },
+    {
+     "name": "우치다 미쓰코",
+     "en": "Mitsuko Uchida",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주",
+    "실황"
+   ],
+   "lesson": null,
+   "contrast": "60년 만의 고국 공연에서 색채를 크게 입힌 호로비츠와, 고르고 투명한 우치다의 스튜디오판.",
+   "listen": "첫 주제의 빠르기와 왼손 반주의 크기, 꾸밈음의 처리."
+  },
+  {
+   "id": "haydn-creation-chaos",
+   "genre": "classical",
+   "composer": {
+    "en": "Haydn",
+    "ko": "하이든"
+   },
+   "work": {
+    "en": "Die Schöpfung",
+    "ko": "천지창조"
+   },
+   "part": "서곡 혼돈의 묘사",
+   "performers": [
+    {
+     "name": "헤르베르트 폰 카라얀 / 베를린 필",
+     "en": "Herbert von Karajan",
+     "year": null
+    },
+    {
+     "name": "존 엘리엇 가디너 (시대악기)",
+     "en": "John Eliot Gardiner",
+     "year": null
+    }
+   ],
+   "tags": [
+    "관현악",
+    "합창",
+    "시대악기 해석"
+   ],
+   "lesson": null,
+   "contrast": "두텁게 안개처럼 번지는 카라얀과, 날카로운 불협화음을 드러내는 시대악기 가디너.",
+   "listen": "첫 큰 유니즌 음 뒤 어두운 화음이 흩어지는 처음 몇 마디의 소리."
+  },
+  {
+   "id": "haydn-sonata-52-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Haydn",
+    "ko": "하이든"
+   },
+   "work": {
+    "en": "Piano Sonata in E-flat major, Hob.XVI:52",
+    "ko": "피아노 소나타 내림마장조 Hob.XVI:52"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "글렌 굴드",
+     "en": "Glenn Gould",
+     "year": null
+    },
+    {
+     "name": "알프레트 브렌델",
+     "en": "Alfred Brendel",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주"
+   ],
+   "lesson": null,
+   "contrast": "음을 떼어 건조하고 장난스럽게 치는 말년 굴드와, 유머와 노래를 함께 살리는 브렌델.",
+   "listen": "첫 큰 화음 주제와 이어지는 빠른 음형을 얼마나 끊는지."
+  },
+  {
+   "id": "schubert-winterreise-lindenbaum",
+   "genre": "classical",
+   "composer": {
+    "en": "Schubert",
+    "ko": "슈베르트"
+   },
+   "work": {
+    "en": "Winterreise, D.911",
+    "ko": "겨울 나그네 D.911"
+   },
+   "part": "5곡 보리수",
+   "performers": [
+    {
+     "name": "피터 피어스 / 벤저민 브리튼",
+     "en": "Peter Pears Benjamin Britten",
+     "year": null
+    },
+    {
+     "name": "브리기테 파스벤더 / 아리베르트 라이만",
+     "en": "Brigitte Fassbaender",
+     "year": null
+    },
+    {
+     "name": "디트리히 피셔디스카우 / 제럴드 무어",
+     "en": "Dietrich Fischer-Dieskau",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "가곡"
+   ],
+   "lesson": null,
+   "contrast": "테너와 작곡가 피아니스트, 여성 메조소프라노, 바리톤이 같은 노래를 부른다.",
+   "listen": "피아노가 나뭇잎 바람 소리를 그리는 도입과 첫 절 '성문 앞 샘물 곁에'의 목소리 색."
+  },
+  {
+   "id": "schubert-erlkonig",
+   "genre": "classical",
+   "composer": {
+    "en": "Schubert",
+    "ko": "슈베르트"
+   },
+   "work": {
+    "en": "Erlkönig, D.328",
+    "ko": "마왕 D.328"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "디트리히 피셔디스카우 / 제럴드 무어 (노래)",
+     "en": "Dietrich Fischer-Dieskau",
+     "year": null
+    },
+    {
+     "name": "클라라 주미 강 (에른스트 바이올린 독주 편곡)",
+     "en": "Clara-Jumi Kang",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "가곡",
+    "바이올린",
+    "편곡"
+   ],
+   "lesson": null,
+   "contrast": "네 인물을 목소리로 바꿔 부르는 바리톤판과, 그 모든 것을 바이올린 한 대로 옮긴 편곡.",
+   "listen": "말발굽처럼 몰아치는 셋잇단 반주가 시작되는 처음 부분을 피아노와 바이올린이 어떻게 그리는지."
+  },
+  {
+   "id": "schubert-8-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Schubert",
+    "ko": "슈베르트"
+   },
+   "work": {
+    "en": "Symphony No.8 'Unfinished'",
+    "ko": "교향곡 8번 미완성"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "카를로스 클라이버 / 빈 필",
+     "en": "Carlos Kleiber",
+     "year": null
+    },
+    {
+     "name": "니콜라우스 아르농쿠르 / 콘세르트헤바우",
+     "en": "Nikolaus Harnoncourt",
+     "year": null
+    }
+   ],
+   "tags": [
+    "교향곡"
+   ],
+   "lesson": null,
+   "contrast": "흐름과 긴장을 놓지 않는 클라이버와, 어둡고 각지게 대비를 세우는 아르농쿠르.",
+   "listen": "낮은 현의 첫 주제 뒤 오보에와 클라리넷이 선율을 꺼내는 처음 부분의 빠르기."
+  },
+  {
+   "id": "schubert-trout-4",
+   "genre": "classical",
+   "composer": {
+    "en": "Schubert",
+    "ko": "슈베르트"
+   },
+   "work": {
+    "en": "Piano Quintet 'Trout', D.667",
+    "ko": "피아노 5중주 송어 D.667"
+   },
+   "part": "4악장 변주",
+   "performers": [
+    {
+     "name": "에밀 길렐스 / 아마데우스 4중주단 단원",
+     "en": "Emil Gilels",
+     "year": null
+    },
+    {
+     "name": "다니엘 바렌보임 / 자클린 뒤프레 / 펄만 / 주커만 / 메타 (실황)",
+     "en": "Daniel Barenboim",
+     "year": null
+    }
+   ],
+   "tags": [
+    "실내악",
+    "실황"
+   ],
+   "lesson": null,
+   "contrast": "단정한 스튜디오 녹음과, 젊은 친구 다섯이 모여 즉흥적인 기운으로 연주한 실황.",
+   "listen": "송어 주제가 현으로 먼저 나오고 피아노가 변주로 이어받는 첫 변주들의 빠르기."
+  },
+  {
+   "id": "schumann-cello-concerto-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Schumann",
+    "ko": "슈만"
+   },
+   "work": {
+    "en": "Cello Concerto in A minor",
+    "ko": "첼로 협주곡 가단조"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "자클린 뒤프레 / 다니엘 바렌보임",
+     "en": "Jacqueline du Pré",
+     "year": null
+    },
+    {
+     "name": "므스티슬라프 로스트로포비치 / 레너드 번스타인",
+     "en": "Mstislav Rostropovich",
+     "year": null
+    }
+   ],
+   "tags": [
+    "첼로",
+    "협주곡"
+   ],
+   "lesson": null,
+   "contrast": "뜨겁고 자유롭게 노래하는 뒤프레와, 넓고 단단한 로스트로포비치.",
+   "listen": "목관 화음 세 개 뒤 첼로가 첫 긴 선율을 꺼내는 대목의 비브라토와 빠르기."
+  },
+  {
+   "id": "schumann-kreisleriana-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Schumann",
+    "ko": "슈만"
+   },
+   "work": {
+    "en": "Kreisleriana, Op.16",
+    "ko": "크라이슬레리아나 작품 16"
+   },
+   "part": "1곡",
+   "performers": [
+    {
+     "name": "블라디미르 호로비츠",
+     "en": "Vladimir Horowitz",
+     "year": null
+    },
+    {
+     "name": "손열음",
+     "en": "Yeol Eum Son",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주"
+   ],
+   "lesson": null,
+   "contrast": "날카롭고 번개 같은 호로비츠와, 폭을 크게 쓰며 극적으로 몰아가는 손열음.",
+   "listen": "셋잇단 음이 소용돌이치는 첫 부분의 빠르기와 왼손 강세."
+  },
+  {
+   "id": "chopin-nocturne-op9-2",
+   "genre": "classical",
+   "composer": {
+    "en": "Chopin",
+    "ko": "쇼팽"
+   },
+   "work": {
+    "en": "Nocturne in E-flat major, Op.9 No.2",
+    "ko": "녹턴 내림마장조 작품 9의 2"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "아르투르 루빈스타인",
+     "en": "Arthur Rubinstein",
+     "year": null
+    },
+    {
+     "name": "마리아 주앙 피레스",
+     "en": "Maria João Pires",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주"
+   ],
+   "lesson": null,
+   "contrast": "담백하고 흐르는 루빈스타인과, 더 느리고 속삭이듯 가는 피레스.",
+   "listen": "첫 선율 위 꾸밈음과 왼손 반주를 얼마나 고르게 치는지."
+  },
+  {
+   "id": "chopin-polonaise-op53",
+   "genre": "classical",
+   "composer": {
+    "en": "Chopin",
+    "ko": "쇼팽"
+   },
+   "work": {
+    "en": "Polonaise in A-flat major, Op.53 'Heroic'",
+    "ko": "폴로네즈 내림가장조 작품 53 영웅"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "아르투르 루빈스타인",
+     "en": "Arthur Rubinstein",
+     "year": null
+    },
+    {
+     "name": "블라디미르 호로비츠",
+     "en": "Vladimir Horowitz",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주"
+   ],
+   "lesson": null,
+   "contrast": "당당하고 고른 춤곡 리듬의 루빈스타인과, 날카롭고 극적인 호로비츠.",
+   "listen": "가운데 왼손 옥타브가 계속 달리는 부분의 빠르기와 세기."
+  },
+  {
+   "id": "chopin-waltz-op64-2",
+   "genre": "classical",
+   "composer": {
+    "en": "Chopin",
+    "ko": "쇼팽"
+   },
+   "work": {
+    "en": "Waltz in C-sharp minor, Op.64 No.2",
+    "ko": "왈츠 올림다단조 작품 64의 2"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "디누 리파티",
+     "en": "Dinu Lipatti",
+     "year": null
+    },
+    {
+     "name": "아르투르 루빈스타인",
+     "en": "Arthur Rubinstein",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주"
+   ],
+   "lesson": null,
+   "contrast": "가볍고 맑게 흐르는 리파티와, 더 넉넉하고 춤추듯 가는 루빈스타인.",
+   "listen": "빠른 회전 음형이 되풀이되는 중간 부분의 빠르기."
+  },
+  {
+   "id": "chopin-prelude-15",
+   "genre": "classical",
+   "composer": {
+    "en": "Chopin",
+    "ko": "쇼팽"
+   },
+   "work": {
+    "en": "Prelude Op.28 No.15 'Raindrop'",
+    "ko": "전주곡 작품 28의 15 빗방울"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "조성진 (쇼팽 콩쿠르 실황)",
+     "en": "Seong-Jin Cho",
+     "year": 2015
+    },
+    {
+     "name": "마우리치오 폴리니",
+     "en": "Maurizio Pollini",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주",
+    "실황"
+   ],
+   "lesson": null,
+   "contrast": "콩쿠르 무대의 조성진과, 단단하고 절제된 폴리니의 스튜디오판.",
+   "listen": "같은 음이 빗방울처럼 계속 되풀이되는 가운데 어두운 부분이 얼마나 커지는지."
+  },
+  {
+   "id": "chopin-scherzo-2",
+   "genre": "classical",
+   "composer": {
+    "en": "Chopin",
+    "ko": "쇼팽"
+   },
+   "work": {
+    "en": "Scherzo No.2 in B-flat minor, Op.31",
+    "ko": "스케르초 2번 내림나단조 작품 31"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "조성진",
+     "en": "Seong-Jin Cho",
+     "year": null
+    },
+    {
+     "name": "아르투르 루빈스타인",
+     "en": "Arthur Rubinstein",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주"
+   ],
+   "lesson": null,
+   "contrast": "젊은 조성진의 선명하고 날 선 연주와, 넉넉하고 귀족적인 루빈스타인.",
+   "listen": "속삭이는 셋잇단 질문 뒤 큰 화음이 터지는 첫 부분의 대비."
+  },
+  {
+   "id": "chopin-etude-op10-3",
+   "genre": "classical",
+   "composer": {
+    "en": "Chopin",
+    "ko": "쇼팽"
+   },
+   "work": {
+    "en": "Étude Op.10 No.3 'Tristesse'",
+    "ko": "연습곡 작품 10의 3 이별의 곡"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "임윤찬",
+     "en": "Yunchan Lim",
+     "year": null
+    },
+    {
+     "name": "알프레드 코르토",
+     "en": "Alfred Cortot",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주"
+   ],
+   "lesson": null,
+   "contrast": "선율을 길게 노래하는 임윤찬과, 박을 자유롭게 늘이는 옛 방식의 코르토.",
+   "listen": "첫 선율의 빠르기와, 가운데 불협화음이 몰아치는 부분의 세기."
+  },
+  {
+   "id": "liszt-hungarian-2",
+   "genre": "classical",
+   "composer": {
+    "en": "Liszt",
+    "ko": "리스트"
+   },
+   "work": {
+    "en": "Hungarian Rhapsody No.2",
+    "ko": "헝가리 광시곡 2번"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "블라디미르 호로비츠 (자신의 편곡)",
+     "en": "Vladimir Horowitz",
+     "year": null
+    },
+    {
+     "name": "조르주 치프라",
+     "en": "Georges Cziffra",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주",
+    "편곡"
+   ],
+   "lesson": null,
+   "contrast": "악보를 더 화려하게 고쳐 친 호로비츠와, 원래 악보 위에 즉흥 같은 기교를 얹은 치프라.",
+   "listen": "뒷부분 빠른 춤곡 프리스카가 몰아치는 대목의 빠르기와 장식."
+  },
+  {
+   "id": "liszt-pc1-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Liszt",
+    "ko": "리스트"
+   },
+   "work": {
+    "en": "Piano Concerto No.1",
+    "ko": "피아노 협주곡 1번"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "스뱌토슬라프 리히터 / 키릴 콘드라신",
+     "en": "Sviatoslav Richter",
+     "year": null
+    },
+    {
+     "name": "마르타 아르헤리치 / 클라우디오 아바도",
+     "en": "Martha Argerich",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "협주곡"
+   ],
+   "lesson": null,
+   "contrast": "무게 있고 큰 리히터와, 빠르고 불꽃 튀는 아르헤리치.",
+   "listen": "현의 첫 주제 뒤 피아노가 옥타브로 내리찍는 처음 부분의 세기."
+  },
+  {
+   "id": "liszt-transcendental-12",
+   "genre": "classical",
+   "composer": {
+    "en": "Liszt",
+    "ko": "리스트"
+   },
+   "work": {
+    "en": "Transcendental Étude No.12 'Chasse-neige'",
+    "ko": "초절기교 연습곡 12번 눈보라"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "임윤찬 (밴 클라이번 콩쿠르 실황)",
+     "en": "Yunchan Lim",
+     "year": 2022
+    },
+    {
+     "name": "라자르 베르만",
+     "en": "Lazar Berman",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주",
+    "실황"
+   ],
+   "lesson": null,
+   "contrast": "콩쿠르 준결선에서 12곡을 모두 친 임윤찬과, 이 곡집으로 이름을 알린 베르만.",
+   "listen": "트레몰로가 눈발처럼 깔리는 처음 부분의 고르기와 끝으로 갈수록 커지는 정도."
+  },
+  {
+   "id": "brahms-requiem-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Brahms",
+    "ko": "브람스"
+   },
+   "work": {
+    "en": "Ein deutsches Requiem",
+    "ko": "독일 레퀴엠"
+   },
+   "part": "1곡",
+   "performers": [
+    {
+     "name": "오토 클렘페러 / 필하모니아",
+     "en": "Otto Klemperer",
+     "year": null
+    },
+    {
+     "name": "존 엘리엇 가디너 (시대악기)",
+     "en": "John Eliot Gardiner",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "합창",
+    "시대악기 해석"
+   ],
+   "lesson": null,
+   "contrast": "아주 느리고 무겁게 쌓는 클렘페러와, 흐르는 빠르기와 가벼운 소리의 가디너.",
+   "listen": "바이올린 없이 낮은 현만으로 시작하는 서주와 합창이 '복되도다'를 처음 부르는 대목."
+  },
+  {
+   "id": "brahms-op117-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Brahms",
+    "ko": "브람스"
+   },
+   "work": {
+    "en": "Intermezzo Op.117 No.1",
+    "ko": "인터메초 작품 117의 1"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "글렌 굴드",
+     "en": "Glenn Gould",
+     "year": null
+    },
+    {
+     "name": "라두 루푸",
+     "en": "Radu Lupu",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주",
+    "말년"
+   ],
+   "lesson": null,
+   "contrast": "아주 느리고 자장가처럼 속삭이는 굴드와, 흐름을 살려 따뜻하게 노래하는 루푸.",
+   "listen": "자장가 선율이 안쪽 성부로 나오는 첫 부분의 빠르기와 선율이 들리는 정도."
+  },
+  {
+   "id": "brahms-cello-sonata-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Brahms",
+    "ko": "브람스"
+   },
+   "work": {
+    "en": "Cello Sonata No.1 in E minor, Op.38",
+    "ko": "첼로 소나타 1번 마단조 작품 38"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "므스티슬라프 로스트로포비치 / 루돌프 제르킨",
+     "en": "Mstislav Rostropovich Rudolf Serkin",
+     "year": null
+    },
+    {
+     "name": "자클린 뒤프레 / 다니엘 바렌보임",
+     "en": "Jacqueline du Pré Daniel Barenboim",
+     "year": null
+    }
+   ],
+   "tags": [
+    "첼로",
+    "실내악"
+   ],
+   "lesson": null,
+   "contrast": "느리고 깊게 가라앉는 로스트로포비치와 제르킨, 더 뜨겁게 흐르는 뒤프레와 바렌보임.",
+   "listen": "첼로가 낮은 음역에서 첫 주제를 부르는 처음 부분의 빠르기와 음색."
+  },
+  {
+   "id": "brahms-violin-sonata-3-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Brahms",
+    "ko": "브람스"
+   },
+   "work": {
+    "en": "Violin Sonata No.3, Op.108",
+    "ko": "바이올린 소나타 3번 작품 108"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "클라라 주미 강 / 손열음",
+     "en": "Clara-Jumi Kang Yeol Eum Son",
+     "year": null
+    },
+    {
+     "name": "이츠하크 펄만 / 블라디미르 아시케나지",
+     "en": "Itzhak Perlman Vladimir Ashkenazy",
+     "year": null
+    }
+   ],
+   "tags": [
+    "바이올린",
+    "실내악"
+   ],
+   "lesson": null,
+   "contrast": "긴장감 있고 날 선 클라라 주미 강과 손열음, 넉넉하고 따뜻한 펄만과 아시케나지.",
+   "listen": "바이올린이 낮게 첫 주제를 부르고 피아노가 당김음으로 받치는 처음 부분."
+  },
+  {
+   "id": "tchaikovsky-6-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Tchaikovsky",
+    "ko": "차이콥스키"
+   },
+   "work": {
+    "en": "Symphony No.6 'Pathétique'",
+    "ko": "교향곡 6번 비창"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "예브게니 므라빈스키 / 레닌그라드 필",
+     "en": "Yevgeny Mravinsky",
+     "year": 1960
+    },
+    {
+     "name": "헤르베르트 폰 카라얀 / 베를린 필",
+     "en": "Herbert von Karajan",
+     "year": null
+    }
+   ],
+   "tags": [
+    "교향곡"
+   ],
+   "lesson": null,
+   "contrast": "러시아 악단의 날카롭고 거친 소리의 므라빈스키와, 매끈하고 큰 소리의 카라얀.",
+   "listen": "조용한 두 번째 주제가 끝난 뒤 갑자기 터지는 발전부의 세기와 금관 음색."
+  },
+  {
+   "id": "tchaikovsky-seasons-june",
+   "genre": "classical",
+   "composer": {
+    "en": "Tchaikovsky",
+    "ko": "차이콥스키"
+   },
+   "work": {
+    "en": "The Seasons, Op.37a",
+    "ko": "사계 작품 37a"
+   },
+   "part": "6월 뱃노래",
+   "performers": [
+    {
+     "name": "임윤찬",
+     "en": "Yunchan Lim",
+     "year": 2024
+    },
+    {
+     "name": "미하일 플레트뇨프",
+     "en": "Mikhail Pletnev",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주"
+   ],
+   "lesson": null,
+   "contrast": "느리고 투명하게 노래하는 임윤찬과, 러시아 전통의 무게를 담은 플레트뇨프.",
+   "listen": "첫 뱃노래 선율의 빠르기와 가운데 밝은 부분으로 넘어갈 때의 변화."
+  },
+  {
+   "id": "tchaikovsky-vc-kopatchinskaja",
+   "genre": "classical",
+   "composer": {
+    "en": "Tchaikovsky",
+    "ko": "차이콥스키"
+   },
+   "work": {
+    "en": "Violin Concerto in D major",
+    "ko": "바이올린 협주곡 라장조"
+   },
+   "part": "3악장",
+   "performers": [
+    {
+     "name": "다비트 오이스트라흐",
+     "en": "David Oistrakh",
+     "year": null
+    },
+    {
+     "name": "파트리차 코파친스카야 / 테오도르 쿠렌치스",
+     "en": "Patricia Kopatchinskaja",
+     "year": null
+    }
+   ],
+   "tags": [
+    "바이올린",
+    "협주곡"
+   ],
+   "lesson": null,
+   "contrast": "넉넉하고 당당한 오이스트라흐와, 거칠고 자유롭게 춤추는 코파친스카야.",
+   "listen": "3악장 시작 바이올린의 짧은 카덴차와 러시아 춤 주제의 빠르기."
+  },
+  {
+   "id": "tchaikovsky-pc1-horowitz-richter",
+   "genre": "classical",
+   "composer": {
+    "en": "Tchaikovsky",
+    "ko": "차이콥스키"
+   },
+   "work": {
+    "en": "Piano Concerto No.1",
+    "ko": "피아노 협주곡 1번"
+   },
+   "part": "3악장",
+   "performers": [
+    {
+     "name": "블라디미르 호로비츠 / 아르투로 토스카니니",
+     "en": "Vladimir Horowitz",
+     "year": 1943
+    },
+    {
+     "name": "스뱌토슬라프 리히터 / 헤르베르트 폰 카라얀",
+     "en": "Sviatoslav Richter",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "협주곡",
+    "실황"
+   ],
+   "lesson": null,
+   "contrast": "장인과 사위가 함께한 맹렬한 전시 실황과, 느리고 거대한 리히터와 카라얀.",
+   "listen": "마지막 옥타브 질주에서 피아노와 오케스트라가 얼마나 빠르게 달리는지."
+  },
+  {
+   "id": "dvorak-rusalka-moon",
+   "genre": "classical",
+   "composer": {
+    "en": "Dvořák",
+    "ko": "드보르자크"
+   },
+   "work": {
+    "en": "Rusalka: Song to the Moon",
+    "ko": "루살카: 달에게 바치는 노래"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "가브리엘라 베냐치코바 / 바츨라프 노이만",
+     "en": "Gabriela Beňačková",
+     "year": null
+    },
+    {
+     "name": "르네 플레밍 / 찰스 매케라스",
+     "en": "Renée Fleming",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "오페라"
+   ],
+   "lesson": null,
+   "contrast": "체코 가수와 체코 악단의 모국어 노래와, 크고 풍성한 음색의 미국 소프라노.",
+   "listen": "하프 서주 뒤 첫 '달님'을 부르는 선율의 목소리 색과 빠르기."
+  },
+  {
+   "id": "mahler-2-5",
+   "genre": "classical",
+   "composer": {
+    "en": "Mahler",
+    "ko": "말러"
+   },
+   "work": {
+    "en": "Symphony No.2 'Resurrection'",
+    "ko": "교향곡 2번 부활"
+   },
+   "part": "5악장 끝 합창",
+   "performers": [
+    {
+     "name": "오토 클렘페러 / 필하모니아",
+     "en": "Otto Klemperer",
+     "year": null
+    },
+    {
+     "name": "레너드 번스타인 / 뉴욕 필",
+     "en": "Leonard Bernstein",
+     "year": null
+    }
+   ],
+   "tags": [
+    "교향곡",
+    "합창"
+   ],
+   "lesson": null,
+   "contrast": "곧고 장엄하게 가는 클렘페러와, 크게 늘이며 감정을 쏟는 말년 번스타인.",
+   "listen": "합창이 아주 여리게 '부활하리라'를 부르며 들어오는 대목과 마지막 절정."
+  },
+  {
+   "id": "mahler-4-4",
+   "genre": "classical",
+   "composer": {
+    "en": "Mahler",
+    "ko": "말러"
+   },
+   "work": {
+    "en": "Symphony No.4",
+    "ko": "교향곡 4번"
+   },
+   "part": "4악장 천상의 삶",
+   "performers": [
+    {
+     "name": "주디스 래스킨 / 조지 셀",
+     "en": "Judith Raskin",
+     "year": null
+    },
+    {
+     "name": "헬무트 비텍 (소년 소프라노) / 레너드 번스타인",
+     "en": "Helmut Wittek",
+     "year": 1987
+    }
+   ],
+   "tags": [
+    "교향곡",
+    "성악"
+   ],
+   "lesson": null,
+   "contrast": "보통의 성인 소프라노판과, 아이가 들려주는 천국이라는 뜻을 살려 소년이 부른 판.",
+   "listen": "클라리넷 도입 뒤 첫 절을 부르는 목소리 색."
+  },
+  {
+   "id": "mahler-5-adagietto-walter",
+   "genre": "classical",
+   "composer": {
+    "en": "Mahler",
+    "ko": "말러"
+   },
+   "work": {
+    "en": "Symphony No.5",
+    "ko": "교향곡 5번"
+   },
+   "part": "4악장 아다지에토",
+   "performers": [
+    {
+     "name": "브루노 발터 / 빈 필",
+     "en": "Bruno Walter",
+     "year": null
+    },
+    {
+     "name": "레너드 번스타인 / 빈 필",
+     "en": "Leonard Bernstein",
+     "year": null
+    }
+   ],
+   "tags": [
+    "교향곡"
+   ],
+   "lesson": null,
+   "contrast": "말러의 제자 발터가 흐르는 빠르기로 짧게 간 옛 녹음과, 훨씬 느리게 늘인 번스타인.",
+   "listen": "하프와 현이 첫 선율을 꺼내는 처음 부분의 빠르기."
+  },
+  {
+   "id": "mahler-kindertotenlieder",
+   "genre": "classical",
+   "composer": {
+    "en": "Mahler",
+    "ko": "말러"
+   },
+   "work": {
+    "en": "Kindertotenlieder",
+    "ko": "죽은 아이를 그리는 노래"
+   },
+   "part": "1곡",
+   "performers": [
+    {
+     "name": "캐슬린 페리어 / 브루노 발터",
+     "en": "Kathleen Ferrier",
+     "year": null
+    },
+    {
+     "name": "디트리히 피셔디스카우",
+     "en": "Dietrich Fischer-Dieskau",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "가곡",
+    "관현악"
+   ],
+   "lesson": null,
+   "contrast": "깊은 여성 콘트랄토와 바리톤의 같은 노래.",
+   "listen": "오보에와 호른의 서주 뒤 첫 절을 부르는 목소리 색."
+  },
+  {
+   "id": "bruckner-8-3",
+   "genre": "classical",
+   "composer": {
+    "en": "Bruckner",
+    "ko": "브루크너"
+   },
+   "work": {
+    "en": "Symphony No.8",
+    "ko": "교향곡 8번"
+   },
+   "part": "3악장 아다지오",
+   "performers": [
+    {
+     "name": "세르지우 첼리비다케 / 뮌헨 필",
+     "en": "Sergiu Celibidache",
+     "year": null
+    },
+    {
+     "name": "헤르베르트 폰 카라얀 / 빈 필",
+     "en": "Herbert von Karajan",
+     "year": null
+    }
+   ],
+   "tags": [
+    "교향곡"
+   ],
+   "lesson": null,
+   "contrast": "극도로 느리게 소리를 쌓는 첼리비다케와, 흐르며 따뜻하게 가는 카라얀 말년판.",
+   "listen": "현의 떨림 위로 첫 주제가 나오는 처음 부분의 빠르기와, 하프가 들어오는 대목."
+  },
+  {
+   "id": "verdi-traviata-prelude",
+   "genre": "classical",
+   "composer": {
+    "en": "Verdi",
+    "ko": "베르디"
+   },
+   "work": {
+    "en": "La traviata: Prelude to Act 1",
+    "ko": "라 트라비아타 1막 전주곡"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "아르투로 토스카니니 / NBC 교향악단",
+     "en": "Arturo Toscanini",
+     "year": null
+    },
+    {
+     "name": "카를로스 클라이버 / 바이에른 국립 관현악단",
+     "en": "Carlos Kleiber",
+     "year": null
+    }
+   ],
+   "tags": [
+    "관현악",
+    "오페라"
+   ],
+   "lesson": null,
+   "contrast": "곧고 날카로운 토스카니니와, 숨 쉬듯 박을 밀고 당기는 클라이버.",
+   "listen": "아주 여린 현의 화음으로 시작하는 첫 부분과 사랑의 선율이 나오는 대목."
+  },
+  {
+   "id": "puccini-che-gelida-manina",
+   "genre": "classical",
+   "composer": {
+    "en": "Puccini",
+    "ko": "푸치니"
+   },
+   "work": {
+    "en": "La bohème: Che gelida manina",
+    "ko": "라 보엠: 그대의 찬 손"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "루치아노 파바로티 / 카라얀",
+     "en": "Luciano Pavarotti",
+     "year": null
+    },
+    {
+     "name": "유시 비욜링 / 비첨",
+     "en": "Jussi Björling",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "오페라"
+   ],
+   "lesson": null,
+   "contrast": "밝고 시원하게 뻗는 파바로티와, 은빛으로 어둡게 빛나는 비욜링.",
+   "listen": "끝 '희망'에서 높은 음을 잡는 대목의 음색과 길이."
+  },
+  {
+   "id": "puccini-mi-chiamano-mimi",
+   "genre": "classical",
+   "composer": {
+    "en": "Puccini",
+    "ko": "푸치니"
+   },
+   "work": {
+    "en": "La bohème: Sì, mi chiamano Mimì",
+    "ko": "라 보엠: 내 이름은 미미"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "미렐라 프레니 / 카라얀",
+     "en": "Mirella Freni",
+     "year": null
+    },
+    {
+     "name": "빅토리아 데 로스 앙헬레스 / 비첨",
+     "en": "Victoria de los Ángeles",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "오페라"
+   ],
+   "lesson": null,
+   "contrast": "따뜻하고 둥근 프레니와, 맑고 소박한 데 로스 앙헬레스.",
+   "listen": "가운데 '첫 햇살은 내 것'에서 소리가 크게 열리는 대목."
+  },
+  {
+   "id": "puccini-o-mio-babbino",
+   "genre": "classical",
+   "composer": {
+    "en": "Puccini",
+    "ko": "푸치니"
+   },
+   "work": {
+    "en": "Gianni Schicchi: O mio babbino caro",
+    "ko": "잔니 스키키: 오 사랑하는 아버지"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "마리아 칼라스",
+     "en": "Maria Callas",
+     "year": null
+    },
+    {
+     "name": "키리 테 카나와",
+     "en": "Kiri Te Kanawa",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "오페라"
+   ],
+   "lesson": null,
+   "contrast": "연기하듯 감정을 담은 칼라스와, 크림처럼 부드럽고 고른 테 카나와.",
+   "listen": "마지막 높은 음을 잡고 내려오는 끝부분의 목소리."
+  },
+  {
+   "id": "puccini-un-bel-di",
+   "genre": "classical",
+   "composer": {
+    "en": "Puccini",
+    "ko": "푸치니"
+   },
+   "work": {
+    "en": "Madama Butterfly: Un bel dì vedremo",
+    "ko": "나비부인: 어떤 갠 날"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "마리아 칼라스 / 카라얀",
+     "en": "Maria Callas",
+     "year": null
+    },
+    {
+     "name": "레나타 스코토 / 바비롤리",
+     "en": "Renata Scotto",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "오페라"
+   ],
+   "lesson": null,
+   "contrast": "어린 나비부인을 목소리 색으로 연기한 칼라스와, 더 따뜻하고 서정적인 스코토.",
+   "listen": "아리아 끝 절정에서 높은 음으로 올라가는 대목의 숨."
+  },
+  {
+   "id": "wagner-siegfried-funeral",
+   "genre": "classical",
+   "composer": {
+    "en": "Wagner",
+    "ko": "바그너"
+   },
+   "work": {
+    "en": "Götterdämmerung: Siegfried's Funeral March",
+    "ko": "신들의 황혼: 지크프리트의 장송 행진곡"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "빌헬름 푸르트벵글러",
+     "en": "Wilhelm Furtwängler",
+     "year": null
+    },
+    {
+     "name": "게오르그 솔티 / 빈 필",
+     "en": "Georg Solti",
+     "year": null
+    }
+   ],
+   "tags": [
+    "관현악",
+    "오페라"
+   ],
+   "lesson": null,
+   "contrast": "느리고 무겁게 가라앉는 푸르트벵글러와, 날카롭고 선명한 금관의 솔티.",
+   "listen": "팀파니 두드림 뒤 금관이 지크프리트 동기를 크게 부는 절정."
+  },
+  {
+   "id": "rossini-largo-factotum",
+   "genre": "classical",
+   "composer": {
+    "en": "Rossini",
+    "ko": "로시니"
+   },
+   "work": {
+    "en": "Il barbiere di Siviglia: Largo al factotum",
+    "ko": "세비야의 이발사: 나는 이 마을의 만능 일꾼"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "티토 고비",
+     "en": "Tito Gobbi",
+     "year": null
+    },
+    {
+     "name": "헤르만 프라이 / 아바도",
+     "en": "Hermann Prey",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "오페라"
+   ],
+   "lesson": null,
+   "contrast": "이탈리아 바리톤의 극적이고 장난기 있는 고비와, 독일 바리톤의 단정하고 고른 프라이.",
+   "listen": "'피가로, 피가로'를 빠르게 되풀이하는 대목의 빠르기와 발음."
+  },
+  {
+   "id": "donizetti-furtiva-lagrima",
+   "genre": "classical",
+   "composer": {
+    "en": "Donizetti",
+    "ko": "도니체티"
+   },
+   "work": {
+    "en": "L'elisir d'amore: Una furtiva lagrima",
+    "ko": "사랑의 묘약: 남몰래 흐르는 눈물"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "엔리코 카루소",
+     "en": "Enrico Caruso",
+     "year": null
+    },
+    {
+     "name": "루치아노 파바로티",
+     "en": "Luciano Pavarotti",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "오페라"
+   ],
+   "lesson": null,
+   "contrast": "어둡고 굵은 카루소의 옛 녹음과, 밝고 빛나는 파바로티.",
+   "listen": "바순 서주 뒤 첫 선율의 숨과, 끝 카덴차를 어떻게 마무리하는지."
+  },
+  {
+   "id": "donizetti-lucia-mad-scene",
+   "genre": "classical",
+   "composer": {
+    "en": "Donizetti",
+    "ko": "도니체티"
+   },
+   "work": {
+    "en": "Lucia di Lammermoor: Mad Scene",
+    "ko": "람메르무어의 루치아: 광란의 장면"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "마리아 칼라스",
+     "en": "Maria Callas",
+     "year": null
+    },
+    {
+     "name": "조앤 서덜랜드",
+     "en": "Joan Sutherland",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "오페라"
+   ],
+   "lesson": null,
+   "contrast": "광기를 연기로 그리는 칼라스와, 화려한 고음과 장식음으로 그리는 서덜랜드.",
+   "listen": "플루트와 목소리가 주고받는 카덴차 부분의 음색과 정확함."
+  },
+  {
+   "id": "leoncavallo-vesti-la-giubba",
+   "genre": "classical",
+   "composer": {
+    "en": "Leoncavallo",
+    "ko": "레온카발로"
+   },
+   "work": {
+    "en": "Pagliacci: Vesti la giubba",
+    "ko": "팔리아치: 의상을 입어라"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "엔리코 카루소",
+     "en": "Enrico Caruso",
+     "year": null
+    },
+    {
+     "name": "유시 비욜링",
+     "en": "Jussi Björling",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "오페라"
+   ],
+   "lesson": null,
+   "contrast": "흐느낌을 크게 넣는 카루소와, 절제되고 맑게 부르는 비욜링.",
+   "listen": "'웃어라, 광대여'에서 목소리가 터지고 흐느끼는 대목."
+  },
+  {
+   "id": "albeniz-asturias",
+   "genre": "classical",
+   "composer": {
+    "en": "Albéniz",
+    "ko": "알베니스"
+   },
+   "work": {
+    "en": "Suite española: Asturias (Leyenda)",
+    "ko": "스페인 모음곡: 아스투리아스"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "알리시아 데 라로차 (피아노 원곡)",
+     "en": "Alicia de Larrocha",
+     "year": null
+    },
+    {
+     "name": "안드레스 세고비아 (기타 편곡)",
+     "en": "Andrés Segovia",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "편곡",
+    "편성 비교"
+   ],
+   "lesson": null,
+   "contrast": "원래 피아노곡을 스페인 피아니스트가 친 판과, 기타 곡으로 더 유명해지게 만든 세고비아의 편곡판.",
+   "listen": "같은 음을 되풀이하는 첫 주제가 피아노와 기타에서 어떻게 다르게 울리는지."
+  },
+  {
+   "id": "berlioz-fantastique-4",
+   "genre": "classical",
+   "composer": {
+    "en": "Berlioz",
+    "ko": "베를리오즈"
+   },
+   "work": {
+    "en": "Symphonie fantastique",
+    "ko": "환상 교향곡"
+   },
+   "part": "4악장 단두대로의 행진",
+   "performers": [
+    {
+     "name": "샤를 뮌슈 / 보스턴 교향악단",
+     "en": "Charles Munch",
+     "year": null
+    },
+    {
+     "name": "존 엘리엇 가디너 (시대악기)",
+     "en": "John Eliot Gardiner",
+     "year": null
+    }
+   ],
+   "tags": [
+    "교향곡",
+    "시대악기 해석"
+   ],
+   "lesson": null,
+   "contrast": "빠르고 열띤 프랑스 전통의 뮌슈와, 시대 금관과 오피클레이드의 거친 소리를 살린 가디너.",
+   "listen": "팀파니와 낮은 금관이 행진을 여는 처음 부분과, 금관이 행진 주제를 크게 부는 대목의 음색."
+  },
+  {
+   "id": "berlioz-nuits-dete-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Berlioz",
+    "ko": "베를리오즈"
+   },
+   "work": {
+    "en": "Les nuits d'été",
+    "ko": "여름밤"
+   },
+   "part": "1곡 빌라넬",
+   "performers": [
+    {
+     "name": "레진 크레스팽 / 에르네스트 앙세르메",
+     "en": "Régine Crespin",
+     "year": null
+    },
+    {
+     "name": "재닛 베이커 / 존 바비롤리",
+     "en": "Janet Baker",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "가곡",
+    "관현악"
+   ],
+   "lesson": null,
+   "contrast": "프랑스어를 또렷하게 살린 프랑스 소프라노와, 따뜻하고 진한 영국 메조소프라노.",
+   "listen": "가볍게 걷는 반주 위로 첫 절을 부르는 목소리 색과 빠르기."
+  },
+  {
+   "id": "bernstein-wss-maria",
+   "genre": "classical",
+   "composer": {
+    "en": "Bernstein",
+    "ko": "번스타인"
+   },
+   "work": {
+    "en": "West Side Story: Maria",
+    "ko": "웨스트 사이드 스토리: 마리아"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "래리 커트 (브로드웨이 초연 캐스트)",
+     "en": "Larry Kert",
+     "year": 1957
+    },
+    {
+     "name": "호세 카레라스 / 작곡가 지휘",
+     "en": "José Carreras",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "오페라",
+    "작곡자 vs 해석"
+   ],
+   "lesson": null,
+   "contrast": "뮤지컬 배우가 부른 초연판과, 작곡가가 오페라 가수들과 다시 녹음한 판.",
+   "listen": "'마리아'를 처음 부르는 대목의 목소리와 끝 높은 음을 잡는 방식."
+  },
+  {
+   "id": "borodin-polovtsian",
+   "genre": "classical",
+   "composer": {
+    "en": "Borodin",
+    "ko": "보로딘"
+   },
+   "work": {
+    "en": "Prince Igor: Polovtsian Dances",
+    "ko": "이고르 공: 폴로베츠인의 춤"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "토머스 비첨 / 로열 필 (합창 포함)",
+     "en": "Thomas Beecham",
+     "year": null
+    },
+    {
+     "name": "발레리 게르기예프 / 키로프 (오페라 전곡 중)",
+     "en": "Valery Gergiev",
+     "year": null
+    }
+   ],
+   "tags": [
+    "관현악",
+    "합창",
+    "오페라"
+   ],
+   "lesson": null,
+   "contrast": "음악회용으로 화려하게 다듬은 비첨과, 러시아 극장 악단과 합창의 거친 힘을 살린 게르기예프.",
+   "listen": "오보에 선율 뒤 합창이 '바람의 날개를 타고'를 부르는 대목의 음색."
+  },
+  {
+   "id": "chausson-poeme",
+   "genre": "classical",
+   "composer": {
+    "en": "Chausson",
+    "ko": "쇼송"
+   },
+   "work": {
+    "en": "Poème, Op.25",
+    "ko": "시 작품 25"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "정경화 / 샤를 뒤투아",
+     "en": "Kyung-Wha Chung",
+     "year": null
+    },
+    {
+     "name": "이츠하크 펄만 / 장 마르티농",
+     "en": "Itzhak Perlman",
+     "year": null
+    }
+   ],
+   "tags": [
+    "바이올린",
+    "협주곡"
+   ],
+   "lesson": null,
+   "contrast": "어둡고 긴장된 정경화와, 넉넉하고 달콤한 음색의 펄만.",
+   "listen": "관현악의 어두운 도입 뒤 바이올린이 혼자 첫 선율을 꺼내는 대목."
+  },
+  {
+   "id": "copland-appalachian",
+   "genre": "classical",
+   "composer": {
+    "en": "Copland",
+    "ko": "코플런드"
+   },
+   "work": {
+    "en": "Appalachian Spring",
+    "ko": "애팔래치아의 봄"
+   },
+   "part": "심플 기프트 변주",
+   "performers": [
+    {
+     "name": "에런 코플런드 / 보스턴 교향악단 (관현악 모음곡)",
+     "en": "Aaron Copland",
+     "year": null
+    },
+    {
+     "name": "에런 코플런드 / 콜럼비아 실내악단 (13대 악기판)",
+     "en": "Aaron Copland",
+     "year": 1973
+    }
+   ],
+   "tags": [
+    "관현악",
+    "실내악",
+    "편성 비교",
+    "작곡자 vs 해석"
+   ],
+   "lesson": null,
+   "contrast": "같은 작곡가가 지휘한 대편성 관현악판과, 원래 발레 반주에 가까운 13대 악기판.",
+   "listen": "클라리넷이 셰이커 찬송가 선율을 처음 부는 대목과 변주가 커질 때 소리의 두께."
+  },
+  {
+   "id": "dukas-sorcerers-apprentice",
+   "genre": "classical",
+   "composer": {
+    "en": "Dukas",
+    "ko": "뒤카"
+   },
+   "work": {
+    "en": "L'apprenti sorcier",
+    "ko": "마법사의 제자"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "레오폴드 스토코프스키 (영화 판타지아)",
+     "en": "Leopold Stokowski",
+     "year": null
+    },
+    {
+     "name": "아르투로 토스카니니 / NBC 교향악단",
+     "en": "Arturo Toscanini",
+     "year": null
+    }
+   ],
+   "tags": [
+    "관현악"
+   ],
+   "lesson": null,
+   "contrast": "영화 장면에 맞춰 색을 크게 입힌 스토코프스키와, 빠르고 곧게 달리는 토스카니니.",
+   "listen": "바순이 빗자루 주제를 처음 부는 대목의 빠르기와 장난기."
+  },
+  {
+   "id": "faure-requiem-pie-jesu",
+   "genre": "classical",
+   "composer": {
+    "en": "Fauré",
+    "ko": "포레"
+   },
+   "work": {
+    "en": "Requiem, Op.48",
+    "ko": "레퀴엠 작품 48"
+   },
+   "part": "피에 예수",
+   "performers": [
+    {
+     "name": "킹스 칼리지 합창단 (소년 독창)",
+     "en": "Choir of King's College Cambridge",
+     "year": null
+    },
+    {
+     "name": "빅토리아 데 로스 앙헬레스 / 앙드레 클뤼탕스",
+     "en": "Victoria de los Ángeles",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "합창"
+   ],
+   "lesson": null,
+   "contrast": "비브라토 없는 소년의 맑은 목소리와, 따뜻한 소프라노의 목소리.",
+   "listen": "오르간 반주 위로 첫 '피에 예수'를 부르는 목소리 색."
+  },
+  {
+   "id": "faure-elegie",
+   "genre": "classical",
+   "composer": {
+    "en": "Fauré",
+    "ko": "포레"
+   },
+   "work": {
+    "en": "Élégie, Op.24",
+    "ko": "엘레지 작품 24"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "장한나 / 로스트로포비치 지휘 (관현악판)",
+     "en": "Han-Na Chang",
+     "year": 1995
+    },
+    {
+     "name": "자클린 뒤프레 / 제럴드 무어 (피아노판)",
+     "en": "Jacqueline du Pré",
+     "year": null
+    }
+   ],
+   "tags": [
+    "첼로",
+    "편성 비교"
+   ],
+   "lesson": null,
+   "contrast": "어린 장한나가 관현악 반주로 녹음한 판과, 원래 편성인 피아노 반주의 뒤프레.",
+   "listen": "느린 반주 화음 위로 첼로가 첫 탄식 선율을 부르는 처음 부분."
+  },
+  {
+   "id": "falla-siete-canciones",
+   "genre": "classical",
+   "composer": {
+    "en": "Falla",
+    "ko": "파야"
+   },
+   "work": {
+    "en": "Siete canciones populares españolas",
+    "ko": "일곱 개의 스페인 민요"
+   },
+   "part": "나나 (자장가)",
+   "performers": [
+    {
+     "name": "빅토리아 데 로스 앙헬레스 / 제럴드 무어 (피아노)",
+     "en": "Victoria de los Ángeles",
+     "year": null
+    },
+    {
+     "name": "테레사 베르간사 / 나르시소 예페스 (기타)",
+     "en": "Teresa Berganza",
+     "year": 1976
+    }
+   ],
+   "tags": [
+    "성악",
+    "가곡",
+    "편성 비교"
+   ],
+   "lesson": null,
+   "contrast": "소프라노와 피아노의 원래 편성과, 메조소프라노와 기타로 민요의 결을 살린 판.",
+   "listen": "자장가 첫 선율의 숨과 반주 악기의 울림."
+  },
+  {
+   "id": "glass-opening",
+   "genre": "classical",
+   "composer": {
+    "en": "Glass",
+    "ko": "글래스"
+   },
+   "work": {
+    "en": "Glassworks: Opening",
+    "ko": "글래스웍스: 오프닝"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "필립 글래스 앙상블 판",
+     "en": "Philip Glass Ensemble",
+     "year": 1982
+    },
+    {
+     "name": "비킹구르 올라프손",
+     "en": "Víkingur Ólafsson",
+     "year": 2016
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주",
+    "작곡자 vs 해석"
+   ],
+   "lesson": null,
+   "contrast": "작곡자의 앨범에 실린 담담한 원판과, 페달과 셈여림으로 더 꿈꾸듯 친 올라프손.",
+   "listen": "셋잇단과 두 음이 겹치는 반주가 되풀이되는 처음 부분의 빠르기와 울림."
+  },
+  {
+   "id": "granados-andaluza",
+   "genre": "classical",
+   "composer": {
+    "en": "Granados",
+    "ko": "그라나도스"
+   },
+   "work": {
+    "en": "Danzas españolas No.5 'Andaluza'",
+    "ko": "스페인 춤곡 5번 안달루사"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "알리시아 데 라로차 (피아노 원곡)",
+     "en": "Alicia de Larrocha",
+     "year": null
+    },
+    {
+     "name": "안드레스 세고비아 (기타 편곡)",
+     "en": "Andrés Segovia",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "편곡",
+    "편성 비교"
+   ],
+   "lesson": null,
+   "contrast": "피아노 원곡과, 기타로 옮겨 더 유명해진 편곡판.",
+   "listen": "기타 줄을 튕기듯 시작하는 첫 리듬과 가운데 노래하는 부분의 음색."
+  },
+  {
+   "id": "holst-planets-mars",
+   "genre": "classical",
+   "composer": {
+    "en": "Holst",
+    "ko": "홀스트"
+   },
+   "work": {
+    "en": "The Planets: Mars",
+    "ko": "행성: 화성"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "구스타브 홀스트 / 런던 교향악단",
+     "en": "Gustav Holst",
+     "year": null
+    },
+    {
+     "name": "헤르베르트 폰 카라얀 / 베를린 필",
+     "en": "Herbert von Karajan",
+     "year": null
+    }
+   ],
+   "tags": [
+    "관현악",
+    "작곡자 vs 해석"
+   ],
+   "lesson": null,
+   "contrast": "작곡자가 직접 지휘한 빠르고 거친 옛 녹음과, 소리를 크고 매끈하게 다듬은 카라얀.",
+   "listen": "현을 활 나무로 두드리는 5박 리듬이 시작되는 처음 부분의 빠르기."
+  },
+  {
+   "id": "janacek-sinfonietta-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Janáček",
+    "ko": "야나체크"
+   },
+   "work": {
+    "en": "Sinfonietta",
+    "ko": "신포니에타"
+   },
+   "part": "1악장 팡파르",
+   "performers": [
+    {
+     "name": "라파엘 쿠벨리크 / 바이에른 방송교향악단",
+     "en": "Rafael Kubelík",
+     "year": null
+    },
+    {
+     "name": "찰스 매케라스 / 빈 필",
+     "en": "Charles Mackerras",
+     "year": null
+    }
+   ],
+   "tags": [
+    "관현악"
+   ],
+   "lesson": null,
+   "contrast": "체코 출신 지휘자의 거칠고 생기 있는 연주와, 빈 필의 둥근 금관을 쓴 매케라스.",
+   "listen": "트럼펫과 팀파니만으로 시작하는 팡파르의 음색과 빠르기."
+  },
+  {
+   "id": "korngold-vc-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Korngold",
+    "ko": "코른골트"
+   },
+   "work": {
+    "en": "Violin Concerto in D major",
+    "ko": "바이올린 협주곡 라장조"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "야샤 하이페츠",
+     "en": "Jascha Heifetz",
+     "year": null
+    },
+    {
+     "name": "안네조피 무터 / 앙드레 프레빈",
+     "en": "Anne-Sophie Mutter",
+     "year": null
+    }
+   ],
+   "tags": [
+    "바이올린",
+    "협주곡"
+   ],
+   "lesson": null,
+   "contrast": "빠르고 날렵하게 영화 음악 같은 선율을 달리는 하이페츠와, 느리고 달콤하게 노래하는 무터.",
+   "listen": "곡이 시작하자마자 바이올린이 크게 도약하는 첫 선율의 빠르기와 비브라토."
+  },
+  {
+   "id": "ligeti-atmospheres",
+   "genre": "classical",
+   "composer": {
+    "en": "Ligeti",
+    "ko": "리게티"
+   },
+   "work": {
+    "en": "Atmosphères",
+    "ko": "아트모스페르"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "에르네스트 부르 / 남서독일 방송교향악단",
+     "en": "Ernest Bour",
+     "year": null
+    },
+    {
+     "name": "클라우디오 아바도 / 빈 필",
+     "en": "Claudio Abbado",
+     "year": null
+    }
+   ],
+   "tags": [
+    "관현악"
+   ],
+   "lesson": null,
+   "contrast": "영화 2001 스페이스 오디세이에 쓰인 첫 녹음과, 빈 필의 더 매끈한 소리.",
+   "listen": "모든 음이 한꺼번에 겹친 큰 소리 덩어리가 시작되는 처음 부분의 질감."
+  },
+  {
+   "id": "nielsen-4-4",
+   "genre": "classical",
+   "composer": {
+    "en": "Nielsen",
+    "ko": "닐센"
+   },
+   "work": {
+    "en": "Symphony No.4 'The Inextinguishable'",
+    "ko": "교향곡 4번 불멸"
+   },
+   "part": "4악장 팀파니 대결",
+   "performers": [
+    {
+     "name": "레너드 번스타인 / 뉴욕 필",
+     "en": "Leonard Bernstein",
+     "year": null
+    },
+    {
+     "name": "헤르베르트 블롬슈테트 / 샌프란시스코 교향악단",
+     "en": "Herbert Blomstedt",
+     "year": null
+    }
+   ],
+   "tags": [
+    "교향곡"
+   ],
+   "lesson": null,
+   "contrast": "격하게 몰아치는 번스타인과, 구조를 또렷하게 세우는 블롬슈테트.",
+   "listen": "무대 양쪽 두 팀파니가 서로 맞부딪치는 대목의 세기와 공간감."
+  },
+  {
+   "id": "orff-o-fortuna",
+   "genre": "classical",
+   "composer": {
+    "en": "Orff",
+    "ko": "오르프"
+   },
+   "work": {
+    "en": "Carmina Burana: O Fortuna",
+    "ko": "카르미나 부라나: 오 운명의 여신이여"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "오이겐 요훔",
+     "en": "Eugen Jochum",
+     "year": null
+    },
+    {
+     "name": "사이먼 래틀 / 베를린 필",
+     "en": "Simon Rattle",
+     "year": null
+    }
+   ],
+   "tags": [
+    "합창",
+    "관현악"
+   ],
+   "lesson": null,
+   "contrast": "무게 있고 장중한 요훔과, 빠르기와 셈여림 대비를 크게 벌린 래틀.",
+   "listen": "첫 큰 외침 뒤 합창이 아주 여리게 빠른 가사를 속삭이는 부분의 빠르기."
+  },
+  {
+   "id": "paganini-caprice-24",
+   "genre": "classical",
+   "composer": {
+    "en": "Paganini",
+    "ko": "파가니니"
+   },
+   "work": {
+    "en": "Caprice No.24 in A minor",
+    "ko": "카프리스 24번 가단조"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "루지에로 리치",
+     "en": "Ruggiero Ricci",
+     "year": null
+    },
+    {
+     "name": "이츠하크 펄만",
+     "en": "Itzhak Perlman",
+     "year": null
+    }
+   ],
+   "tags": [
+    "바이올린",
+    "독주"
+   ],
+   "lesson": null,
+   "contrast": "24곡 전곡을 처음 녹음한 리치의 거칠고 날 선 소리와, 매끈하고 따뜻한 펄만.",
+   "listen": "주제 뒤 왼손 피치카토 변주와 옥타브 변주에서 소리가 얼마나 깨끗한지."
+  },
+  {
+   "id": "poulenc-flute-sonata-2",
+   "genre": "classical",
+   "composer": {
+    "en": "Poulenc",
+    "ko": "풀랑크"
+   },
+   "work": {
+    "en": "Flute Sonata",
+    "ko": "플루트 소나타"
+   },
+   "part": "2악장 칸틸레나",
+   "performers": [
+    {
+     "name": "장피에르 랑팔 / 프랑시스 풀랑크 (피아노)",
+     "en": "Jean-Pierre Rampal",
+     "year": null
+    },
+    {
+     "name": "제임스 골웨이 (버클리 관현악 편곡)",
+     "en": "James Galway",
+     "year": null
+    }
+   ],
+   "tags": [
+    "실내악",
+    "편곡",
+    "작곡자 vs 해석"
+   ],
+   "lesson": null,
+   "contrast": "초연자 랑팔이 작곡자의 피아노와 녹음한 원곡과, 관현악 반주로 옮긴 편곡판.",
+   "listen": "피아노 또는 현 위로 플루트가 느린 첫 선율을 부르는 대목의 반주 소리."
+  },
+  {
+   "id": "reich-18-musicians",
+   "genre": "classical",
+   "composer": {
+    "en": "Reich",
+    "ko": "라이히"
+   },
+   "work": {
+    "en": "Music for 18 Musicians",
+    "ko": "18인의 음악가를 위한 음악"
+   },
+   "part": "첫 펄스",
+   "performers": [
+    {
+     "name": "스티브 라이히와 음악가들 (첫 녹음)",
+     "en": "Steve Reich and Musicians",
+     "year": 1978
+    },
+    {
+     "name": "스티브 라이히와 음악가들 (다시 녹음)",
+     "en": "Steve Reich and Musicians",
+     "year": 1997
+    }
+   ],
+   "tags": [
+    "실내악",
+    "같은 연주자",
+    "작곡자 vs 해석"
+   ],
+   "lesson": null,
+   "contrast": "작곡자의 앙상블이 처음 남긴 녹음과, 20년 뒤 같은 앙상블이 다시 녹음한 판.",
+   "listen": "피아노와 마림바가 같은 펄스를 두드리며 화음이 바뀌는 처음 부분의 빠르기와 소리 결."
+  },
+  {
+   "id": "saint-saens-swan",
+   "genre": "classical",
+   "composer": {
+    "en": "Saint-Saëns",
+    "ko": "생상스"
+   },
+   "work": {
+    "en": "Carnival of the Animals: The Swan",
+    "ko": "동물의 사육제: 백조"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "장한나 / 레너드 슬랫킨",
+     "en": "Han-Na Chang",
+     "year": null
+    },
+    {
+     "name": "자클린 뒤프레 / 오시안 엘리스 (하프)",
+     "en": "Jacqueline du Pré",
+     "year": null
+    }
+   ],
+   "tags": [
+    "첼로",
+    "편성 비교"
+   ],
+   "lesson": null,
+   "contrast": "관현악 반주로 노래한 장한나와, 하프 한 대 반주의 뒤프레.",
+   "listen": "물결 같은 반주 위로 첼로가 첫 선율을 부르는 대목의 비브라토."
+  },
+  {
+   "id": "saint-saens-intro-rondo",
+   "genre": "classical",
+   "composer": {
+    "en": "Saint-Saëns",
+    "ko": "생상스"
+   },
+   "work": {
+    "en": "Introduction and Rondo Capriccioso",
+    "ko": "서주와 론도 카프리치오소"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "정경화 / 샤를 뒤투아",
+     "en": "Kyung-Wha Chung",
+     "year": null
+    },
+    {
+     "name": "야샤 하이페츠",
+     "en": "Jascha Heifetz",
+     "year": null
+    }
+   ],
+   "tags": [
+    "바이올린",
+    "협주곡"
+   ],
+   "lesson": null,
+   "contrast": "선율을 길게 노래하는 정경화와, 빠르고 날카롭게 달리는 하이페츠.",
+   "listen": "느린 서주 뒤 론도 주제가 시작되는 대목의 빠르기."
+  },
+  {
+   "id": "saint-saens-organ-4",
+   "genre": "classical",
+   "composer": {
+    "en": "Saint-Saëns",
+    "ko": "생상스"
+   },
+   "work": {
+    "en": "Symphony No.3 'Organ'",
+    "ko": "교향곡 3번 오르간"
+   },
+   "part": "피날레",
+   "performers": [
+    {
+     "name": "샤를 뮌슈 / 보스턴 교향악단",
+     "en": "Charles Munch",
+     "year": null
+    },
+    {
+     "name": "다니엘 바렌보임 / 시카고 교향악단",
+     "en": "Daniel Barenboim",
+     "year": null
+    }
+   ],
+   "tags": [
+    "교향곡",
+    "오르간"
+   ],
+   "lesson": null,
+   "contrast": "열띠고 빠른 뮌슈와, 크고 넓게 쌓는 바렌보임.",
+   "listen": "오르간이 큰 다장조 화음을 터뜨리는 피날레 첫 순간."
+  },
+  {
+   "id": "satie-gymnopedie-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Satie",
+    "ko": "사티"
+   },
+   "work": {
+    "en": "Gymnopédie No.1",
+    "ko": "짐노페디 1번"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "알도 치콜리니",
+     "en": "Aldo Ciccolini",
+     "year": null
+    },
+    {
+     "name": "라인베르트 더 레이우",
+     "en": "Reinbert de Leeuw",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주"
+   ],
+   "lesson": null,
+   "contrast": "보통 빠르기로 담담하게 치는 치콜리니와, 극도로 느리게 늘여 시간을 멈추게 하는 더 레이우.",
+   "listen": "왼손 두 화음이 흔들리는 도입과 첫 선율의 빠르기."
+  },
+  {
+   "id": "scriabin-etude-op8-12",
+   "genre": "classical",
+   "composer": {
+    "en": "Scriabin",
+    "ko": "스크랴빈"
+   },
+   "work": {
+    "en": "Étude in D-sharp minor, Op.8 No.12",
+    "ko": "연습곡 올림라단조 작품 8의 12"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "알렉산드르 스크랴빈 (피아노 롤)",
+     "en": "Alexander Scriabin",
+     "year": null
+    },
+    {
+     "name": "블라디미르 호로비츠",
+     "en": "Vladimir Horowitz",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주",
+    "작곡자 vs 해석"
+   ],
+   "lesson": null,
+   "contrast": "작곡자가 직접 남긴 피아노 롤 기록과, 이 곡을 앙코르로 즐겨 친 호로비츠.",
+   "listen": "왼손 도약 위로 오른손 옥타브가 몰아치는 첫 부분의 빠르기와 박을 늘이는 정도."
+  },
+  {
+   "id": "smetana-vltava",
+   "genre": "classical",
+   "composer": {
+    "en": "Smetana",
+    "ko": "스메타나"
+   },
+   "work": {
+    "en": "Má vlast: Vltava",
+    "ko": "나의 조국: 몰다우"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "라파엘 쿠벨리크 / 체코 필 (귀국 실황)",
+     "en": "Rafael Kubelík",
+     "year": 1990
+    },
+    {
+     "name": "헤르베르트 폰 카라얀 / 베를린 필",
+     "en": "Herbert von Karajan",
+     "year": null
+    }
+   ],
+   "tags": [
+    "관현악",
+    "실황"
+   ],
+   "lesson": null,
+   "contrast": "망명 뒤 고국에 돌아와 체코 악단과 연주한 쿠벨리크 실황과, 매끈하고 큰 소리의 카라얀.",
+   "listen": "두 플루트가 물줄기를 그리는 도입 뒤 현이 강의 주제를 부르는 대목."
+  },
+  {
+   "id": "schoenberg-verklarte-nacht",
+   "genre": "classical",
+   "composer": {
+    "en": "Schoenberg",
+    "ko": "쇤베르크"
+   },
+   "work": {
+    "en": "Verklärte Nacht, Op.4",
+    "ko": "정화된 밤 작품 4"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "할리우드 4중주단 외 (현악 6중주 원곡)",
+     "en": "Hollywood String Quartet",
+     "year": null
+    },
+    {
+     "name": "헤르베르트 폰 카라얀 / 베를린 필 (현악 합주판)",
+     "en": "Herbert von Karajan",
+     "year": null
+    }
+   ],
+   "tags": [
+    "실내악",
+    "관현악",
+    "편성 비교"
+   ],
+   "lesson": null,
+   "contrast": "작곡가가 직접 듣고 인정한 6중주 원곡 녹음과, 현악 합주로 키운 판.",
+   "listen": "낮은 현이 걸어가는 리듬으로 시작하는 처음 부분의 소리 두께와 첫 절정."
+  },
+  {
+   "id": "berg-vc-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Berg",
+    "ko": "베르크"
+   },
+   "work": {
+    "en": "Violin Concerto 'To the memory of an angel'",
+    "ko": "바이올린 협주곡 어느 천사를 기억하며"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "루이스 크래스너 / 안톤 베베른",
+     "en": "Louis Krasner",
+     "year": 1936
+    },
+    {
+     "name": "정경화 / 게오르그 솔티",
+     "en": "Kyung-Wha Chung",
+     "year": null
+    }
+   ],
+   "tags": [
+    "바이올린",
+    "협주곡"
+   ],
+   "lesson": null,
+   "contrast": "곡을 위촉하고 초연한 크래스너가 베르크의 동료 베베른과 남긴 옛 실황과, 정경화의 스튜디오판.",
+   "listen": "끝부분 바흐 코랄 선율이 목관과 바이올린으로 나오는 대목."
+  },
+  {
+   "id": "vaughan-williams-lark",
+   "genre": "classical",
+   "composer": {
+    "en": "Vaughan Williams",
+    "ko": "본 윌리엄스"
+   },
+   "work": {
+    "en": "The Lark Ascending",
+    "ko": "종달새의 비상"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "휴 빈 / 에이드리언 볼트",
+     "en": "Hugh Bean",
+     "year": null
+    },
+    {
+     "name": "힐러리 한 / 콜린 데이비스",
+     "en": "Hilary Hahn",
+     "year": null
+    }
+   ],
+   "tags": [
+    "바이올린",
+    "관현악"
+   ],
+   "lesson": null,
+   "contrast": "영국 악단 수석 출신의 소박하고 담백한 빈과, 맑고 정밀한 한.",
+   "listen": "약한 현 화음 위로 바이올린이 혼자 새소리처럼 올라가는 첫 카덴차."
+  },
+  {
+   "id": "villa-lobos-bachianas-5",
+   "genre": "classical",
+   "composer": {
+    "en": "Villa-Lobos",
+    "ko": "빌라로부스"
+   },
+   "work": {
+    "en": "Bachianas Brasileiras No.5",
+    "ko": "브라질풍의 바흐 5번"
+   },
+   "part": "아리아 (칸틸레나)",
+   "performers": [
+    {
+     "name": "비두 사양 / 작곡가 지휘",
+     "en": "Bidu Sayão",
+     "year": 1945
+    },
+    {
+     "name": "빅토리아 데 로스 앙헬레스 / 작곡가 지휘",
+     "en": "Victoria de los Ángeles",
+     "year": 1956
+    }
+   ],
+   "tags": [
+    "성악",
+    "작곡자 vs 해석"
+   ],
+   "lesson": null,
+   "contrast": "같은 작곡가가 지휘한 두 녹음으로, 브라질 소프라노의 첫 녹음과 스페인 소프라노의 판.",
+   "listen": "여덟 대 첼로 위로 가사 없이 허밍하는 첫 선율의 목소리 색."
+  },
+  {
+   "id": "weber-freischutz-overture",
+   "genre": "classical",
+   "composer": {
+    "en": "Weber",
+    "ko": "베버"
+   },
+   "work": {
+    "en": "Der Freischütz: Overture",
+    "ko": "마탄의 사수 서곡"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "빌헬름 푸르트벵글러",
+     "en": "Wilhelm Furtwängler",
+     "year": null
+    },
+    {
+     "name": "카를로스 클라이버 / 드레스덴 슈타츠카펠레",
+     "en": "Carlos Kleiber",
+     "year": null
+    }
+   ],
+   "tags": [
+    "관현악",
+    "오페라"
+   ],
+   "lesson": null,
+   "contrast": "느리고 어두운 숲의 분위기를 크게 그린 푸르트벵글러와, 날렵하고 긴장 있게 가는 클라이버.",
+   "listen": "느린 서주에서 호른 넷이 숲의 노래를 부르는 대목의 빠르기."
+  },
+  {
+   "id": "wolf-verborgenheit",
+   "genre": "classical",
+   "composer": {
+    "en": "Wolf",
+    "ko": "볼프"
+   },
+   "work": {
+    "en": "Mörike-Lieder: Verborgenheit",
+    "ko": "뫼리케 가곡집: 숨어 사는 마음"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "디트리히 피셔디스카우",
+     "en": "Dietrich Fischer-Dieskau",
+     "year": null
+    },
+    {
+     "name": "엘리자베트 슈바르츠코프",
+     "en": "Elisabeth Schwarzkopf",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "가곡"
+   ],
+   "lesson": null,
+   "contrast": "같은 노래를 바리톤과 소프라노가 부르는 음색과 낱말 표현의 차이.",
+   "listen": "가운데 감정이 크게 솟는 절에서 목소리가 얼마나 커지는지."
+  },
+  {
+   "id": "ysaye-sonata-3",
+   "genre": "classical",
+   "composer": {
+    "en": "Ysaÿe",
+    "ko": "이자이"
+   },
+   "work": {
+    "en": "Violin Sonata No.3 'Ballade', Op.27",
+    "ko": "무반주 바이올린 소나타 3번 발라드"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "클라라 주미 강",
+     "en": "Clara-Jumi Kang",
+     "year": null
+    },
+    {
+     "name": "토마스 체트마이어",
+     "en": "Thomas Zehetmair",
+     "year": null
+    }
+   ],
+   "tags": [
+    "바이올린",
+    "독주"
+   ],
+   "lesson": null,
+   "contrast": "따뜻하고 노래하는 클라라 주미 강과, 날카롭고 실험적인 체트마이어.",
+   "listen": "느린 레치타티보 도입 뒤 빠른 부분으로 들어가는 순간의 빠르기와 화음 소리."
+  },
+  {
+   "id": "j-strauss-blue-danube",
+   "genre": "classical",
+   "composer": {
+    "en": "J. Strauss II",
+    "ko": "요한 슈트라우스 2세"
+   },
+   "work": {
+    "en": "On the Beautiful Blue Danube",
+    "ko": "아름답고 푸른 도나우"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "헤르베르트 폰 카라얀 / 빈 필 (신년 음악회)",
+     "en": "Herbert von Karajan",
+     "year": 1987
+    },
+    {
+     "name": "카를로스 클라이버 / 빈 필 (신년 음악회)",
+     "en": "Carlos Kleiber",
+     "year": 1989
+    }
+   ],
+   "tags": [
+    "관현악",
+    "실황"
+   ],
+   "lesson": null,
+   "contrast": "같은 빈 필 신년 음악회를 두 해 차이로 이끈 두 지휘자로, 넉넉한 카라얀과 날렵하게 춤추는 클라이버.",
+   "listen": "첫 왈츠 주제에서 빈식으로 둘째 박을 당기는 정도."
+  },
+  {
+   "id": "r-strauss-zarathustra",
+   "genre": "classical",
+   "composer": {
+    "en": "R. Strauss",
+    "ko": "R. 슈트라우스"
+   },
+   "work": {
+    "en": "Also sprach Zarathustra",
+    "ko": "차라투스트라는 이렇게 말했다"
+   },
+   "part": "도입 해돋이",
+   "performers": [
+    {
+     "name": "프리츠 라이너 / 시카고 교향악단",
+     "en": "Fritz Reiner",
+     "year": null
+    },
+    {
+     "name": "헤르베르트 폰 카라얀 / 빈 필",
+     "en": "Herbert von Karajan",
+     "year": null
+    }
+   ],
+   "tags": [
+    "관현악"
+   ],
+   "lesson": null,
+   "contrast": "단단하고 건조한 시카고 금관의 라이너와, 넓고 화려한 빈 필의 카라얀.",
+   "listen": "트럼펫 세 음과 팀파니가 반복되고 오르간이 울리는 처음 부분의 크기."
+  },
+  {
+   "id": "mendelssohn-italian-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Mendelssohn",
+    "ko": "멘델스존"
+   },
+   "work": {
+    "en": "Symphony No.4 'Italian'",
+    "ko": "교향곡 4번 이탈리아"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "아르투로 토스카니니 / NBC 교향악단",
+     "en": "Arturo Toscanini",
+     "year": null
+    },
+    {
+     "name": "클라우디오 아바도 / 런던 교향악단",
+     "en": "Claudio Abbado",
+     "year": null
+    }
+   ],
+   "tags": [
+    "교향곡"
+   ],
+   "lesson": null,
+   "contrast": "아주 빠르고 날카롭게 달리는 토스카니니와, 가볍고 노래하듯 가는 아바도.",
+   "listen": "목관 반복음 위로 바이올린이 뛰어오르는 첫 주제의 빠르기."
+  },
+  {
+   "id": "elgar-vc-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Elgar",
+    "ko": "엘가"
+   },
+   "work": {
+    "en": "Violin Concerto in B minor",
+    "ko": "바이올린 협주곡 나단조"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "예후디 메뉴인 / 작곡가 지휘",
+     "en": "Yehudi Menuhin",
+     "year": 1932
+    },
+    {
+     "name": "정경화 / 게오르그 솔티",
+     "en": "Kyung-Wha Chung",
+     "year": null
+    }
+   ],
+   "tags": [
+    "바이올린",
+    "협주곡",
+    "작곡자 vs 해석"
+   ],
+   "lesson": null,
+   "contrast": "16살 메뉴인이 작곡가의 지휘로 녹음한 판과, 정경화의 긴장된 스튜디오판.",
+   "listen": "긴 관현악 서주 뒤 바이올린이 처음 들어오는 대목의 빠르기와 음색."
+  },
+  {
+   "id": "rachmaninoff-rhapsody-18",
+   "genre": "classical",
+   "composer": {
+    "en": "Rachmaninoff",
+    "ko": "라흐마니노프"
+   },
+   "work": {
+    "en": "Rhapsody on a Theme of Paganini",
+    "ko": "파가니니 주제에 의한 광시곡"
+   },
+   "part": "18변주",
+   "performers": [
+    {
+     "name": "세르게이 라흐마니노프 / 스토코프스키",
+     "en": "Sergei Rachmaninoff",
+     "year": 1934
+    },
+    {
+     "name": "아르투르 루빈스타인 / 프리츠 라이너",
+     "en": "Arthur Rubinstein",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "협주곡",
+    "작곡자 vs 해석"
+   ],
+   "lesson": null,
+   "contrast": "작곡자가 직접 친 빠르고 담백한 18변주와, 더 느리고 넉넉하게 노래하는 루빈스타인.",
+   "listen": "피아노가 뒤집힌 파가니니 주제를 처음 부르는 대목의 빠르기."
+  },
+  {
+   "id": "shostakovich-prelude-fugue-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Shostakovich",
+    "ko": "쇼스타코비치"
+   },
+   "work": {
+    "en": "24 Preludes and Fugues, Op.87",
+    "ko": "24개의 전주곡과 푸가 작품 87"
+   },
+   "part": "1번 다장조",
+   "performers": [
+    {
+     "name": "타티아나 니콜라예바",
+     "en": "Tatiana Nikolayeva",
+     "year": null
+    },
+    {
+     "name": "키스 재럿",
+     "en": "Keith Jarrett",
+     "year": 1991
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주"
+   ],
+   "lesson": null,
+   "contrast": "작곡을 이끌어 낸 피아니스트 니콜라예바와, 재즈 피아니스트 재럿의 담백한 연주.",
+   "listen": "전주곡 첫 화음들의 빠르기와 페달 양."
+  },
+  {
+   "id": "prokofiev-vc2-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Prokofiev",
+    "ko": "프로코피예프"
+   },
+   "work": {
+    "en": "Violin Concerto No.2",
+    "ko": "바이올린 협주곡 2번"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "야샤 하이페츠 / 샤를 뮌슈",
+     "en": "Jascha Heifetz",
+     "year": null
+    },
+    {
+     "name": "정경화 / 앙드레 프레빈",
+     "en": "Kyung-Wha Chung",
+     "year": null
+    }
+   ],
+   "tags": [
+    "바이올린",
+    "협주곡"
+   ],
+   "lesson": null,
+   "contrast": "빠르고 서늘하게 가는 하이페츠와, 어둡고 서정적인 정경화.",
+   "listen": "바이올린 혼자 민요 같은 첫 주제를 꺼내는 처음 부분의 빠르기."
+  },
+  {
+   "id": "bartok-vc2-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Bartók",
+    "ko": "버르토크"
+   },
+   "work": {
+    "en": "Violin Concerto No.2",
+    "ko": "바이올린 협주곡 2번"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "예후디 메뉴인 / 빌헬름 푸르트벵글러",
+     "en": "Yehudi Menuhin",
+     "year": null
+    },
+    {
+     "name": "정경화 / 게오르그 솔티",
+     "en": "Kyung-Wha Chung",
+     "year": null
+    }
+   ],
+   "tags": [
+    "바이올린",
+    "협주곡"
+   ],
+   "lesson": null,
+   "contrast": "독일 낭만 전통의 지휘자와 만난 메뉴인과, 작곡가와 같은 헝가리 출신 솔티와 함께한 정경화.",
+   "listen": "하프 화음 뒤 바이올린이 첫 헝가리풍 주제를 부르는 대목."
+  },
+  {
+   "id": "ravel-string-quartet-2",
+   "genre": "classical",
+   "composer": {
+    "en": "Ravel",
+    "ko": "라벨"
+   },
+   "work": {
+    "en": "String Quartet in F major",
+    "ko": "현악 4중주 바장조"
+   },
+   "part": "2악장",
+   "performers": [
+    {
+     "name": "이탈리아 4중주단",
+     "en": "Quartetto Italiano",
+     "year": null
+    },
+    {
+     "name": "에베네 4중주단",
+     "en": "Quatuor Ébène",
+     "year": null
+    }
+   ],
+   "tags": [
+    "실내악",
+    "현악4중주"
+   ],
+   "lesson": null,
+   "contrast": "따뜻하고 노래하는 옛 이탈리아 4중주단과, 날렵하고 선명한 요즘 프랑스 4중주단.",
+   "listen": "피치카토로 시작하는 첫 부분의 리듬과 빠르기."
+  },
+  {
+   "id": "debussy-golliwogg",
+   "genre": "classical",
+   "composer": {
+    "en": "Debussy",
+    "ko": "드뷔시"
+   },
+   "work": {
+    "en": "Children's Corner: Golliwogg's Cakewalk",
+    "ko": "어린이 차지: 골리워그의 케이크워크"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "아르투로 베네데티 미켈란젤리",
+     "en": "Arturo Benedetti Michelangeli",
+     "year": null
+    },
+    {
+     "name": "조성진",
+     "en": "Seong-Jin Cho",
+     "year": 2017
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주"
+   ],
+   "lesson": null,
+   "contrast": "건조하고 정밀한 미켈란젤리와, 장난스럽고 가볍게 튀는 조성진.",
+   "listen": "가운데 바그너 트리스탄 화음을 흉내 내는 부분의 멈춤과 빠르기."
+  },
+  {
+   "id": "messiaen-quartet-louange",
+   "genre": "classical",
+   "composer": {
+    "en": "Messiaen",
+    "ko": "메시앙"
+   },
+   "work": {
+    "en": "Quatuor pour la fin du temps",
+    "ko": "시간의 종말을 위한 4중주"
+   },
+   "part": "5곡 예수의 영원성에 대한 찬양",
+   "performers": [
+    {
+     "name": "타시",
+     "en": "Tashi",
+     "year": null
+    },
+    {
+     "name": "정명훈 / 길 샤함 / 왕젠 / 폴 메이어",
+     "en": "Myung-Whun Chung Gil Shaham",
+     "year": null
+    }
+   ],
+   "tags": [
+    "실내악",
+    "첼로"
+   ],
+   "lesson": null,
+   "contrast": "1970년대 젊은 4인조 그룹 타시와, 정명훈이 피아노를 맡은 판.",
+   "listen": "피아노 화음 위로 첼로가 아주 느린 선율을 끝없이 이어 가는 처음 부분의 빠르기."
+  },
+  {
+   "id": "britten-sea-interludes-dawn",
+   "genre": "classical",
+   "composer": {
+    "en": "Britten",
+    "ko": "브리튼"
+   },
+   "work": {
+    "en": "Peter Grimes: Four Sea Interludes",
+    "ko": "피터 그라임스: 네 개의 바다 간주곡"
+   },
+   "part": "1곡 새벽",
+   "performers": [
+    {
+     "name": "벤저민 브리튼 (직접 지휘)",
+     "en": "Benjamin Britten",
+     "year": null
+    },
+    {
+     "name": "앙드레 프레빈 / 런던 교향악단",
+     "en": "André Previn",
+     "year": null
+    }
+   ],
+   "tags": [
+    "관현악",
+    "오페라",
+    "작곡자 vs 해석"
+   ],
+   "lesson": null,
+   "contrast": "작곡자가 지휘한 차갑고 담백한 판과, 색채와 공간감을 넓힌 프레빈.",
+   "listen": "높은 바이올린과 플루트의 바다 위 빛 뒤 금관 화음이 밀려오는 대목."
+  },
+  {
+   "id": "mussorgsky-promenade",
+   "genre": "classical",
+   "composer": {
+    "en": "Mussorgsky",
+    "ko": "무소륵스키"
+   },
+   "work": {
+    "en": "Pictures at an Exhibition: Promenade",
+    "ko": "전람회의 그림: 프롬나드"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "블라디미르 호로비츠 (피아노, 자신의 편곡)",
+     "en": "Vladimir Horowitz",
+     "year": null
+    },
+    {
+     "name": "세르지우 첼리비다케 / 뮌헨 필 (라벨 관현악판)",
+     "en": "Sergiu Celibidache",
+     "year": null
+    },
+    {
+     "name": "에머슨 레이크 앤드 파머 (록 편곡 실황)",
+     "en": "Emerson, Lake & Palmer",
+     "year": 1971
+    }
+   ],
+   "tags": [
+    "피아노",
+    "관현악",
+    "편곡",
+    "편성 비교"
+   ],
+   "lesson": null,
+   "contrast": "피아노판을 더 화려하게 고친 호로비츠, 아주 느린 관현악판의 첼리비다케, 오르간과 신시사이저로 옮긴 록 밴드.",
+   "listen": "첫 프롬나드 주제를 피아노, 트럼펫, 오르간이 각각 어떻게 꺼내는지."
+  },
+  {
+   "id": "vivaldi-autumn-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Vivaldi",
+    "ko": "비발디"
+   },
+   "work": {
+    "en": "The Four Seasons: Autumn",
+    "ko": "사계 중 가을"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "나이절 케네디",
+     "en": "Nigel Kennedy",
+     "year": 1989
+    },
+    {
+     "name": "이 무지치 (펠릭스 아요)",
+     "en": "I Musici Felix Ayo",
+     "year": null
+    }
+   ],
+   "tags": [
+    "바이올린",
+    "협주곡"
+   ],
+   "lesson": null,
+   "contrast": "현대 바이올린으로 대담하게 밀어붙인 케네디와, 고르고 우아한 옛 이 무지치.",
+   "listen": "추수 축제의 춤 주제가 나오는 처음 부분의 빠르기와 강세."
+  },
+  {
+   "id": "handel-messiah-every-valley",
+   "genre": "classical",
+   "composer": {
+    "en": "Handel",
+    "ko": "헨델"
+   },
+   "work": {
+    "en": "Messiah, HWV56",
+    "ko": "메시아 HWV56"
+   },
+   "part": "Ev'ry valley",
+   "performers": [
+    {
+     "name": "토머스 비첨 (대편성)",
+     "en": "Thomas Beecham",
+     "year": 1959
+    },
+    {
+     "name": "크리스토퍼 호그우드 / 고음악 아카데미",
+     "en": "Christopher Hogwood",
+     "year": 1979
+    }
+   ],
+   "tags": [
+    "성악",
+    "시대악기 해석"
+   ],
+   "lesson": null,
+   "contrast": "큰 오케스트라와 넓게 부르는 테너와, 작은 시대악기 편성의 가볍고 장식 있는 테너.",
+   "listen": "'골짜기마다 높아지리라'에서 긴 장식 음형을 부르는 대목의 빠르기."
+  },
+  {
+   "id": "sibelius-5-3",
+   "genre": "classical",
+   "composer": {
+    "en": "Sibelius",
+    "ko": "시벨리우스"
+   },
+   "work": {
+    "en": "Symphony No.5",
+    "ko": "교향곡 5번"
+   },
+   "part": "3악장 백조 주제",
+   "performers": [
+    {
+     "name": "헤르베르트 폰 카라얀 / 베를린 필",
+     "en": "Herbert von Karajan",
+     "year": null
+    },
+    {
+     "name": "레너드 번스타인 / 빈 필",
+     "en": "Leonard Bernstein",
+     "year": null
+    }
+   ],
+   "tags": [
+    "교향곡"
+   ],
+   "lesson": null,
+   "contrast": "매끈하게 흐르는 카라얀과, 느리고 크게 늘이는 번스타인.",
+   "listen": "호른이 흔들리는 백조 주제를 부르는 대목과 마지막 끊어진 여섯 화음 사이의 침묵."
+  },
+  {
+   "id": "brahms-hungarian-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Brahms",
+    "ko": "브람스"
+   },
+   "work": {
+    "en": "Hungarian Dance No.1 in G minor",
+    "ko": "헝가리 춤곡 1번 사단조"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "요하네스 브람스 (에디슨 원통 녹음, 일부)",
+     "en": "Johannes Brahms",
+     "year": 1889
+    },
+    {
+     "name": "클라우디오 아바도 / 빈 필 (관현악판)",
+     "en": "Claudio Abbado",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "관현악",
+    "작곡자 vs 해석",
+    "편성 비교"
+   ],
+   "lesson": null,
+   "contrast": "잡음 속에 일부만 남은 작곡가 자신의 피아노 연주와, 깨끗한 현대 관현악판.",
+   "listen": "잡음 너머로 들리는 브람스의 박 늘이기와, 관현악판 첫 주제의 빠르기를 견주어 듣기."
+  },
+  {
+   "id": "brahms-op118-2-kim-lupu",
+   "genre": "classical",
+   "composer": {
+    "en": "Brahms",
+    "ko": "브람스"
+   },
+   "work": {
+    "en": "Intermezzo in A major, Op.118 No.2",
+    "ko": "인터메초 가장조 작품 118의 2"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "김선욱",
+     "en": "Sunwook Kim",
+     "year": null
+    },
+    {
+     "name": "라두 루푸",
+     "en": "Radu Lupu",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주",
+    "말년"
+   ],
+   "lesson": null,
+   "contrast": "느리고 깊게 가라앉는 김선욱과, 따뜻하고 흐르게 노래하는 루푸.",
+   "listen": "첫 선율이 묻고 답하듯 이어지는 처음 몇 마디의 빠르기와 안쪽 성부가 들리는 정도."
+  },
+  {
+   "id": "brahms-3-3",
+   "genre": "classical",
+   "composer": {
+    "en": "Brahms",
+    "ko": "브람스"
+   },
+   "work": {
+    "en": "Symphony No.3",
+    "ko": "교향곡 3번"
+   },
+   "part": "3악장 포코 알레그레토",
+   "performers": [
+    {
+     "name": "브루노 발터 / 콜럼비아 교향악단",
+     "en": "Bruno Walter",
+     "year": null
+    },
+    {
+     "name": "헤르베르트 폰 카라얀 / 베를린 필",
+     "en": "Herbert von Karajan",
+     "year": null
+    }
+   ],
+   "tags": [
+    "교향곡"
+   ],
+   "lesson": null,
+   "contrast": "따뜻하고 흐르는 발터와, 두텁고 매끈하게 노래하는 카라얀.",
+   "listen": "첼로가 첫 선율을 부르는 처음 부분의 빠르기와, 호른이 같은 선율을 받는 대목."
+  },
+  {
+   "id": "liszt-sonata-cho-argerich",
+   "genre": "classical",
+   "composer": {
+    "en": "Liszt",
+    "ko": "리스트"
+   },
+   "work": {
+    "en": "Piano Sonata in B minor",
+    "ko": "피아노 소나타 나단조"
+   },
+   "part": "가운데 느린 부분",
+   "performers": [
+    {
+     "name": "조성진",
+     "en": "Seong-Jin Cho",
+     "year": null
+    },
+    {
+     "name": "마르타 아르헤리치",
+     "en": "Martha Argerich",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주"
+   ],
+   "lesson": null,
+   "contrast": "구조를 차분히 쌓는 조성진과, 불꽃처럼 몰아치는 젊은 아르헤리치.",
+   "listen": "격렬한 부분이 끝나고 조용한 안단테 소스테누토가 시작되는 대목의 정적과 빠르기."
+  },
+  {
+   "id": "schubert-wanderer-fantasy",
+   "genre": "classical",
+   "composer": {
+    "en": "Schubert",
+    "ko": "슈베르트"
+   },
+   "work": {
+    "en": "Wanderer Fantasy, D.760",
+    "ko": "방랑자 환상곡 D.760"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "조성진",
+     "en": "Seong-Jin Cho",
+     "year": null
+    },
+    {
+     "name": "마우리치오 폴리니",
+     "en": "Maurizio Pollini",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주"
+   ],
+   "lesson": null,
+   "contrast": "선율을 노래하듯 이어 가는 조성진과, 단단하고 힘 있게 쌓는 폴리니.",
+   "listen": "곡이 시작하자마자 나오는 강한 점 리듬 화음의 세기와 빠르기."
+  },
+  {
+   "id": "brahms-handel-variations",
+   "genre": "classical",
+   "composer": {
+    "en": "Brahms",
+    "ko": "브람스"
+   },
+   "work": {
+    "en": "Variations and Fugue on a Theme by Handel, Op.24",
+    "ko": "헨델 주제에 의한 변주곡과 푸가 작품 24"
+   },
+   "part": "주제와 마지막 푸가",
+   "performers": [
+    {
+     "name": "조성진",
+     "en": "Seong-Jin Cho",
+     "year": 2023
+    },
+    {
+     "name": "머레이 페라이어",
+     "en": "Murray Perahia",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주"
+   ],
+   "lesson": null,
+   "contrast": "헨델 원곡 모음곡과 함께 녹음해 바로크 쪽에서 다가간 조성진과, 따뜻하고 노래하는 페라이어.",
+   "listen": "헨델의 단순한 아리아 주제를 치는 처음 부분의 꾸밈음과, 마지막 푸가가 쌓이는 세기."
+  },
+  {
+   "id": "mozart-pc21-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Mozart",
+    "ko": "모차르트"
+   },
+   "work": {
+    "en": "Piano Concerto No.21 in C major, K.467",
+    "ko": "피아노 협주곡 21번 다장조 K.467"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "손열음 / 네빌 마리너",
+     "en": "Yeol Eum Son",
+     "year": 2016
+    },
+    {
+     "name": "프리드리히 굴다 / 클라우디오 아바도",
+     "en": "Friedrich Gulda",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "협주곡"
+   ],
+   "lesson": null,
+   "contrast": "마리너의 마지막 녹음에서 밝고 대담하게 친 손열음과, 담백하고 맑게 가는 굴다.",
+   "listen": "긴 관현악 서주 뒤 피아노가 처음 들어오는 대목과 카덴차의 성격."
+  },
+  {
+   "id": "prokofiev-sinfonia-concertante",
+   "genre": "classical",
+   "composer": {
+    "en": "Prokofiev",
+    "ko": "프로코피예프"
+   },
+   "work": {
+    "en": "Sinfonia Concertante, Op.125",
+    "ko": "신포니아 콘체르탄테 작품 125"
+   },
+   "part": "2악장",
+   "performers": [
+    {
+     "name": "장한나 / 안토니오 파파노",
+     "en": "Han-Na Chang",
+     "year": null
+    },
+    {
+     "name": "므스티슬라프 로스트로포비치",
+     "en": "Mstislav Rostropovich",
+     "year": null
+    }
+   ],
+   "tags": [
+    "첼로",
+    "협주곡"
+   ],
+   "lesson": null,
+   "contrast": "이 곡을 위해 작곡가와 함께 작업한 로스트로포비치와, 그 제자 장한나.",
+   "listen": "첼로가 높은 음역에서 빠르게 몰아치는 첫 부분과 가운데 서정 선율의 음색."
+  },
+  {
+   "id": "debussy-faune",
+   "genre": "classical",
+   "composer": {
+    "en": "Debussy",
+    "ko": "드뷔시"
+   },
+   "work": {
+    "en": "Prélude à l'après-midi d'un faune",
+    "ko": "목신의 오후에의 전주곡"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "헤르베르트 폰 카라얀 / 베를린 필",
+     "en": "Herbert von Karajan",
+     "year": null
+    },
+    {
+     "name": "피에르 불레즈 / 클리블랜드",
+     "en": "Pierre Boulez",
+     "year": null
+    }
+   ],
+   "tags": [
+    "관현악"
+   ],
+   "lesson": null,
+   "contrast": "따뜻하게 번지는 카라얀과, 투명하고 정밀한 불레즈.",
+   "listen": "플루트 독주가 반음계 선율을 꺼내는 첫 마디와 하프 글리산도 뒤 호른의 울림."
+  },
+  {
+   "id": "ravel-daphnis-lever",
+   "genre": "classical",
+   "composer": {
+    "en": "Ravel",
+    "ko": "라벨"
+   },
+   "work": {
+    "en": "Daphnis et Chloé",
+    "ko": "다프니스와 클로에"
+   },
+   "part": "해돋이",
+   "performers": [
+    {
+     "name": "샤를 뮌슈 / 보스턴 교향악단",
+     "en": "Charles Munch",
+     "year": null
+    },
+    {
+     "name": "피에르 불레즈 / 베를린 필",
+     "en": "Pierre Boulez",
+     "year": null
+    }
+   ],
+   "tags": [
+    "관현악",
+    "발레",
+    "합창"
+   ],
+   "lesson": null,
+   "contrast": "열띠고 뜨겁게 솟는 뮌슈와, 소리 층을 하나하나 드러내는 불레즈.",
+   "listen": "목관이 새소리처럼 흐르는 위로 낮은 현이 해 뜨는 선율을 부르는 처음 부분."
+  },
+  {
+   "id": "stravinsky-rite-intro",
+   "genre": "classical",
+   "composer": {
+    "en": "Stravinsky",
+    "ko": "스트라빈스키"
+   },
+   "work": {
+    "en": "The Rite of Spring",
+    "ko": "봄의 제전"
+   },
+   "part": "서주와 봄의 징조",
+   "performers": [
+    {
+     "name": "이고르 스트라빈스키 (직접 지휘)",
+     "en": "Igor Stravinsky",
+     "year": null
+    },
+    {
+     "name": "레너드 번스타인 / 뉴욕 필",
+     "en": "Leonard Bernstein",
+     "year": 1958
+    }
+   ],
+   "tags": [
+    "관현악",
+    "발레",
+    "작곡자 vs 해석"
+   ],
+   "lesson": null,
+   "contrast": "작곡자가 지휘한 건조하고 정확한 판과, 거칠고 원시적인 힘을 살린 번스타인.",
+   "listen": "높은 바순 독주의 첫 음색과, 현이 엇박으로 내리치는 봄의 징조의 세기."
+  },
+  {
+   "id": "puccini-e-lucevan",
+   "genre": "classical",
+   "composer": {
+    "en": "Puccini",
+    "ko": "푸치니"
+   },
+   "work": {
+    "en": "Tosca: E lucevan le stelle",
+    "ko": "토스카: 별은 빛나건만"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "주세페 디 스테파노 / 데 사바타",
+     "en": "Giuseppe Di Stefano",
+     "year": 1953
+    },
+    {
+     "name": "루치아노 파바로티",
+     "en": "Luciano Pavarotti",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "오페라"
+   ],
+   "lesson": null,
+   "contrast": "말하듯 흐느끼며 부르는 디 스테파노와, 밝고 넓게 뻗는 파바로티.",
+   "listen": "클라리넷 서주 뒤 노래가 시작되는 첫 부분과, 끝 '삶을 이토록 사랑한 적 없었네'의 절정."
+  },
+  {
+   "id": "mozart-requiem-introitus",
+   "genre": "classical",
+   "composer": {
+    "en": "Mozart",
+    "ko": "모차르트"
+   },
+   "work": {
+    "en": "Requiem, K.626",
+    "ko": "레퀴엠 K.626"
+   },
+   "part": "입당송",
+   "performers": [
+    {
+     "name": "헤르베르트 폰 카라얀 / 베를린 필",
+     "en": "Herbert von Karajan",
+     "year": null
+    },
+    {
+     "name": "테오도르 쿠렌치스 / 무지카에테르나",
+     "en": "Teodor Currentzis",
+     "year": 2010
+    }
+   ],
+   "tags": [
+    "성악",
+    "합창",
+    "시대악기 해석"
+   ],
+   "lesson": null,
+   "contrast": "느리고 두꺼운 대편성의 카라얀과, 셈여림을 극단으로 벌린 시대악기 쿠렌치스.",
+   "listen": "바셋 호른과 바순의 어두운 서주 뒤 트롬본과 합창이 들어오는 대목."
+  },
+  {
+   "id": "rachmaninoff-prelude-op23-5",
+   "genre": "classical",
+   "composer": {
+    "en": "Rachmaninoff",
+    "ko": "라흐마니노프"
+   },
+   "work": {
+    "en": "Prelude in G minor, Op.23 No.5",
+    "ko": "전주곡 사단조 작품 23의 5"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "세르게이 라흐마니노프",
+     "en": "Sergei Rachmaninoff",
+     "year": null
+    },
+    {
+     "name": "스뱌토슬라프 리히터",
+     "en": "Sviatoslav Richter",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주",
+    "작곡자 vs 해석"
+   ],
+   "lesson": null,
+   "contrast": "작곡자 자신의 빠르고 단단한 행진과, 무겁고 극적인 리히터.",
+   "listen": "행진 리듬의 첫 부분 빠르기와 가운데 서정 부분으로 넘어갈 때의 대비."
+  },
+  {
+   "id": "bach-jesu-joy",
+   "genre": "classical",
+   "composer": {
+    "en": "J. S. Bach",
+    "ko": "바흐"
+   },
+   "work": {
+    "en": "Cantata BWV147: Jesu, Joy of Man's Desiring",
+    "ko": "칸타타 147번: 예수는 나의 기쁨"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "마이러 헤스 (피아노 편곡)",
+     "en": "Myra Hess",
+     "year": null
+    },
+    {
+     "name": "카를 리히터 (합창과 관현악 원곡)",
+     "en": "Karl Richter",
+     "year": null
+    }
+   ],
+   "tags": [
+    "성악",
+    "합창",
+    "피아노",
+    "편곡",
+    "편성 비교"
+   ],
+   "lesson": null,
+   "contrast": "피아니스트가 직접 옮긴 피아노판과, 합창이 코랄을 부르는 원래 칸타타판.",
+   "listen": "셋잇단 반주 선율 사이로 코랄 선율이 들어오는 대목을 피아노와 합창이 어떻게 다르게 들려주는지."
+  },
+  {
+   "id": "chopin-barcarolle",
+   "genre": "classical",
+   "composer": {
+    "en": "Chopin",
+    "ko": "쇼팽"
+   },
+   "work": {
+    "en": "Barcarolle in F-sharp major, Op.60",
+    "ko": "뱃노래 올림바장조 작품 60"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "알프레드 코르토",
+     "en": "Alfred Cortot",
+     "year": null
+    },
+    {
+     "name": "크리스티안 지메르만",
+     "en": "Krystian Zimerman",
+     "year": null
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주"
+   ],
+   "lesson": null,
+   "contrast": "박을 자유롭게 늘이는 옛 방식의 코르토와, 치밀하게 다듬은 지메르만.",
+   "listen": "왼손 뱃노래 리듬 위로 오른손 겹음 선율이 처음 나오는 대목의 흔들림."
+  },
+  {
+   "id": "saint-saens-danse-macabre",
+   "genre": "classical",
+   "composer": {
+    "en": "Saint-Saëns",
+    "ko": "생상스"
+   },
+   "work": {
+    "en": "Danse macabre, Op.40",
+    "ko": "죽음의 무도 작품 40"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "블라디미르 호로비츠 (리스트와 호로비츠 피아노 편곡)",
+     "en": "Vladimir Horowitz",
+     "year": null
+    },
+    {
+     "name": "샤를 뒤투아 / 필하모니아",
+     "en": "Charles Dutoit Philharmonia",
+     "year": 1980
+    }
+   ],
+   "tags": [
+    "피아노",
+    "관현악",
+    "편곡",
+    "편성 비교"
+   ],
+   "lesson": null,
+   "contrast": "피아노 한 대로 옮긴 화려한 편곡판과, 독주 바이올린이 들어간 관현악 원곡.",
+   "listen": "자정을 알리는 열두 번 소리 뒤 일부러 어긋나게 조율한 바이올린 화음이 나오는 대목."
+  },
+  {
    "id": "round-midnight",
    "genre": "jazz",
    "composer": {
@@ -5792,6 +10666,689 @@
    "lesson": null,
    "contrast": "베시 스미스의 노래에 젊은 암스트롱이 코넷으로 답하는 초기판과, 30년 뒤 암스트롱이 직접 이끈 밴드판.",
    "listen": "노래 한 줄 뒤 코넷이나 트럼펫이 답하는 대목의 소리와 빠르기."
+  },
+  {
+   "id": "summertime-bechet-coltrane",
+   "genre": "jazz",
+   "composer": {
+    "en": "George Gershwin",
+    "ko": "거슈윈"
+   },
+   "work": {
+    "en": "Summertime",
+    "ko": "서머타임"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "시드니 베셰",
+     "en": "Sidney Bechet",
+     "year": 1939
+    },
+    {
+     "name": "존 콜트레인 (My Favorite Things)",
+     "en": "John Coltrane",
+     "year": 1960
+    }
+   ],
+   "tags": [
+    "스탠더드",
+    "발라드"
+   ],
+   "lesson": null,
+   "contrast": "소프라노 색소폰으로 블루스처럼 길게 우는 베셰와, 빠른 템포로 화성을 쪼개 달리는 콜트레인.",
+   "listen": "주제 선율을 처음 부는 대목의 빠르기와 색소폰 비브라토."
+  },
+  {
+   "id": "autumn-leaves-cole-jarrett",
+   "genre": "jazz",
+   "composer": {
+    "en": "Joseph Kosma",
+    "ko": "조제프 코스마"
+   },
+   "work": {
+    "en": "Autumn Leaves",
+    "ko": "고엽"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "냇 킹 콜 (노래)",
+     "en": "Nat King Cole",
+     "year": null
+    },
+    {
+     "name": "키스 재럿 트리오 (Still Live 실황)",
+     "en": "Keith Jarrett Trio",
+     "year": 1986
+    }
+   ],
+   "tags": [
+    "스탠더드",
+    "보컬",
+    "실황"
+   ],
+   "lesson": null,
+   "contrast": "현악 반주로 짧고 부드럽게 부르는 냇 킹 콜과, 길게 즉흥을 펼친 피아노 트리오 실황.",
+   "listen": "주제가 처음 나오는 대목의 빠르기와, 재럿판에서 주제 뒤 즉흥으로 넘어가는 순간."
+  },
+  {
+   "id": "god-bless-the-child",
+   "genre": "jazz",
+   "composer": {
+    "en": "Billie Holiday",
+    "ko": "빌리 홀리데이"
+   },
+   "work": {
+    "en": "God Bless the Child",
+    "ko": "갓 블레스 더 차일드"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "빌리 홀리데이 (노래)",
+     "en": "Billie Holiday",
+     "year": 1941
+    },
+    {
+     "name": "소니 롤린스 (The Bridge)",
+     "en": "Sonny Rollins",
+     "year": 1962
+    }
+   ],
+   "tags": [
+    "발라드",
+    "보컬",
+    "작곡자 vs 해석"
+   ],
+   "lesson": null,
+   "contrast": "작곡자이기도 한 빌리 홀리데이의 노래와, 테너 색소폰과 기타로 옮긴 롤린스의 연주판.",
+   "listen": "첫 주제를 목소리와 테너가 각각 얼마나 늦게 박에 얹는지."
+  },
+  {
+   "id": "embraceable-you-takes",
+   "genre": "jazz",
+   "composer": {
+    "en": "George Gershwin",
+    "ko": "거슈윈"
+   },
+   "work": {
+    "en": "Embraceable You",
+    "ko": "임브레이서블 유"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "찰리 파커 (테이크 A)",
+     "en": "Charlie Parker take A",
+     "year": 1947
+    },
+    {
+     "name": "찰리 파커 (테이크 B)",
+     "en": "Charlie Parker take B",
+     "year": 1947
+    }
+   ],
+   "tags": [
+    "발라드",
+    "비밥",
+    "같은 연주자"
+   ],
+   "lesson": null,
+   "contrast": "같은 날 같은 밴드가 연달아 녹음한 두 테이크로, 즉흥이 얼마나 달라지는지 듣는 비교.",
+   "listen": "피아노 도입 뒤 파커가 원래 선율 대신 꺼내는 첫 즉흥 동기가 두 테이크에서 어떻게 다른지."
+  },
+  {
+   "id": "over-the-rainbow",
+   "genre": "jazz",
+   "composer": {
+    "en": "Harold Arlen",
+    "ko": "해럴드 알런"
+   },
+   "work": {
+    "en": "Over the Rainbow",
+    "ko": "오버 더 레인보우"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "주디 갈런드 (영화 오즈의 마법사)",
+     "en": "Judy Garland",
+     "year": 1939
+    },
+    {
+     "name": "키스 재럿 (라 스칼라 실황 앙코르)",
+     "en": "Keith Jarrett",
+     "year": 1995
+    }
+   ],
+   "tags": [
+    "발라드",
+    "보컬",
+    "실황"
+   ],
+   "lesson": null,
+   "contrast": "영화 속 노래 원곡과, 즉흥 연주회 끝에 피아노 혼자 친 앙코르.",
+   "listen": "첫 '무지개 너머'의 옥타브 도약을 목소리와 피아노가 어떻게 그리는지."
+  },
+  {
+   "id": "desafinado",
+   "genre": "jazz",
+   "composer": {
+    "en": "Antônio Carlos Jobim",
+    "ko": "안토니우 카를루스 조빙"
+   },
+   "work": {
+    "en": "Desafinado",
+    "ko": "데사피나두"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "주앙 지우베르투",
+     "en": "João Gilberto",
+     "year": 1959
+    },
+    {
+     "name": "스탄 게츠 & 찰리 버드 (Jazz Samba)",
+     "en": "Stan Getz Charlie Byrd",
+     "year": 1962
+    }
+   ],
+   "tags": [
+    "보사노바"
+   ],
+   "lesson": null,
+   "contrast": "속삭이는 목소리와 기타의 브라질 원판과, 테너 색소폰이 선율을 부르는 미국 재즈판.",
+   "listen": "기타 리듬 위로 첫 선율이 나오는 대목의 목소리와 색소폰 음색."
+  },
+  {
+   "id": "in-a-silent-way",
+   "genre": "jazz",
+   "composer": {
+    "en": "Joe Zawinul",
+    "ko": "조 자비눌"
+   },
+   "work": {
+    "en": "In a Silent Way",
+    "ko": "인 어 사일런트 웨이"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "마일스 데이비스",
+     "en": "Miles Davis",
+     "year": 1969
+    },
+    {
+     "name": "조 자비눌 (Zawinul)",
+     "en": "Joe Zawinul",
+     "year": 1971
+    }
+   ],
+   "tags": [
+    "퓨전",
+    "작곡자 vs 해석"
+   ],
+   "lesson": null,
+   "contrast": "편곡을 덜어 내 고요한 선율만 남긴 마일스판과, 작곡자가 원래 구상대로 도입을 살려 다시 녹음한 판.",
+   "listen": "전자 피아노와 기타 위로 주제 선율이 처음 나오는 대목의 편성."
+  },
+  {
+   "id": "mood-indigo",
+   "genre": "jazz",
+   "composer": {
+    "en": "Duke Ellington",
+    "ko": "듀크 엘링턴"
+   },
+   "work": {
+    "en": "Mood Indigo",
+    "ko": "무드 인디고"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "듀크 엘링턴 오케스트라",
+     "en": "Duke Ellington Orchestra",
+     "year": 1930
+    },
+    {
+     "name": "니나 시몬 (Little Girl Blue)",
+     "en": "Nina Simone",
+     "year": null
+    }
+   ],
+   "tags": [
+    "스탠더드",
+    "보컬",
+    "작곡자 vs 해석"
+   ],
+   "lesson": null,
+   "contrast": "뮤트 트럼펫, 트롬본, 클라리넷을 겹친 원판과, 피아노 트리오와 노래로 가볍게 스윙한 니나 시몬판.",
+   "listen": "첫 주제의 악기 편성과 빠르기."
+  },
+  {
+   "id": "lover-man",
+   "genre": "jazz",
+   "composer": {
+    "en": "Jimmy Davis",
+    "ko": "지미 데이비스"
+   },
+   "work": {
+    "en": "Lover Man",
+    "ko": "러버 맨"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "빌리 홀리데이",
+     "en": "Billie Holiday",
+     "year": 1944
+    },
+    {
+     "name": "찰리 파커",
+     "en": "Charlie Parker",
+     "year": 1946
+    }
+   ],
+   "tags": [
+    "발라드",
+    "보컬",
+    "비밥"
+   ],
+   "lesson": null,
+   "contrast": "현악 반주 위 빌리 홀리데이의 노래와, 몸이 무너지기 직전의 파커가 위태롭게 분 판.",
+   "listen": "첫 주제를 시작하는 대목의 음정과 박 감각."
+  },
+  {
+   "id": "donna-lee",
+   "genre": "jazz",
+   "composer": {
+    "en": "Charlie Parker",
+    "ko": "찰리 파커"
+   },
+   "work": {
+    "en": "Donna Lee",
+    "ko": "도나 리"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "찰리 파커 5중주단",
+     "en": "Charlie Parker Quintet",
+     "year": 1947
+    },
+    {
+     "name": "자코 패스토리어스 (일렉트릭 베이스)",
+     "en": "Jaco Pastorius",
+     "year": 1975
+    }
+   ],
+   "tags": [
+    "비밥",
+    "작곡자 vs 해석",
+    "편성 비교"
+   ],
+   "lesson": null,
+   "contrast": "알토 색소폰과 트럼펫이 빠르게 달리는 비밥 원곡과, 같은 선율을 프렛 없는 베이스와 콩가만으로 친 판.",
+   "listen": "빠른 주제 선율을 색소폰과 베이스가 각각 얼마나 또렷하게 내는지."
+  },
+  {
+   "id": "afro-blue",
+   "genre": "jazz",
+   "composer": {
+    "en": "Mongo Santamaría",
+    "ko": "몽고 산타마리아"
+   },
+   "work": {
+    "en": "Afro Blue",
+    "ko": "아프로 블루"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "몽고 산타마리아",
+     "en": "Mongo Santamaría",
+     "year": 1959
+    },
+    {
+     "name": "존 콜트레인 4중주단 (버드랜드 실황)",
+     "en": "John Coltrane Quartet",
+     "year": 1963
+    }
+   ],
+   "tags": [
+    "라틴",
+    "실황",
+    "작곡자 vs 해석"
+   ],
+   "lesson": null,
+   "contrast": "타악기 중심의 라틴 재즈 원곡과, 소프라노 색소폰으로 격하게 펼친 콜트레인 실황.",
+   "listen": "3박과 2박이 겹치는 리듬 위로 주제가 처음 나오는 대목."
+  },
+  {
+   "id": "aint-misbehavin",
+   "genre": "jazz",
+   "composer": {
+    "en": "Fats Waller",
+    "ko": "패츠 월러"
+   },
+   "work": {
+    "en": "Ain't Misbehavin'",
+    "ko": "에인트 미스비헤이빈"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "패츠 월러 (피아노 독주)",
+     "en": "Fats Waller",
+     "year": 1929
+    },
+    {
+     "name": "루이 암스트롱",
+     "en": "Louis Armstrong",
+     "year": 1929
+    }
+   ],
+   "tags": [
+    "스탠더드",
+    "스윙",
+    "작곡자 vs 해석"
+   ],
+   "lesson": null,
+   "contrast": "작곡자의 스트라이드 피아노 독주와, 같은 해 트럼펫과 노래로 부른 암스트롱.",
+   "listen": "주제가 처음 나올 때 왼손 반주와 트럼펫이 박을 얼마나 뒤로 당기는지."
+  },
+  {
+   "id": "round-midnight-monk-solo",
+   "genre": "jazz",
+   "composer": {
+    "en": "Thelonious Monk",
+    "ko": "델로니어스 몽크"
+   },
+   "work": {
+    "en": "'Round Midnight",
+    "ko": "라운드 미드나잇"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "델로니어스 몽크 (첫 녹음)",
+     "en": "Thelonious Monk",
+     "year": 1947
+    },
+    {
+     "name": "델로니어스 몽크 (솔로 피아노)",
+     "en": "Thelonious Monk",
+     "year": 1957
+    }
+   ],
+   "tags": [
+    "발라드",
+    "같은 연주자"
+   ],
+   "lesson": null,
+   "contrast": "밴드와 함께한 작곡자의 첫 녹음과, 10년 뒤 혼자 느리게 친 솔로 피아노판.",
+   "listen": "첫 주제 선율의 빠르기와 화음 사이 침묵의 길이."
+  },
+  {
+   "id": "all-blues",
+   "genre": "jazz",
+   "composer": {
+    "en": "Miles Davis",
+    "ko": "마일스 데이비스"
+   },
+   "work": {
+    "en": "All Blues",
+    "ko": "올 블루스"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "마일스 데이비스 (Kind of Blue)",
+     "en": "Miles Davis",
+     "year": 1959
+    },
+    {
+     "name": "마일스 데이비스 (실황)",
+     "en": "Miles Davis live",
+     "year": 1964
+    }
+   ],
+   "tags": [
+    "모달",
+    "같은 연주자",
+    "실황"
+   ],
+   "lesson": null,
+   "contrast": "느긋한 3박 스튜디오 원곡과, 젊은 리듬 섹션과 더 빠르고 날카롭게 간 실황.",
+   "listen": "베이스와 피아노가 6/8 리듬을 깔고 주제가 나오는 처음 부분의 빠르기."
+  },
+  {
+   "id": "walkin",
+   "genre": "jazz",
+   "composer": {
+    "en": "Richard Carpenter",
+    "ko": "리처드 카펜터"
+   },
+   "work": {
+    "en": "Walkin'",
+    "ko": "워킨"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "마일스 데이비스 (스튜디오)",
+     "en": "Miles Davis",
+     "year": 1954
+    },
+    {
+     "name": "마일스 데이비스 (Four & More 실황)",
+     "en": "Miles Davis live",
+     "year": 1964
+    }
+   ],
+   "tags": [
+    "하드밥",
+    "같은 연주자",
+    "실황"
+   ],
+   "lesson": null,
+   "contrast": "느긋하게 걷는 스튜디오 블루스와, 10년 뒤 질주하듯 빨라진 실황.",
+   "listen": "주제 블루스를 처음 부는 대목의 빠르기."
+  },
+  {
+   "id": "lullaby-of-birdland",
+   "genre": "jazz",
+   "composer": {
+    "en": "George Shearing",
+    "ko": "조지 시어링"
+   },
+   "work": {
+    "en": "Lullaby of Birdland",
+    "ko": "럴러바이 오브 버드랜드"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "조지 시어링 5중주단",
+     "en": "George Shearing Quintet",
+     "year": 1952
+    },
+    {
+     "name": "세라 본 & 클리퍼드 브라운",
+     "en": "Sarah Vaughan Clifford Brown",
+     "year": 1954
+    }
+   ],
+   "tags": [
+    "스탠더드",
+    "보컬",
+    "작곡자 vs 해석"
+   ],
+   "lesson": null,
+   "contrast": "피아노와 비브라폰이 함께 선율을 부르는 작곡자 원판과, 세라 본의 노래와 스캣판.",
+   "listen": "첫 주제 선율의 편성과 노래판 뒤쪽 스캣 부분."
+  },
+  {
+   "id": "tea-for-two",
+   "genre": "jazz",
+   "composer": {
+    "en": "Vincent Youmans",
+    "ko": "빈센트 유먼스"
+   },
+   "work": {
+    "en": "Tea for Two",
+    "ko": "티 포 투"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "아트 테이텀 (솔로 피아노)",
+     "en": "Art Tatum",
+     "year": 1933
+    },
+    {
+     "name": "델로니어스 몽크 (Criss-Cross)",
+     "en": "Thelonious Monk",
+     "year": 1963
+    }
+   ],
+   "tags": [
+    "스탠더드"
+   ],
+   "lesson": null,
+   "contrast": "화려한 음을 쏟아 내는 테이텀의 솔로 피아노와, 각지고 엇박으로 비튼 몽크.",
+   "listen": "첫 주제를 원래 선율대로 치는지, 비틀어 치는지."
+  },
+  {
+   "id": "stardust",
+   "genre": "jazz",
+   "composer": {
+    "en": "Hoagy Carmichael",
+    "ko": "호기 카마이클"
+   },
+   "work": {
+    "en": "Stardust",
+    "ko": "스타더스트"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "루이 암스트롱",
+     "en": "Louis Armstrong",
+     "year": 1931
+    },
+    {
+     "name": "냇 킹 콜 (Love Is the Thing)",
+     "en": "Nat King Cole",
+     "year": 1957
+    }
+   ],
+   "tags": [
+    "발라드",
+    "보컬"
+   ],
+   "lesson": null,
+   "contrast": "가사를 자유롭게 바꿔 부르는 암스트롱과, 현악 반주 위로 고르게 부르는 냇 킹 콜.",
+   "listen": "첫 절을 부르는 목소리가 원래 선율에서 얼마나 벗어나는지."
+  },
+  {
+   "id": "georgia-on-my-mind",
+   "genre": "jazz",
+   "composer": {
+    "en": "Hoagy Carmichael",
+    "ko": "호기 카마이클"
+   },
+   "work": {
+    "en": "Georgia on My Mind",
+    "ko": "조지아 온 마이 마인드"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "호기 카마이클 오케스트라",
+     "en": "Hoagy Carmichael",
+     "year": 1930
+    },
+    {
+     "name": "레이 찰스",
+     "en": "Ray Charles",
+     "year": 1960
+    }
+   ],
+   "tags": [
+    "발라드",
+    "보컬",
+    "작곡자 vs 해석"
+   ],
+   "lesson": null,
+   "contrast": "작곡자의 가벼운 초기 밴드판과, 현악과 합창 위로 소울처럼 부른 레이 찰스.",
+   "listen": "첫 '조지아'를 부르는 목소리 색과 빠르기."
+  },
+  {
+   "id": "nature-boy",
+   "genre": "jazz",
+   "composer": {
+    "en": "eden ahbez",
+    "ko": "이든 아베즈"
+   },
+   "work": {
+    "en": "Nature Boy",
+    "ko": "네이처 보이"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "냇 킹 콜",
+     "en": "Nat King Cole",
+     "year": 1948
+    },
+    {
+     "name": "존 콜트레인 4중주단",
+     "en": "John Coltrane Quartet",
+     "year": 1965
+    }
+   ],
+   "tags": [
+    "발라드",
+    "보컬"
+   ],
+   "lesson": null,
+   "contrast": "현악 반주의 부드러운 냇 킹 콜 히트판과, 두 대의 베이스 위로 어둡고 자유롭게 펼친 콜트레인.",
+   "listen": "첫 선율의 빠르기와 반주 편성, 콜트레인판에서 박이 흐려지는 정도."
+  },
+  {
+   "id": "hot-house",
+   "genre": "jazz",
+   "composer": {
+    "en": "Cole Porter",
+    "ko": "콜 포터"
+   },
+   "work": {
+    "en": "What Is This Thing Called Love / Hot House",
+    "ko": "왓 이즈 디스 띵 콜드 러브 / 핫 하우스"
+   },
+   "part": "같은 코드",
+   "performers": [
+    {
+     "name": "디지 길레스피 & 찰리 파커 (Hot House)",
+     "en": "Dizzy Gillespie Charlie Parker",
+     "year": 1945
+    },
+    {
+     "name": "클리퍼드 브라운 & 맥스 로치 (What Is This Thing Called Love)",
+     "en": "Clifford Brown Max Roach",
+     "year": null
+    }
+   ],
+   "tags": [
+    "비밥",
+    "스탠더드"
+   ],
+   "lesson": null,
+   "contrast": "스탠더드의 코드 위에 새 선율을 얹은 비밥 곡과, 원래 스탠더드를 빠르게 연주한 판.",
+   "listen": "주제가 끝나고 같은 코드 위 솔로가 시작될 때 두 곡이 같은 뼈대임을 들어 보기."
   }
  ]
 }
