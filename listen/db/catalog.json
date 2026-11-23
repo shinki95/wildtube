@@ -1,0 +1,1394 @@
+{
+ "version": 1,
+ "updated": "2026-11-22",
+ "entries": [
+  {
+   "id": "brahms-op118-2",
+   "genre": "classical",
+   "composer": {
+    "en": "Brahms",
+    "ko": "브람스"
+   },
+   "work": {
+    "en": "Intermezzo in A major, Op.118 No.2",
+    "ko": "인터메초 가장조 작품 118의 2"
+   },
+   "part": "전곡",
+   "performers": [
+    {
+     "name": "머레이 페라이어",
+     "year": 2010,
+     "en": "Murray Perahia"
+    },
+    {
+     "name": "글렌 굴드",
+     "year": 1960,
+     "en": "Glenn Gould"
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주",
+    "말년"
+   ],
+   "lesson": "brahms-op118-2"
+  },
+  {
+   "id": "chopin-nocturne-20",
+   "genre": "classical",
+   "composer": {
+    "en": "Chopin",
+    "ko": "쇼팽"
+   },
+   "work": {
+    "en": "Nocturne No.20 in C-sharp minor, Op. posth.",
+    "ko": "녹턴 20번 올림다단조 (유작)"
+   },
+   "part": "전곡",
+   "performers": [
+    {
+     "name": "조성진",
+     "year": 2017,
+     "en": "Seong-Jin Cho"
+    },
+    {
+     "name": "임윤찬",
+     "year": 2023,
+     "en": "Yunchan Lim"
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주",
+    "실황"
+   ],
+   "lesson": "chopin-nocturne-20"
+  },
+  {
+   "id": "wagner-walkure-ride",
+   "genre": "classical",
+   "composer": {
+    "en": "Wagner",
+    "ko": "바그너"
+   },
+   "work": {
+    "en": "Die Walküre: Ride of the Valkyries",
+    "ko": "발퀴레: 발퀴레의 기행"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "게오르그 솔티 / 빈 필",
+     "year": null,
+     "en": "Georg Solti Vienna Philharmonic"
+    },
+    {
+     "name": "헤르베르트 폰 카라얀",
+     "year": null,
+     "en": "Herbert von Karajan"
+    }
+   ],
+   "tags": [
+    "관현악",
+    "오페라"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "bartok-cfo-2",
+   "genre": "classical",
+   "composer": {
+    "en": "Bartók",
+    "ko": "버르토크"
+   },
+   "work": {
+    "en": "Concerto for Orchestra",
+    "ko": "관현악을 위한 협주곡"
+   },
+   "part": "2악장",
+   "performers": [
+    {
+     "name": "게오르그 솔티",
+     "year": null,
+     "en": "Georg Solti"
+    },
+    {
+     "name": "프리츠 라이너",
+     "year": null,
+     "en": "Fritz Reiner"
+    }
+   ],
+   "tags": [
+    "관현악"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "bartok-cfo-3",
+   "genre": "classical",
+   "composer": {
+    "en": "Bartók",
+    "ko": "버르토크"
+   },
+   "work": {
+    "en": "Concerto for Orchestra",
+    "ko": "관현악을 위한 협주곡"
+   },
+   "part": "3악장",
+   "performers": [
+    {
+     "name": "게오르그 솔티",
+     "year": null,
+     "en": "Georg Solti"
+    },
+    {
+     "name": "프리츠 라이너",
+     "year": null,
+     "en": "Fritz Reiner"
+    }
+   ],
+   "tags": [
+    "관현악"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "beethoven-5-1-solti",
+   "genre": "classical",
+   "composer": {
+    "en": "Beethoven",
+    "ko": "베토벤"
+   },
+   "work": {
+    "en": "Symphony No.5",
+    "ko": "교향곡 5번"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "게오르그 솔티",
+     "year": null,
+     "en": "Georg Solti"
+    },
+    {
+     "name": "카를로스 클라이버",
+     "year": null,
+     "en": "Carlos Kleiber"
+    }
+   ],
+   "tags": [
+    "교향곡"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "beethoven-5-1-harnoncourt",
+   "genre": "classical",
+   "composer": {
+    "en": "Beethoven",
+    "ko": "베토벤"
+   },
+   "work": {
+    "en": "Symphony No.5",
+    "ko": "교향곡 5번"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "니콜라우스 아르농쿠르",
+     "year": null,
+     "en": "Nikolaus Harnoncourt"
+    },
+    {
+     "name": "카를로스 클라이버",
+     "year": null,
+     "en": "Carlos Kleiber"
+    }
+   ],
+   "tags": [
+    "교향곡",
+    "시대악기 해석"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "mahler-5-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Mahler",
+    "ko": "말러"
+   },
+   "work": {
+    "en": "Symphony No.5",
+    "ko": "교향곡 5번"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "게오르그 솔티",
+     "year": null,
+     "en": "Georg Solti"
+    },
+    {
+     "name": "존 바비롤리",
+     "year": null,
+     "en": "John Barbirolli"
+    }
+   ],
+   "tags": [
+    "교향곡"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "mahler-5-adagietto",
+   "genre": "classical",
+   "composer": {
+    "en": "Mahler",
+    "ko": "말러"
+   },
+   "work": {
+    "en": "Symphony No.5",
+    "ko": "교향곡 5번"
+   },
+   "part": "4악장 아다지에토",
+   "performers": [
+    {
+     "name": "레너드 번스타인",
+     "year": null,
+     "en": "Leonard Bernstein"
+    },
+    {
+     "name": "리카르도 샤이",
+     "year": null,
+     "en": "Riccardo Chailly"
+    }
+   ],
+   "tags": [
+    "교향곡"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "mahler-5-trumpet",
+   "genre": "classical",
+   "composer": {
+    "en": "Mahler",
+    "ko": "말러"
+   },
+   "work": {
+    "en": "Symphony No.5",
+    "ko": "교향곡 5번"
+   },
+   "part": "1악장 첫 트럼펫 솔로",
+   "performers": [
+    {
+     "name": "게오르그 솔티",
+     "year": null,
+     "en": "Georg Solti"
+    },
+    {
+     "name": "헤르베르트 폰 카라얀",
+     "year": null,
+     "en": "Herbert von Karajan"
+    }
+   ],
+   "tags": [
+    "교향곡",
+    "트럼펫"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "bach-bwv1056-largo",
+   "genre": "classical",
+   "composer": {
+    "en": "J. S. Bach",
+    "ko": "바흐"
+   },
+   "work": {
+    "en": "Keyboard Concerto in F minor, BWV1056",
+    "ko": "건반 협주곡 바단조 BWV1056"
+   },
+   "part": "2악장 라르고",
+   "performers": [
+    {
+     "name": "글렌 굴드",
+     "year": null,
+     "en": "Glenn Gould"
+    },
+    {
+     "name": "트레버 피노크",
+     "year": null,
+     "en": "Trevor Pinnock"
+    }
+   ],
+   "tags": [
+    "건반",
+    "협주곡"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "bach-wtc1-ebm",
+   "genre": "classical",
+   "composer": {
+    "en": "J. S. Bach",
+    "ko": "바흐"
+   },
+   "work": {
+    "en": "Well-Tempered Clavier I: Prelude in E-flat minor",
+    "ko": "평균율 1권 내림마단조 전주곡"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "스뱌토슬라프 리히터",
+     "year": null,
+     "en": "Sviatoslav Richter"
+    },
+    {
+     "name": "글렌 굴드",
+     "year": null,
+     "en": "Glenn Gould"
+    }
+   ],
+   "tags": [
+    "건반",
+    "독주"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "bach-wtc1-bbm",
+   "genre": "classical",
+   "composer": {
+    "en": "J. S. Bach",
+    "ko": "바흐"
+   },
+   "work": {
+    "en": "Well-Tempered Clavier I: B-flat minor",
+    "ko": "평균율 1권 내림나단조"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "안드라스 쉬프",
+     "year": null,
+     "en": "András Schiff"
+    },
+    {
+     "name": "구스타프 레온하르트",
+     "year": null,
+     "en": "Gustav Leonhardt"
+    }
+   ],
+   "tags": [
+    "건반",
+    "독주",
+    "하프시코드"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "bach-wtc2-fm",
+   "genre": "classical",
+   "composer": {
+    "en": "J. S. Bach",
+    "ko": "바흐"
+   },
+   "work": {
+    "en": "Well-Tempered Clavier II: F minor",
+    "ko": "평균율 2권 바단조"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "키스 재럿",
+     "year": null,
+     "en": "Keith Jarrett"
+    },
+    {
+     "name": "스뱌토슬라프 리히터",
+     "year": null,
+     "en": "Sviatoslav Richter"
+    }
+   ],
+   "tags": [
+    "건반",
+    "독주"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "bach-bwv639",
+   "genre": "classical",
+   "composer": {
+    "en": "J. S. Bach",
+    "ko": "바흐"
+   },
+   "work": {
+    "en": "Ich ruf zu dir, Herr Jesu Christ, BWV639",
+    "ko": "주 예수 그리스도여, 당신을 부르나이다 BWV639"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "빌헬름 켐프 (피아노 편곡)",
+     "year": null,
+     "en": "Wilhelm Kempff"
+    },
+    {
+     "name": "톤 코프만 (오르간)",
+     "year": null,
+     "en": "Ton Koopman"
+    }
+   ],
+   "tags": [
+    "건반",
+    "오르간",
+    "편곡"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "bach-bwv82-schlummert",
+   "genre": "classical",
+   "composer": {
+    "en": "J. S. Bach",
+    "ko": "바흐"
+   },
+   "work": {
+    "en": "Cantata BWV82: Schlummert ein",
+    "ko": "칸타타 82번: 잠들어라"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "로레인 헌트 리버슨",
+     "year": null,
+     "en": "Lorraine Hunt Lieberson"
+    },
+    {
+     "name": "디트리히 피셔디스카우",
+     "year": null,
+     "en": "Dietrich Fischer-Dieskau"
+    }
+   ],
+   "tags": [
+    "성악",
+    "칸타타"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "bach-erbarme-dich",
+   "genre": "classical",
+   "composer": {
+    "en": "J. S. Bach",
+    "ko": "바흐"
+   },
+   "work": {
+    "en": "St Matthew Passion: Erbarme dich",
+    "ko": "마태수난곡: 불쌍히 여기소서"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "캐슬린 페리어",
+     "year": null,
+     "en": "Kathleen Ferrier"
+    },
+    {
+     "name": "안드레아스 숄",
+     "year": null,
+     "en": "Andreas Scholl"
+    }
+   ],
+   "tags": [
+    "성악",
+    "수난곡"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "stravinsky-rite-sacrificial",
+   "genre": "classical",
+   "composer": {
+    "en": "Stravinsky",
+    "ko": "스트라빈스키"
+   },
+   "work": {
+    "en": "The Rite of Spring",
+    "ko": "봄의 제전"
+   },
+   "part": "희생의 춤",
+   "performers": [
+    {
+     "name": "피에르 불레즈",
+     "year": null,
+     "en": "Pierre Boulez"
+    },
+    {
+     "name": "에사페카 살로넨",
+     "year": null,
+     "en": "Esa-Pekka Salonen"
+    },
+    {
+     "name": "프랑수아자비에 로트",
+     "year": null,
+     "en": "François-Xavier Roth"
+    }
+   ],
+   "tags": [
+    "관현악",
+    "발레"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "wagner-tristan-prelude",
+   "genre": "classical",
+   "composer": {
+    "en": "Wagner",
+    "ko": "바그너"
+   },
+   "work": {
+    "en": "Tristan und Isolde: Prelude",
+    "ko": "트리스탄과 이졸데 전주곡"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "카를로스 클라이버",
+     "year": null,
+     "en": "Carlos Kleiber"
+    },
+    {
+     "name": "레너드 번스타인",
+     "year": null,
+     "en": "Leonard Bernstein"
+    },
+    {
+     "name": "카를 뵘",
+     "year": null,
+     "en": "Karl Böhm"
+    }
+   ],
+   "tags": [
+    "관현악",
+    "오페라"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "tchaikovsky-6-4",
+   "genre": "classical",
+   "composer": {
+    "en": "Tchaikovsky",
+    "ko": "차이콥스키"
+   },
+   "work": {
+    "en": "Symphony No.6 'Pathétique'",
+    "ko": "교향곡 6번 비창"
+   },
+   "part": "4악장",
+   "performers": [
+    {
+     "name": "레너드 번스타인",
+     "year": null,
+     "en": "Leonard Bernstein"
+    },
+    {
+     "name": "테오도르 쿠렌치스",
+     "year": null,
+     "en": "Teodor Currentzis"
+    }
+   ],
+   "tags": [
+    "교향곡"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "rimsky-scheherazade-3",
+   "genre": "classical",
+   "composer": {
+    "en": "Rimsky-Korsakov",
+    "ko": "림스키코르사코프"
+   },
+   "work": {
+    "en": "Scheherazade",
+    "ko": "세헤라자데"
+   },
+   "part": "3악장",
+   "performers": [
+    {
+     "name": "정명훈",
+     "year": null,
+     "en": "Myung-Whun Chung"
+    },
+    {
+     "name": "키릴 콘드라신",
+     "year": null,
+     "en": "Kirill Kondrashin"
+    }
+   ],
+   "tags": [
+    "관현악"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "brahms-1-1",
+   "genre": "classical",
+   "composer": {
+    "en": "Brahms",
+    "ko": "브람스"
+   },
+   "work": {
+    "en": "Symphony No.1",
+    "ko": "교향곡 1번"
+   },
+   "part": "1악장",
+   "performers": [
+    {
+     "name": "베르나르트 하이팅크",
+     "year": null,
+     "en": "Bernard Haitink"
+    },
+    {
+     "name": "레너드 번스타인",
+     "year": null,
+     "en": "Leonard Bernstein"
+    }
+   ],
+   "tags": [
+    "교향곡"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "schubert-d899-3",
+   "genre": "classical",
+   "composer": {
+    "en": "Schubert",
+    "ko": "슈베르트"
+   },
+   "work": {
+    "en": "Impromptu in G-flat major, D.899 No.3",
+    "ko": "즉흥곡 내림사장조 D.899-3"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "라두 루푸",
+     "year": null,
+     "en": "Radu Lupu"
+    },
+    {
+     "name": "우치다 미쓰코",
+     "year": null,
+     "en": "Mitsuko Uchida"
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "chopin-berceuse",
+   "genre": "classical",
+   "composer": {
+    "en": "Chopin",
+    "ko": "쇼팽"
+   },
+   "work": {
+    "en": "Berceuse, Op.57",
+    "ko": "자장가 작품 57"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "아르투르 루빈스타인",
+     "year": null,
+     "en": "Arthur Rubinstein"
+    },
+    {
+     "name": "알프레드 코르토",
+     "year": null,
+     "en": "Alfred Cortot"
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "schumann-traumerei",
+   "genre": "classical",
+   "composer": {
+    "en": "Schumann",
+    "ko": "슈만"
+   },
+   "work": {
+    "en": "Kinderszenen: Träumerei",
+    "ko": "어린이 정경: 트로이메라이"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "블라디미르 호로비츠",
+     "year": null,
+     "en": "Vladimir Horowitz"
+    },
+    {
+     "name": "마르타 아르헤리치",
+     "year": null,
+     "en": "Martha Argerich"
+    }
+   ],
+   "tags": [
+    "피아노",
+    "독주"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "bach-goldberg-aria",
+   "genre": "classical",
+   "composer": {
+    "en": "J. S. Bach",
+    "ko": "바흐"
+   },
+   "work": {
+    "en": "Goldberg Variations: Aria",
+    "ko": "골드베르크 변주곡: 아리아"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "글렌 굴드",
+     "year": 1955,
+     "en": "Glenn Gould"
+    },
+    {
+     "name": "글렌 굴드",
+     "year": 1981,
+     "en": "Glenn Gould"
+    }
+   ],
+   "tags": [
+    "건반",
+    "같은 연주자"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "brahms-op108-adagio",
+   "genre": "classical",
+   "composer": {
+    "en": "Brahms",
+    "ko": "브람스"
+   },
+   "work": {
+    "en": "Violin Sonata No.3, Op.108",
+    "ko": "바이올린 소나타 3번 작품 108"
+   },
+   "part": "2악장 아다지오",
+   "performers": [
+    {
+     "name": "정경화",
+     "year": null,
+     "en": "Kyung-Wha Chung"
+    },
+    {
+     "name": "이츠하크 펄만",
+     "year": null,
+     "en": "Itzhak Perlman"
+    }
+   ],
+   "tags": [
+    "실내악",
+    "바이올린"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "rachmaninoff-vocalise",
+   "genre": "classical",
+   "composer": {
+    "en": "Rachmaninoff",
+    "ko": "라흐마니노프"
+   },
+   "work": {
+    "en": "Vocalise, Op.34 No.14",
+    "ko": "보칼리제"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "안나 모포",
+     "year": null,
+     "en": "Anna Moffo"
+    },
+    {
+     "name": "세르게이 라흐마니노프 (지휘)",
+     "year": null,
+     "en": "Rachmaninoff Philadelphia"
+    }
+   ],
+   "tags": [
+    "성악",
+    "관현악"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "brahms-pc2-3",
+   "genre": "classical",
+   "composer": {
+    "en": "Brahms",
+    "ko": "브람스"
+   },
+   "work": {
+    "en": "Piano Concerto No.2",
+    "ko": "피아노 협주곡 2번"
+   },
+   "part": "3악장",
+   "performers": [
+    {
+     "name": "에밀 길렐스",
+     "year": null,
+     "en": "Emil Gilels"
+    },
+    {
+     "name": "넬슨 프레이리",
+     "year": null,
+     "en": "Nelson Freire"
+    }
+   ],
+   "tags": [
+    "협주곡",
+    "피아노"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "brahms-op115-adagio",
+   "genre": "classical",
+   "composer": {
+    "en": "Brahms",
+    "ko": "브람스"
+   },
+   "work": {
+    "en": "Clarinet Quintet, Op.115",
+    "ko": "클라리넷 5중주 작품 115"
+   },
+   "part": "2악장 아다지오",
+   "performers": [
+    {
+     "name": "카를 라이스터",
+     "year": null,
+     "en": "Karl Leister"
+    },
+    {
+     "name": "레지널드 켈",
+     "year": null,
+     "en": "Reginald Kell"
+    }
+   ],
+   "tags": [
+    "실내악",
+    "클라리넷",
+    "말년"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "brahms-op91-2",
+   "genre": "classical",
+   "composer": {
+    "en": "Brahms",
+    "ko": "브람스"
+   },
+   "work": {
+    "en": "Geistliches Wiegenlied, Op.91 No.2",
+    "ko": "성스러운 자장가 작품 91의 2"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "재닛 베이커",
+     "year": null,
+     "en": "Janet Baker"
+    },
+    {
+     "name": "앨리스 쿠트",
+     "year": null,
+     "en": "Alice Coote"
+    }
+   ],
+   "tags": [
+    "성악",
+    "가곡"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "brahms-op120-1-andante",
+   "genre": "classical",
+   "composer": {
+    "en": "Brahms",
+    "ko": "브람스"
+   },
+   "work": {
+    "en": "Sonata Op.120 No.1",
+    "ko": "소나타 작품 120의 1"
+   },
+   "part": "2악장 안단테",
+   "performers": [
+    {
+     "name": "클라리넷판",
+     "year": null,
+     "en": "clarinet"
+    },
+    {
+     "name": "비올라판",
+     "year": null,
+     "en": "viola"
+    }
+   ],
+   "tags": [
+    "실내악",
+    "말년",
+    "편성 비교"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "strauss-beim-schlafengehen",
+   "genre": "classical",
+   "composer": {
+    "en": "R. Strauss",
+    "ko": "R. 슈트라우스"
+   },
+   "work": {
+    "en": "Four Last Songs: Beim Schlafengehen",
+    "ko": "네 개의 마지막 노래: 잠들 무렵"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "엘리자베트 슈바르츠코프",
+     "year": null,
+     "en": "Elisabeth Schwarzkopf"
+    },
+    {
+     "name": "제시 노먼",
+     "year": null,
+     "en": "Jessye Norman"
+    }
+   ],
+   "tags": [
+    "성악",
+    "가곡"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "mahler-ich-bin-der-welt",
+   "genre": "classical",
+   "composer": {
+    "en": "Mahler",
+    "ko": "말러"
+   },
+   "work": {
+    "en": "Rückert-Lieder: Ich bin der Welt abhanden gekommen",
+    "ko": "뤼케르트 가곡: 나는 세상에서 잊혀졌네"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "재닛 베이커",
+     "year": null,
+     "en": "Janet Baker"
+    },
+    {
+     "name": "디트리히 피셔디스카우",
+     "year": null,
+     "en": "Dietrich Fischer-Dieskau"
+    }
+   ],
+   "tags": [
+    "성악",
+    "가곡"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "mozart-k581-larghetto",
+   "genre": "classical",
+   "composer": {
+    "en": "Mozart",
+    "ko": "모차르트"
+   },
+   "work": {
+    "en": "Clarinet Quintet, K.581",
+    "ko": "클라리넷 5중주 K.581"
+   },
+   "part": "2악장 라르게토",
+   "performers": [
+    {
+     "name": "자비네 마이어",
+     "year": null,
+     "en": "Sabine Meyer"
+    },
+    {
+     "name": "제인 부스 (바셋 클라리넷)",
+     "year": null,
+     "en": "Jane Booth basset clarinet"
+    }
+   ],
+   "tags": [
+    "실내악",
+    "클라리넷",
+    "시대악기 해석"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "hummel-trumpet-rondo",
+   "genre": "classical",
+   "composer": {
+    "en": "Hummel",
+    "ko": "훔멜"
+   },
+   "work": {
+    "en": "Trumpet Concerto",
+    "ko": "트럼펫 협주곡"
+   },
+   "part": "3악장 론도",
+   "performers": [
+    {
+     "name": "호칸 하르덴베르거",
+     "year": null,
+     "en": "Håkan Hardenberger"
+    },
+    {
+     "name": "앨리슨 발솜",
+     "year": null,
+     "en": "Alison Balsom"
+    }
+   ],
+   "tags": [
+    "협주곡",
+    "트럼펫"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "arutunian-trumpet",
+   "genre": "classical",
+   "composer": {
+    "en": "Arutunian",
+    "ko": "아루투니안"
+   },
+   "work": {
+    "en": "Trumpet Concerto",
+    "ko": "트럼펫 협주곡"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "세르게이 나카리아코프",
+     "year": null,
+     "en": "Sergei Nakariakov"
+    },
+    {
+     "name": "뤼시엔 르노댕 바리",
+     "year": null,
+     "en": "Lucienne Renaudin Vary"
+    }
+   ],
+   "tags": [
+    "협주곡",
+    "트럼펫"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "haydn-trumpet-3",
+   "genre": "classical",
+   "composer": {
+    "en": "Haydn",
+    "ko": "하이든"
+   },
+   "work": {
+    "en": "Trumpet Concerto",
+    "ko": "트럼펫 협주곡"
+   },
+   "part": "3악장",
+   "performers": [
+    {
+     "name": "모리스 앙드레",
+     "year": null,
+     "en": "Maurice André"
+    },
+    {
+     "name": "윈턴 마살리스",
+     "year": null,
+     "en": "Wynton Marsalis"
+    }
+   ],
+   "tags": [
+    "협주곡",
+    "트럼펫"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "round-midnight",
+   "genre": "jazz",
+   "composer": {
+    "en": "Thelonious Monk",
+    "ko": "델로니어스 몽크"
+   },
+   "work": {
+    "en": "'Round Midnight",
+    "ko": "라운드 미드나잇"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "델로니어스 몽크",
+     "year": 1947,
+     "en": "Thelonious Monk"
+    },
+    {
+     "name": "마일스 데이비스 5중주",
+     "year": 1956,
+     "en": "Miles Davis Quintet"
+    }
+   ],
+   "tags": [
+    "발라드",
+    "작곡자 vs 해석"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "body-and-soul",
+   "genre": "jazz",
+   "composer": {
+    "en": "Johnny Green",
+    "ko": "조니 그린"
+   },
+   "work": {
+    "en": "Body and Soul",
+    "ko": "바디 앤 소울"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "콜먼 호킨스",
+     "year": 1939,
+     "en": "Coleman Hawkins"
+    },
+    {
+     "name": "존 콜트레인",
+     "year": 1960,
+     "en": "John Coltrane"
+    }
+   ],
+   "tags": [
+    "테너 색소폰",
+    "발라드"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "autumn-leaves",
+   "genre": "jazz",
+   "composer": {
+    "en": "Joseph Kosma",
+    "ko": "조제프 코스마"
+   },
+   "work": {
+    "en": "Autumn Leaves",
+    "ko": "고엽"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "캐넌볼 애덜리 (마일스 데이비스)",
+     "year": 1958,
+     "en": "Cannonball Adderley Miles Davis"
+    },
+    {
+     "name": "빌 에반스 트리오",
+     "year": 1959,
+     "en": "Bill Evans Trio"
+    }
+   ],
+   "tags": [
+    "스탠더드"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "summertime",
+   "genre": "jazz",
+   "composer": {
+    "en": "George Gershwin",
+    "ko": "거슈윈"
+   },
+   "work": {
+    "en": "Summertime",
+    "ko": "서머타임"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "마일스 데이비스 & 길 에반스",
+     "year": 1958,
+     "en": "Miles Davis Gil Evans"
+    },
+    {
+     "name": "엘라 피츠제럴드 & 루이 암스트롱",
+     "year": 1957,
+     "en": "Ella Fitzgerald Louis Armstrong"
+    }
+   ],
+   "tags": [
+    "스탠더드",
+    "편곡"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "cherokee-koko",
+   "genre": "jazz",
+   "composer": {
+    "en": "Ray Noble",
+    "ko": "레이 노블"
+   },
+   "work": {
+    "en": "Cherokee / Ko-Ko",
+    "ko": "체로키 / 코코"
+   },
+   "part": "같은 코드",
+   "performers": [
+    {
+     "name": "클리포드 브라운 & 맥스 로치",
+     "year": 1955,
+     "en": "Clifford Brown Max Roach"
+    },
+    {
+     "name": "찰리 파커 (Ko-Ko)",
+     "year": 1945,
+     "en": "Charlie Parker"
+    }
+   ],
+   "tags": [
+    "비밥",
+    "빠른 템포"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "night-in-tunisia",
+   "genre": "jazz",
+   "composer": {
+    "en": "Dizzy Gillespie",
+    "ko": "디지 길레스피"
+   },
+   "work": {
+    "en": "A Night in Tunisia",
+    "ko": "튀니지의 밤"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "디지 길레스피",
+     "year": 1946,
+     "en": "Dizzy Gillespie"
+    },
+    {
+     "name": "아트 블레이키 & 재즈 메신저스",
+     "year": 1960,
+     "en": "Art Blakey Jazz Messengers"
+    }
+   ],
+   "tags": [
+    "비밥",
+    "하드밥"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "my-favorite-things",
+   "genre": "jazz",
+   "composer": {
+    "en": "Richard Rodgers",
+    "ko": "리처드 로저스"
+   },
+   "work": {
+    "en": "My Favorite Things",
+    "ko": "마이 페이버릿 싱스"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "존 콜트레인 (스튜디오)",
+     "year": 1960,
+     "en": "John Coltrane"
+    },
+    {
+     "name": "존 콜트레인 (뉴포트 실황)",
+     "year": 1963,
+     "en": "John Coltrane Newport 1963"
+    }
+   ],
+   "tags": [
+    "같은 연주자",
+    "실황"
+   ],
+   "lesson": null
+  },
+  {
+   "id": "stella-by-starlight",
+   "genre": "jazz",
+   "composer": {
+    "en": "Victor Young",
+    "ko": "빅터 영"
+   },
+   "work": {
+    "en": "Stella by Starlight",
+    "ko": "스텔라 바이 스타라이트"
+   },
+   "part": "",
+   "performers": [
+    {
+     "name": "마일스 데이비스",
+     "year": 1958,
+     "en": "Miles Davis"
+    },
+    {
+     "name": "마일스 데이비스 (실황)",
+     "year": 1964,
+     "en": "Miles Davis live"
+    }
+   ],
+   "tags": [
+    "같은 연주자",
+    "실황"
+   ],
+   "lesson": null
+  }
+ ]
+}

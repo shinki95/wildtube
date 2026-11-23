@@ -7,3 +7,6 @@
 
 ## 크롬 확장 (extension/)
 인스타그램·유튜브 홈, 릴스, 쇼츠, 탐색을 열면 야생 피드로 보낸다. 게시물·영상·DM 링크는 그대로 열린다. 팝업에서 10분 통과, 끄기.
+
+## 비교 듣기 (listen.html)
+같은 곡 두 연주를 나란히 듣는 카탈로그. 작곡가·곡·연주자로 찾고, 비교 페이지가 있는 곡은 악보 위치·유튜브 구간 재생·마디 시간 비교까지 본다. 데이터는 `listen/db/`(catalog.json + lessons/*.json), 더하는 법은 `listen/CONTRIBUTING.md`, 유튜브 후보 찾기는 `listen/tools/find_youtube.py`.
