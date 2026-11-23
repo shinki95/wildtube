@@ -282,7 +282,7 @@ function sleeveHTML(e,W){
 /* ---------- 시작 ---------- */
 async function boot(){
   const p=new URLSearchParams(location.search);
-  CAT = await (await fetch(DB+"catalog.json")).json();
+  CAT = await (await fetch(DB+"catalog.json",{cache:"no-cache"})).json();
   ENTS = CAT.entries.slice().sort(cmpE);
   let l=p.get("l"); if (OLD[l]) l=OLD[l];
   st.genre=GENRE[p.get("g")]?p.get("g"):"all"; st.comp=p.get("c")||""; st.q=p.get("q")||""; startAt=p.get("at")||"";
@@ -456,7 +456,7 @@ let rzT; window.addEventListener("resize",()=>{ clearTimeout(rzT); rzT=setTimeou
 
 /* ---------- 비교 페이지 ---------- */
 async function openLesson(id){
-  lk=id; L = await (await fetch(DB+"lessons/"+id+".json")).json();
+  lk=id; L = await (await fetch(DB+"lessons/"+id+".json",{cache:"no-cache"})).json();
   riffleTok++; nodes.clear();
   $("lead").textContent = "악보에서 위치를 보고, 설명을 읽고, 그 부분을 A, B 순서로 듣고, 들은 뒤 정리를 펼쳐 보세요. 녹음은 유튜브 영상을 그대로 연결해 그 구간만 재생해요. A는 늘 남색, B는 늘 적갈색이에요.";
   const lessons = ENTS.filter(e=>e.lesson);
