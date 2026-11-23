@@ -138,6 +138,44 @@ table.pm td:first-child{width:42%}
 .lst div.on{background:#f6e3ad}
 .callout{position:absolute;z-index:10;font:700 8px/1.2 var(--sans);background:#c0392b;color:#fff;border-radius:999px;width:15px;height:15px;display:flex;align-items:center;justify-content:center}
 ol.co{font-size:15px;padding-left:22px}
+.spec{display:grid;grid-template-columns:1fr;gap:8px;margin-top:8px}
+.sp{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 12px}
+.sp .h{font-weight:700}
+.sp .num{font:700 17px/1.3 var(--serif);color:var(--b)}
+.sp .o::before{content:"우리 동작  ";color:var(--sub);font-size:13px;font-weight:700}
+.sp .m{font-size:14px;color:var(--sub)}
+.sp .m::before{content:"메모  ";font-weight:700;font-size:13px}
+.eq{font:15px/1.6 var(--sans);background:#fff8e6;border:1px dashed var(--gold2);border-radius:10px;padding:8px 12px;margin:8px 0;overflow-wrap:anywhere}
+.assume{display:inline-block;font:700 11px/1 var(--sans);background:#efe4cf;color:var(--sub);border-radius:4px;padding:3px 5px;margin-left:4px;vertical-align:1px}
+.reel{border-left:4px solid var(--b);background:var(--card);border-radius:0 12px 12px 0;padding:9px 12px;margin:8px 0}
+/* 3D detail mock */
+.tt3{position:relative;width:100%;aspect-ratio:1/.78;border-radius:9px;background:linear-gradient(180deg,#7d5130,#4b2d19);box-shadow:0 5px 0 #2b190d,0 10px 12px -5px #000a;transform:perspective(260px) rotateX(16deg);transform-origin:50% 100%}
+.tt3 .rec{position:absolute;left:5%;top:7%;width:66%;aspect-ratio:1/.8;border-radius:50%;background:repeating-radial-gradient(#151515 0 1px,#060606 1px 2.5px);box-shadow:0 0 0 3px #c9c9c9,0 0 0 4px #888}
+.tt3 .rec::after{content:attr(data-l);position:absolute;left:32%;top:30%;width:36%;height:40%;border-radius:50%;background:var(--label);display:flex;align-items:center;justify-content:center;text-align:center;font:700 7px/1.05 var(--kserif);color:#2a1a08}
+.tt3 .rec::before{content:"";position:absolute;inset:-7px;border-radius:50%;background:repeating-conic-gradient(#ddd 0 1.5deg,transparent 1.5deg 6deg);-webkit-mask:radial-gradient(closest-side,transparent 93%,#000 94%);mask:radial-gradient(closest-side,transparent 93%,#000 94%)}
+.tt3 .arm{position:absolute;right:20%;top:8%;width:3px;height:62%;background:linear-gradient(90deg,#f2f2f2,#9a9a9a);border-radius:2px;transform-origin:50% 0;transform:rotate(-4deg);box-shadow:2px 3px 2px #0006}
+.tt3 .arm::before{content:"";position:absolute;left:-5px;top:-5px;width:13px;height:13px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#888)}
+.tt3.on .arm{transform:rotate(30deg)}
+.tt3 .cue{position:absolute;right:9%;top:6%;width:9%;height:13%;border-radius:3px;background:#222;color:#ddd;font:700 6.5px/1 var(--sans);display:flex;align-items:flex-end;justify-content:center;padding-bottom:1px}
+.tt3 .pf{position:absolute;right:4%;top:30%;width:9%;height:56%;border-radius:3px;background:#1a1a1a;box-shadow:inset 0 1px 2px #000}
+.tt3 .pf i{position:absolute;left:-15%;width:130%;height:12%;top:44%;background:linear-gradient(180deg,#fff,#bbb);border-radius:2px}
+.tt3 .spd{position:absolute;left:4%;bottom:5%;display:flex;gap:3px}
+.tt3 .spd span{background:#222;color:#ccc;border-radius:3px;font:700 6.5px/1 var(--sans);padding:2px 3px}
+.tt3 .spd span.on{background:var(--label);color:#1d140e}
+.tt3 .ss{position:absolute;left:4%;top:76%;font:700 6px/1 var(--sans);color:#f0e0c0;opacity:.9}
+.tt3.A{outline:2px solid var(--a);outline-offset:-2px}.tt3.B{outline:2px solid var(--b);outline-offset:-2px}
+.row3{display:flex;gap:4px;margin-top:5px}
+.row3 span{flex:1;text-align:center;border-radius:999px;padding:3px 2px;background:#fff9;border:1px solid #fff;font-weight:700;white-space:nowrap;overflow:hidden}
+.row3 span.dk{background:var(--esp);color:#f3e6cc}
+.panel{max-width:330px;margin:10px auto 0;background:#fbf6ecee;border:1px solid #fff;border-radius:14px;padding:8px 10px;box-shadow:0 8px 18px -10px #3a2618;font:12px/1.4 var(--sans)}
+.panel .sl{display:grid;grid-template-columns:96px 1fr 44px;gap:6px;align-items:center;margin:5px 0}
+.panel .bar{height:6px;border-radius:3px;background:#0002;position:relative}
+.panel .bar i{position:absolute;top:-4px;width:14px;height:14px;border-radius:50%;background:linear-gradient(180deg,#fff,#ddd);box-shadow:0 1px 2px #0006}
+.panel .v{text-align:right;font-variant-numeric:tabular-nums;color:var(--sub)}
+.panel .bt2{display:flex;gap:6px;margin-top:6px}
+.panel .bt2 span{flex:1;text-align:center;border-radius:999px;padding:4px 0;border:1px solid var(--line);background:#fff}
+.legend2{max-width:330px;margin:8px auto 0;font-size:14px;padding-left:22px}
+@media (min-width:900px){.spec{grid-template-columns:1fr 1fr}}
 @media (min-width:900px){
   .mocks.three{grid-template-columns:repeat(3,1fr)}
   .mocks.two{grid-template-columns:repeat(2,1fr)}
@@ -154,7 +192,7 @@ ol.co{font-size:15px;padding-left:22px}
 <div class="meta">listen.html 다음 버전을 만들기 전 작동 방식부터 정하는 문서예요. 목업은 그림일 뿐 동작하지 않아요. 기준 데이터는 짝 350개, 비교 페이지 6편이에요.</div>
 
 <nav class="toc"><ol>
-<li><a href="#s1">목적과 쓰는 사람</a></li><li><a href="#s2">사용 사례 7개</a></li><li><a href="#s3">화면 목록과 상태</a></li><li><a href="#s4">작동 규칙표</a></li><li><a href="#s5">턴테이블 영역 3안</a></li><li><a href="#s6">상자 홈과 꺼낸 판</a></li><li><a href="#s7">스타일 원칙</a></li><li><a href="#s8">프리모템</a></li><li><a href="#s9">정해 주실 것</a></li>
+<li><a href="#s1">목적과 쓰는 사람</a></li><li><a href="#s2">사용 사례 7개</a></li><li><a href="#s3">화면 목록과 상태</a></li><li><a href="#s4">작동 규칙표</a></li><li><a href="#s5">턴테이블 영역 3안</a></li><li><a href="#s6">턴테이블을 진짜처럼: 전문 디테일</a></li><li><a href="#s7">상자 홈과 꺼낸 판</a></li><li><a href="#s8">스타일 원칙</a></li><li><a href="#s9">프리모템</a></li><li><a href="#s10">정해 주실 것</a></li><li><a href="#refs">참고 목록</a></li>
 </ol></nav>
 
 <h2 id="s1"><span class="n">1</span>목적과 쓰는 사람</h2>
@@ -206,6 +244,18 @@ ol.co{font-size:15px;padding-left:22px}
  <div class="st"><b>영상 오류</b><div class="see">톤암 올라감, 판 정지, 재생 줄 '영상을 불러오지 못했어요'와 '알려 주세요' 링크</div><div class="tap">다시 시도, 알려 주세요</div></div>
 </div>
 
+<h3>S5 턴테이블 손맛 (6장)</h3>
+<div class="state">
+ <div class="st"><b>판 잡음</b><div class="see">손이 닿은 판이 마찰로 빠르게 느려짐, 영상 일시정지, 판 위에 '놓으면 여기서' 시간 표시</div><div class="tap">돌리기, 놓기</div></div>
+ <div class="st"><b>판 돌리는 중(조그)</b><div class="see">돌린 각도만큼 시간 표시가 앞뒤로(한 바퀴 = 1.8초), 톤암도 그만큼 안팎으로 살짝 이동</div><div class="tap">계속 돌리기, 놓기</div></div>
+ <div class="st"><b>놓음</b><div class="see">그 위치로 이동, 모터가 0.7초 만에 33⅓로 회복, 소리 다시 남</div><div class="tap">기본 재생 상태와 같음</div></div>
+ <div class="st"><b>피치 바뀜</b><div class="see">피치 페이더 위치, '+3.0%' 숫자, 실제 유튜브가 받은 속도(다르면 '대략'), 스트로보 점이 천천히 흐름</div><div class="tap">페이더, 0%로 버튼</div></div>
+ <div class="st"><b>빠르기 맞추기 켜짐</b><div class="see">스위치 켜짐, '맞춘 빠르기: B ×1.03' 같은 표시, 단계에 마디 시간이 없으면 스위치가 흐림('이 단계는 시간표가 없어요')</div><div class="tap">스위치 끄기</div></div>
+ <div class="st"><b>각도 돌리는 중</b><div class="see">턴테이블이 좌우 최대 25°, 위아래 20~60° 안에서 돎, 놓으면 스프링처럼 살짝 지나쳤다가 제자리</div><div class="tap">'처음 각도' 버튼</div></div>
+ <div class="st"><b>설정 패널 펼침</b><div class="see">모터 토크, 브레이크, 톤암 감쇠, 톤암 하강 시간, 피치 범위, 효과음 슬라이더와 숫자, '기본값' 버튼</div><div class="tap">슬라이더, 기본값, 접기</div></div>
+ <div class="st"><b>가벼운 모드</b><div class="see">3D를 못 쓰는 기기·움직임 줄이기 설정·배터리 절약일 때 CSS 입체 그림으로 바뀜, 같은 버튼 그대로</div><div class="tap">기본과 같음(각도 돌리기만 없음)</div></div>
+</div>
+
 <h2 id="s4"><span class="n">4</span>작동 규칙표</h2>
 <p class="note">입력 → 결과 → 화면 변화. 마지막 칸은 키보드·스와이프 같은 덤이고, 덤만으로 되는 기능은 없어요.</p>
 <div class="grp">상자 홈</div>
@@ -226,11 +276,24 @@ ol.co{font-size:15px;padding-left:22px}
  <div class="rule"><div class="k"><span class="A">A 듣기</span> <small>(턴테이블 A 또는 버튼)</small></div><div class="r">지금 읽는 단계의 A 구간 재생</div><div class="v">A 톤암 내려옴, A 판 회전, B 톤암 올라감, B 감속 정지, A 진행 막대 시작</div><div class="x">스페이스: 일시정지/재생</div></div>
  <div class="rule"><div class="k"><span class="B">B 듣기</span></div><div class="r">같은 단계의 B 구간 재생</div><div class="v">위와 거울</div><div class="x">없음</div></div>
  <div class="rule"><div class="k">단계 카드 A/B 구간 버튼</div><div class="r">그 구간 재생</div><div class="v">턴테이블은 위와 같이 반응, 버튼에 금색 테두리(들음). 둘 다 들으면 단계 완료</div><div class="x">완료는 이 기기에 저장</div></div>
- <div class="rule"><div class="k">일시정지 / 이어 듣기</div><div class="r">멈춤/이어서</div><div class="v">판 서서히 멈춤(약 1.5초) / 다시 회전</div><div class="x">스페이스</div></div>
- <div class="rule"><div class="k">A↔B 바꾸기 <small>(U6, 9장에서 결정)</small></div><div class="r">반대 연주의 같은 구간으로</div><div class="v">두 턴테이블 톤암이 동시에 교대</div><div class="x">없음</div></div>
+ <div class="rule"><div class="k">일시정지 / 이어 듣기</div><div class="r">멈춤/이어서</div><div class="v">판 서서히 멈춤(기본 1.0초, 설정에서 바꿈) / 0.7초 만에 다시 33⅓</div><div class="x">스페이스</div></div>
+ <div class="rule"><div class="k">A↔B 바꾸기 <small>(U6, 10장에서 결정)</small></div><div class="r">반대 연주의 같은 구간으로</div><div class="v">두 턴테이블 톤암이 동시에 교대</div><div class="x">없음</div></div>
  <div class="rule"><div class="k">전곡</div><div class="r">처음부터 끝까지</div><div class="v">진행 막대가 전곡 기준</div><div class="x">없음</div></div>
  <div class="rule"><div class="k">들은 뒤 펼치기</div><div class="r">글과 막대그래프</div><div class="v">단계 완료면 처음부터 펼친 채</div><div class="x">없음</div></div>
  <div class="rule"><div class="k">← 상자로 / 다른 비교 칩</div><div class="r">홈 또는 다른 비교</div><div class="v">재생 멈춤, 판 정지</div><div class="x">브라우저 뒤로</div></div>
+</div>
+<div class="grp">턴테이블 손맛 (6장)</div>
+<div class="rules">
+ <div class="rule"><div class="k">판 누르기(잡기)</div><div class="r">영상 일시정지, 판에 손 마찰</div><div class="v">판이 0.2초 안에 거의 멈춤, '놓으면 0:11' 표시</div><div class="x">마우스 누른 채</div></div>
+ <div class="rule"><div class="k">잡은 채 둘레 따라 돌리기</div><div class="r">구간 안에서 앞뒤 찾기(조그)</div><div class="v">각도 → 시간: 한 바퀴 1.8초(피치가 바뀌면 그만큼), 구간 밖으로는 안 나감</div><div class="x">휠: 한 칸 1초</div></div>
+ <div class="rule"><div class="k">놓기</div><div class="r">그 위치로 이동 후 재생</div><div class="v">모터가 시작 시간 설정(기본 0.7초)대로 다시 33⅓, 소리는 판이 제 속도에 닿을 때</div><div class="x">없음</div></div>
+ <div class="rule"><div class="k">큐 레버</div><div class="r">올림: 일시정지 / 내림: 그 자리에서 재생</div><div class="v">톤암이 감쇠 스프링처럼 내려와 살짝 튕기며 앉음(기본 0.8초), 앉는 순간 소리 시작</div><div class="x">스페이스</div></div>
+ <div class="rule"><div class="k">시작/정지 버튼</div><div class="r">모터 켜기/끄기</div><div class="v">켜면 0.7초 만에 33⅓, 끄면 브레이크 설정(기본 1.0초)으로 정지. 톤암이 내려와 있으면 재생/일시정지와 같음</div><div class="x">없음</div></div>
+ <div class="rule"><div class="k">33 / 45 버튼</div><div class="r">45 = 빨리 훑어 듣기(×1.35, 유튜브가 주는 가까운 값)</div><div class="v">회전과 스트로보가 45에 맞춤, 재생 줄에 '빨리 훑기 ×1.25(대략)'. 음정은 유지</div><div class="x">없음</div></div>
+ <div class="rule"><div class="k">피치 페이더</div><div class="r">재생 속도 바꿈(±8% 또는 ±16%)</div><div class="v">판 회전·스트로보가 같이 바뀜, 숫자 표시, 0% 버튼으로 복귀</div><div class="x">페이더 위 휠</div></div>
+ <div class="rule"><div class="k">빠르기 맞추기 스위치</div><div class="r">B를 A 빠르기에(또는 반대로) 맞춤</div><div class="v">그 단계 마디 시간 비율로 속도 자동 설정, 페이더가 그 위치로 움직임, 지원 안 되면 '대략' 또는 흐림</div><div class="x">없음</div></div>
+ <div class="rule"><div class="k">각도: 왼쪽 / 오른쪽 / 처음 각도</div><div class="r">턴테이블을 돌려 봄</div><div class="v">좌우 최대 25°, 놓거나 '처음 각도'면 스프링으로 제자리</div><div class="x">본체 빈 곳 가로 드래그</div></div>
+ <div class="rule"><div class="k">턴테이블 설정 ▾</div><div class="r">패널 펼침/접힘</div><div class="v">슬라이더를 움직이면 바로 다음 시작·정지부터 반영, 이 기기에 저장</div><div class="x">없음</div></div>
 </div>
 
 <h2 id="s5"><span class="n">5</span>턴테이블 영역 3안</h2>
@@ -300,7 +363,95 @@ ol.co{font-size:15px;padding-left:22px}
  </div>
 </div>
 
-<h2 id="s6"><span class="n">6</span>상자 홈과 꺼낸 판</h2>
+<h2 id="s6"><span class="n">6</span>턴테이블을 진짜처럼: 전문 디테일</h2>
+<div class="reel"><b>참고한 것.</b> 3D 캐릭터를 푸딩처럼 말랑하게 만든 웹 장난감: 손으로 이리저리 돌려 보고, 누르면 물리적으로 흔들리고, 말랑함(단단함·내부 감쇠)을 슬라이더로 직접 바꿔요. 배울 점은 세 가지예요. <b>진짜 물리</b>, <b>손으로 만지는 맛</b>, <b>전문가가 쓰는 매개변수를 그대로 보여 주기</b>.</div>
+<p>그래서 턴테이블도 그럴듯한 그림이 아니라 실제 기계처럼 움직이게 해요. 숫자는 일반적인 다이렉트 드라이브 턴테이블 사양에서 가져왔어요(출처는 맨 아래 참고 목록).</p>
+
+<h3>6-1 실제 사양 숫자</h3>
+<div class="spec">
+ <div class="sp"><div class="h">회전수</div><div class="num">33⅓ rpm, 45 rpm</div><div class="o">33⅓ = 초당 200°, 한 바퀴 1.8초. 45 = 초당 270°, 한 바퀴 1.33초</div></div>
+ <div class="sp"><div class="h">정지 → 33⅓ 도달</div><div class="num">0.7초</div><div class="o">기본 시작 시간. 방송용 고급 기계는 0.25초(25° 도는 동안), 이를 설정의 가장 빠른 값으로</div></div>
+ <div class="sp"><div class="h">시작 토크</div><div class="num">0.18 N·m (1.8 kg·cm)</div><div class="o">모터 토크 슬라이더의 기본값. 방송용은 약 0.59 N·m(6 kg·cm)</div></div>
+ <div class="sp"><div class="h">브레이크</div><div class="num">전자 브레이크, 4~5단계 조절</div><div class="o">방송용은 33⅓에서 0.3초(30°) 만에 정지. 우리 기본 1.0초, 범위 0.3~4초, '끔'이면 관성으로 오래 돎</div></div>
+ <div class="sp"><div class="h">피치</div><div class="num">±8%, ±16%</div><div class="o">피치 범위 스위치. 유튜브 재생 속도 0.92~1.08 또는 0.84~1.16</div></div>
+ <div class="sp"><div class="h">플래터</div><div class="num">지름 332 mm, 약 1.8~2 kg</div><div class="o">관성 계산에 씀(6-3). 무거운 방송용 플래터는 관성 380 kg·cm²</div></div>
+ <div class="sp"><div class="h">판</div><div class="num">12인치, 보통 140 g, 무거운 판 180 g</div><div class="o">판 무게 설정(관성 약 5~8% 더함). 기본 180 g</div></div>
+ <div class="sp"><div class="h">회전 흔들림</div><div class="num">0.025% W.R.M.S.</div><div class="o">눈에 보이는 흔들림은 없음. 판은 완전히 고르게 돎</div></div>
+ <div class="sp"><div class="h">톤암</div><div class="num">유효 길이 230 mm, 오프셋 22°, 오버행 15 mm</div><div class="o">3D 모델 비율. 바늘이 바깥 홈 → 안쪽 홈으로 가는 궤적을 진행 막대와 맞춤</div></div>
+ <div class="sp"><div class="h">큐 레버</div><div class="num">'천천히 내려앉음' (시간 수치는 사양에 없음)</div><div class="o">우리 값 0.8초, 감쇠비 0.6(살짝 한 번 튕김) <span class="assume">우리 가정</span></div></div>
+</div>
+
+<h3>6-2 디테일을 우리 동작으로</h3>
+<div class="spec">
+ <div class="sp"><div class="h">3D 모델</div><div class="o">본체 두께(나무 + 금속 테), 플래터 옆면 스트로보 점, 판 홈 반사(빛이 판 위 한곳에 고정되고 홈만 돎), 톤암·헤드셸·카운터웨이트, 큐 레버, 33/45 버튼, 시작/정지, 피치 페이더</div><div class="m">three.js, 비교 페이지에서만 불러옴. 판 홈은 도형이 아니라 텍스처로(가볍게)</div></div>
+ <div class="sp"><div class="h">각도 돌려 보기</div><div class="o">좌우 최대 25°, 위아래 20~60°. 놓으면 스프링(강성 중간, 감쇠비 0.5)으로 살짝 지나쳤다 제자리</div><div class="m">보이는 버튼 '왼쪽 / 오른쪽 / 처음 각도'가 기본, 본체 드래그는 덤</div></div>
+ <div class="sp"><div class="h">플래터 관성</div><div class="o">시작은 모터 토크로 가속, 정지는 브레이크 토크와 마찰로 감속. 시간 상수가 아니라 실제 물리 식으로(6-3)</div><div class="m">판이 무거우면 시작·정지가 조금 느려짐</div></div>
+ <div class="sp"><div class="h">톤암 하강</div><div class="o">감쇠 스프링: 내려와서 살짝 한 번 튕기고 앉음. 앉는 순간 소리 시작</div><div class="m">기본 0.8초, 설정 0.3~2초</div></div>
+ <div class="sp"><div class="h">판 잡기 = 조그 휠</div><div class="o">누르면 손 마찰로 판이 0.2초 안에 거의 멈추고 영상 일시정지. 둘레를 따라 돌리면 각도만큼 구간 안에서 앞뒤로: 시간 = 각도 ÷ (200° × 재생 속도). 놓으면 그 위치로 이동(seekTo) 후 모터가 다시 33⅓</div><div class="m">진짜 스크래치 소리는 유튜브로 불가. 놓을 때 이동만</div></div>
+ <div class="sp"><div class="h">피치 페이더</div><div class="o">위치 → 재생 속도(setPlaybackRate). 유튜브가 실제로 받은 값(onPlaybackRateChange)을 숫자로 보여 주고, 요청과 다르면 '대략'</div><div class="m">스트로보 점이 피치 0%에서만 멈춰 보임(실제 기계처럼 '제 속도' 표시)</div></div>
+ <div class="sp"><div class="h">빠르기 맞추기 (전문가식 비교)</div><div class="o">그 단계의 마디 시간 비율로 B 속도 = B 길이 ÷ A 길이. 예: 브람스 1~48마디 A 118초, B 122초 → B ×1.034(+3.4%). 빠르기 차이를 지우고 소리와 표현 차이만 들음</div><div class="m">학습용 보조 스위치, 기본 꺼짐. 유튜브가 그 속도를 못 주면 가장 가까운 값 + '대략', ±16% 넘으면 못 씀</div></div>
+ <div class="sp"><div class="h">설정 패널 (접힘)</div><div class="o">'턴테이블 설정 ▾': 모터 토크(시작 빠르기 0.25~1.5초), 브레이크(0.3~4초, 끔), 톤암 감쇠(0.3~0.9), 톤암 하강(0.3~2초), 피치 범위 ±8/±16%, 판 무게 140/180 g, 효과음. 슬라이더마다 글자 라벨과 숫자, '기본값' 버튼</div><div class="m">이 기기에만 저장</div></div>
+ <div class="sp"><div class="h">소리 연출</div><div class="o">바늘 앉는 '툭', 판 잡음: 기본 꺼짐. 우리가 만든 짧은 효과음만, 녹음 소리와 섞지 않음(효과음은 따로 작게 나고 녹음 재생에 손대지 않음)</div><div class="m">녹음 위에 잡음을 얹지 않음</div></div>
+</div>
+
+<h3>6-3 물리 식 (구현 기준)</h3>
+<div class="eq">관성 I × 각가속도 = 모터 토크 − 브레이크 토크 − 마찰(c × 각속도) − 손 토크<br>
+플래터 I ≈ ½ × 1.8 kg × (0.166 m)² ≈ 0.025 kg·m², 180 g 판 더하면 약 0.027 kg·m²<br>
+0.18 N·m로 33⅓(초당 3.49 라디안)까지 약 0.5초. 실제 사양 0.7초는 목표 속도에 가까워지면 모터가 힘을 줄이기 때문이라, 토크를 속도에 따라 줄이는 곡선으로 0.7초에 맞춤<br>
+톤암: 감쇠 스프링(감쇠비 0.6, 하강 0.8초). 각도 복귀: 감쇠비 0.5</div>
+<p class="note">검산: 방송용 사양(관성 380 kg·cm², 토크 0.59 N·m)을 같은 식에 넣으면 약 0.23초로, 사양의 0.25초와 맞아요.</p>
+
+<h3>6-4 목업: (다) 안에 3D 디테일을 넣은 모습</h3>
+<div class="mocks two">
+ <div class="mock">
+  <div class="phone" id="mock-3d">
+   <div class="fix" data-h="고정 약 310px (37%)" style="height:38%;padding-top:6%">
+    <div class="decks" style="align-items:flex-start">
+     <div class="deck"><div class="tt3 A on"><div class="rec" data-l="페라이어 2010"></div><div class="arm"></div><div class="cue">큐</div><div class="pf"><i></i></div><div class="spd"><span class="on">33</span><span>45</span></div></div><div class="dbtn A" style="margin-top:4px">A 일시정지<small>피치 +0.0%</small></div><div class="prog"><i></i></div></div>
+     <div class="xf" style="flex-basis:15%"><div class="lb"><span class="A">A</span><span class="B">B</span></div><div class="rail"><i></i></div><div class="sw">바꾸기</div></div>
+     <div class="deck"><div class="tt3 B"><div class="rec" data-l="굴드 1960"></div><div class="arm"></div><div class="cue">큐</div><div class="pf"><i style="top:30%"></i></div><div class="spd"><span class="on">33</span><span>45</span></div></div><div class="dbtn B" style="margin-top:4px">B 듣기<small>피치 +3.4% 맞춤</small></div><div class="prog"><i style="width:0"></i></div></div>
+    </div>
+    <div class="row3"><span class="dk">빠르기 맞추기 켬</span><span>각도 ◀ ▶ 처음</span><span>턴테이블 설정 ▾</span></div>
+    <div class="nowbar"><span class="t">A · 1. 처음 여덟 마디 0:11 / 0:24</span><span class="pp">일시정지</span></div>
+   </div>
+   <div class="half"><span>화면 절반</span></div>
+   <div class="scroll" style="top:39%">
+    <div class="mon" style="width:100%;height:122px">유튜브 영상 354×200<small>고정 영역 바로 아래, 가리지 않음</small></div>
+    <div class="stepcard"><b>1 처음 여덟 마디</b><br>악보 · 설명 · 들을 포인트<div class="ab"><span style="background:var(--a)">A 페라이어 듣기</span><span style="background:var(--b)">B 굴드 듣기</span></div></div>
+   </div>
+   <span class="callout" style="left:38.4%;top:9.6%">1</span>
+   <span class="callout" style="left:17%;top:13.3%">2</span>
+   <span class="callout" style="left:32.6%;top:2.9%">3</span>
+   <span class="callout" style="left:5.5%;top:5.6%">4</span>
+   <span class="callout" style="left:47.7%;top:12.2%">5</span>
+   <span class="callout" style="left:0.3%;top:22.7%">6</span>
+   <span class="callout" style="left:95%;top:22.7%">7</span>
+  </div>
+  <ol class="legend2">
+   <li>피치 페이더(세로, ±8/±16%)</li><li>33 / 45 버튼</li><li>큐 레버(올림 = 일시정지, 내림 = 그 자리 재생)</li><li>판: 누르면 잡기, 둘레 따라 돌리면 조그, 플래터 테두리 스트로보 점</li><li>크로스페이더 + 바꾸기(A↔B)</li><li>빠르기 맞추기 스위치(기본 꺼짐)</li><li>턴테이블 설정(접힘, 누르면 아래로 펼침)</li>
+  </ol>
+ </div>
+ <div class="mock">
+  <h3 style="margin-top:0">설정 패널을 펼친 모습</h3>
+  <div class="panel">
+   <b>턴테이블 설정</b>
+   <div class="sl"><span>모터 토크<br><small>시작 빠르기</small></span><span class="bar"><i style="left:45%"></i></span><span class="v">0.7초</span></div>
+   <div class="sl"><span>브레이크</span><span class="bar"><i style="left:20%"></i></span><span class="v">1.0초</span></div>
+   <div class="sl"><span>톤암 감쇠</span><span class="bar"><i style="left:50%"></i></span><span class="v">0.6</span></div>
+   <div class="sl"><span>톤암 하강</span><span class="bar"><i style="left:28%"></i></span><span class="v">0.8초</span></div>
+   <div class="sl"><span>피치 범위</span><span style="display:flex;gap:4px"><span style="border:1px solid var(--line);border-radius:999px;padding:1px 8px;background:var(--esp);color:#f3e6cc">±8%</span><span style="border:1px solid var(--line);border-radius:999px;padding:1px 8px">±16%</span></span><span></span></div>
+   <div class="sl"><span>판 무게</span><span style="display:flex;gap:4px"><span style="border:1px solid var(--line);border-radius:999px;padding:1px 8px">140 g</span><span style="border:1px solid var(--line);border-radius:999px;padding:1px 8px;background:var(--esp);color:#f3e6cc">180 g</span></span><span></span></div>
+   <div class="sl"><span>효과음</span><span style="display:flex;gap:4px"><span style="border:1px solid var(--line);border-radius:999px;padding:1px 8px;background:var(--esp);color:#f3e6cc">끔</span><span style="border:1px solid var(--line);border-radius:999px;padding:1px 8px">켬</span></span><span></span></div>
+   <div class="bt2"><span>기본값</span><span>접기</span></div>
+  </div>
+  <p class="note" style="max-width:330px;margin:8px auto">설정은 펼치면 고정 영역 아래로 내려와 글 위를 덮지 않고, 접으면 한 줄로 돌아가요.</p>
+ </div>
+</div>
+
+<h3>6-5 성능 예산</h3>
+<div class="box">three.js는 비교 페이지에서만 불러와요. 해상도는 화면 배율 최대 1.5배, 화면 밖이거나 탭이 가려지면 그리기를 멈추고, 재생하지 않을 땐 초당 30번 이하, 재생 중에만 부드럽게 그려요. 3D를 못 쓰거나 느린 기기, 움직임 줄이기 설정에선 CSS 입체 그림(가벼운 모드)으로 바꾸고 버튼과 동작은 그대로예요.</div>
+
+<h2 id="s7"><span class="n">7</span>상자 홈과 꺼낸 판</h2>
 <p class="note">지금 구현된 방향을 정리한 목업이에요. 왼쪽은 기본, 오른쪽은 판을 꺼낸 상태예요.</p>
 <div class="mocks two">
  <div class="mock">
@@ -341,32 +492,59 @@ ol.co{font-size:15px;padding-left:22px}
  </div>
 </div>
 
-<h2 id="s7"><span class="n">7</span>스타일 원칙</h2>
+<h2 id="s8"><span class="n">8</span>스타일 원칙</h2>
 <div class="box"><b>판과 표지는 고풍스럽게.</b> 노란 카르투슈 라벨, 이중 장식 테두리, 세리프 대문자(Cormorant Garamond, Noto Serif KR). 표지 아래 그림은 항목마다 정해지는 추상 무늬. 실제 음반 사진·회사 로고는 쓰지 않아요.</div>
 <div class="box"><b>조작 요소는 리퀴드 글라스.</b> 반투명 패널, 블러와 채도 올림, 얇은 밝은 테두리, 안쪽 하이라이트, 떠 있는 그림자. 눌리면 살짝 들어가고, 손을 올리면 빛이 스쳐요. 블러는 조작 바·칩 묶음·상세 카드·고정 영역에만 쓰고 판에는 쓰지 않아요.</div>
 <div class="box"><b>색 규칙.</b> <span class="tagA">A</span> 늘 남색 <span class="tagB">B</span> 늘 적갈색, A가 먼저·왼쪽. 배경은 크림·나무·금색 안에서 부드러운 그라데이션과 은은한 빛 번짐.</div>
 <div class="box"><b>아이콘과 글자 함께.</b> 이전, 다음, 재생, 일시정지, 별, 유튜브 찾기, 열기는 아이콘 옆에 글자를 늘 보여요. 숨은 제스처만으로 되는 기능은 없어요.</div>
-<div class="box"><b>움직임 시간.</b> 넘기기 0.6초(살짝 튕기는 곡선), 휘리릭 한 장 0.07초, 꺼내기 0.6초(판이 돌며 나옴), 톤암 0.8초, 판 회전 33⅓rpm(한 바퀴 1.8초), 정지 감속 약 1.5초.</div>
+<div class="box"><b>움직임 시간.</b> 넘기기 0.6초(살짝 튕기는 곡선), 휘리릭 한 장 0.07초, 꺼내기 0.6초(판이 돌며 나옴). 턴테이블은 6장의 실제 사양을 따름: 33⅓rpm(한 바퀴 1.8초), 시작 0.7초, 정지 기본 1.0초, 톤암 하강 기본 0.8초.</div>
 <div class="box"><b>움직임 줄이기 설정이면.</b> 넘기기·꺼내기는 바로 바뀌고, 판 회전 대신 '재생 중' 글자와 불빛만, 스치는 빛과 배경 빛 움직임은 끔.</div>
 <div class="box"><b>글자.</b> 본문 16px 이상, 유리 위 본문 대비 4.5:1 이상. 비교 페이지 본문 카드는 유리를 약하게 해서 읽기를 먼저.</div>
 
-<h2 id="s8"><span class="n">8</span>프리모템</h2>
+<h2 id="s9"><span class="n">9</span>프리모템</h2>
 <table class="pm"><thead><tr><th>이렇게 망할 수 있다</th><th>미리 이렇게 막는다</th></tr></thead><tbody>
 <tr><td>폰이 버벅인다(블러를 판 15장과 칩마다 걸어서)</td><td>블러는 화면에 4~5곳만. 판은 가운데 ±7장만 그림. 칩은 묶음 패널 하나에만 블러</td></tr>
 <tr><td>유리 위 글자가 흐려 읽기 어렵다</td><td>유리 바탕 불투명도 70% 이상, 본문 대비 4.5:1 이상 측정. 블러 미지원 브라우저는 불투명 단색으로</td></tr>
-<tr><td>유튜브 규정 위반(영상을 가리거나 너무 작게)</td><td>플레이어는 하나, 200×200 이상, 그 위에 아무것도 덮지 않음. 재생 중 영상이 화면 밖에 오래 있지 않게 하는 안을 고름(5장 (나))</td></tr>
+<tr><td>유튜브 규정 위반(영상을 가리거나 너무 작게)</td><td>플레이어는 하나, 200×200 이상, 그 위에 아무것도 덮지 않음. 폰에선 모니터를 고정 영역 바로 아래에 두고, 넓은 화면에선 두 대 사이에 둠(10장)</td></tr>
 <tr><td>A↔B 같은 위치 전환이 몇 초 어긋난다(구간 안 비례 계산이라 루바토가 반영 안 됨)</td><td>마디 시간표가 있는 파트만 같은 마디로 정확히 전환. 없으면 반대 연주의 그 구간 처음부터. 버튼에 어느 쪽인지 표시</td></tr>
 <tr><td>위 고정 영역이 커서 글 읽기를 방해한다</td><td>고정 영역은 화면 절반 이하(목표 40% 이하). 아래로 읽는 중엔 지금 재생 줄만 남기는 접기 버튼을 둠</td></tr>
 <tr><td>실황 음질·음량 차이를 연주 차이로 오해한다</td><td>단계 설명에 녹음 조건(실황/스튜디오, 연도)을 표시. '소리 크기'는 비교 포인트로 쓰지 않음</td></tr>
 <tr><td>비교 페이지 없는 짝이 많아(350개 중 6편) 실망한다</td><td>금색 표시로 미리 구분, 짝만 있는 판도 '왜 대비되나·여기를 들어 보세요'로 들을 거리 제공, 요청 링크로 다음 편 수요를 모음</td></tr>
 <tr><td>로컬·일부 기기에서 영상이 안 나와 판만 돈다</td><td>영상 오류 상태를 따로 두고, 오류가 오면 톤암을 올리고 판을 멈추고 '알려 주세요' 링크를 보여 줌</td></tr>
+<tr><td>three.js가 무거워 폰이 뜨거워지고 배터리가 닳는다</td><td>비교 페이지에서만 불러옴, 해상도 최대 1.5배, 화면 밖이면 그리기 멈춤, 재생 안 할 땐 초당 30번 이하, 느리면 가벼운 모드로 자동 전환</td></tr>
+<tr><td>판 돌리기와 페이지 스크롤이 부딪친다</td><td>판(원) 위에서만 손가락을 가로챔. 본체·바깥에서 세로로 밀면 그대로 스크롤, 가로로 밀 때만 각도 돌리기</td></tr>
+<tr><td>속도를 바꾸면 음정도 바뀌는 줄 안다(진짜 턴테이블은 음정도 바뀜)</td><td>유튜브와 브라우저는 기본으로 음정을 유지함. 피치 옆에 '빠르기만 바뀌고 음높이는 그대로' 한 줄 안내</td></tr>
+<tr><td>유튜브가 원하는 속도를 안 받는다(지원 값만, 그 밖이면 1 쪽으로 내림)</td><td>getAvailablePlaybackRates로 받을 수 있는 값을 먼저 확인, 가장 가까운 값 + '대략'. 영상을 새로 부르면 속도가 1로 돌아가므로 재생 시작 뒤 다시 적용(일부 브라우저는 재생 전 설정을 무시해 약 0.5초 뒤 적용)</td></tr>
+<tr><td>빠르기 맞추기가 해석의 일부(빠르기 선택)를 지운다</td><td>학습용 보조 스위치, 기본 꺼짐. 켜 있으면 '빠르기 차이를 지운 상태' 표시가 늘 보임, 단계를 넘기면 자동으로 꺼짐</td></tr>
+<tr><td>조그로 옮긴 위치가 몇 초 어긋난다(유튜브 이동은 정확하지 않을 수 있음)</td><td>놓은 뒤 실제 재생 위치를 다시 읽어 시간 표시를 맞추고, 구간 밖으로는 못 나가게 막음</td></tr>
+<tr><td>움직임이 많아 어지럽다</td><td>움직임 줄이기 설정이면 회전·스프링·튕김 끔, '재생 중' 글자와 불빛, 시간 숫자로 대신</td></tr>
 </tbody></table>
 
-<h2 id="s9"><span class="n">9</span>정해 주실 것</h2>
-<div class="pick"><b>1. 턴테이블 영역: (가) / (나) / (다) 중 하나</b><span class="rec">추천 (나)</span>
- <p>이유: 영상이 늘 화면에 보여서 규정 걱정 없이 오래 공부하듯 들을 수 있어요. 판이 작아지는 대신, 바꾸기 버튼을 지금 재생 줄에 넣어 (다)의 장점도 가져와요.</p></div>
+<h2 id="s10"><span class="n">10</span>정해 주실 것</h2>
+<div class="pick"><b>1. 턴테이블 영역: (가) / (나) / (다) 중 하나</b><span class="rec">추천 (다), 넓은 화면은 (나)</span>
+ <p>이유: 판을 잡고 돌리는 손맛을 살리려면 판이 커야 해요. (다)는 판이 각 약 165px이고 (나)는 약 80px인데, 손가락 터치 최소 크기(보통 44px)를 생각하면 80px 판에서는 둘레를 따라 돌리기가 어려워요. 크로스페이더로 번갈아 듣기도 한 번에 돼요.</p>
+ <p>바뀐 판단: 앞 버전에선 영상이 늘 보이는 (나)를 추천했어요. (다)에서는 폰의 모니터를 고정 영역 바로 아래에 붙이고, 폭 900px 이상 화면에서는 자동으로 두 대 사이(나)에 둬서 이 약점을 줄여요. 그래도 폰에서 글을 읽느라 내리면 영상이 화면 밖으로 나가요. 이것이 규정에 걸리는지 확실하지 않아 남은 위험으로 적어 둬요(최소 크기 200×200은 지킴).</p></div>
 <div class="pick"><b>2. U6 A↔B 바꾸기를 이번에 넣을까요</b><span class="rec">추천: 넣기(구간 처음부터)</span>
  <p>이유: 번갈아 듣기가 이 페이지의 핵심이라 버튼 하나로 바로 바꾸는 효과가 커요. 같은 마디로 정확히 옮기는 전환은 비교 페이지에 마디 시간표를 더한 뒤 다음에 넣어요.</p></div>
+<div class="pick"><b>3. 3D 수준</b><span class="rec">추천 (2) three.js 진짜 3D</span>
+ <p>(1) CSS 입체: 가볍고 빠름, 돌려 보기·물리는 흉내만. (2) three.js: 돌려 보기·판 잡기·톤암 물리가 진짜로 됨.</p>
+ <p>이유: 참고 영상의 핵심이 '손으로 만지는 진짜 물리'라서 (2)여야 그 맛이 나요. 물리 계산은 그림과 따로 만들어서, 느린 기기에선 같은 계산으로 (1)을 그리는 가벼운 모드로 바로 바꿀 수 있어요.</p></div>
+<div class="pick"><b>4. '빠르기 맞추기'를 이번에 넣을까요</b><span class="rec">추천: 넣기, 기본 꺼짐</span>
+ <p>이유: 빠르기 차이를 지우고 소리만 비교하는 건 전문가식 듣기의 핵심이고, 계산은 이미 있는 마디 시간으로 돼요. 다만 유튜브가 세밀한 속도를 안 주는 영상이 있을 수 있어서, 구현 첫날 비교 페이지 6편 영상의 지원 속도 목록을 실제로 확인하고, 안 되는 영상에선 스위치를 흐리게 둬요.</p></div>
+
+<h2 id="refs" style="border-top-width:1px"><span class="n">*</span>참고 목록</h2>
+<ol class="note" style="overflow-wrap:anywhere;padding-left:20px">
+<li>다이렉트 드라이브 턴테이블 사양(회전수, 시작 토크 0.18 N·m, 0.7초 도달, 플래터 332 mm·1.8 kg, 흔들림 0.025%, 톤암 230 mm·22°·15 mm, 토크·브레이크 4단계, 피치 ±8/±16%): https://www.technics.com/uk/products/dj-series/sl-1200mk7.html , https://us.technics.com/products/direct-drive-turntable-system-sl-1200mk7</li>
+<li>같은 기종 사용 설명서(피치 ±8, ±16%, 전자 브레이크): https://jp.technics.com/support/download/operating-instructions/turntable/sl_1200mk7_sl_1210mk7_dvqx2603za_x1_jpn_basic_s.pdf</li>
+<li>이전 세대 사용 설명서(플래터 2 kg, 0.7초, 큐 레버 '천천히 내려앉음'): https://www.help.na.panasonic.com/wp-content/uploads/2023/02/SL1200MK2_SFNU122M06_ENG.pdf , https://www.potar.fr/download/materiel_manuels//technics_sl1210mk2_manuel.pdf</li>
+<li>방송용 턴테이블 자료(관성 380 kg·cm², 토크 6 kg·cm, 0.25초 도달, 0.3초 정지): https://bh.hallikainen.org/uploads/harold/TechnicsSp10mk2.pdf</li>
+<li>브레이크 5단계 조절 설명서: https://av.jpn.support.panasonic.com/support/technics/downloads/data/operating-instructions/SL-1200GR_TQBM0053_EB_eng.pdf</li>
+<li>판 무게(표준 약 140 g, 180 g): https://support.discmakers.com/hc/en-us/articles/209637637-Vinyl-Record-Weights-What-Is-180-Gram-And-Is-It-Important</li>
+<li>유튜브 플레이어 API(setPlaybackRate, getAvailablePlaybackRates, 지원 안 되는 값은 1 쪽으로 내림, 영상 다시 부르면 속도 1로): https://developers.google.com/youtube/iframe_api_reference</li>
+<li>유튜브 최소 기능 요건(플레이어 200×200 이상, 16:9는 480×270 권장): https://developers.google.com/youtube/terms/required-minimum-functionality</li>
+<li>브라우저 재생 속도와 음정 유지(preservesPitch 기본 켜짐): https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/preservesPitch</li>
+<li>재생 전 속도 설정이 무시되는 브라우저 문제와 0.5초 뒤 적용: https://github.com/cookpete/react-player/issues/1992</li>
+</ol>
 </div>
 </body>
 </html>
