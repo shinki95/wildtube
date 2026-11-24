@@ -8,6 +8,7 @@
 <title>비교 듣기</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Noto+Serif+KR:wght@400;600;700&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -16,11 +17,12 @@
   --a:#1f3a5f;--b:#9a4a2a;--c:#5b6b2f;--ok:#4d7a4f;
   --serif:"Cormorant Garamond","Noto Serif KR",Georgia,serif;
   --kserif:"Noto Serif KR","Nanum Myeongjo",Georgia,serif;
-  --sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+  --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+  --r-card:16px;--r-ctl:12px;--shadow:0 8px 24px -16px #3a261880;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;color:var(--ink);font:16px/1.65 var(--kserif);
+body{margin:0;color:var(--ink);font:16px/1.65 var(--sans);
   background:radial-gradient(120% 60% at 15% 0%,#f7dfae 0%,rgba(247,223,174,0) 60%),radial-gradient(90% 50% at 100% 30%,#ecd2c0 0%,rgba(236,210,192,0) 65%),linear-gradient(180deg,#f2e7d2,#f4ecdc 45%,#efe3cc);
   background-attachment:fixed;min-height:100vh}
 a{color:var(--a)}
@@ -29,24 +31,27 @@ header{padding:18px 18px 4px;max-width:1040px;margin:0 auto}
 .brand{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 h1{font:700 26px/1.2 var(--kserif);margin:0;letter-spacing:-.01em}
 h1 a{color:inherit;text-decoration:none}
-.brand .en{font:600 13px/1 var(--serif);letter-spacing:.28em;color:var(--sub);text-transform:uppercase}
-.lead{font-size:15px;color:var(--sub);margin:6px 0 0;max-width:720px}
-.search{width:100%;font:16px var(--kserif);padding:12px 16px;border:1px solid var(--line);border-radius:999px;margin-top:12px;background:var(--paper2);color:var(--ink);box-shadow:inset 0 1px 2px #0000000d}
+.brand .en{font:600 12px/1 var(--sans);letter-spacing:.2em;color:var(--sub);text-transform:uppercase}
+.lead{font-size:16px;color:var(--sub);margin:4px 0 0;max-width:720px}
+.search{width:100%;font:16px var(--sans);min-height:48px;padding:12px 16px;border:1px solid var(--line);border-radius:999px;margin-top:12px;background:var(--paper2);color:var(--ink);box-shadow:inset 0 1px 2px #0000000d}
 .search:focus{outline:2px solid var(--gold2);outline-offset:1px}
 .chips{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
-.chip{border:1px solid var(--line);background:var(--paper2);border-radius:999px;padding:7px 14px;font:15px/1.3 var(--kserif);cursor:pointer;color:var(--ink);text-decoration:none;white-space:nowrap}
+.chip{display:inline-flex;align-items:center;min-height:44px;border:1px solid var(--line);background:var(--paper2);border-radius:999px;padding:8px 15px;font:16px/1.3 var(--sans);cursor:pointer;color:var(--ink);text-decoration:none;white-space:nowrap}
 .chip.on{background:var(--esp);color:#f6ead0;border-color:var(--esp)}
-.chip small{opacity:.65;margin-left:5px;font-size:12px}
+.chip small{opacity:.7;margin-left:6px;font-size:14px}
 .chips.row{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
 .chips.row .chip{flex:none}
+.lnav{display:flex;gap:8px;align-items:flex-start;margin-top:8px}
+.lnav .back{flex:none;margin-top:10px}
+.lnav .chips.row{flex:1;min-width:0}
 main{max-width:1040px;margin:0 auto;padding:0 18px 90px}
 
 /* ---------- crate ---------- */
-.crate{margin-top:14px;border-radius:22px;padding:14px 0 16px;color:#f3e6cc;position:relative;overflow:hidden;
+.crate{margin-top:16px;border-radius:var(--r-card);padding:16px 0;color:#f3e6cc;position:relative;overflow:hidden;
   background:repeating-linear-gradient(90deg,rgba(255,255,255,.025) 0 2px,rgba(0,0,0,.03) 2px 7px),linear-gradient(180deg,#4a3120 0%,#2f1f14 62%,#24170f 100%);
   box-shadow:0 14px 30px -14px #2b1a0e99, inset 0 1px 0 #ffffff14}
 .az{display:grid;grid-template-columns:repeat(13,1fr);gap:3px;padding:0 12px}
-.az button{border:0;background:transparent;color:#f3e6cc;font:600 16px/1 var(--serif);padding:7px 0;border-radius:7px;cursor:pointer;min-width:0}
+.az button{border:0;background:transparent;color:#f3e6cc;font:600 16px/1 var(--sans);min-height:44px;padding:0;border-radius:7px;cursor:pointer;min-width:0}
 .az button:disabled{color:#f3e6cc38;cursor:default}
 .az button.on{background:var(--label);color:var(--esp)}
 .stage{position:relative;height:calc(var(--w) + 34px);perspective:1100px;perspective-origin:50% 45%;margin-top:10px;overflow:hidden;touch-action:pan-y;user-select:none;-webkit-user-select:none}
@@ -90,92 +95,103 @@ main{max-width:1040px;margin:0 auto;padding:0 18px 90px}
 .cap .t{font:700 19px/1.35 var(--kserif);color:#fbf0d8;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .cap .s{font-size:15px;color:#e3d2b2;margin-top:2px}
 .cap .v{font-size:15px;margin-top:2px;color:#f3e6cc}
-.ab{display:inline-block;font:700 12px/1 var(--sans);color:#fff;border-radius:4px;padding:3px 5px;margin-right:4px;vertical-align:1px}
+.ab{display:inline-block;font:700 13px/1 var(--sans);color:#fff;border-radius:4px;padding:3px 5px;margin-right:4px;vertical-align:1px}
 .ab.A{background:var(--a)}.ab.B{background:var(--b)}.ab.C{background:var(--c)}
 .crate .ab.A{background:#3d6597}.crate .ab.B{background:#b35d37}
 .bar{display:flex;align-items:center;gap:6px;margin:12px auto 0;width:calc(100% - 24px);max-width:520px;background:#120c08e6;border:1px solid #ffffff14;border-radius:999px;padding:6px}
-.bar button{border:0;border-radius:999px;font:600 16px/1 var(--kserif);cursor:pointer;padding:12px 10px;color:#f3e6cc;background:transparent;flex:1;white-space:nowrap}
+.bar button{border:0;border-radius:999px;font:600 16px/1 var(--sans);cursor:pointer;min-height:46px;padding:12px 10px;color:#f3e6cc;background:transparent;flex:1;white-space:nowrap}
 .bar button:disabled{opacity:.3;cursor:default}
 .bar button.main{background:var(--label);color:var(--esp);flex:1.3}
-.bar .pos{font:600 14px/1 var(--serif);color:#cdb995;flex:none;padding:0 6px;font-variant-numeric:tabular-nums}
+.bar .pos{font:600 15px/1 var(--sans);color:#cdb995;flex:none;padding:0 6px;font-variant-numeric:tabular-nums}
 
 /* detail */
-.detail{margin:14px 0 0;background:var(--paper2);border:1px solid var(--line);border-radius:22px;padding:16px 18px 18px;box-shadow:0 10px 24px -16px #3a261880}
+.detail{margin:16px 0 0;background:var(--paper2);border:1px solid var(--line);border-radius:var(--r-card);padding:16px;box-shadow:var(--shadow)}
 .detail.hint{text-align:center;color:var(--sub);font-size:15px;padding:14px}
 .detail .top{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
-.detail .cm{font-size:14px;color:var(--sub)}
+.detail .cm{font-size:15px;color:var(--sub)}
 .detail h2{font:700 21px/1.35 var(--kserif);margin:2px 0 0}
 .detail h2 small{font-weight:400;font-size:16px;color:var(--sub)}
-.detail .en{font:italic 500 17px/1.3 var(--serif);color:var(--sub);margin-top:2px}
+.detail .en{font:400 15px/1.4 var(--sans);color:var(--sub);margin-top:2px}
 .pfs{margin:12px 0 0;padding:0;list-style:none}
 .pfs li{display:flex;gap:8px;align-items:baseline;padding:7px 0;border-top:1px dashed var(--line)}
 .pfs li:first-child{border-top:0}
 .pfs .nm{font-weight:700}
 .pfs .yr{color:var(--sub);font-size:15px}
-.note{margin-top:10px;border-radius:12px;padding:10px 13px;background:#f1e7d3}
-.note b{display:block;font-size:13px;color:var(--sub);letter-spacing:.02em;margin-bottom:1px}
+.note{margin-top:8px;border-radius:var(--r-ctl);padding:8px 16px;background:#f1e7d3}
+.note b{display:block;font-size:14px;color:var(--sub);letter-spacing:.02em;margin-bottom:1px}
 .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
-.tag{font:13px/1.4 var(--sans);border-radius:999px;padding:2px 9px;background:#eadfca;color:var(--sub)}
+.tag{font:14px/1.4 var(--sans);border-radius:999px;padding:3px 10px;background:#eadfca;color:var(--sub)}
 .tag.ready{background:linear-gradient(180deg,#f0cd62,#d7a530);color:#3a2606;font-weight:700}
-.acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:999px;padding:11px 16px;font:600 16px/1.2 var(--kserif);cursor:pointer;text-decoration:none;color:#fff;background:var(--esp);flex:1 1 auto;text-align:center}
+.acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;border:0;border-radius:var(--r-ctl);padding:11px 16px;font:600 16px/1.2 var(--sans);cursor:pointer;text-decoration:none;color:#fff;background:var(--esp);flex:1 1 auto;text-align:center}
 .btn.A{background:var(--a)}.btn.B{background:var(--b)}.btn.C{background:var(--c)}
 .btn.gold{background:var(--label);color:var(--esp)}
 .btn.soft{background:transparent;color:var(--ink);border:1px solid var(--line)}
-.starb{flex:none;border:1px solid var(--line);background:#fff8e8;border-radius:999px;padding:8px 13px;font:600 15px/1.2 var(--kserif);cursor:pointer;color:var(--ink);white-space:nowrap}
+.starb{flex:none;min-height:44px;border:1px solid var(--line);background:#fff8e8;border-radius:999px;padding:8px 14px;font:600 15px/1.2 var(--sans);cursor:pointer;color:var(--ink);white-space:nowrap}
 .starb.on{background:#fbe7a6;border-color:#e2b437}
 .starb .s{color:#c58b12}
 
 /* list */
-.lh{display:flex;align-items:baseline;justify-content:space-between;margin:26px 2px 6px}
+.lh{display:flex;align-items:baseline;justify-content:space-between;margin:24px 0 8px}
 .lh h3{font:700 18px/1.3 var(--kserif);margin:0}
 .lh span{font-size:14px;color:var(--sub)}
-.rows{background:var(--paper2);border:1px solid var(--line);border-radius:18px;overflow:hidden}
-.lrow{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;border:0;border-top:1px solid #e8dcc7;background:transparent;padding:10px 14px;cursor:pointer;color:var(--ink);font:16px/1.4 var(--kserif)}
+.rows{background:var(--paper2);border:1px solid var(--line);border-radius:var(--r-card);overflow:hidden}
+.lrow{display:flex;gap:10px;align-items:flex-start;width:100%;min-height:52px;text-align:left;border:0;border-top:1px solid #e8dcc7;background:transparent;padding:11px 14px;cursor:pointer;color:var(--ink);font:16px/1.45 var(--sans)}
 .lrow:first-child{border-top:0}
 .lrow.on{background:#f6e3ad}
-.lrow .lt{flex:none;width:24px;font:700 18px/1.3 var(--serif);color:var(--gold2);text-align:center}
+.lrow .lt{flex:none;width:24px;font:700 17px/1.3 var(--sans);color:var(--gold2);text-align:center}
 .lrow .bd{flex:1;min-width:0}
 .lrow .w{font-weight:600;overflow-wrap:anywhere}
 .lrow .w small{font-weight:400;color:var(--sub)}
-.lrow .p{font-size:14px;color:var(--sub);overflow-wrap:anywhere}
-.lrow .mk{flex:none;font-size:13px;color:#8a6412;white-space:nowrap;padding-top:2px}
+.lrow .p{font-size:15px;color:var(--sub);overflow-wrap:anywhere}
+.lrow .mk{flex:none;font-size:14px;color:#8a6412;white-space:nowrap;padding-top:2px}
 .empty{color:#e3d2b2;text-align:center;padding:40px 16px;font-size:16px}
 .empty a{color:var(--label)}
 
 /* ---------- lesson ---------- */
-.playerwrap{position:sticky;top:0;z-index:5;padding:8px 18px 10px;max-width:780px;margin:0 auto;background:linear-gradient(180deg,#f2e7d2 80%,#f2e7d200)}
-.player{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden;box-shadow:0 10px 24px -12px #000a;border:3px solid var(--wood)}
+.playerwrap{position:sticky;top:0;z-index:5;padding:8px 18px 10px;max-width:min(780px,calc(40vh * 16 / 9 + 36px));margin:0 auto;background:linear-gradient(180deg,#f2e7d2 80%,#f2e7d200)}
+.player{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:var(--r-ctl);overflow:hidden;box-shadow:0 10px 24px -12px #000a;border:3px solid var(--wood)}
 .player iframe,#yt{position:absolute;inset:0;width:100%;height:100%}
-.now{font:14px/1.4 var(--sans);color:#f3e6cc;margin-top:6px;min-height:20px;background:var(--esp);border-radius:999px;padding:7px 14px}
+.now{font:15px/1.4 var(--sans);color:#f3e6cc;margin-top:6px;min-height:20px;background:var(--esp);border-radius:var(--r-ctl);padding:8px 16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.quick{display:flex;gap:8px;margin-top:6px}
+.quick button{flex:1;min-width:0;min-height:48px;border:0;border-radius:var(--r-ctl);font:600 15px/1.25 var(--sans);color:#fff;cursor:pointer;padding:6px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.quick .A{background:var(--a)}.quick .B{background:var(--b)}
+.quick .A.on,.quick .B.on{box-shadow:inset 0 0 0 3px #e2b437}
+.qstep{font:600 14px/1.3 var(--sans);color:var(--sub);margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .now b{color:#fff}
 main.lesson{max-width:780px}
-.intro,.step{background:var(--paper2);border:1px solid var(--line);border-radius:18px;padding:18px 18px 16px;margin:14px 0;font-family:var(--sans);font-size:16.5px;line-height:1.75;box-shadow:0 8px 20px -18px #3a2618}
+.intro,.step{background:var(--paper2);border:1px solid var(--line);border-radius:var(--r-card);padding:16px;margin:16px 0;font-family:var(--sans);font-size:16px;line-height:1.75;box-shadow:var(--shadow)}
 .ihead{display:flex;gap:14px;align-items:center}
 .mini{position:relative;flex:none;width:var(--w);height:var(--w);border-radius:3px;overflow:hidden;box-shadow:0 8px 14px -8px #000b}
 .intro h2{font:700 21px/1.35 var(--kserif);margin:0}
-.step h2{font:700 19px/1.4 var(--kserif);margin:0 0 6px;display:flex;gap:10px;align-items:baseline}
-.num{font:700 13px/1 var(--serif);color:var(--esp);background:radial-gradient(circle at 35% 30%,#fff1b8,#e2b437 60%,#b98a1f);border-radius:999px;padding:5px 9px;flex:none}
+.step h2{font:700 19px/1.4 var(--kserif);margin:0 0 8px;display:flex;gap:8px;align-items:baseline}
+.num{font:700 14px/1 var(--sans);color:var(--esp);background:radial-gradient(circle at 35% 30%,#fff1b8,#e2b437 60%,#b98a1f);border-radius:999px;padding:5px 9px;flex:none}
 .step.done .num{background:var(--ok);color:#fff}
-.lbl{font:700 13px/1.4 var(--sans);letter-spacing:.03em;color:var(--sub);margin:14px 0 3px}
-.point{background:#f1e7d3;border-radius:12px;padding:10px 13px;margin-top:4px}
+.lbl{font:600 14px/1.4 var(--sans);color:var(--sub);margin:16px 0 4px}
+.point{background:#f1e7d3;border-radius:var(--r-ctl);padding:8px 16px;margin-top:8px}
 .btns{display:flex;gap:8px;margin:14px 0 4px;flex-wrap:wrap}
-.play{flex:1 1 140px;border:0;border-radius:14px;padding:11px 14px;font:600 16px/1.35 var(--sans);color:#fff;cursor:pointer;text-align:left}
-.play small{display:block;opacity:.85;font-size:13px;font-weight:400}
+.play{flex:1 1 140px;min-height:56px;border:0;border-radius:var(--r-ctl);padding:8px 16px;font:600 16px/1.35 var(--sans);color:#fff;cursor:pointer;text-align:left}
+.play small{display:block;opacity:.88;font-size:14px;font-weight:400}
 .play.A{background:var(--a)}.play.B{background:var(--b)}
 .play.heard{outline:3px solid #e2b437;outline-offset:1px}
 details{margin-top:12px;border-top:1px dashed var(--line);padding-top:8px}
-summary{cursor:pointer;font:700 16px/1.5 var(--kserif);color:var(--ink)}
+summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font:600 16px/1.5 var(--sans);color:var(--ink)}
 .bars{margin:10px 0 2px}
 .bars .br{display:flex;align-items:center;gap:8px;font-size:14px;margin:4px 0}
 .bars .who{width:68px;flex:none;color:var(--sub);overflow-wrap:anywhere}
 .bars .fill{height:12px;border-radius:6px}
 .bars .v{flex:none;width:52px;font-variant-numeric:tabular-nums}
 .src{font-size:14px;color:var(--sub)}
-.score{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px;margin-top:4px;background:#fff}
+.score{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:var(--r-ctl);margin-top:4px;background:#fff}
 .legend{display:flex;gap:14px;font-size:15px;color:var(--sub);margin-top:10px;flex-wrap:wrap}
 .dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:-1px}
-.critic{background:#f7f0e2;border-left:3px solid var(--gold);padding:4px 13px;margin-top:8px;border-radius:0 10px 10px 0}
+.critic{background:#f7f0e2;border-left:3px solid var(--gold);padding:8px 16px;margin-top:8px;border-radius:0 var(--r-ctl) var(--r-ctl) 0}
+.tmap{margin-top:10px}
+.tmap svg{display:block;width:100%;height:auto;touch-action:manipulation;cursor:crosshair}
+.tmap .axis{font:13px var(--sans);fill:#6e5f4e}
+.tmap .stepn{font:700 13px var(--sans);fill:#6e5f4e}
+.tsel{margin-top:8px;font-size:15px;color:var(--sub)}
+.tsel b{color:var(--ink)}
 .hide{display:none!important}
 
 @media (min-width:900px){
@@ -201,7 +217,9 @@ summary{cursor:pointer;font:700 16px/1.5 var(--kserif);color:var(--ink)}
 </header>
 <div class="playerwrap hide" id="pw">
   <div class="player"><div id="yt"></div></div>
-  <div class="now" id="now">재생할 구간 버튼을 누르세요.</div>
+  <div class="qstep" id="qstep"></div>
+  <div class="quick" id="quick"></div>
+  <div class="now hide" id="now"></div>
 </div>
 <main id="main"></main>
 
@@ -300,7 +318,7 @@ const inG = (e,my) => st.genre==="all" || (st.genre==="mine" ? my.includes(e.id)
 function home(){
   lk=null; L=null; $("pw").classList.add("hide"); if(player&&ready) player.pauseVideo();
   $("main").className="";
-  $("lead").textContent = "같은 곡을 두 연주로 나란히 들어 보는 곳. 작곡가 이름 A부터 Z까지 판을 넘기다가 마음에 드는 판을 꺼내 보세요.";
+  $("lead").textContent = "같은 곡, 두 연주. 곡을 골라 나란히 들어 보세요.";
   renderControls();
   $("main").innerHTML = `<section class="crate" id="crate" aria-label="음반 상자">
       <div class="az" id="az" aria-label="작곡가 첫 글자"></div>
@@ -308,7 +326,7 @@ function home(){
       <div class="cap" id="cap"></div>
       <div class="bar" id="bar">
         <button id="prev" aria-label="이전 판">◀ 이전</button>
-        <button class="main" id="pull">꺼내기</button>
+        <button class="main" id="pull">이 곡 보기</button>
         <button id="next" aria-label="다음 판">다음 ▶</button>
         <span class="pos" id="pos"></span>
       </div>
@@ -328,7 +346,7 @@ function renderControls(){
   $("controls").innerHTML = `
     <input class="search" id="q" type="search" placeholder="작곡가, 곡, 연주자 (예: 브람스, 녹턴, 굴드, Coltrane)" value="${esc(st.q)}" aria-label="찾기">
     <div class="chips">${Object.entries(GENRE).map(([k,v])=>`<button class="chip ${st.genre===k?"on":""}" data-g="${k}">${k==="mine"?"☆ ":""}${v}${k==="mine"?`<small id="mc">${my.length}</small>`:""}</button>`).join("")}</div>
-    <div class="chips row" style="margin-top:8px" aria-label="작곡가"><button class="chip ${!st.comp?"on":""}" data-c="">모든 작곡가</button>${cn.map(([c,o])=>`<button class="chip ${st.comp===c?"on":""}" data-c="${esc(c)}">${esc(c)}<small>${o.n}</small></button>`).join("")}</div>`;
+    <div class="chips row" style="margin-top:8px" aria-label="작곡가"><button class="chip ${!st.comp?"on":""}" data-c="">모든 작곡가</button>${cn.map(([c,o])=>`<button class="chip ${st.comp===c?"on":""}" data-c="${esc(c)}"> ${esc(c)}<small>${esc(surname(o.e).replace(/^./,x=>x.toUpperCase()))} · ${o.n}</small></button>`).join("")}</div>`;
   $("q").addEventListener("input", ev=>{ st.q=ev.target.value; filter(); });
 }
 
@@ -381,14 +399,14 @@ function renderCrate(){
     n.style.opacity = Math.abs(d)>5 ? 0 : 1;
     n.className = "card"+(d===0?" center":" side"+(d>0?" r":""))+(d===0&&pulled?" out"+(RM.matches?"":" spin"):"");
     n.setAttribute("aria-hidden", d===0?"false":"true");
-    if (d===0) n.setAttribute("aria-label", `${e.composer.ko} ${e.work.ko} 표지, 누르면 ${pulled?"넣기":"꺼내기"}`);
+    if (d===0) n.setAttribute("aria-label", `${e.composer.ko} ${e.work.ko} 표지, 누르면 ${pulled?"닫기":"이 곡 보기"}`);
   }
   nodes.forEach((n,id)=>{ if(!keep.has(id)){ n.remove(); nodes.delete(id); } });
   const e=VIEW[idx], my=mine();
   $("cap").innerHTML = `<div class="t">${esc(e.work.ko)}${partOf(e)?` · ${esc(e.part)}`:""}</div><div class="s">${esc(e.composer.ko)} · ${esc(e.composer.en)}${my.includes(e.id)?" · ★":""}</div><div class="v">${vsLine(e)}</div>`;
   $("pos").textContent = `${idx+1} / ${VIEW.length}`;
   $("prev").disabled = idx<=0; $("next").disabled = idx>=VIEW.length-1;
-  $("pull").textContent = pulled ? "넣기" : "꺼내기";
+  $("pull").textContent = pulled ? "닫기" : "이 곡 보기";
   const curL=letter(e); $("az").querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.l===curL));
   $("rows").querySelectorAll(".lrow").forEach(r=>r.classList.toggle("on",+r.dataset.i===idx));
   renderDetail();
@@ -397,7 +415,7 @@ function renderCrate(){
 function renderDetail(){
   const box=$("detail"), e=VIEW[idx];
   if (!e){ box.className="detail hint"; box.innerHTML="걸러진 판이 없어요. 검색어나 장르를 바꿔 보세요."; return; }
-  if (!pulled){ box.className="detail hint"; box.innerHTML="가운데 판을 <b>꺼내기</b> 하면 두 연주가 어떻게 다른지 보여 드려요."; return; }
+  if (!pulled){ box.className="detail hint"; box.innerHTML="<b>이 곡 보기</b>를 누르면 두 연주가 어떻게 다른지 보여 드려요."; return; }
   const on=mine().includes(e.id);
   box.className="detail";
   box.innerHTML = `<div class="top"><div style="min-width:0"><div class="cm">${esc(e.composer.ko)} · ${esc(e.composer.en)}</div>
@@ -406,10 +424,10 @@ function renderDetail(){
     <ul class="pfs">${e.performers.map((x,i)=>`<li><span class="ab ${WHO[i]}">${WHO[i]}</span><span><span class="nm">${esc(x.name)}</span>${x.en&&x.en!==x.name?` <span class="yr">${esc(x.en)}</span>`:""}${x.year?` <span class="yr">· ${x.year}</span>`:""}</span></li>`).join("")}</ul>
     ${e.contrast?`<div class="note"><b>왜 대비되나</b>${esc(e.contrast)}</div>`:""}
     ${e.listen?`<div class="note"><b>여기를 들어 보세요</b>${esc(e.listen)}</div>`:""}
-    <div class="tags">${e.lesson?`<span class="tag ready">비교 페이지</span>`:`<span class="tag">짝만 있음</span>`}${(e.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>
+    <div class="tags">${e.lesson?`<span class="tag ready">비교 듣기 있음</span>`:`<span class="tag">짝만 있음</span>`}${(e.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>
     <div class="acts">${e.lesson
-      ? `<a class="btn gold" href="?l=${esc(e.lesson)}" data-open="${esc(e.lesson)}">비교 페이지 열기</a>`
-      : e.performers.map((x,i)=>`<a class="btn ${WHO[i]}" target="_blank" rel="noopener" href="${ytUrl(e,x)}">${WHO[i]} 유튜브에서 찾기</a>`).join("")+`<a class="btn soft" target="_blank" rel="noopener" href="${reqUrl(e)}">비교 페이지 요청</a>`}</div>`;
+      ? `<a class="btn gold" href="?l=${esc(e.lesson)}" data-open="${esc(e.lesson)}">비교하며 듣기</a>`
+      : e.performers.map((x,i)=>`<a class="btn ${WHO[i]}" target="_blank" rel="noopener" href="${ytUrl(e,x)}">${WHO[i]} 연주 찾기</a>`).join("")+`<a class="btn soft" target="_blank" rel="noopener" href="${reqUrl(e)}">비교 페이지 요청</a>`}</div>`;
 }
 
 function renderRows(){
@@ -417,7 +435,7 @@ function renderRows(){
   $("cnt").textContent = VIEW.length+"장";
   let lastL="";
   $("rows").innerHTML = VIEW.map((e,i)=>{ const l=letter(e), show=l!==lastL; lastL=l;
-    return `<button class="lrow ${i===idx?"on":""}" data-i="${i}"><span class="lt">${show?l:""}</span><span class="bd"><span class="w">${esc(e.composer.ko)} · ${esc(e.work.ko)}${partOf(e)?` <small>${esc(e.part)}</small>`:""}</span><br><span class="p">${e.performers.map((x,j)=>`${WHO[j]} ${esc(x.name)}${x.year?` ${x.year}`:""}`).join(" / ")}</span></span><span class="mk">${my.includes(e.id)?"★ ":""}${e.lesson?"비교 페이지":""}</span></button>`; }).join("");
+    return `<button class="lrow ${i===idx?"on":""}" data-i="${i}"><span class="lt">${show?l:""}</span><span class="bd"><span class="w">${esc(e.composer.ko)} · ${esc(e.work.ko)}${partOf(e)?` <small>${esc(e.part)}</small>`:""}</span><br><span class="p">${e.performers.map((x,j)=>`${WHO[j]} ${esc(x.name)}${x.year?` ${x.year}`:""}`).join(" / ")}</span></span><span class="mk">${my.includes(e.id)?"★ ":""}${e.lesson?"비교 듣기":""}</span></button>`; }).join("");
 }
 
 /* ---------- 넘기기 ---------- */
@@ -458,12 +476,13 @@ let rzT; window.addEventListener("resize",()=>{ clearTimeout(rzT); rzT=setTimeou
 async function openLesson(id){
   lk=id; L = await (await fetch(DB+"lessons/"+id+".json",{cache:"no-cache"})).json();
   riffleTok++; nodes.clear();
-  $("lead").textContent = "악보에서 위치를 보고, 설명을 읽고, 그 부분을 A, B 순서로 듣고, 들은 뒤 정리를 펼쳐 보세요. 녹음은 유튜브 영상을 그대로 연결해 그 구간만 재생해요. A는 늘 남색, B는 늘 적갈색이에요.";
+  $("lead").textContent = "같은 구간을 A, B로 번갈아 들어 보세요.";
   const lessons = ENTS.filter(e=>e.lesson);
-  $("controls").innerHTML = `<div class="chips"><a class="chip" href="?">← 상자로</a>${lessons.map(e=>`<a class="chip ${e.lesson===id?"on":""}" href="?l=${e.lesson}" data-open="${e.lesson}">${esc(e.composer.ko)} ${esc(e.work.ko.split(" ").slice(0,2).join(" "))}</a>`).join("")}</div>`;
+  $("controls").innerHTML = `<div class="lnav"><a class="chip back" href="?">← 상자로</a><div class="chips row">${lessons.map(e=>`<a class="chip ${e.lesson===id?"on":""}" href="?l=${e.lesson}" data-open="${e.lesson}">${esc(e.short||(e.composer.ko+" "+e.work.ko.split(/[:(]/)[0]))}</a>`).join("")}</div></div>`;
+  { const row=$("controls").querySelector(".chips.row"), on=row&&row.querySelector(".chip.on"); if(on && on.offsetLeft+on.offsetWidth>row.clientWidth-10) row.scrollLeft=on.getBoundingClientRect().left-row.getBoundingClientRect().left-16; }
   $("pw").classList.remove("hide");
   $("main").className="lesson";
-  renderLesson(); sync(); loadApi(); window.scrollTo(0,0);
+  renderLesson(); sync(); loadApi(); window.scrollTo(0,0); setStep(0); watchSteps();
 }
 
 const store = k => "cl:"+lk+":"+k;
@@ -475,6 +494,15 @@ function renderLesson(){
     ${paras(L.intro)}
     ${L.critics?`<div class="lbl">평단에서 보는 두 연주</div><div class="critic">${paras(L.critics)}</div>`:""}
     <p class="point"><b>오늘의 질문.</b> ${md(L.question)}</p></section>`;
+  if (L.bar_times) h += `<section class="intro" id="tm"><h2>곡 전체 빠르기 지도</h2>
+    <div style="margin-top:4px">한 마디에 쓴 시간을 곡 처음부터 끝까지 그렸어요. 위로 갈수록 느려요. 그래프를 누르면 그 자리부터 들어요.</div>
+    <details id="tmd"><summary>지도 펼치기 (답이 먼저 보여요)</summary>
+      <div class="legend"><span><span class="dot" style="background:var(--a)"></span>A ${esc(L.A.name)}</span><span><span class="dot" style="background:var(--b)"></span>B ${esc(L.B.name)}</span><span>숫자는 단계</span></div>
+      <div class="tmap" id="tmap">${tempoSVG()}</div>
+      <div class="tsel" id="tsel">그래프에서 듣고 싶은 곳을 누르세요.</div>
+      <div class="btns hide" id="tbtns"></div>
+      <div class="src">세 마디씩 평균 낸 값이에요. 정렬이 흔들린 곳과 마지막 울림은 비웠어요.</div>
+    </details></section>`;
   L.steps.forEach((s,i)=>{
     const done = localStorage.getItem(store(i))==="1";
     h += `<section class="step ${done?"done":""}" id="s${i}"><h2><span class="num">${i+1}</span>${md(s.title)}</h2>
@@ -496,9 +524,79 @@ function renderLesson(){
   $("main").innerHTML = h;
 }
 
+/* ---------- 빠르기 지도 ---------- */
+const TM={W:700,H:240,l:40,r:10,t:24,b:28};
+function tmSize(){ TM.W=Math.round(Math.min(700,Math.max(320,(document.querySelector("main.lesson")?.clientWidth||innerWidth)-64))); TM.H=TM.W<500?220:240; }
+function tmData(){
+  const T=L.bar_times, n=T.A.length-1, skip=new Set(L.curve_skip||[]);
+  const raw=w=>Array.from({length:n},(_,k)=>skip.has(k+1)?null:T[w][k+1]-T[w][k]);
+  const sm=a=>a.map((v,k)=>{ if(v==null) return null; const xs=[a[k-1],v,a[k+1]].filter(x=>x!=null); return xs.reduce((p,q)=>p+q,0)/xs.length; });
+  const A=sm(raw("A")), B=sm(raw("B"));
+  const mx=Math.max(...A.filter(x=>x!=null),...B.filter(x=>x!=null))*1.12;
+  return {n,A,B,mx};
+}
+const tmX=(k,n)=>TM.l+(TM.W-TM.l-TM.r)*(k+.5)/n;
+const tmY=(v,mx)=>TM.t+(TM.H-TM.t-TM.b)*(1-v/mx);
+function barAt(w,t){ const T=L.bar_times[w]; let k=0; while(k<T.length-2 && T[k+1]<=t) k++; return k; }
+function tempoSVG(){
+  tmSize(); const {n,A,B,mx}=tmData(), W=TM.W, H=TM.H;
+  let g="";
+  L.steps.forEach((s,i)=>{ const c=s.clips.find(x=>x[0]==="A"); if(!c) return;
+    const k0=barAt("A",c[1]+.3), k1=Math.max(k0,barAt("A",c[2]-.3));
+    const x0=TM.l+(W-TM.l-TM.r)*k0/n, x1=TM.l+(W-TM.l-TM.r)*(k1+1)/n;
+    g+=`<rect x="${x0}" y="${TM.t}" width="${Math.max(2,x1-x0)}" height="${H-TM.t-TM.b}" fill="${i%2?"#e9dcc4":"#efe4cf"}" opacity=".8"/><text class="stepn" x="${(x0+x1)/2}" y="${TM.t-7}" text-anchor="middle">${i+1}</text>`; });
+  const ticks=[]; const step=mx>9?4:mx>4.5?2:1; for(let v=step; v<mx; v+=step) ticks.push(v);
+  g+=ticks.map(v=>`<line x1="${TM.l}" x2="${W-TM.r}" y1="${tmY(v,mx)}" y2="${tmY(v,mx)}" stroke="#dccfb8" stroke-dasharray="3 4"/><text class="axis" x="${TM.l-6}" y="${tmY(v,mx)+4}" text-anchor="end">${v}초</text>`).join("");
+  const line=(a,col)=>{ let d="", pen=false; a.forEach((v,k)=>{ if(v==null){pen=false;return;} d+=(pen?"L":"M")+tmX(k,n).toFixed(1)+" "+tmY(v,mx).toFixed(1)+" "; pen=true; }); return `<path d="${d}" fill="none" stroke="${col}" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>`; };
+  g+=line(A,"#1f3a5f")+line(B,"#9a4a2a");
+  g+=`<text class="axis" x="${TM.l}" y="${H-8}">처음</text><text class="axis" x="${W-TM.r}" y="${H-8}" text-anchor="end">끝</text><text class="axis" x="${(TM.l+W-TM.r)/2}" y="${H-8}" text-anchor="middle">곡의 흐름 (반복 포함 ${n}마디)</text>`;
+  g+=`<line id="tcur" class="hide" x1="0" x2="0" y1="${TM.t}" y2="${H-TM.b}" stroke="#22180f" stroke-width="1.5"/>`;
+  g+=`<circle id="tpA" class="hide" r="6" fill="#1f3a5f" stroke="#fff" stroke-width="2"/><circle id="tpB" class="hide" r="6" fill="#9a4a2a" stroke="#fff" stroke-width="2"/>`;
+  return `<svg viewBox="0 0 ${W} ${H}" id="tsvg" role="img" aria-label="두 연주의 마디별 빠르기 그래프">${g}</svg>`;
+}
+function tmPick(ev){
+  const sv=$("tsvg"); if(!sv) return; const r=sv.getBoundingClientRect();
+  const {n,A,B}=tmData(); const x=(ev.clientX-r.left)/r.width*TM.W;
+  let k=Math.floor((x-TM.l)/(TM.W-TM.l-TM.r)*n); k=Math.max(0,Math.min(n-1,k));
+  const c=$("tcur"); c.setAttribute("x1",tmX(k,n)); c.setAttribute("x2",tmX(k,n)); c.classList.remove("hide");
+  const si=L.steps.findIndex(s=>{ const q=s.clips.find(z=>z[0]==="A"); return q && k>=barAt("A",q[1]+.3) && k<=barAt("A",q[2]-.3); });
+  const f=v=>v==null?"잴 수 없음":v.toFixed(1)+"초";
+  $("tsel").innerHTML=`<b>${k+1}번째 마디 근처</b>${si>=0?` · ${si+1}단계`:""} · 한 마디에 A ${f(A[k])}, B ${f(B[k])}`;
+  const T=L.bar_times, e=Math.min(n,k+4);
+  $("tbtns").innerHTML=["A","B"].map(w=>`<button class="play ${w}" data-t="${w}" data-a="${T[w][k]}" data-z="${T[w][e]}" data-k="${k+1}">${w} ${esc(L[w].name)} 듣기<small>여기부터 네 마디 · ${fmt(T[w][k])}</small></button>`).join("");
+  $("tbtns").classList.remove("hide");
+}
+function tmTick(){
+  const a=$("tpA"), b=$("tpB"); if(!a) return;
+  [a,b].forEach(x=>x.classList.add("hide"));
+  if(!player||!ready||!cur||!cur.w||!L||!L.bar_times) return;
+  let t; try{ t=player.getCurrentTime(); }catch(_){ return; }
+  if (player.getPlayerState && player.getPlayerState()!==1) return;
+  const {n,A,B,mx}=tmData(), k=Math.min(n-1,barAt(cur.w,t)), v=(cur.w==="A"?A:B)[k]; if(v==null) return;
+  const dot=cur.w==="A"?a:b; dot.setAttribute("cx",tmX(k,n)); dot.setAttribute("cy",tmY(v,mx)); dot.classList.remove("hide");
+}
+setInterval(tmTick,250);
+
+/* ---------- 지금 단계 빠른 듣기 ---------- */
+let curStep=0;
+function setStep(i){
+  if(!L||!L.steps[i]) return; curStep=i; const s=L.steps[i];
+  $("qstep").textContent=`지금 ${i+1}단계 · ${s.title.replace(/\*\*/g,"")}`;
+  const first=w=>s.clips.findIndex(c=>c[0]===w);
+  $("quick").innerHTML=["A","B"].map(w=>{ const j=first(w); return j<0?"":`<button class="${w}" data-q="${j}">${w} ${esc(L[w].name)} 듣기</button>`; }).join("");
+}
+let stepRaf=0;
+function watchSteps(){
+  if (watchSteps.on) return; watchSteps.on=true;
+  window.addEventListener("scroll",()=>{ if(stepRaf||!lk) return; stepRaf=requestAnimationFrame(()=>{ stepRaf=0;
+    const top=$("pw").getBoundingClientRect().bottom+40; let k=0;
+    document.querySelectorAll("section.step[id^=s]").forEach(el=>{ if(el.getBoundingClientRect().top<top) k=+el.id.slice(1); });
+    if(k!==curStep) setStep(k); }); },{passive:true});
+}
+
 function play(w, start, end, label){
   const P=L[w]; const opts={videoId:P.youtube, startSeconds:start}; if(end) opts.endSeconds=end;
-  cur={label}; $("now").innerHTML = `<b>${w} ${esc(P.full)}</b> · ${esc(label)}`;
+  cur={label,w}; $("now").classList.remove("hide"); $("now").innerHTML = `<b>${w} ${esc(P.full)}</b> · ${esc(label)}`;
   if (!ready){ pending=opts; return; }
   player.loadVideoById(opts);
 }
@@ -517,12 +615,18 @@ document.addEventListener("click", e=>{
     const l=e.target.closest("[data-l]"); if(l){ const k=VIEW.findIndex(x=>letter(x)===l.dataset.l); if(k>=0) goTo(k); return; }
     const r=e.target.closest(".lrow"); if(r){ goTo(+r.dataset.i); $("crate").scrollIntoView({behavior:RM.matches?"auto":"smooth",block:"start"}); return; }
   }
+  const qb=e.target.closest("[data-q]"); if(qb&&L){ const btn=document.querySelector(`#s${curStep} .play[data-j="${qb.dataset.q}"]`); if(btn) btn.click(); return; }
+  if (e.target.closest("#tsvg")){ tmPick(e); return; }
+  const tb=e.target.closest("[data-t]"); if(tb&&L){ play(tb.dataset.t,+tb.dataset.a,+tb.dataset.z,`빠르기 지도 ${tb.dataset.k}번째 마디부터`); return; }
   const b=e.target.closest(".play"); if(!b||!L) return;
   if (b.dataset.full){ play(b.dataset.full,0,null,"전곡"); return; }
   const i=+b.dataset.i, j=+b.dataset.j, [w,a,z]=L.steps[i].clips[j];
   b.classList.add("heard");
   play(w, Math.max(0,a), z, `${i+1}. ${L.steps[i].title} (${fmt(a)} ~ ${fmt(z)})`);
   if (document.querySelectorAll(`#s${i} .play.heard`).length >= L.steps[i].clips.length){ localStorage.setItem(store(i),"1"); $("s"+i).classList.add("done"); }
+  if (i!==curStep) setStep(i);
+  document.querySelectorAll("#quick button").forEach(x=>x.classList.toggle("on", x.classList.contains(w)));
+  if (L.steps.every((_,k)=>localStorage.getItem(store(k))==="1") && $("tmd")) $("tmd").open=true;
 });
 
 function loadApi(){
