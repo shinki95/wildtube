@@ -269,7 +269,7 @@ function swapSame(){ if(!P||!P.who||!L.bt) return; const from=P.who, to=from==='
   if(P.playing&&ok(from)) try{ P.t=Math.max(0,YTP[from].getCurrentTime()-cf[0]); }catch(e){}
   const pos=perfPos(L.bt[from],cf[0]+P.t); let tAbs=ct[0]; if(pos!==null&&pos>=0){ const bt=L.bt[to], i=Math.floor(pos), f=pos-i; if(bt[i+1]) tAbs=bt[i]+f*(bt[i+1]-bt[i]); }
   playW(to,Math.max(0,Math.min(ct[1]-ct[0]-0.1,tAbs-ct[0]))); }
-function loop(){ if(!P) return; cancelAnimationFrame(P.raf); const f=()=>{ if(!P||!P.who) return; const w=P.who, c=clip(P.k,w), pl=YTP[w];
+function loop(){ if(!P) return; cancelAnimationFrame(P.raf); const f=()=>{ if(!P||!P.who) return; if(P.err){ P.playing=false; P.loading=false; draw(); return; } const w=P.who, c=clip(P.k,w), pl=YTP[w];
   if(ok(w)){ let st=-9,cur=0; try{ st=pl.getPlayerState(); cur=pl.getCurrentTime(); }catch(e){}
     if(st===1){ if(!P.playing){ P.playing=true; endWatch(); } P.loading=false; P.t=Math.max(0,cur-c[0]); if(cur>=c[1]-0.05){ try{ pl.pauseVideo(); }catch(e){} done(w); return; } }
     else if((st===2||st===0)&&!P.loading) P.playing=false; else if(P.loading&&performance.now()-P.t0>12000) P.loading=false; }
