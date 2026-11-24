@@ -954,7 +954,7 @@ function build(){ SCR=[]; const ok=it.id==='brahms-op118-2';
   SCR.push({pt:NP+1,pk:-1,kind:'curve',bar:false,html:curveHTML()}); }
 /* 맞추기: 18px -> 17px -> (재생 중 영상 크기 조절) -> 그 대목만 세로 스크롤 */
 function fitBox(box,fin){ fin.classList.remove('s17'); box.classList.remove('scy','end'); let fs=18; if(fin.scrollHeight>box.clientHeight+0.5){ fin.classList.add('s17'); fs=17; } return fs; }
-function fit16(n){ n=n||$('#stage .scr:last-child'); if(!n) return; const sc=SCR[si]; const vs=$('.vslot',n); const exp=!!(P&&P.who&&(P.playing||P.loading)&&(sc.kind==='chap'||sc.kind==='end'));
+function fit16(n){ n=n||$('#stage .scr:last-child'); if(!n) return; const sc=SCR[si]; const vs=$('.vslot',n); const exp=!!(P&&P.who&&(P.playing||P.loading||P.err===P.who)&&(sc.kind==='chap'||sc.kind==='end'));
   const curVh=vs?(n._vh||0):0; const boxes=[...n.querySelectorAll('.face, .fbx')];
   const M=boxes.map(b=>{ const fin=$('.fin',b); fin.classList.remove('s17'); const n18=fin.scrollHeight; fin.classList.add('s17'); const n17=fin.scrollHeight; fin.classList.remove('s17'); return {b,fin,n18,n17,base:b.clientHeight+curVh}; });
   const pick=(m,avail)=>m.n18<=avail+0.5?18:17;
@@ -1135,7 +1135,7 @@ function ytErr(w){ const c=P?clip(P.k,w):[0]; $('#yerrl').href=`https://www.yout
 const ytOK=w=>YTP[w]&&YTP[w]._ok&&YTP[w].playVideo;
 function cuePoint(k){ ['A','B'].forEach(w=>{ if(ytOK(w)){ try{ YTP[w].pauseVideo(); YTP[w].seekTo(clip(k,w)[0],true); YTP[w].pauseVideo(); }catch(e){} } }); YTcue=k; }
 function placeYT(){ const box=$('#ytbox'); if(!box) return; const sc=SCR[si]; let show=false;
-  if(sc&&(sc.kind==='chap'||sc.kind==='end')&&P&&P.who&&(P.playing||P.loading)){ const sl=$('#stage .scr:last-child .vslot'); if(sl){ const r=sl.getBoundingClientRect(), a=$('#app').getBoundingClientRect(); const h=sl.offsetHeight, w=h>=199?sl.offsetWidth:Math.round(h*16/9);
+  if(sc&&(sc.kind==='chap'||sc.kind==='end')&&P&&P.who&&(P.playing||P.loading||P.err===P.who)){ const sl=$('#stage .scr:last-child .vslot'); if(sl){ const r=sl.getBoundingClientRect(), a=$('#app').getBoundingClientRect(); const h=sl.offsetHeight, w=h>=199?sl.offsetWidth:Math.round(h*16/9);
       box.style.top=(r.top-a.top)+'px'; box.style.left=(r.left-a.left)+'px'; box.style.width=w+'px'; box.style.height=h+'px'; show=h>=110; const ni=$('#nowi',sl); if(ni){ ni.style.left=(w+10)+'px'; } } }
   box.classList.toggle('on',show); const w=(P&&P.who)||'A'; ['A','B'].forEach(x=>$('#yp'+x).classList.toggle('on',show&&x===w)); if(!(P&&P.err)) $('#yerr').classList.remove('on'); }
 function curT(){ if(!P||!P.who) return 0; const c=clip(P.k,P.who); if(ytOK(P.who)&&(P.playing||P.loading===false)){ try{ return Math.max(0,YTP[P.who].getCurrentTime()-c[0]); }catch(e){} } return P.t||0; }
@@ -1146,7 +1146,7 @@ function lane1Draw(){ const sco=$('#stage .scr:last-child #sco'); if(!P||!sco||P
   return out; }
 let lastExp=null;
 function draw(){ if(!P) return; const t=P.t, w=P.who, play=!!P.playing, k=P.k; const L=lane1Draw(); const n=$('#stage .scr:last-child');
-  const exp=!!(w&&(play||P.loading)); if(n&&n._fit&&n._fit.exp!==exp) fit16(n);
+  const exp=!!(w&&(play||P.loading||P.err===w)); if(n&&n._fit&&n._fit.exp!==exp) fit16(n);
   ['A','B'].forEach(x=>{ const on=w===x&&(play||P.loading); const dc=$('#dc'+x); if(!dc) return; dc.classList.toggle('on',on); dc.classList.toggle('done',!!(heardB[k]&&heardB[k][x]));
     const c=clip(k,x), ic=(w===x&&play)?IC.pause:IC.play; const msg=(w===x&&P.loading)?'불러오는 중…':(P.err===x?'재생이 안 돼요':(w&&t>0?`${w===x?f1(t):'같은 때'}${k<NP?' · '+barTxt(L[x],k):''}`:(k>=NP?'전곡 듣기':`${fmt0(c[0])}~${fmt0(c[1])} · ${Math.round(c[1]-c[0])}초`)));
     $('#ds'+x).textContent=msg; const dp=$('#dp'+x); if(dp) dp.innerHTML=(w===x&&play)?IC.pause:IC.play; const pr=$('#pr'+x); if(pr){ const len=c[1]-c[0], tt=(w===x)?t:(w&&t>0&&L[x]?null:null); pr.style.width=(w===x?Math.min(100,t/len*100):0)+'%'; dc.classList.toggle('prog',w===x&&t>0); } });
