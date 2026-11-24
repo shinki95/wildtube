@@ -1,0 +1,335 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>비교 듣기 · 6판</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+:root{--red:#fa2d48;--ink:#1c1c1e;--sub:#8a8a8e;--line:#e5e5ea;--fill:#f2f2f7;--A:#1c1c1e;--B:#fa2d48;--ease:cubic-bezier(.2,.8,.2,1);
+--font:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Apple SD Gothic Neo','Pretendard',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;background:#d9d6d0}
+body{font-family:var(--font);color:var(--ink);word-break:keep-all;display:flex;justify-content:center;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+svg{display:block}
+#app{position:relative;width:100%;max-width:430px;height:100dvh;max-height:932px;background:#fff;overflow:hidden}
+.view{position:absolute;left:0;right:0;top:0;bottom:0;overflow:hidden;background:#fff}
+.hide{visibility:hidden;pointer-events:none}
+.scroll{overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none}
+.scroll::-webkit-scrollbar{display:none}
+/* 탭 바 + 미니 플레이어 */
+.tabbar{position:absolute;left:0;right:0;bottom:0;height:78px;z-index:40;display:flex;justify-content:space-around;padding:4px 8px 22px;background:rgba(250,250,252,.78);backdrop-filter:saturate(1.8) blur(20px);-webkit-backdrop-filter:saturate(1.8) blur(20px);border-top:.5px solid rgba(0,0,0,.12)}
+.tabbar button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:11px;font-weight:600;color:#9a9a9e;min-height:48px}
+.tabbar button.on{color:var(--red)}
+.mini{position:absolute;left:10px;right:10px;bottom:86px;height:62px;z-index:41;border-radius:14px;background:rgba(246,246,248,.86);backdrop-filter:saturate(1.8) blur(20px);-webkit-backdrop-filter:saturate(1.8) blur(20px);box-shadow:0 6px 24px -8px rgba(0,0,0,.25);display:flex;align-items:center;padding:0 6px 0 8px;gap:10px;cursor:pointer}
+.mini .art{width:46px;height:46px;border-radius:8px;overflow:hidden;flex:none;position:relative;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.mini .art img{width:100%;height:100%;object-fit:cover}
+.mini .tx{flex:1;min-width:0}
+.mini .tx b{display:block;font-size:16px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mini .tx span{display:block;font-size:14px;color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mini button{width:46px;height:46px;display:flex;align-items:center;justify-content:center}
+/* 둘러보기 */
+.page{position:absolute;inset:0;padding-bottom:150px}
+.lt{padding:46px 20px 4px;font-size:34px;font-weight:800;letter-spacing:-.02em}
+.sub0{padding:0 20px;font-size:16px;color:var(--sub)}
+.shelf{margin-top:12px}
+.sh{display:flex;justify-content:space-between;align-items:center;padding:0 20px;height:30px}
+.sh b{font-size:22px;font-weight:700;letter-spacing:-.01em}
+.sh span{font-size:22px;color:var(--sub)}
+.row{display:flex;gap:14px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;padding:10px 20px 4px;scrollbar-width:none;scroll-padding:0 20px}
+.row::-webkit-scrollbar{display:none}
+.card{flex:none;width:172px;scroll-snap-align:start;text-align:left}
+.duo{position:relative;width:200px;height:200px;border-radius:12px;overflow:hidden;background:#111;box-shadow:0 8px 22px -12px rgba(0,0,0,.5)}
+.duo img{position:absolute;top:0;height:100%;width:62%;object-fit:cover}
+.duo img.a{left:0}
+.duo img.b{right:0;clip-path:polygon(38% 0,100% 0,100% 100%,0 100%);width:76%}
+.duo .ab{position:absolute;bottom:8px;width:24px;height:24px;border-radius:6px;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;color:#fff}
+.card b{display:block;font-size:16px;font-weight:600;margin-top:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card span{display:block;font-size:16px;color:var(--sub);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.circ{flex:none;width:78px;text-align:center;scroll-snap-align:start}
+.circ i{display:block;width:78px;height:78px;border-radius:50%;overflow:hidden;background:#ddd;box-shadow:0 4px 14px -8px rgba(0,0,0,.5)}
+.circ img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
+.circ b{display:block;font-size:16px;font-weight:500;margin-top:7px}
+/* 검색·내 목록 */
+.sbox{margin:6px 20px 0;height:44px;border-radius:12px;background:var(--fill);display:flex;align-items:center;gap:8px;padding:0 12px;color:var(--sub)}
+.sbox input{flex:1;border:0;background:none;font:16px var(--font);outline:none;color:var(--ink);height:44px}
+.list{padding:8px 20px}
+.li{display:flex;align-items:center;gap:12px;min-height:64px;border-bottom:.5px solid var(--line);width:100%;text-align:left}
+.li .th{width:52px;height:52px;border-radius:8px;overflow:hidden;flex:none;position:relative}
+.li .th img{position:absolute;top:0;height:100%;width:60%;object-fit:cover}
+.li b{display:block;font-size:16px;font-weight:600}
+.li span{display:block;font-size:15px;color:var(--sub)}
+/* 비교 페이지 */
+#album{z-index:20;display:flex;flex-direction:column}
+.nav{height:52px;flex:none;display:flex;align-items:center;padding:0 4px;color:var(--red);font-size:17px}
+.nav button{height:44px;padding:0 10px;display:flex;align-items:center;gap:2px;color:var(--red)}
+.cover{position:relative;width:250px;height:226px;margin:4px auto 0;flex:none}
+.cover .ca,.cover .cb{position:absolute;width:178px;height:178px;border-radius:12px;overflow:hidden;box-shadow:0 14px 30px -14px rgba(0,0,0,.55)}
+.cover .ca{left:0;top:0}
+.cover .cb{right:0;bottom:0}
+.cover img{width:100%;height:100%;object-fit:cover}
+.cover .tg{position:absolute;left:8px;top:8px;width:26px;height:26px;border-radius:7px;font-size:14px;font-weight:800;color:#fff;display:flex;align-items:center;justify-content:center}
+.at{text-align:center;font-size:24px;font-weight:800;letter-spacing:-.02em;margin-top:14px}
+.ar{text-align:center;font-size:20px;color:var(--red);font-weight:500;margin-top:3px}
+.am{text-align:center;font-size:14px;color:var(--sub);margin-top:4px}
+.btns{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px 20px 8px;flex:none}
+.btns button{height:48px;border-radius:12px;background:var(--fill);color:var(--red);font-size:17px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px}
+.btns .p{background:var(--red);color:#fff}
+.tracks{flex:1;min-height:0;margin:0 0 150px;border-top:.5px solid var(--line)}
+.tr{display:flex;align-items:center;gap:14px;min-height:52px;padding:0 20px;width:100%;text-align:left;border-bottom:.5px solid var(--line)}
+.tr .n{width:16px;color:var(--sub);font-size:16px;text-align:center}
+.tr .t{flex:1;font-size:16px}
+.tr .d{font-size:15px;color:var(--sub);font-variant-numeric:tabular-nums}
+.tr.done .n{color:var(--red)}
+.tr.now .t{color:var(--red);font-weight:600}
+/* 전체 화면 재생 */
+#np{position:absolute;inset:0;z-index:60;color:#fff;transform:translateY(100%);will-change:transform;overflow:hidden;display:flex;flex-direction:column;border-radius:0}
+#np .bg{position:absolute;inset:-40%;z-index:-1;background:radial-gradient(60% 50% at 30% 30%,var(--c1),transparent 70%),radial-gradient(60% 55% at 75% 70%,var(--c2),transparent 70%),linear-gradient(160deg,var(--c1),var(--c2));filter:saturate(1.2);animation:drift 28s ease-in-out infinite alternate}
+#np .bg::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.28)}
+@keyframes drift{0%{transform:translate(0,0) rotate(0)}100%{transform:translate(-6%,4%) rotate(8deg)}}
+.grab{height:44px;flex:none;display:flex;align-items:center;justify-content:center;position:relative}
+.grab i{width:40px;height:5px;border-radius:3px;background:rgba(255,255,255,.45)}
+.grab button{position:absolute;left:8px;top:0;width:44px;height:44px;display:flex;align-items:center;justify-content:center}
+.mid{position:relative;flex:1;min-height:0}
+.big{position:absolute;left:16px;right:16px;top:calc(50% - 104px);aspect-ratio:16/9;border-radius:12px;overflow:hidden;box-shadow:0 22px 40px -18px rgba(0,0,0,.6);transition:all .45s var(--ease);background:#000}
+.big img{position:absolute;top:0;height:100%;width:100%;object-fit:cover;transition:opacity .4s var(--ease),width .45s var(--ease),left .45s var(--ease)}
+.big .yt{position:absolute;right:8px;bottom:6px;font-size:12px;font-weight:700;opacity:.9;text-shadow:0 1px 4px rgba(0,0,0,.6);transition:opacity .3s}
+.big .ab{position:absolute;top:8px;width:24px;height:24px;border-radius:6px;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
+#np.sm .big{left:20px;top:6px;width:96px;right:auto;border-radius:6px}
+#np.sm .big .yt{opacity:0}
+.smt{position:absolute;left:128px;right:20px;top:10px;opacity:0;transition:opacity .3s}
+.smt b{display:block;font-size:17px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.smt span{display:block;font-size:15px;opacity:.7}
+#np.sm .smt{opacity:1}
+.pane{position:absolute;left:0;right:0;top:72px;bottom:0;opacity:0;pointer-events:none;transition:opacity .35s var(--ease)}
+.pane.on{opacity:1;pointer-events:auto}
+.lyr{position:absolute;inset:0;overflow:hidden;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 8%,#000 80%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 8%,#000 80%,transparent 100%)}
+.lyr .in{position:absolute;left:24px;right:24px;top:0;transition:transform .6s var(--ease)}
+.lyr p{font-size:27px;font-weight:800;line-height:1.25;letter-spacing:-.015em;margin:0 0 16px;opacity:.32;transition:opacity .4s var(--ease),filter .4s;filter:blur(.6px)}
+.lyr p.on{opacity:1;filter:none}
+.lyr p.num{color:#fff}
+.lyr p.num em{font-style:normal;color:#ff8a9b}
+.lyr p.hide2{opacity:0;max-height:0;margin:0;overflow:hidden}
+.sco{padding:4px 14px 0}
+.lane{margin-top:8px;background:rgba(255,255,255,.92);border-radius:10px;padding:6px 8px 4px;color:var(--ink);border:2px solid transparent;transition:border-color .3s}
+.lane.on{border-color:var(--c)}
+.lh{display:flex;justify-content:space-between;align-items:center;font-size:15px;height:24px;font-weight:600}
+.lh i{font-style:normal;display:inline-flex;width:20px;height:20px;border-radius:5px;background:var(--c);color:#fff;font-size:12px;font-weight:800;align-items:center;justify-content:center;margin-right:6px}
+.lh .clk{color:var(--c);font-variant-numeric:tabular-nums}
+.sc{position:relative;aspect-ratio:1010/252}
+.sc img{position:absolute;inset:0;width:100%;height:100%;transition:opacity .3s}
+.sc .done{position:absolute;top:0;bottom:0;left:0;background:var(--c);opacity:.12}
+.sc .hd{position:absolute;top:-3px;bottom:-3px;width:4px;margin-left:-2px;background:var(--c);border-radius:2px;opacity:0}
+.sc.live .hd{opacity:1}
+.sco .full{background:#fff;border-radius:10px;padding:6px}
+.sco .full img{width:100%;max-height:200px;object-fit:contain;display:block}
+.q{padding:0 12px}
+.q button{display:flex;align-items:center;gap:12px;width:100%;min-height:50px;padding:0 10px;border-radius:10px;text-align:left;font-size:16px}
+.q button.now{background:rgba(255,255,255,.16);font-weight:700}
+.q button .n{width:18px;opacity:.6}
+.q button .d{margin-left:auto;opacity:.6;font-variant-numeric:tabular-nums;font-size:15px}
+.info{padding:0 26px;flex:none}
+.ti{display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+.ti b{display:block;font-size:21px;font-weight:700;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ti span{display:block;font-size:18px;opacity:.72;margin-top:2px;white-space:nowrap}
+.seg{display:grid;grid-template-columns:1fr 1fr 1.2fr;margin-top:14px;background:rgba(255,255,255,.16);border-radius:12px;padding:3px;position:relative;height:50px}
+.seg .knob{position:absolute;top:3px;bottom:3px;left:3px;border-radius:9px;background:rgba(255,255,255,.95);transition:transform .4s var(--ease),width .4s var(--ease);box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.seg button{position:relative;z-index:1;font-size:16px;font-weight:600;color:#fff;transition:color .3s}
+.seg button.on{color:var(--ink)}
+.seg button.on[data-m="B"]{color:var(--red)}
+.prog{margin-top:18px;position:relative;height:28px}
+.prog .tk{position:absolute;left:0;right:0;top:4px;height:8px}
+.prog .tk i{position:absolute;top:0;width:1.5px;height:8px;background:rgba(255,255,255,.55)}
+.prog .tk i.b{top:auto;bottom:-8px;background:rgba(255,120,140,.8)}
+.prog .rail{position:absolute;left:0;right:0;top:6px;height:5px;border-radius:3px;background:rgba(255,255,255,.25);overflow:hidden}
+.prog .rail u{position:absolute;left:0;top:0;bottom:0;background:#fff;text-decoration:none}
+.prog .tm{position:absolute;left:0;right:0;top:16px;display:flex;justify-content:space-between;font-size:13px;opacity:.7;font-variant-numeric:tabular-nums}
+.ctl{display:flex;justify-content:space-around;align-items:center;margin-top:8px;height:76px}
+.ctl button{width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:transform .2s var(--ease)}
+.ctl button:active{transform:scale(.9)}
+.ctl .pp{width:76px;height:76px}
+.ic{display:flex;justify-content:space-around;padding:0 30px 30px;flex:none;margin-top:6px}
+.ic button{width:52px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:10px;opacity:.75;transition:background .3s,opacity .3s}
+.ic button.on{opacity:1;background:rgba(255,255,255,.22)}
+/* 들은 뒤 (Replay 카드) */
+#rp{position:absolute;inset:0;z-index:70;color:#fff;overflow:hidden;display:flex;flex-direction:column;transform:translateY(100%)}
+#rp .bgi{position:absolute;inset:-10%;background-size:cover;background-position:center;filter:blur(28px) saturate(1.3) brightness(.55);z-index:-1}
+#rp .grab{justify-content:flex-start}
+.rk{padding:6px 28px 0;font-size:17px;font-weight:700;opacity:.8}
+.rbars{flex:1;display:flex;gap:30px;align-items:flex-end;justify-content:center;padding:10px 28px 0;min-height:0}
+.rc{width:120px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center}
+.rc .ph{width:64px;height:64px;border-radius:12px;overflow:hidden;margin-bottom:12px;box-shadow:0 8px 20px -8px rgba(0,0,0,.6)}
+.rc .ph img{width:100%;height:100%;object-fit:cover}
+.rc .v{font-size:56px;font-weight:800;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.rc .v small{font-size:20px;font-weight:700;margin-left:2px}
+.rc .who{font-size:16px;opacity:.8;margin:4px 0 10px}
+.rc .br{width:100%;border-radius:12px 12px 0 0;transform-origin:bottom}
+.rcc{padding:22px 28px 0;font-size:28px;font-weight:800;line-height:1.28;letter-spacing:-.02em;overflow:hidden}
+.rcc span{display:inline-block}
+.rnx{margin:20px 20px 34px;height:56px;border-radius:14px;background:#fff;color:var(--ink);font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;flex:none}
+.toast{position:absolute;left:20px;right:20px;bottom:160px;z-index:90;background:rgba(28,28,30,.92);color:#fff;font-size:15px;padding:12px 14px;border-radius:12px;opacity:0;transform:translateY(8px);transition:.3s var(--ease);pointer-events:none}
+.toast.on{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+</style></head><body><div id="app">
+<section class="view" id="browse"><div class="page scroll" id="bpage"></div></section>
+<section class="view hide" id="search"><div class="page"><div class="lt">검색</div><label class="sbox"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="7"/><path d="M16 16l5 5"/></svg><input id="qi" placeholder="작곡가, 곡, 연주자" aria-label="검색"></label><div class="list scroll" id="sres" style="max-height:560px"></div></div></section>
+<section class="view hide" id="library"><div class="page"><div class="lt">내 목록</div><div class="sub0">들은 비교</div><div class="list" id="lib"></div></div></section>
+<section class="view hide" id="album"></section>
+<div class="mini" id="mini" role="button" aria-label="재생 화면 열기"><div class="art"><img id="mart" alt=""></div><div class="tx"><b id="mt1"></b><span id="mt2"></span></div><button id="mpp" aria-label="재생"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></button><button id="mnx" aria-label="다음 단계"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M3 6v12l8.5-6zM12 6v12l8.5-6z"/></svg></button></div>
+<nav class="tabbar" id="tabs"><button class="on" data-v="browse"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4z" fill="#fff"/></svg>둘러보기</button><button data-v="search"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="7"/><path d="M16 16l5 5"/></svg>검색</button><button data-v="library"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="4" y="7" width="16" height="13" rx="2.5"/><path d="M6.5 4h11"/></svg>내 목록</button></nav>
+<section id="np" aria-label="재생 화면"><div class="bg" id="npbg"></div>
+  <div class="grab" id="grab"><button id="npx" aria-label="닫기"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><i></i></div>
+  <div class="mid" id="mid">
+    <div class="big" id="big"><img id="ba" alt="A 영상 자리"><img id="bb" alt="B 영상 자리" style="opacity:0"><span class="ab" style="left:8px;background:#fff;color:var(--ink)">A</span><span class="ab" style="right:8px;background:var(--red);color:#fff">B</span><span class="yt">▶ YouTube</span></div>
+    <div class="smt"><b id="smt1"></b><span id="smt2"></span></div>
+    <div class="pane" id="pl"><div class="lyr"><div class="in" id="lyin"></div></div></div>
+    <div class="pane" id="ps"><div class="sco" id="sco"></div></div>
+    <div class="pane" id="pq"><div class="q scroll" id="qlist" style="max-height:100%"></div></div>
+  </div>
+  <div class="info"><div class="ti"><div style="min-width:0"><b id="nt1"></b><span id="nt2"></span></div></div>
+    <div class="seg" id="seg"><div class="knob" id="knob"></div><button data-m="A" class="on">A</button><button data-m="B">B</button><button data-m="AB">A·B 동시</button></div>
+    <div class="prog"><div class="tk" id="tks"></div><div class="rail"><u id="pbar"></u></div><div class="tm"><span id="tc">0:00</span><span id="tr">-0:24</span></div></div>
+    <div class="ctl"><button id="pv" aria-label="이전 단계"><svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24" fill="#fff"><path d="M21 6v12l-8.5-6zM12 6v12l-8.5-6z"/></svg></button><button class="pp" id="pp" aria-label="재생"><svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l13-7.5z"/></svg></button><button id="nx" aria-label="다음 단계"><svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 24 24" fill="#fff"><path d="M3 6v12l8.5-6zM12 6v12l8.5-6z"/></svg></button></div></div>
+  <div class="ic"><button data-p="pl" aria-label="해설"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M4 4h16a1 1 0 011 1v11a1 1 0 01-1 1H10l-5 4v-4H4a1 1 0 01-1-1V5a1 1 0 011-1z" opacity=".95"/><path d="M8 8.5h8M8 12h5" stroke="#000" stroke-opacity=".45" stroke-width="1.8" stroke-linecap="round"/></svg></button><button data-p="ps" aria-label="악보"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 10h18M3 14h18M3 18h18" stroke-opacity=".6" stroke-width="1.3"/><circle cx="9" cy="16" r="2.4" fill="#fff"/><path d="M11.4 16V6l5 2"/></svg></button><button data-p="pq" aria-label="단계 목록"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h12M4 11h12M4 16h8"/><path d="M16 14v6l4-3z" fill="#fff" stroke="none"/></svg></button></div>
+</section>
+<section id="rp" aria-label="들은 뒤"></section>
+<div class="toast" id="toast"></div>
+</div>
+<script>
+const D = {"items": [{"id": "brahms-op118-2", "por": "brahms", "title": "인터메초 118-2", "comp": "브람스", "tags": ["피아노", "독주"], "A": {"s": "페라이어", "y": 2010}, "B": {"s": "굴드", "y": 1960}, "colA": ["#534536", "#322621"], "colB": ["#443823", "#3b281a"], "steps": [{"t": "처음 여덟 마디", "a": [0, 24], "b": [0, 21]}, {"t": "‘조금 빠르게’라고 쓴 곳", "a": [89.6, 120.5], "b": [89.2, 123.2]}, {"t": "장조에서 단조로, 엇갈리는 두 손", "a": [110.0, 139.1], "b": [113.9, 142.8]}, {"t": "57마디, 찬송가 같은 화음", "a": [150.4, 181.6], "b": [157.1, 195.4]}, {"t": "처음 주제로 돌아오는 길", "a": [190.2, 213.2], "b": [206.5, 243.5]}, {"t": "같은 주제, 처음과 돌아왔을 때", "a": [207.1, 228.5], "b": [233.1, 260.8]}, {"t": "마지막: 여기서는 둘이 비슷해요", "a": [284.5, 310.4], "b": [318.6, 346.9]}]}, {"id": "chopin-nocturne-20", "por": "chopin", "title": "녹턴 20번", "comp": "쇼팽", "tags": ["피아노", "독주"], "A": {"s": "조성진", "y": 2017}, "B": {"s": "임윤찬", "y": 2023}, "colA": ["#4d231d", "#7b1e20"], "colB": ["#342b1d", "#2c2a24"], "steps": [{"t": "어두운 서주, 그리고 노래의 시작", "a": [0, 37.8], "b": [0, 43.9]}, {"t": "가운데, 분위기가 바뀌는 노래", "a": [75.8, 114.5], "b": [86.7, 128.9]}, {"t": "노래가 돌아오는 곳: 여기서는 거의 같아요", "a": [145.5, 185.8], "b": [178.7, 218.8]}, {"t": "빠른 음계, 그리고 장조로 끝나는 마지막", "a": [182.5, 240.6], "b": [215.5, 267.6]}]}, {"id": "bach-goldberg-aria", "por": "bach", "title": "골드베르크 아리아", "comp": "바흐", "tags": ["건반", "같은 연주자"], "A": {"s": "굴드", "y": 1955}, "B": {"s": "굴드", "y": 1981}, "colA": ["#545166", "#4b586b"], "colB": ["#774f3f", "#413547"], "steps": [{"t": "처음 네 마디, 빠르기와 꾸밈음", "a": [0, 11.4], "b": [0, 21.3]}, {"t": "앞 도막의 끝, 브레이크를 얼마나 거나", "a": [35.8, 53.0], "b": [66.3, 93.5]}, {"t": "뒤 도막, 젊은 굴드가 걸음을 늦추는 곳", "a": [51.2, 81.2], "b": [91.5, 136.3]}, {"t": "16분음표가 쉬지 않는 곳, 여기선 둘 다 고르다", "a": [80.2, 101.5], "b": [135.2, 170.3]}, {"t": "마지막 두 마디", "a": [100.6, 112.5], "b": [169.3, 184.5]}]}, {"id": "debussy-clair-de-lune", "por": "debussy", "title": "달빛", "comp": "드뷔시", "tags": ["피아노", "독주"], "A": {"s": "기제킹", "y": 1953}, "B": {"s": "조성진", "y": 2017}, "colA": ["#331d1d", "#302120"], "colB": ["#8e881b", "#212c30"], "steps": [{"t": "처음 여덟 마디", "a": [0, 35.0], "b": [0, 35.9]}, {"t": "Tempo rubato로 넘어가는 곳", "a": [35.0, 83.6], "b": [35.9, 90.6]}, {"t": "활기 있게 부풀었다가, 아주 여리게", "a": [83.6, 119.0], "b": [90.6, 125.8]}, {"t": "흐르는 가운데 부분: 여기서는 둘이 같아요", "a": [117.0, 163.7], "b": [123.8, 170.6]}, {"t": "두 번의 브레이크: Calmato 앞, 첫 주제 앞", "a": [163.7, 202.4], "b": [170.6, 210.1]}, {"t": "같은 선율이 돌아오고, 사라지듯 끝", "a": [237.5, 308.0], "b": [243.4, 326.0]}]}, {"id": "chopin-prelude-15", "por": "chopin", "title": "전주곡 ‘빗방울’", "comp": "쇼팽", "tags": ["피아노", "독주"], "A": {"s": "조성진", "y": 2015}, "B": {"s": "폴리니", "y": 1974}, "colA": ["#372919", "#2e2322"], "colB": ["#7e7a0a", "#32231f"], "steps": [{"t": "처음 주제: 똑똑 떨어지는 라♭", "a": [0, 31.5], "b": [0, 27.6]}, {"t": "어두워지는 곳: 아주 작게, 조금 더 활기 있게", "a": [94.5, 126.7], "b": [87.4, 114.4]}, {"t": "커지는 곳: 늘이며 커지나, 걸음을 지키며 커지나", "a": [123.0, 156.0], "b": [111.3, 139.2]}, {"t": "폭풍이 지나간 뒤: 가장 큰 차이", "a": [209.6, 273.3], "b": [182.4, 233.1]}, {"t": "처음 주제가 돌아올 때", "a": [263.3, 300.7], "b": [223.4, 258.2]}, {"t": "끝맺음: 여기서는 폴리니가 더 늦춰요", "a": [295.8, 343.0], "b": [252.0, 299.0]}]}, {"id": "schumann-traumerei", "por": "schumann", "title": "트로이메라이", "comp": "슈만", "tags": ["피아노", "독주"], "A": {"s": "호로비츠", "y": 1986}, "B": {"s": "아르헤리치", "y": 1983}, "colA": ["#7f8b2c", "#202e31"], "colB": ["#919423", "#5a5148"], "steps": [{"t": "처음 네 마디: 위로 올라가는 첫 선율", "a": [0, 17.0], "b": [0, 21.6]}, {"t": "높은 라까지: 처음과 반복", "a": [15.5, 32.4], "b": [20.2, 41.0]}, {"t": "가운데: 여기서는 둘이 같아요", "a": [63.8, 79.8], "b": [82.4, 100.0]}, {"t": "ritard.와 a tempo: 브레이크 세기는 같아요", "a": [79.0, 102.9], "b": [99.2, 128.8]}, {"t": "돌아온 주제: 처음과 같을까", "a": [97.5, 115.9], "b": [121.4, 144.5]}, {"t": "마지막: 높은 라에서 멈추기", "a": [114.8, 143.8], "b": [143.4, 174.8]}]}], "brahms": {"steps": [{"lines": ["곡은 세 음짜리 짧은 동기로 시작해요.", "한 음 내려갔다가 위로 올라가는 이 작은 몸짓이 곡 전체의 씨앗이고, 뒤에서 계속 모양을 바꿔 돌아와요.", "첫 두 마디를 어떻게 꺼내는지 들어 보세요.", "망설이며 시작하는지, 바로 흘러가는지."], "after": ["첫 두 마디에 페라이어는 5.5초,", "굴드는 4.0초를 써요.", "‘느리고 무거운 굴드’라는 평과 달리 시작은 굴드가 더 빨라요."], "bar": ["첫 두 마디", 5.5, 4.0], "cc": "시작은 오히려 굴드가 더 빨라요.", "img": null}, {"lines": ["38마디에 cresc.", "un poco animato, ‘점점 크게,", "조금 활기 있게’라고 적혀 있어요.", "그리고 45마디에서 rit.(점점 느리게)로 브레이크를 걸고, 46마디 più lento(더 느리게)로 넘어가요.", "‘조금 빠르게’에서 정말 걸음이 빨라지는지,", "그리고 브레이크를 어디서부터 거는지 들어 보세요."], "after": ["38~44마디에 페라이어 14.6초,", "굴드 17.6초.", "페라이어는 지시대로 실제로 빨라지고,"], "bar": ["38~44마디 (조금 빠르게)", 14.6, 17.6], "cc": "지시대로 빨라지는 건 페라이어예요.", "img": "img/brahms_2.png"}, {"lines": ["가장조가 올림바단조로 어두워지고,", "49마디부터 오른손은 한 박을 셋으로,", "왼손은 둘로 나눠요.", "크기가 다른 톱니바퀴 두 개가 맞물려 도는 것처럼 박의 처음에서만 맞고 그 사이는 계속 어긋나요.", "악보에서 위아래 손의 음표 묶음 모양(3 표시)이 다른 걸 보세요.", "밝던 장조가 어두워지는 순간,", "그다음 오른손 셋과 왼손 둘이 서로 다르게 흔들리는 느낌을 들어 보세요.", "반복할 때는 오른손 노래 밑에서 움직이는 다른 선도 찾아보세요."], "after": ["이 부분 처음 8마디는 두 사람이 비슷해요(17.9초,", "18.9초).", "그런데 이 8마디를 반복할 때 굴드만 느려져요(페라이어 19.1초, 굴드 21.9초)."], "bar": ["49~56마디 반복", 19.1, 21.9], "cc": "반복에서 굴드만 느려져요.", "img": "img/brahms_3.png"}, {"lines": ["어두운 단조가 57마디에서 올림바장조로 풀리며 찬송가처럼 조용한 화음이 나와요.", "악보에는 pp(아주 여리게),", "그리고 più lento(더 느리게).", "곡에서 가장 고요한 곳이에요.", "마디가 지날수록 걸음이 어떻게 바뀌는지 들어 보세요.", "일정하게 흐르는지, 점점 멈춰 서는지."], "after": ["같은 8마디에 페라이어 24초,", "굴드 31초.", "굴드는 마디마다 조금씩 더 느려져서 한 마디 3초 남짓이 끝으로 가면 4초를 넘어요."], "bar": ["57~64마디", 24, 31], "cc": "찬송가 대목, 굴드가 7초 더 써요.", "img": "img/brahms_4.png"}, {"lines": ["69마디쯤 크게 부풀었다가 rit.(점점 느리게),", "그리고 76마디 a tempo(원래 빠르기로)에서 첫 주제가 돌아와요.", "이 ‘느려졌다가 돌아오기’를 얼마나 하느냐가 두 사람의 가장 큰 차이예요.", "첫 주제가 돌아오는 첫 마디를 잘 들어 보세요.", "바로 원래 걸음으로 돌아오는지,", "한참 붙잡는지."], "after": ["65~75마디에 페라이어 26초,", "굴드 39초.", "돌아온 첫 마디(76마디)는 페라이어 3.6초,"], "bar": ["76마디", 3.6, 6.9], "cc": "돌아온 첫 마디, 굴드는 거의 두 배.", "img": "img/brahms_5.png"}, {"lines": ["76마디부터는 곡의 처음 여덟 마디와 같은 선율이에요.", "이번에는 두 사람을 비교하는 것과 함께,", "각자가 처음 칠 때와 돌아와서 칠 때가 같은지 들어 보세요.", "1번 파트를 다시 들어도 좋아요.", "같은 선율인데 처음보다 무겁게 가는지,", "처음처럼 가는지."], "after": ["페라이어는 처음 21.4초,", "돌아와서 20.3초로 거의 같은 걸음이에요.", "굴드는 처음 19.0초였는데 돌아와서는 26.5초,"], "bar": ["돌아와서 76~83마디", 20.3, 26.5], "cc": "같은 선율을 굴드는 훨씬 느리게.", "img": "img/brahms_6.png"}, {"lines": ["곡의 끝은 다시 느려지며(più lento) 조용히 닫혀요.", "앞에서 그렇게 달랐던 두 사람이 여기서는 어떤지 들어 보세요.", "마지막 화음까지의 걸음과 여운."], "after": ["110~116마디는 페라이어 21.8초,", "굴드 24.6초,", "마지막 네 마디는 15.7초 대 16.5초로 거의 같아요."], "bar": ["마지막 4마디", 15.7, 16.5], "cc": "끝에서는 둘이 거의 같아요.", "img": "img/brahms_7.png"}], "btA": [1.91, 4.67, 7.39, 9.73, 12.4, 14.79, 17.32, 19.8, 23.35, 26.02, 28.45, 30.65, 33.65, 35.94, 38.38, 41.05, 44.97, 47.08, 48.96, 51.07, 53.09, 54.92, 56.66, 58.77, 60.6, 62.34, 64.03, 65.59, 67.51, 69.62, 72.01, 74.22, 76.51, 78.99, 82.96, 85.58, 87.74, 89.9, 92.47, 94.49, 96.5, 98.29, 100.4, 102.38, 104.53, 107.06, 110.33, 114.91, 120.22, 122.94, 125.19, 127.2, 129.13, 131.24, 133.26, 135.37, 138.13, 140.38, 142.49, 144.37, 146.25, 148.26, 150.42, 152.81, 157.24, 160.79, 162.95, 165.8, 168.29, 170.63, 173.06, 175.87, 181.09, 183.85, 186.15, 188.17, 190.23, 192.39, 194.41, 196.47, 198.95, 201.81, 204.24, 207.42, 210.97, 213.18, 215.75, 217.91, 220.3, 222.59, 224.98, 227.7, 231.11, 233.22, 235.1, 237.16, 239.18, 241.01, 242.75, 244.86, 246.74, 248.43, 250.22, 251.73, 253.65, 255.72, 258.1, 260.31, 262.6, 265.13, 269.43, 272.05, 274.21, 276.27, 278.66, 280.68, 282.74, 284.76, 286.82, 288.93, 290.86, 293.15, 296.47, 300.95, 306.54], "btB": [1.31, 3.23, 5.34, 7.41, 10.17, 12.14, 14.58, 17.06, 20.28, 22.63, 24.69, 27.08, 29.89, 32.0, 34.43, 36.91, 39.95, 42.07, 43.8, 45.87, 47.93, 49.53, 51.83, 54.17, 56.33, 58.16, 59.85, 61.64, 63.56, 66.28, 69.18, 71.57, 74.47, 77.18, 81.01, 83.49, 86.86, 89.48, 92.66, 94.96, 96.88, 99.04, 101.89, 104.05, 107.09, 110.17, 114.23, 118.53, 122.91, 125.02, 127.04, 129.29, 131.4, 133.65, 135.95, 138.39, 141.84, 144.7, 147.13, 149.34, 151.91, 154.3, 157.11, 159.96, 163.74, 167.2, 170.38, 173.74, 177.43, 181.08, 185.05, 189.25, 194.79, 197.83, 201.1, 203.59, 206.49, 209.02, 211.87, 215.0, 218.51, 222.98, 227.74, 233.43, 240.37, 243.46, 246.36, 248.88, 252.25, 255.06, 257.54, 259.97, 262.92, 265.26, 266.96, 269.02, 271.27, 272.78, 275.12, 277.37, 279.34, 281.27, 282.87, 284.65, 286.34, 288.73, 291.03, 293.51, 296.46, 298.94, 302.45, 305.02, 307.04, 309.52, 312.37, 314.62, 316.69, 318.85, 321.56, 323.9, 326.9, 329.29, 332.93, 341.91, 343.41]}};
+const ICON = {"back": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M15 5l-7 7 7 7\"/></svg>", "playS": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M7 4.5v15l13-7.5z\"/></svg>", "pauseS": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><rect x=\"6\" y=\"4.5\" width=\"4\" height=\"15\" rx=\"1\"/><rect x=\"14\" y=\"4.5\" width=\"4\" height=\"15\" rx=\"1\"/></svg>", "play": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"44\" height=\"44\" viewBox=\"0 0 24 24\" fill=\"#fff\"><path d=\"M7 4.5v15l13-7.5z\"/></svg>", "pause": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"44\" height=\"44\" viewBox=\"0 0 24 24\" fill=\"#fff\"><rect x=\"6\" y=\"4.5\" width=\"4\" height=\"15\" rx=\"1\"/><rect x=\"14\" y=\"4.5\" width=\"4\" height=\"15\" rx=\"1\"/></svg>", "dual": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><rect x=\"3\" y=\"5\" width=\"8\" height=\"14\" rx=\"2\"/><rect x=\"13\" y=\"5\" width=\"8\" height=\"14\" rx=\"2\" opacity=\".55\"/></svg>", "down": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 9l6 6 6-6\"/></svg>"};
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = (s,r=document)=>r.querySelector(s);
+const esc = s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const EASE='cubic-bezier(.2,.8,.2,1)';
+const anim=(el,kf,o={})=>RM||!el?{finished:Promise.resolve()}:el.animate(kf,{duration:450,easing:EASE,fill:'both',...o});
+const art=(it,w,sq=1)=>`img/yt_${it.id}_${w}${sq?'_sq':''}.jpg`;
+const mmss=t=>`${Math.floor(t/60)}:${String(Math.floor(t%60)).padStart(2,'0')}`;
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('on'),1800);}
+const heard = {}; // id -> Set of step index
+/* ---------- 둘러보기 ---------- */
+function duoHTML(it,size=200){return `<div class="duo" style="width:${size}px;height:${size}px"><img class="a" src="${art(it,'A')}" alt=""><img class="b" src="${art(it,'B')}" alt=""><span class="ab" style="left:8px;background:var(--ink)">A</span><span class="ab" style="right:8px;background:var(--red)">B</span></div>`;}
+const comps=[...new Map(D.items.map(it=>[it.por,it])).values()];
+const perfs=[]; D.items.forEach(it=>['A','B'].forEach(w=>{ if(!perfs.find(p=>p.s===it[w].s)) perfs.push({s:it[w].s,it,w}); }));
+$('#bpage').innerHTML=`<div class="lt">비교 듣기</div>
+ <div class="shelf"><div class="sh"><b>바로 비교할 수 있어요</b><span>›</span></div><div class="row">${D.items.map((it,k)=>`<button class="card" data-k="${k}">${duoHTML(it,172)}<b>${esc(it.comp)} ${esc(it.title)}</b><span>${esc(it.A.s)} vs ${esc(it.B.s)}</span></button>`).join('')}</div></div>
+ <div class="shelf"><div class="sh"><b>작곡가</b><span>›</span></div><div class="row">${comps.map(it=>`<button class="circ" data-c="${it.por}"><i><img src="img/p_${it.por}.jpg" alt=""></i><b>${esc(it.comp)}</b></button>`).join('')}</div></div>
+ <div class="shelf"><div class="sh"><b>연주자</b><span>›</span></div><div class="row">${perfs.map(p=>`<button class="circ" data-id="${p.it.id}"><i><img src="${art(p.it,p.w)}" alt=""></i><b>${esc(p.s)}</b></button>`).join('')}</div></div>`;
+$('#bpage').querySelectorAll('.card').forEach(b=>b.onclick=()=>openAlbum(D.items[+b.dataset.k]));
+$('#bpage').querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>openAlbum(D.items.find(it=>it.por===b.dataset.c)));
+$('#bpage').querySelectorAll('.circ[data-id]').forEach(b=>b.onclick=()=>openAlbum(D.items.find(it=>it.id===b.dataset.id)));
+/* 탭 */
+let tab='browse';
+$('#tabs').onclick=e=>{const b=e.target.closest('button'); if(!b) return; const v=b.dataset.v; if(v===tab && !$('#album').classList.contains('hide')){ closeAlbum(); return; }
+  $('#tabs').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b)); ['browse','search','library'].forEach(id=>$('#'+id).classList.toggle('hide',id!==v)); $('#album').classList.add('hide'); tab=v;
+  anim($('#'+v),[{opacity:0},{opacity:1}],{duration:250,fill:'none'}); if(v==='library') lib(); if(v==='search') sres(''); };
+function rowHTML(it,sub){return `<button class="li" data-id="${it.id}"><span class="th"><img src="${art(it,'A')}" style="left:0" alt=""><img src="${art(it,'B')}" style="right:0" alt=""></span><span><b>${esc(it.comp)} ${esc(it.title)}</b><span>${esc(sub)}</span></span></button>`;}
+function sres(q){q=q.trim().toLowerCase(); const r=D.items.filter(it=>!q||[it.comp,it.title,it.A.s,it.B.s].join(' ').toLowerCase().includes(q));
+  $('#sres').innerHTML=r.map(it=>rowHTML(it,`${it.A.s} vs ${it.B.s}`)).join('')||'<div class="sub0" style="padding:16px 0">찾는 곡이 아직 없어요</div>'; $('#sres').querySelectorAll('.li').forEach(b=>b.onclick=()=>openAlbum(D.items.find(x=>x.id===b.dataset.id)));}
+$('#qi').oninput=e=>sres(e.target.value);
+function lib(){ const r=D.items.filter(it=>heard[it.id]&&heard[it.id].size); $('#lib').innerHTML=r.map(it=>rowHTML(it,`${heard[it.id].size} / ${it.steps.length} 단계 들음`)).join('')||'<div class="sub0" style="padding:16px 0">아직 들은 비교가 없어요</div>'; $('#lib').querySelectorAll('.li').forEach(b=>b.onclick=()=>openAlbum(D.items.find(x=>x.id===b.dataset.id)));}
+/* ---------- 비교 페이지 ---------- */
+let alb=null;
+function openAlbum(it){ alb=it; const A=$('#album');
+  A.innerHTML=`<div class="nav"><button id="ab">${ICON.back}둘러보기</button></div>
+   <div class="cover"><div class="ca"><img src="${art(it,'A')}" alt="A 음반"><span class="tg" style="background:var(--ink)">A</span></div><div class="cb"><img src="${art(it,'B')}" alt="B 음반"><span class="tg" style="background:var(--red)">B</span></div></div>
+   <div class="at">${esc(it.comp)} ${esc(it.title)}</div><div class="ar">${esc(it.A.s)} vs ${esc(it.B.s)}</div><div class="am">${esc(it.tags.join(' · '))} · ${it.steps.length}단계</div>
+   <div class="btns"><button class="p" id="go">${ICON.playS}비교 시작</button><button id="go2">${ICON.dual}동시에 듣기</button></div>
+   <div class="tracks scroll" id="trk">${it.steps.map((s,k)=>`<button class="tr" data-k="${k}"><span class="n">${heard[it.id]&&heard[it.id].has(k)?'✓':k+1}</span><span class="t">${esc(s.t)}</span><span class="d">${mmss(s.a[1]-s.a[0])}</span></button>`).join('')}</div>`;
+  A.classList.remove('hide');
+  $('#ab').onclick=closeAlbum;
+  const start=(k,m)=>{ if(it.id!=='brahms-op118-2'){ toast('이 시험 페이지에선 브람스만 들어 볼 수 있어요'); return; } load(k,m,true); openNP(); startT(); };
+  $('#go').onclick=()=>start(0,'A'); $('#go2').onclick=()=>start(0,'AB');
+  A.querySelectorAll('.tr').forEach(b=>b.onclick=()=>start(+b.dataset.k,'A'));
+  markNow();
+  anim(A,[{transform:'translateX(100%)'},{transform:'none'}],{duration:450,fill:'none'});
+  anim($('.cover .ca',A),[{transform:'translate(30px,20px) scale(.9)',opacity:0},{transform:'none',opacity:1}],{delay:180,duration:500});
+  anim($('.cover .cb',A),[{transform:'translate(-30px,-20px) scale(.9)',opacity:0},{transform:'none',opacity:1}],{delay:260,duration:500});
+}
+function closeAlbum(){ const A=$('#album'); anim(A,[{transform:'none'},{transform:'translateX(100%)'}],{duration:380,fill:'none'}).finished.then(()=>A.classList.add('hide')); if(RM) A.classList.add('hide'); }
+function markNow(){ const A=$('#album'); if(!alb||A.classList.contains('hide')&&!A.innerHTML) return; A.querySelectorAll('.tr').forEach(b=>{ const k=+b.dataset.k; const h=heard[alb.id]&&heard[alb.id].has(k); b.classList.toggle('done',!!h); b.querySelector('.n').textContent=h?'✓':k+1; b.classList.toggle('now', cur&&cur.it.id===alb.id&&cur.k===k); }); }
+/* ---------- 재생 ---------- */
+const BR=D.brahms, L1=[210,252,387,549,715,870,1005], L2=[105,269,420,553,670,833,1005], CW=1010;
+let cur=null; // {it,k,mode,t,dur,playing,raf,last}
+function clipOf(k,w){ const s=cur.it.steps[k]; return w==='A'?s.a:s.b; }
+function durOf(k,m){ const a=clipOf(k,'A'), b=clipOf(k,'B'); return m==='A'?a[1]-a[0]:m==='B'?b[1]-b[0]:Math.max(a[1]-a[0],b[1]-b[0]); }
+function load(k,m,fresh){ const it=D.items[0]; stopT(); cur={it,k,mode:m||'A',t:0,playing:false}; cur.dur=durOf(k,cur.mode); paint(true); }
+function setBG(){ const it=cur.it, c=cur.mode==='B'?it.colB:it.colA; const bg=$('#npbg'); bg.style.setProperty('--c1',c[0]); bg.style.setProperty('--c2',cur.mode==='AB'?it.colB[1]:c[1]); }
+function paint(full){ const it=cur.it, s=it.steps[cur.k], m=cur.mode;
+  $('#ba').src=art(it,'A',0); $('#bb').src=art(it,'B',0); bigMode();
+  $('#nt1').textContent=`${cur.k+1}. ${s.t}`; $('#nt2').textContent= m==='A'?`${it.A.s} ${it.A.y||''}`: m==='B'?`${it.B.s} ${it.B.y||''}`:`${it.A.s} vs ${it.B.s} · 같은 시계`;
+  $('#smt1').textContent=`${cur.k+1}. ${s.t}`; $('#smt2').textContent=`${it.comp} ${it.title}`;
+  $('#mart').src=art(it, m==='B'?'B':'A'); $('#mt1').textContent=`${cur.k+1}. ${s.t}`; $('#mt2').textContent=`${it.comp} · ${m==='AB'?it.A.s+' vs '+it.B.s:(m==='A'?it.A.s:it.B.s)}`;
+  setBG(); seg(); ticks(); if(full){ lyrics(); score(); queue(); } tickUI(); markNow(); }
+function bigMode(){ const m=cur.mode, a=$('#ba'), b=$('#bb');
+  if(m==='AB'){ a.style.opacity=1; b.style.opacity=1; a.style.width='50%'; b.style.width='50%'; a.style.left='0'; b.style.left='50%'; }
+  else { a.style.width=b.style.width='100%'; a.style.left=b.style.left='0'; a.style.opacity=m==='B'?0:1; b.style.opacity=m==='B'?1:0; }
+  $('#big').querySelectorAll('.ab').forEach(x=>x.style.opacity=m==='AB'?1:0); }
+function seg(){ const bs=[...$('#seg').querySelectorAll('button')], i=['A','B','AB'].indexOf(cur.mode), b=bs[i]; bs.forEach(x=>x.classList.toggle('on',x===b));
+  const k=$('#knob'); k.style.width=b.offsetWidth+'px'; k.style.transform=`translateX(${b.offsetLeft-3}px)`; }
+$('#seg').onclick=e=>{ const b=e.target.closest('button'); if(!b||!cur) return; const was=cur.playing; const keepT=cur.t; cur.mode=b.dataset.m; cur.dur=durOf(cur.k,cur.mode); cur.t=Math.min(keepT,cur.dur); paint(false); score(); if(was) startT(); };
+function ticks(){ const k=cur.k, m=cur.mode, html=[]; const add=(w,cls)=>{ const [s,e]=clipOf(k,w), bt=w==='A'?BR.btA:BR.btB, d=cur.dur; bt.forEach(t=>{ if(t>=s&&t<=e){ const x=(t-s)/d*100; if(x<=100) html.push(`<i class="${cls}" style="left:${x}%"></i>`);} }); };
+  if(m!=='B') add('A',''); if(m!=='A') add('B', m==='AB'?'b':''); $('#tks').innerHTML=html.join(''); }
+/* 해설(가사) */
+let LY=[]; // {el,t}
+function lyrics(){ const s=BR.steps[cur.k], d=durOf(cur.k,'A'); const lines=s.lines; const n=lines.length;
+  const [k,a,b]=s.bar, dec=!Number.isInteger(a)||!Number.isInteger(b);
+  $('#lyin').innerHTML = lines.map(l=>`<p>${esc(l)}</p>`).join('') + `<p class="num hide2">${esc(k)} <em>A ${dec?a.toFixed(1):a}초</em> · <em style="color:#ff8a9b">B ${dec?b.toFixed(1):b}초</em></p>` + s.after.map(l=>`<p class="hide2 aft">${esc(l)}</p>`).join('');
+  LY=[...$('#lyin').querySelectorAll('p')]; LY.forEach((p,i)=>p.dataset.t = i<n ? (i/n)*cur.dur*0.92 : cur.dur); syncLy(true); }
+function syncLy(force){ if(!LY.length) return; let on=0; LY.forEach((p,i)=>{ if(+p.dataset.t<=cur.t+0.01 && !p.classList.contains('hide2')) on=i; });
+  const end = cur.t>=cur.dur-0.05; LY.forEach(p=>{ if(p.classList.contains('num')||p.classList.contains('aft')) p.classList.toggle('hide2',!end); });
+  if(end){ on=LY.findIndex(p=>p.classList.contains('num')); }
+  LY.forEach((p,i)=>p.classList.toggle('on',end? i>=on : i===on));
+  const tgt=LY[on]; if(tgt){ const y=Math.max(0,tgt.offsetTop-90); $('#lyin').style.transform=`translateY(${-y}px)`; } }
+/* 악보 */
+function barPos(bt,t){ if(t<bt[0]){const beat=(bt[1]-bt[0])/3,p0=bt[0]-beat; return t<p0?null:-1+(t-p0)/beat;} for(let i=0;i<bt.length-1;i++) if(bt[i]<=t&&t<bt[i+1]) return i+(t-bt[i])/(bt[i+1]-bt[i]); return null; }
+function place(b){ if(b===null) return null; if(RM) b=Math.floor(b); if(b<5){ const i=Math.floor(b)+1,f=b-Math.floor(b); return {line:1,x:(L1[i]+f*(L1[i+1]-L1[i]))/CW*100,x0:L1[0]/CW*100}; } const k=b-5,i=Math.min(5,Math.floor(k)),f=k-i; return {line:2,x:(L2[i]+f*(L2[i+1]-L2[i]))/CW*100,x0:L2[0]/CW*100}; }
+function laneHTML(w){ const it=cur.it, c=w==='A'?'#1c1c1e':'#fa2d48'; return `<div class="lane" id="lane${w}" style="--c:${c}"><div class="lh"><span><i>${w}</i>${esc(it[w].s)}</span><span class="clk" id="t${w}">0:00.0</span></div><div class="sc" id="sc${w}"><img src="img/score_l1.png" id="i${w}1" alt="악보"><img src="img/score_l2.png" id="i${w}2" style="opacity:0" alt=""><div class="done" id="d${w}"></div><div class="hd" id="h${w}"></div></div></div>`; }
+function score(){ const s=BR.steps[cur.k]; $('#sco').innerHTML = cur.k===0 ? laneHTML('A')+laneHTML('B') : `<div class="full"><img src="${s.img}" alt="악보"></div>`; drawScore(); }
+function drawOne(w,t,act){ const sc=$('#sc'+w); if(!sc) return; const bt=w==='A'?BR.btA:BR.btB, end=w==='A'?24:21, tt=Math.min(t,end), p=act?place(barPos(bt,tt)):null;
+  $('#t'+w).textContent=`${Math.floor(tt/60)}:${(tt%60).toFixed(1).padStart(4,'0')}`; $('#lane'+w).classList.toggle('on',act);
+  if(!p){ $('#d'+w).style.width='0'; sc.classList.remove('live'); $('#i'+w+'1').style.opacity=1; $('#i'+w+'2').style.opacity=0; return; }
+  $('#i'+w+'1').style.opacity=p.line===1?1:0; $('#i'+w+'2').style.opacity=p.line===2?1:0; $('#d'+w).style.left=p.x0+'%'; $('#d'+w).style.width=Math.max(0,p.x-p.x0)+'%'; $('#h'+w).style.left=p.x+'%'; sc.classList.add('live'); }
+function drawScore(){ if(cur.k!==0) return; const m=cur.mode; drawOne('A',cur.t,m!=='B'&&cur.t>0); drawOne('B',cur.t,m!=='A'&&cur.t>0); }
+/* 단계 목록 */
+function queue(){ $('#qlist').innerHTML=cur.it.steps.map((s,k)=>`<button data-k="${k}" class="${k===cur.k?'now':''}"><span class="n">${heard[cur.it.id]&&heard[cur.it.id].has(k)?'✓':k+1}</span><span>${esc(s.t)}</span><span class="d">${mmss(s.a[1]-s.a[0])}</span></button>`).join('');
+  $('#qlist').querySelectorAll('button').forEach(b=>b.onclick=()=>{ load(+b.dataset.k,cur.mode); startT(); }); }
+/* 시계 */
+function tickUI(){ const p=Math.min(1,cur.t/cur.dur); $('#pbar').style.width=(p*100)+'%'; $('#tc').textContent=mmss(cur.t); $('#tr').textContent='-'+mmss(Math.max(0,cur.dur-cur.t)); syncLy(); drawScore();
+  const ico=cur.playing?ICON.pause:ICON.play; if($('#pp')._i!==cur.playing){ $('#pp').innerHTML=ico; $('#mpp').innerHTML=cur.playing?ICON.pauseS:ICON.playS; $('#pp')._i=cur.playing; } }
+function startT(){ if(cur.t>=cur.dur) cur.t=0; cur.playing=true; cur.last=performance.now(); const f=()=>{ const n=performance.now(); cur.t+= (n-cur.last)/1000; cur.last=n; if(cur.t>=cur.dur){ cur.t=cur.dur; cur.playing=false; tickUI(); ended(); return; } tickUI(); cur.raf=requestAnimationFrame(f); }; cur.raf=requestAnimationFrame(f); tickUI(); }
+function stopT(){ if(cur){ cancelAnimationFrame(cur.raf); cur.playing=false; } }
+$('#pp').onclick=()=>{ cur.playing?(stopT(),tickUI()):startT(); };
+$('#mpp').onclick=e=>{ e.stopPropagation(); cur.playing?(stopT(),tickUI()):startT(); };
+$('#nx').onclick=()=>next(); $('#mnx').onclick=e=>{e.stopPropagation(); next();};
+$('#pv').onclick=()=>{ if(cur.t>2||cur.k===0){ cur.t=0; tickUI(); } else { load(cur.k-1,cur.mode); } };
+function next(){ if(cur.k<cur.it.steps.length-1){ const w=cur.playing; load(cur.k+1,cur.mode); if(w) startT(); } }
+function ended(){ (heard[cur.it.id] ||= new Set()).add(cur.k); queue(); markNow(); const ly=$('#pl').classList.contains('on'); setTimeout(openReplay, ly?2600:500); }
+/* 전체 화면 열고 닫기 */
+let npOpen=false;
+function openNP(){ npOpen=true; const n=$('#np'); n.style.transition=RM?'none':'transform .5s var(--ease)'; n.style.transform='translateY(0)'; requestAnimationFrame(seg); }
+function closeNP(){ npOpen=false; const n=$('#np'); n.style.transition=RM?'none':'transform .45s var(--ease)'; n.style.transform='translateY(100%)'; }
+$('#mini').onclick=()=>openNP(); $('#npx').onclick=closeNP;
+let dy0=null; const npEl=$('#np');
+['grab','big'].forEach(id=>$('#'+id).addEventListener('pointerdown',e=>{ dy0=e.clientY; npEl.style.transition='none'; }));
+addEventListener('pointermove',e=>{ if(dy0===null) return; const d=Math.max(0,e.clientY-dy0); npEl.style.transform=`translateY(${d}px)`; });
+addEventListener('pointerup',e=>{ if(dy0===null) return; const d=e.clientY-dy0; dy0=null; if(d>120) closeNP(); else if(d>4) openNP(); else { npEl.style.transition='transform .3s var(--ease)'; npEl.style.transform='translateY(0)'; } });
+/* 해설·악보·목록 전환 */
+$('.ic').onclick=e=>{ const b=e.target.closest('button'); if(!b) return; const p=b.dataset.p, on=!b.classList.contains('on');
+  $('.ic').querySelectorAll('button').forEach(x=>x.classList.toggle('on',on&&x===b)); ['pl','ps','pq'].forEach(id=>$('#'+id).classList.toggle('on',on&&id===p)); $('#np').classList.toggle('sm',on); if(on&&p==='pl') syncLy(true); if(on&&p==='ps') drawScore(); };
+/* 들은 뒤 */
+function openReplay(){ const it=cur.it, s=BR.steps[cur.k], [k,a,b]=s.bar, m=Math.max(a,b), dec=!Number.isInteger(a)||!Number.isInteger(b), last=cur.k===it.steps.length-1;
+  const R=$('#rp'); R.innerHTML=`<div class="bgi" style="background-image:url(${art(it,'B')})"></div><div class="grab"><button id="rpx" aria-label="닫기">${ICON.down}</button></div>
+   <div class="rk">${cur.k+1}. ${esc(it.steps[cur.k].t)} · ${esc(k)}</div>
+   <div class="rbars"><div class="rc"><div class="ph"><img src="${art(it,'A')}" alt=""></div><div class="v" data-v="${a}">${dec?a.toFixed(1):a}<small>초</small></div><div class="who">A ${esc(it.A.s)}</div><div class="br" style="height:${a/m*52}%;background:#fff"></div></div>
+   <div class="rc"><div class="ph"><img src="${art(it,'B')}" alt=""></div><div class="v" data-v="${b}" style="color:#ff8a9b">${dec?b.toFixed(1):b}<small>초</small></div><div class="who">B ${esc(it.B.s)}</div><div class="br" style="height:${b/m*52}%;background:var(--red)"></div></div></div>
+   <div class="rcc"><span>${esc(s.cc)}</span></div><button class="rnx" id="rnx">${last?'처음으로':'다음 단계'} ${ICON.playS.replace('currentColor','#1c1c1e')}</button>`;
+  R.style.transition=RM?'none':'transform .5s var(--ease)'; R.style.transform='translateY(0)';
+  R.querySelectorAll('.br').forEach((x,i)=>anim(x,[{transform:'scaleY(0)'},{transform:'none'}],{delay:350+i*140,duration:650}));
+  R.querySelectorAll('.v').forEach((v,i)=>{ const tgt=+v.dataset.v; if(RM) return; const t0=performance.now()+350+i*140; const f=()=>{ const p=Math.min(1,Math.max(0,(performance.now()-t0)/650)); const e=1-Math.pow(1-p,3); v.firstChild.textContent=(tgt*e).toFixed(dec?1:0); if(p<1) requestAnimationFrame(f); }; requestAnimationFrame(f); });
+  anim($('.rcc span',R),[{transform:'translateY(110%)'},{transform:'none'}],{delay:900,duration:450});
+  const close=()=>{ R.style.transform='translateY(100%)'; };
+  $('#rpx').onclick=close; $('#rnx').onclick=()=>{ close(); if(last){ closeNP(); return; } load(cur.k+1,cur.mode); startT(); };
+}
+/* 시험 손잡이 */
+window.__t={ load:(k,m)=>{load(k,m);}, open:openNP, close:closeNP, pane:p=>{ const b=$(`.ic button[data-p="${p}"]`); if(!b.classList.contains('on')) b.click(); },
+  at:(t,m)=>{ stopT(); if(m&&m!==cur.mode){ cur.mode=m; cur.dur=durOf(cur.k,m); paint(false); score(); } cur.t=t; tickUI(); }, replay:openReplay, album:i=>openAlbum(D.items[i||0]) };
+load(0,'A');
+</script></body></html>
