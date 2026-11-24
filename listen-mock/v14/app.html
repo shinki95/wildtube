@@ -853,7 +853,7 @@ function ytLoad(){ if(window.YT&&YT.Player){ YTready=true; return; } if(document
   const sc=document.createElement('script'); sc.id='ytapi'; sc.src='https://www.youtube.com/iframe_api'; document.head.appendChild(sc); }
 function ytMake(){ if(!YTready||YTP.A) return; ['A','B'].forEach(w=>{ YTP[w]=new YT.Player('yt'+w,{width:'100%',height:'100%',videoId:BR.yt[w],
   playerVars:{playsinline:1,rel:0,modestbranding:1,controls:1,start:Math.floor(clip(0,w)[0]),origin:location.origin},
-  events:{onReady:()=>{ YTP[w]._ok=true; },onStateChange:e=>{ YTP[w]._st=e.data; if(P&&P.who===w&&e.data===1){ P.loading=false; P.playing=true; P.err=null; loopP(); } },
+  events:{onReady:()=>{ YTP[w]._ok=true; },onStateChange:e=>{ YTP[w]._st=e.data; if(P&&P.who===w&&e.data===1){ P.loading=false; P.playing=true; P.err=null; loopP(); endWatch(); } },
           onError:e=>{ YTP[w]._err=e.data; if(P&&P.who===w){ P.err=w; P.loading=false; P.playing=false; ytErr(w); draw(); } }}}); }); }
 function ytErr(w){ const c=P?clip(P.k,w):[0]; $('#yerrl').href=`https://www.youtube.com/watch?v=${BR.yt[w]}&t=${Math.floor(c[0])}s`; $('#yerr').classList.add('on'); placeYT(); }
 const ytOK=w=>YTP[w]&&YTP[w]._ok&&YTP[w].playVideo;
@@ -869,9 +869,12 @@ function draw(){ if(!P) return; const t=P.t, w=P.who, play=!!P.playing, k=P.k; c
       $('#ds'+x).textContent = (w===x&&P.loading)?'불러오는 중…' : (P.err===x?'재생이 안 돼요' : (w===x&&t>0?`${f1(t)} · ${barTxt(L,k)}`:(w&&t>0?`같은 때 ${barTxt(L,k)}`:`${it[x].y||''}년 녹음`))); }
     const q=$('#q'+x); q.classList.toggle('on',on); $('#q'+x+'n').textContent=it[x].s; $('#q'+x+'s').textContent=(w===x&&P.loading)?'불러오는 중…':(w===x&&t>0?`${f1(t)} · ${barTxt(L,k)}`:(w&&t>0?`같은 때 ${barTxt(L,k)}`:'듣기')); $('#q'+x+'i').innerHTML=(w===x&&play)?IC.pause:IC.play; });
   const sw=$('#sw'); if(sw) sw.classList.toggle('on',play); $('#qsw').classList.toggle('on',play); placeYT(); }
+function endWatch(){ if(!P) return; clearTimeout(P.eto); if(!P.playing||!ytOK(P.who)) return; const w=P.who, c=clip(P.k,w); let cur=0; try{ cur=YTP[w].getCurrentTime(); }catch(e){ return; }
+  if(cur>=c[1]-0.12){ try{ YTP[w].pauseVideo(); }catch(e){} P.playing=false; P.t=c[1]-c[0]; P.ended=true; draw(); return; }
+  P.eto=setTimeout(endWatch,Math.max(30,Math.min(1000,(c[1]-cur)*1000-60))); }
 function loopP(){ if(!P) return; cancelAnimationFrame(P.raf); const f=()=>{ if(!P) return; const w=P.who, c=clip(P.k,w), pl=YTP[w];
     if(ytOK(w)){ let st=-9, cur=0; try{ st=pl.getPlayerState(); cur=pl.getCurrentTime(); }catch(e){}
-      if(st===1){ P.loading=false; P.playing=true; P.t=Math.max(0,cur-c[0]); if(cur>=c[1]-0.05){ try{ pl.pauseVideo(); }catch(e){} P.playing=false; P.t=c[1]-c[0]; P.ended=true; draw(); P.raf=0; return; } }
+      if(st===1){ if(!P.playing){ P.playing=true; endWatch(); } P.loading=false; P.t=Math.max(0,cur-c[0]); if(cur>=c[1]-0.05){ try{ pl.pauseVideo(); }catch(e){} P.playing=false; P.t=c[1]-c[0]; P.ended=true; draw(); P.raf=0; return; } }
       else if((st===2||st===0)&&!P.loading){ P.playing=false; }
       else if(P.loading&&performance.now()-P.t0>9000){ P.loading=false; } }
     draw(); if(P.playing||P.loading){ P.raf=requestAnimationFrame(f); } else P.raf=0; }; P.raf=requestAnimationFrame(f); }
