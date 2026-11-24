@@ -924,7 +924,7 @@ function chapScreen(k){ panelSize(k); const s=BR.steps[k], cr=s.cr, has=!!(cr.A|
 /* ---------- 16판 ---------- */
 const V0=BR.v0;
 function vslotHTML(){ return `<div class="vslot vs6" id="vslot" aria-hidden="true"><div class="nowi" id="nowi"></div></div>`; }
-function duo18(k,full){ const sub=w=>{ const c=clip(k,w); return full?'전곡 · 처음부터 끝까지':`${fmt0(c[0])}~${fmt0(c[1])} · ${Math.round(c[1]-c[0])}초`; };
+function duo18(k,full){ const sub=w=>{ const c=clip(k,w); return full?'전곡 듣기':`${fmt0(c[0])}~${fmt0(c[1])} · ${Math.round(c[1]-c[0])}초`; };
   const card=w=>`<button class="dc4 ${w}" id="dc${w}" aria-label="${w} ${esc(it[w].s)} ${full?'전곡':'듣기'}"><span class="pi" id="dp${w}">${IC.play}</span><span class="mx"><span class="nm">${w==='A'?`<span class="tg">A</span>${esc(it.A.s)}`:`${esc(it.B.s)}<span class="tg">B</span>`}</span><span class="s" id="ds${w}">${sub(w)}</span></span><span class="pr"><i id="pr${w}"></i></span></button>`;
   return `<div class="duo4">${card('A')}<button class="sw4" id="sw" aria-label="같은 자리에서 다른 연주로">${IC.swap}</button>${card('B')}</div>`; }
 function duo16(k,full){ const s=full?null:BR.steps[k]; const sub=w=>{ const c=clip(k,w); return full?'처음부터 끝까지':`${fmt0(c[0])}~${fmt0(c[1])} · ${Math.round(c[1]-c[0])}초`; };
@@ -1148,7 +1148,7 @@ let lastExp=null;
 function draw(){ if(!P) return; const t=P.t, w=P.who, play=!!P.playing, k=P.k; const L=lane1Draw(); const n=$('#stage .scr:last-child');
   const exp=!!(w&&(play||P.loading)); if(n&&n._fit&&n._fit.exp!==exp) fit16(n);
   ['A','B'].forEach(x=>{ const on=w===x&&(play||P.loading); const dc=$('#dc'+x); if(!dc) return; dc.classList.toggle('on',on); dc.classList.toggle('done',!!(heardB[k]&&heardB[k][x]));
-    const c=clip(k,x), ic=(w===x&&play)?IC.pause:IC.play; const msg=(w===x&&P.loading)?'불러오는 중…':(P.err===x?'재생이 안 돼요':(w&&t>0?`${w===x?f1(t):'같은 때'}${k<NP?' · '+barTxt(L[x],k):''}`:(k>=NP?'전곡 · 처음부터 끝까지':`${fmt0(c[0])}~${fmt0(c[1])} · ${Math.round(c[1]-c[0])}초`)));
+    const c=clip(k,x), ic=(w===x&&play)?IC.pause:IC.play; const msg=(w===x&&P.loading)?'불러오는 중…':(P.err===x?'재생이 안 돼요':(w&&t>0?`${w===x?f1(t):'같은 때'}${k<NP?' · '+barTxt(L[x],k):''}`:(k>=NP?'전곡 듣기':`${fmt0(c[0])}~${fmt0(c[1])} · ${Math.round(c[1]-c[0])}초`)));
     $('#ds'+x).textContent=msg; const dp=$('#dp'+x); if(dp) dp.innerHTML=(w===x&&play)?IC.pause:IC.play; const pr=$('#pr'+x); if(pr){ const len=c[1]-c[0], tt=(w===x)?t:(w&&t>0&&L[x]?null:null); pr.style.width=(w===x?Math.min(100,t/len*100):0)+'%'; dc.classList.toggle('prog',w===x&&t>0); } });
   const ni=n&&$('#nowi',n); if(ni&&w){ ni.innerHTML=`<b>${w} ${esc(it[w].s)}</b><span>${play?'재생 중':P.loading?'불러오는 중':'멈춤'}</span><span>${f1(t)}${k<NP&&L[w]?' · '+barTxt(L[w],k):''}</span>`; }
   const sw=$('#sw'); if(sw) sw.classList.toggle('on',play); const fb=$('#flipb'); if(fb) fb.classList.toggle('ready',!!(heardB[k]&&heardB[k].A&&heardB[k].B)); placeYT(); }
