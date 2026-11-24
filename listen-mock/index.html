@@ -1,0 +1,293 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>비교 듣기 · 목차</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,500&display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"><style>
+:root{--paper:#fff;--ink:#161616;--sub:#5c5c5c;--soft:#e7e7e7;--red:#c8102e;--A:#161616;--B:#c8102e;
+--serif:'Noto Serif KR',serif;--mast:'Playfair Display',serif;--ease:cubic-bezier(.22,.8,.24,1)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;background:#d9d6d0}
+body{font-family:'Pretendard',-apple-system,sans-serif;color:var(--ink);word-break:keep-all;display:flex;justify-content:center}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+#app{position:relative;width:100%;max-width:430px;height:100dvh;max-height:932px;background:var(--paper);overflow:hidden}
+.scr{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--paper)}
+.hide{visibility:hidden;pointer-events:none}
+.mast{font-family:var(--mast);font-weight:700;text-transform:uppercase;letter-spacing:.2em;line-height:1}
+.kick{font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--red)}
+.meta{font-size:13px;color:var(--sub)}
+.num{font-family:var(--mast);font-variant-numeric:lining-nums tabular-nums;font-feature-settings:"lnum" 1}
+.nav{height:52px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 6px;border-bottom:1px solid var(--ink)}
+.nav .b{min-width:64px;height:44px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600}
+.nav .mast{font-size:14px;letter-spacing:.24em}
+/* 표지 그림 */
+.cover{position:relative;background:radial-gradient(130% 120% at 50% 0%,#f8d45a,#efc33a 55%,#e2ad2c);color:#1e140b;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 10px 30px -12px rgba(60,40,0,.45)}
+.cover::before{content:"";position:absolute;inset:4%;border:1px solid #6b4a1288;outline:1px solid #6b4a1244;outline-offset:-3%}
+.cover .o{font:600 .055em/1 var(--mast);letter-spacing:.24em;text-transform:uppercase;color:#5b3f10}
+.cover .c{font:800 .15em/1 var(--mast);letter-spacing:.06em;text-transform:uppercase;margin-top:.12em}
+.cover .p{font:italic 500 .075em/1.2 var(--mast);margin-top:.12em;color:#3c2a10}
+/* 짝 카드 */
+#pair .body{flex:1;display:flex;flex-direction:column;padding:22px 20px 20px}
+.ttl{font-family:var(--serif);font-weight:900;font-size:38px;line-height:1.14;letter-spacing:-.01em;margin-top:10px}
+.ttl .ln{display:block;overflow:hidden;padding-bottom:2px}
+.ttl .ln>span{display:inline-block}
+.enw{font:italic 500 17px/1.3 var(--mast);color:var(--sub);margin-top:8px}
+.duo{display:grid;grid-template-columns:1fr 1px 1fr;margin-top:22px;border-top:2px solid var(--ink);border-bottom:1px solid var(--ink)}
+.duo .ln2{background:var(--ink);transform-origin:top}
+.side{padding:16px 12px 18px 0}
+.side.b{padding:16px 0 18px 14px}
+.tag{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;font-weight:800;font-size:15px;color:#fff}
+.side .nm{font-family:var(--serif);font-size:21px;font-weight:700;margin-top:10px;line-height:1.2}
+.side .yr{font-size:52px;font-weight:700;line-height:1;margin-top:8px}
+.side p{font-size:16px;line-height:1.42;margin-top:10px}
+.why{margin-top:18px}
+.why p{font-size:16px;line-height:1.55;margin-top:6px}
+.why.lis{margin-top:14px;padding-top:12px;border-top:1px solid var(--soft)}
+.cta{margin-top:auto}
+.cta{margin-top:auto;height:56px;background:var(--red);color:#fff;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;width:100%}
+.cta[disabled]{background:#bbb}
+/* 듣기 */
+#listen .pg{height:52px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 4px}
+#listen .pg .b{height:44px;min-width:76px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600}
+#listen .pg .b[disabled]{opacity:.3}
+.prog{height:3px;background:var(--soft);margin-top:6px;position:relative;overflow:hidden}
+.prog i{position:absolute;left:0;top:0;bottom:0;background:var(--red);transition:width .45s var(--ease)}
+.stage{position:relative;flex:1;overflow:hidden}
+.step{position:absolute;inset:0;display:flex;flex-direction:column}
+.st{padding:2px 16px 10px;border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.st h2{font-family:var(--serif);font-size:22px;font-weight:900;overflow:hidden}
+.st h2 span{display:inline-block}
+.video{margin:12px 16px 0;aspect-ratio:16/9;background:#e6e6e6;position:relative;display:flex;align-items:center;justify-content:center;flex:none}
+.video .yt{display:flex;align-items:center;gap:6px;font-weight:700;font-size:15px;color:#666}
+.video .yt i{width:30px;height:21px;border-radius:5px;background:#9a9a9a;position:relative}
+.video .yt i::after{content:"";position:absolute;left:12px;top:6px;border-left:8px solid #fff;border-top:4.5px solid transparent;border-bottom:4.5px solid transparent}
+.video .now{position:absolute;left:8px;bottom:8px;font-size:13px;background:#fff;padding:3px 7px;font-weight:600}
+.point{font-size:16px;line-height:1.45;padding:10px 16px 2px}
+.lane{margin:8px 16px 0;border:1px solid var(--soft);padding:7px 9px 6px;transition:border-color .3s var(--ease),box-shadow .3s var(--ease)}
+.lane.on{border-color:var(--c);box-shadow:inset 0 0 0 1.5px var(--c)}
+.lh{display:flex;justify-content:space-between;align-items:center;font-size:15px;height:24px}
+.lh b{display:flex;align-items:center;gap:7px;font-weight:700}
+.lh .tag{width:22px;height:22px;font-size:13px;background:var(--c)}
+.lh .clk{font-size:15px;color:var(--sub)}
+.lh .clk em{font-style:normal;color:var(--c);font-weight:700}
+.sc{position:relative;margin-top:4px;aspect-ratio:1010/252}
+.sc img{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;transition:opacity .3s var(--ease)}
+.sc .done{position:absolute;top:0;bottom:0;left:0;background:var(--c);opacity:.10}
+.sc .hd{position:absolute;top:-3px;bottom:-3px;width:4px;margin-left:-2px;background:var(--c);opacity:0;transition:opacity .25s}
+.sc.live .hd{opacity:1}
+.cap{font-size:14px;margin-top:3px;display:flex;justify-content:space-between}
+.cap em{font-style:normal;font-weight:800;color:var(--c)}
+.gapline{font-size:14px;text-align:center;margin-top:8px;height:20px;color:var(--sub)}
+.gapline b{color:var(--ink)}
+.ctrl{margin-top:auto;padding:8px 16px 16px;display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:8px;flex:none}
+.ctrl button{height:54px;font-size:17px;font-weight:700;border:2px solid var(--c);color:var(--c);transition:background-color .25s,color .25s}
+.ctrl button.on{background:var(--c);color:#fff}
+.ctrl .both{--c:var(--ink)}
+.ctrl .both.on{background:var(--ink)}
+.full{margin:10px 16px 0;position:relative}
+.full img{width:100%;max-height:132px;object-fit:contain;object-position:left top;display:block;border:1px solid var(--soft)}
+.tbar{margin:10px 16px 0}
+.tbar .r{margin-top:6px}
+.tbar .k{font-size:15px;font-weight:600;display:flex;justify-content:space-between}
+.tbar .row{display:flex;align-items:center;gap:8px;margin-top:4px;font-size:14px}
+.tbar .row i{display:block;height:12px;background:var(--c);transform-origin:left;transition:transform .5s var(--ease)}
+.tbar .row span{width:16px;font-weight:800;color:var(--c)}
+.toast{position:absolute;left:16px;right:16px;bottom:90px;background:var(--ink);color:#fff;font-size:15px;padding:12px 14px;opacity:0;transform:translateY(8px);transition:.3s var(--ease);pointer-events:none;z-index:50}
+.toast.on{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+
+#pick .top{padding:18px 18px 0;flex:none}
+#pick .rule2{height:5px;border-top:2px solid var(--ink);border-bottom:1px solid var(--ink)}
+#pick .mast{font-size:25px;text-align:center;margin-top:12px;letter-spacing:.16em;white-space:nowrap}
+#pick .subl{display:flex;justify-content:space-between;align-items:baseline;margin:8px 0 0;padding-bottom:8px;border-bottom:1px solid var(--ink)}
+#pick .subl b{font-family:var(--serif);font-size:17px}
+.az{display:flex;padding:0 12px;border-bottom:1px solid var(--soft);flex:none;overflow:hidden}
+.az button{height:46px;min-width:44px;font:700 17px var(--mast);color:var(--sub);letter-spacing:.02em}
+.az button.on{color:var(--red);box-shadow:inset 0 -3px 0 var(--red)}
+.list{flex:1;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;padding:0 18px}
+.list::-webkit-scrollbar{display:none}
+.irow{display:grid;grid-template-columns:64px 1fr;align-items:start;padding:14px 0 13px;border-bottom:1px solid var(--soft);cursor:pointer;position:relative;width:100%;text-align:left}
+.irow .n{font-size:34px;font-weight:700;color:var(--red);line-height:1}
+.irow h3{font-family:var(--serif);font-weight:900;font-size:23px;line-height:1.18;letter-spacing:-.01em}
+.irow .vs{font-size:16px;color:var(--sub);margin-top:5px}
+.irow .vs b{color:var(--ink);font-weight:600}
+.irow.hit{animation:hit .9s var(--ease) 1}
+@keyframes hit{0%{background:#fbe7ea}100%{background:transparent}}
+.foot{flex:none;padding:10px 18px 14px;border-top:1px solid var(--ink);display:flex;justify-content:space-between;align-items:center}
+.foot .meta{font-size:14px}
+.panel{position:absolute;background:#fff;z-index:30;border-top:2px solid var(--ink)}
+</style></head><body><div id="app"><section class="scr" id="pick"><div class="top"><div class="rule2"></div><div class="mast">Compare Listening</div><div class="subl"><b>이번 주 목차</b><span class="meta">같은 곡, 두 연주 · <span class="num">10</span>쌍</span></div></div>
+<div class="az" id="az"></div><div class="list" id="list"></div><div class="foot"><span class="meta">줄을 누르면 펼쳐져요</span><span class="meta" id="cnt"></span></div></section>
+<section class="scr hide" id="pair"></section>
+<section class="scr hide" id="listen">
+  <div class="pg"><button class="b" id="prev">‹ 이전</button><div style="flex:1;padding:0 6px;text-align:center"><div class="meta" id="pgn">1 / 7 단계</div><div class="prog"><i id="pgb"></i></div></div><button class="b" id="next">다음 ›</button></div>
+  <div class="stage" id="stage"></div>
+</section>
+<div class="toast" id="toast"></div>
+</div>
+<script>
+const D = {"items": [{"id": "brahms-op118-2", "lines": ["브람스 인터메초", "작품 118의 2번"], "comp": "브람스", "compEn": "Brahms", "en": "Intermezzo in A major, Op.118 No.2", "tags": ["피아노", "독주"], "A": {"s": "페라이어", "full": "머레이 페라이어", "y": 2010, "c": "만년의 연주. 따뜻하게 노래한다.", "en": "Perahia"}, "B": {"s": "굴드", "full": "글렌 굴드", "y": 1960, "c": "젊은 굴드. 느리고 속삭이듯 안으로.", "en": "Gould"}, "contrast": "만년의 페라이어는 따뜻하게 노래하고, 젊은 굴드는 아주 느리고 속삭이듯 안으로 파고든다.", "listen": "첫 주제 선율이 나오는 처음 몇 마디의 빠르기와, 가운데 단조 부분으로 넘어갈 때 소리의 무게.", "lesson": {"steps": 7, "q": "전체 길이는 페라이어 5분 10초, 굴드 5분 47초. 굴드가 37초 더 길어요. 그 37초는 어디서 나올까요? 두 녹음을 악보에 맞춰 마디마다 재 봤어요."}}, {"id": "bach-goldberg-aria", "lines": ["바흐 골드베르크", "변주곡 아리아"], "comp": "바흐", "compEn": "Bach", "en": "Goldberg Variations: Aria", "tags": ["건반", "같은 연주자"], "A": {"s": "굴드", "full": "글렌 굴드", "y": 1955, "c": "데뷔 녹음. 빠르고 가볍게.", "en": "Gould"}, "B": {"s": "굴드", "full": "글렌 굴드", "y": 1981, "c": "마지막 녹음. 아주 느리고 깊게.", "en": "Gould"}, "contrast": "같은 굴드의 데뷔 녹음과 마지막 녹음으로, 젊을 때는 빠르고 가볍게, 말년에는 아주 느리고 깊게.", "listen": "아리아 첫 선율의 빠르기와 꾸밈음 처리, 굴드의 허밍이 들리는 정도.", "lesson": {"steps": 5, "q": "같은 사람이 같은 32마디를, 첫 음부터 마지막 마디 직전까지 1955년엔 1분 45초, 1981년엔 2분 56초에 쳐요. 26년 사이 늘어난 71초는 곡 전체에 고르게 퍼져 있을까요?"}}, {"id": "chopin-nocturne-20", "lines": ["쇼팽 녹턴 20번", "올림다단조"], "comp": "쇼팽", "compEn": "Chopin", "en": "Nocturne No.20 in C-sharp minor, Op. posth.", "tags": ["피아노", "독주"], "A": {"s": "조성진", "full": "조성진", "y": 2017, "c": "단정하고 담백하게.", "en": "Cho"}, "B": {"s": "임윤찬", "full": "임윤찬", "y": 2023, "c": "박을 더 자유롭게 늘였다 당긴다.", "en": "Lim"}, "contrast": "같은 세대 두 한국 피아니스트의 실황으로, 조성진은 단정하고 담백하게, 임윤찬은 박을 더 자유롭게 늘였다 당긴다.", "listen": "왼손 반주 위로 오른손 선율이 처음 들어오는 도입과, 중간 장조 부분에서 빠르기가 얼마나 흔들리는지.", "lesson": {"steps": 4, "q": "처음부터 마지막 화음까지 임윤찬이 34초쯤 더 길어요. 어디서 시간을 쓸까요? 둘 다 팬이 올린 실황이라 음질이 다르고, 임윤찬 쪽이 조금 멀게 들려요. 소리 크기보다 시간을 들어 보세요."}}, {"id": "chopin-prelude-15", "lines": ["쇼팽 전주곡", "‘빗방울’"], "comp": "쇼팽", "compEn": "Chopin", "en": "Prelude Op.28 No.15 'Raindrop'", "tags": ["피아노", "독주"], "A": {"s": "조성진", "full": "조성진", "y": 2015, "c": "콩쿠르 무대의 실황.", "en": "Cho"}, "B": {"s": "폴리니", "full": "마우리치오 폴리니", "y": 1974, "c": "단단하고 절제된 스튜디오판.", "en": "Pollini"}, "contrast": "콩쿠르 무대의 조성진과, 단단하고 절제된 폴리니의 스튜디오판.", "listen": "같은 음이 빗방울처럼 계속 되풀이되는 가운데 어두운 부분이 얼마나 커지는지.", "lesson": {"steps": 6, "q": "첫 음부터 마지막 화음까지 조성진 5분 35초, 폴리니 4분 50초. 조성진이 44초 더 길어요. 그 44초는 어디서 나올까요? 그리고 어두운 가운데 부분은 두 사람이 각각 얼마나, 어떻게 키울까요?"}}, {"id": "debussy-clair-de-lune", "lines": ["드뷔시", "달빛"], "comp": "드뷔시", "compEn": "Debussy", "en": "Suite bergamasque: Clair de lune", "tags": ["피아노", "독주"], "A": {"s": "기제킹", "full": "발터 기제킹", "y": 1953, "c": "흐릿하게 번지는 옛 녹음.", "en": "Gieseking"}, "B": {"s": "조성진", "full": "조성진", "y": 2017, "c": "선명하고 맑게 소리를 세운다.", "en": "Cho"}, "contrast": "흐릿하게 번지는 기제킹의 옛 녹음과, 선명하고 맑게 소리를 세우는 조성진.", "listen": "첫 화음이 울리는 처음 부분의 페달 양과 가운데 흐르는 부분의 빠르기.", "lesson": {"steps": 6, "q": "녹음 길이는 기제킹 5분 16초, 조성진 5분 31초. 마지막 화음 앞까지(1~71마디) 재면 5분 3초 대 5분 18초로 조성진이 15초 더 길어요. 그 15초는 어디서 나올까요? 두 녹음을 악보에 맞춰 마디마다 재 봤어요."}}, {"id": "schumann-traumerei", "lines": ["슈만", "트로이메라이"], "comp": "슈만", "compEn": "Schumann", "en": "Kinderszenen: Träumerei", "tags": ["피아노", "독주"], "A": {"s": "호로비츠", "full": "블라디미르 호로비츠", "y": 1986, "c": "말년 실황. 담백하게 흐른다.", "en": "Horowitz"}, "B": {"s": "아르헤리치", "full": "마르타 아르헤리치", "y": 1983, "c": "반복에서 더 느리고 부드럽게.", "en": "Argerich"}, "contrast": "말년 모스크바 실황의 담백하게 흐르는 호로비츠와, 반복에서 한층 더 느리고 부드러워지는 아르헤리치.", "listen": "첫 선율이 위로 올라가는 첫 프레이즈의 끝을 얼마나 늘이는지.", "lesson": {"steps": 6, "q": "영상 길이는 호로비츠 2분 24초, 아르헤리치 2분 55초. 느리게 꿈꾸는 연주로 기억되는 호로비츠가 오히려 30초 가까이 짧아요. 첫 박부터 마지막 화음까지 재면 약 141초 대 170초, 29초 차이예요. 이 29초는 곡의 어디서 나올까요?"}}, {"id": "beethoven-3-1", "lines": ["베토벤 교향곡 3번", "‘영웅’ 1악장"], "comp": "베토벤", "compEn": "Beethoven", "en": "Symphony No.3 'Eroica'", "tags": ["교향곡"], "A": {"s": "푸르트벵글러", "full": "빌헬름 푸르트벵글러", "y": null, "c": "박을 늘였다 당기며 크게 숨 쉰다.", "en": "Furtwängler"}, "B": {"s": "토스카니니", "full": "아르투로 토스카니니", "y": null, "c": "박을 지키며 곧게 달린다.", "en": "Toscanini"}, "contrast": "박을 늘였다 당기며 크게 숨 쉬는 푸르트벵글러와, 박을 지키며 곧게 달리는 토스카니니.", "listen": "첫 두 화음 뒤 첼로 주제가 나오는 처음 부분의 빠르기와, 절정 앞에서 빠르기가 변하는지.", "lesson": null}, {"id": "rachmaninoff-pc2-1", "lines": ["라흐마니노프", "피아노 협주곡 2번"], "comp": "라흐마니노프", "compEn": "Rachmaninoff", "en": "Piano Concerto No.2", "tags": ["피아노", "협주곡"], "A": {"s": "라흐마니노프", "full": "세르게이 라흐마니노프 / 스토코프스키", "y": 1929, "c": "작곡자 직접. 빠르고 담백하게.", "en": "Rachmaninoff"}, "B": {"s": "리히터", "full": "스뱌토슬라프 리히터", "y": 1959, "c": "아주 느리고 무겁게, 종을 울리듯.", "en": "Richter"}, "contrast": "작곡자가 직접 친 빠르고 담백한 연주와, 아주 느리고 무겁게 종을 울리듯 시작하는 리히터.", "listen": "피아노 혼자 화음을 점점 크게 울리는 첫 여덟 마디의 빠르기.", "lesson": null}, {"id": "beethoven-moonlight-1", "lines": ["베토벤 ‘월광’", "1악장"], "comp": "베토벤", "compEn": "Beethoven", "en": "Piano Sonata No.14 'Moonlight'", "tags": ["피아노", "독주"], "A": {"s": "켐프", "full": "빌헬름 켐프", "y": null, "c": "흐르는 빠르기로 담담하게.", "en": "Kempff"}, "B": {"s": "쉬프", "full": "안드라스 쉬프", "y": null, "c": "페달을 길게, 소리를 번지게.", "en": "Schiff"}, "contrast": "흐르는 빠르기로 담담하게 가는 켐프와, 악보대로 페달을 길게 밟아 소리를 번지게 하는 쉬프.", "listen": "셋잇단 반주가 시작되는 처음 부분에서 화음이 섞이는 정도와 빠르기.", "lesson": null}, {"id": "mozart-pc20-1", "lines": ["모차르트 피아노", "협주곡 20번"], "comp": "모차르트", "compEn": "Mozart", "en": "Piano Concerto No.20 in D minor, K.466", "tags": ["피아노", "협주곡"], "A": {"s": "조성진", "full": "조성진", "y": 2018, "c": "극적인 대비를 살린다.", "en": "Cho"}, "B": {"s": "하스킬", "full": "클라라 하스킬", "y": 1960, "c": "담백하고 맑게 간다.", "en": "Haskil"}, "contrast": "극적인 대비를 살리는 조성진의 요즘 연주와, 담백하고 맑게 가는 하스킬의 옛 녹음.", "listen": "관현악 서주가 끝나고 피아노가 혼자 처음 들어오는 대목의 빠르기와 터치.", "lesson": null}], "brahms": {"steps": [{"t": "처음 여덟 마디", "bl": "1~8마디", "pt": "첫 두 마디를 어떻게 꺼내는지 들어 보세요. 망설이며 시작하는지, 바로 흘러가는지.", "ex": "곡은 세 음짜리 짧은 동기로 시작해요. 한 음 내려갔다가 위로 올라가는 이 작은 몸짓이 곡 전체의 씨앗이고, 뒤에서 계속 모양을 바꿔 돌아와요.", "clips": [["A", 0, 24], ["B", 0, 21]], "bars": [["첫 두 마디", 5.5, 4.0], ["1~48마디", 118, 122]], "img": null}, {"t": "‘조금 빠르게’라고 쓴 곳", "bl": "38~48마디", "pt": "‘조금 빠르게’에서 정말 걸음이 빨라지는지, 그리고 브레이크를 어디서부터 거는지 들어 보세요.", "ex": "38마디에 cresc. un poco animato, ‘점점 크게, 조금 활기 있게’라고 적혀 있어요. 그리고 45마디에서 rit.(점점 느리게)로 브레이크를 걸고, 46마디 più lento(더 느리게)로 넘어가요.", "clips": [["A", 89.6, 120.5], ["B", 89.2, 123.2]], "bars": [["38~44마디 (조금 빠르게)", 14.6, 17.6], ["45~48마디 (느려지기)", 15.7, 15.8]], "img": "brahms_2.png"}, {"t": "장조에서 단조로, 엇갈리는 두 손", "bl": "47~56마디", "pt": "밝던 장조가 어두워지는 순간, 그다음 오른손 셋과 왼손 둘이 서로 다르게 흔들리는 느낌을 들어 보세요. 반복할 때는 오른손 노래 밑에서 움직이는 다른 선도 찾아보세요.", "ex": "가장조가 올림바단조로 어두워지고, 49마디부터 오른손은 한 박을 셋으로, 왼손은 둘로 나눠요. 크기가 다른 톱니바퀴 두 개가 맞물려 도는 것처럼 박의 처음에서만 맞고 그 사이는 계속 어긋나요. 악보에서 위아래 손의 음표 묶음 모양(3 표시)이 다른 걸 보세요.", "clips": [["A", 110.0, 139.1], ["B", 113.9, 142.8]], "bars": [["49~56마디 처음", 17.9, 18.9], ["49~56마디 반복", 19.1, 21.9]], "img": "brahms_3.png"}, {"t": "57마디, 찬송가 같은 화음", "bl": "57~64마디", "pt": "마디가 지날수록 걸음이 어떻게 바뀌는지 들어 보세요. 일정하게 흐르는지, 점점 멈춰 서는지.", "ex": "어두운 단조가 57마디에서 올림바장조로 풀리며 찬송가처럼 조용한 화음이 나와요. 악보에는 pp(아주 여리게), 그리고 più lento(더 느리게). 곡에서 가장 고요한 곳이에요.", "clips": [["A", 150.4, 181.6], ["B", 157.1, 195.4]], "bars": [["57~64마디", 24, 31]], "img": "brahms_4.png"}, {"t": "처음 주제로 돌아오는 길", "bl": "69~77마디", "pt": "첫 주제가 돌아오는 첫 마디를 잘 들어 보세요. 바로 원래 걸음으로 돌아오는지, 한참 붙잡는지.", "ex": "69마디쯤 크게 부풀었다가 rit.(점점 느리게), 그리고 76마디 a tempo(원래 빠르기로)에서 첫 주제가 돌아와요. 이 ‘느려졌다가 돌아오기’를 얼마나 하느냐가 두 사람의 가장 큰 차이예요.", "clips": [["A", 190.2, 213.2], ["B", 206.5, 243.5]], "bars": [["65~75마디", 26, 39], ["76마디", 3.6, 6.9]], "img": "brahms_5.png"}, {"t": "같은 주제, 처음과 돌아왔을 때", "bl": "76~83마디 (처음 1~8마디와 같은 선율)", "pt": "같은 선율인데 처음보다 무겁게 가는지, 처음처럼 가는지.", "ex": "76마디부터는 곡의 처음 여덟 마디와 같은 선율이에요. 이번에는 두 사람을 비교하는 것과 함께, 각자가 처음 칠 때와 돌아와서 칠 때가 같은지 들어 보세요. 1번 파트를 다시 들어도 좋아요.", "clips": [["A", 207.1, 228.5], ["B", 233.1, 260.8]], "bars": [["처음 1~8마디", 21.4, 19.0], ["돌아와서 76~83마디", 20.3, 26.5]], "img": "brahms_6.png"}, {"t": "마지막: 여기서는 둘이 비슷해요", "bl": "110~116마디", "pt": "마지막 화음까지의 걸음과 여운.", "ex": "곡의 끝은 다시 느려지며(più lento) 조용히 닫혀요. 앞에서 그렇게 달랐던 두 사람이 여기서는 어떤지 들어 보세요.", "clips": [["A", 284.5, 310.4], ["B", 318.6, 346.9]], "bars": [["110~116마디", 21.8, 24.6], ["마지막 4마디", 15.7, 16.5]], "img": "brahms_7.png"}], "btA": [1.91, 4.67, 7.39, 9.73, 12.4, 14.79, 17.32, 19.8, 23.35, 26.02, 28.45, 30.65, 33.65, 35.94], "btB": [1.31, 3.23, 5.34, 7.41, 10.17, 12.14, 14.58, 17.06, 20.28, 22.63, 24.69, 27.08, 29.89, 32.0], "A": "머레이 페라이어 (2010)", "B": "글렌 굴드 (1960)"}};
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = (s, r=document) => r.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const EASE = 'cubic-bezier(.22,.8,.24,1)';
+const anim = (el, kf, o={}) => RM || !el ? {finished: Promise.resolve()} : el.animate(kf, {duration: 450, easing: EASE, fill: 'both', ...o});
+const yr = y => y ? `<span class="num">${y}</span>` : '';
+function coverHTML(it, size){ return `<div class="cover" style="width:${size}px;height:${size}px;font-size:${size}px"><div class="o">Compare · Listening</div><div class="c">${esc(it.compEn)}</div><div class="p">${esc(it.A.en)} / ${esc(it.B.en)}</div></div>`; }
+function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('on'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('on'),1800); }
+function show(id){ document.querySelectorAll('.scr').forEach(s=>s.classList.toggle('hide', s.id!==id)); }
+
+/* ---------- 짝 카드 ---------- */
+let cur = null;
+function renderPair(it){
+  cur = it;
+  const les = it.lesson;
+  $('#pair').innerHTML = `<div class="nav"><button class="b" id="back">‹ 목록</button><span class="mast">Compare Listening</span><span class="b"></span></div>
+  <div class="body"><div class="kick">${esc(it.tags.join(' · '))}</div>
+   <h1 class="ttl">${it.lines.map(l=>`<span class="ln"><span>${esc(l)}</span></span>`).join('')}</h1>
+   <div class="enw">${esc(it.en)}</div>
+   <div class="duo"><div class="side a"><span class="tag" style="background:var(--A)">A</span><div class="nm">${esc(it.A.full)}</div><div class="yr num" style="color:var(--A)">${it.A.y||'—'}</div><p>${esc(it.A.c)}</p></div><div class="ln2"></div>
+   <div class="side b"><span class="tag" style="background:var(--B)">B</span><div class="nm">${esc(it.B.full)}</div><div class="yr num" style="color:var(--B)">${it.B.y||'—'}</div><p>${esc(it.B.c)}</p></div></div>
+   <div class="why"><div class="kick">왜 대비되나</div><p>${esc(les ? les.q : it.contrast)}</p></div>
+   <div class="why lis"><div class="kick" style="color:var(--ink)">들어 볼 곳</div><p>${esc(it.listen)}</p></div>
+   <button class="cta" id="start" ${les?'':'disabled'}>${les ? `비교 시작 · ${les.steps}단계` : '단계 준비 중'}</button></div>`;
+  $('#back').onclick = () => closePair();
+  $('#start').onclick = () => { if (it.id !== 'brahms-op118-2') { toast('이 시험 페이지에선 브람스만 들어 볼 수 있어요'); return; } openListen(); };
+}
+function revealPair(){
+  const p = $('#pair');
+  p.querySelectorAll('.ttl .ln>span').forEach((s,i)=>anim(s,[{transform:'translateY(105%)'},{transform:'none'}],{delay:120+i*90}));
+  anim($('.enw',p),[{opacity:0},{opacity:1}],{delay:300,duration:350});
+  anim($('.side.a',p),[{transform:'translateX(-40px)',opacity:0},{transform:'none',opacity:1}],{delay:330,duration:500});
+  anim($('.side.b',p),[{transform:'translateX(40px)',opacity:0},{transform:'none',opacity:1}],{delay:330,duration:500});
+  anim($('.ln2',p),[{transform:'scaleY(0)'},{transform:'none'}],{delay:300,duration:500});
+  p.querySelectorAll('.why').forEach((w,i)=>anim(w,[{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{delay:560+i*80,duration:400}));
+  anim($('.cta',p),[{opacity:0},{opacity:1}],{delay:620,duration:300});
+}
+
+/* ---------- 듣기 ---------- */
+const B = D.brahms;
+const L1=[210,252,387,549,715,870,1005], L2=[105,269,420,553,670,833,1005], CW=1010;
+function barPos(bt,t){
+  if (t < bt[0]) { const beat=(bt[1]-bt[0])/3, p0=bt[0]-beat; return t < p0 ? null : -1+(t-p0)/beat; }
+  for (let i=0;i<bt.length-1;i++) if (bt[i]<=t && t<bt[i+1]) return i+(t-bt[i])/(bt[i+1]-bt[i]);
+  return null;
+}
+function place(b){
+  if (b===null) return null;
+  if (RM) b = Math.floor(b);  // 움직임 줄이기: 마디 단위로만 옮김
+  if (b < 5) { const i=Math.floor(b)+1, f=b-Math.floor(b); return {line:1, x:(L1[i]+f*(L1[i+1]-L1[i]))/CW*100, x0:L1[0]/CW*100}; }
+  const k=b-5, i=Math.min(5,Math.floor(k)), f=k-i; return {line:2, x:(L2[i]+f*(L2[i+1]-L2[i]))/CW*100, x0:L2[0]/CW*100};
+}
+const fmt = t => `${Math.floor(t/60)}:${(t%60).toFixed(1).padStart(4,'0')}`;
+const barName = b => b===null ? '—' : (b<0 ? '못갖춘마디' : `${Math.floor(b)+1}마디`);
+let si = 0, play = null; // play = {mode:'A'|'B'|'AB', t0, raf}
+function laneHTML(w){
+  const P = w==='A' ? B.A : B.B, c = w==='A' ? 'var(--A)' : 'var(--B)';
+  const s = B.steps[0], v = s.bars[0][w==='A'?1:2];
+  return `<div class="lane" id="lane${w}" style="--c:${c}"><div class="lh"><b><span class="tag">${w}</span>${esc(P.replace(/\s*\((\d+)\)/,' $1').replace(/^머레이 |^글렌 /,''))}</b><span class="clk"><em class="num" id="t${w}">0:00.0</em> · <span id="b${w}">처음</span></span></div>
+   <div class="sc" id="sc${w}"><img src="score_l1.png" alt="악보 1~5마디" id="i${w}1"><img src="score_l2.png" alt="악보 6~11마디" id="i${w}2" style="opacity:0"><div class="done" id="d${w}"></div><div class="hd" id="h${w}"></div></div>
+   <div class="cap"><span>${esc(s.bars[0][0])} <em class="num">${v.toFixed(1)}초</em></span><span class="meta">${w==='A'?'0~24초':'0~21초'}</span></div></div>`;
+}
+function stepHTML(k){
+  const s = B.steps[k];
+  let mid;
+  if (k===0) mid = laneHTML('A') + laneHTML('B') + `<div class="gapline" id="gap">버튼을 누르면 악보 위 띠가 움직여요</div>`;
+  else mid = `<div class="full"><img src="${s.img}" alt="악보 ${esc(s.bl)}"></div><div class="tbar">${s.bars.map(r=>{const m=Math.max(r[1],r[2]);return `<div class="r"><div class="k"><span>${esc(r[0])}</span></div>
+     <div class="row" style="--c:var(--A)"><span>A</span><i data-w="${r[1]/m}" style="width:72%;transform:scaleX(${r[1]/m})"></i><b class="num">${r[1]}초</b></div>
+     <div class="row" style="--c:var(--B)"><span>B</span><i data-w="${r[2]/m}" style="width:72%;transform:scaleX(${r[2]/m})"></i><b class="num">${r[2]}초</b></div></div>`}).join('')}</div>`;
+  return `<div class="step" data-k="${k}"><div class="st"><h2><span>${k+1}. ${esc(s.t)}</span></h2><span class="meta">${esc(s.bl.split(' ')[0])}</span></div>
+   <div class="video"><div class="yt"><i></i>YouTube</div><div class="now" id="now${k}">${k===0?'정지':'영상 자리'}</div></div>
+   <div class="point">${esc(s.pt)}</div>${mid}
+   <div class="ctrl"><button style="--c:var(--A)" data-m="A">A 듣기</button><button style="--c:var(--B)" data-m="B">B 듣기</button><button class="both" data-m="AB">동시에 보기</button></div></div>`;
+}
+function setStep(k, dir=0){
+  stop();
+  const st = $('#stage'), old = st.querySelector('.step');
+  st.insertAdjacentHTML('beforeend', stepHTML(k));
+  const nw = st.lastElementChild; si = k;
+  $('#pgn').textContent = `${k+1} / ${B.steps.length} 단계`; $('#pgb').style.width = `${(k+1)/B.steps.length*100}%`;
+  $('#prev').disabled = false; $('#next').disabled = k===B.steps.length-1;
+  nw.querySelectorAll('.ctrl button').forEach(b=>b.onclick=()=>toggle(b.dataset.m));
+  if (old) {
+    if (dir && !RM) { anim(old,[{transform:'none',opacity:1},{transform:`translateX(${-dir*30}%)`,opacity:0}],{duration:380}).finished.then(()=>old.remove());
+      anim(nw,[{transform:`translateX(${dir*100}%)`},{transform:'none'}],{duration:450}); }
+    else old.remove();
+  }
+  anim(nw.querySelector('.st h2 span'),[{transform:'translateY(110%)'},{transform:'none'}],{delay:dir?200:80});
+  nw.querySelectorAll('.tbar i').forEach((i,n)=>anim(i,[{transform:'scaleX(0)'},{transform:`scaleX(${i.dataset.w})`}],{delay:300+n*60,duration:550}));
+  if (k===0) { drawAt(0,'A',true); drawAt(0,'B',true); }
+}
+function drawAt(t, w, reset){
+  const bt = w==='A' ? B.btA : B.btB, end = w==='A' ? 24 : 21;
+  const tt = Math.min(t, end), b = barPos(bt, tt), p = place(b);
+  const sc = $('#sc'+w); if (!sc) return;
+  $('#t'+w).textContent = fmt(reset?0:tt); $('#b'+w).textContent = reset ? '처음' : (t>=end ? '끝' : barName(b));
+  if (!p || reset) { $('#d'+w).style.width='0'; sc.classList.remove('live'); $('#i'+w+'1').style.opacity=1; $('#i'+w+'2').style.opacity=0; return; }
+  $('#i'+w+'1').style.opacity = p.line===1?1:0; $('#i'+w+'2').style.opacity = p.line===2?1:0;
+  $('#d'+w).style.left = p.x0+'%'; $('#d'+w).style.width = Math.max(0,p.x-p.x0)+'%'; $('#h'+w).style.left = p.x+'%';
+  sc.classList.add('live');
+  return b;
+}
+function frame(t){
+  const m = play.mode;
+  let ba=null, bb=null;
+  if (m.includes('A')) ba = drawAt(t,'A'); if (m.includes('B')) bb = drawAt(t,'B');
+  const now = $('#now0'); if (now) now.textContent = (m==='AB' ? 'A·B 같은 시계' : (m==='A'?'A 페라이어':'B 굴드')) + ' · ' + fmt(t);
+  const g = $('#gap');
+  if (g && m==='AB' && ba!=null && bb!=null && t<21) { const d = Math.floor(bb)-Math.floor(ba);
+    g.innerHTML = `같은 <b class="num">${t.toFixed(1)}</b>초: A <b>${barName(ba)}</b> · B <b>${barName(bb)}</b>` + (d>0?` → <b style="color:var(--B)">B가 ${d}마디 앞서요</b>`:(d<0?` → <b>A가 ${-d}마디 앞서요</b>`:' → 나란히')); }
+  else if (g && m!=='AB') g.textContent = (m==='A'?'A':'B') + ' 띠만 움직여요. 둘을 같이 보려면 ‘동시에 보기’';
+}
+function toggle(m){
+  if (si!==0) { stepTimer(m); return; }
+  if (play && play.mode===m) { stop(); return; }
+  stop();
+  play = {mode:m, t0: performance.now()};
+  $('#stage').querySelectorAll('.ctrl button').forEach(b=>b.classList.toggle('on', b.dataset.m===m));
+  ['A','B'].forEach(w=>{ $('#lane'+w).classList.toggle('on', m.includes(w)); if(!m.includes(w)) drawAt(0,w,true); });
+  const end = m==='B' ? 21 : 24;
+  const tick = () => { const t=(performance.now()-play.t0)/1000; frame(Math.min(t,end)); if (t<end) play.raf=requestAnimationFrame(tick); else { $('#stage').querySelectorAll('.ctrl button').forEach(b=>b.classList.remove('on')); play=null; } };
+  play.raf = requestAnimationFrame(tick);
+}
+function stepTimer(m){ // 2단계부터는 띠 대신 시간 막대(마디 위치 맞춤은 1단계만)
+  const s = B.steps[si]; const now = $('#now'+si);
+  const btns = $('#stage').querySelectorAll('.ctrl button');
+  if (play && play.mode===m) { stop(); return; } stop();
+  play = {mode:m, t0:performance.now()}; btns.forEach(b=>b.classList.toggle('on', b.dataset.m===m));
+  const len = w => { const c=s.clips.find(c=>c[0]===w); return c[2]-c[1]; };
+  const end = m==='AB' ? Math.max(len('A'),len('B')) : len(m);
+  const tick=()=>{ const t=(performance.now()-play.t0)/1000; now.textContent = (m==='AB'?'A·B 같은 시계':m) + ' · ' + fmt(Math.min(t,end)) + ' / ' + fmt(end);
+    if (t<end) play.raf=requestAnimationFrame(tick); else { btns.forEach(b=>b.classList.remove('on')); play=null; } };
+  play.raf=requestAnimationFrame(tick);
+}
+function stop(){ if (play) cancelAnimationFrame(play.raf); play=null; document.querySelectorAll('.ctrl button').forEach(b=>b.classList.remove('on')); document.querySelectorAll('.lane').forEach(l=>l.classList.remove('on')); }
+function openListen(){
+  const L = $('#listen'); L.classList.remove('hide');
+  setStep(0, 0);
+  anim(L,[{transform:'translateX(100%)'},{transform:'none'}],{duration:450}).finished.then(()=>$('#pair').classList.add('hide'));
+}
+$('#prev').onclick = () => { if (si===0) { stop(); $('#pair').classList.remove('hide'); anim($('#listen'),[{transform:'none'},{transform:'translateX(100%)'}],{duration:380}).finished.then(()=>{$('#listen').classList.add('hide'); $('#listen').getAnimations().forEach(a=>a.cancel());}); } else setStep(si-1,-1); };
+$('#next').onclick = () => { if (si<B.steps.length-1) setStep(si+1, 1); };
+/* 시험용 손잡이: 화면 이동과 시계 고정 */
+window.__t = {
+  pair: id => { const it=D.items.find(x=>x.id===id)||D.items[0]; renderPair(it); show('pair'); },
+  listen: () => { renderPair(D.items[0]); show('listen'); setStep(0,0); },
+  freeze: (m,t) => { stop(); play={mode:m,t0:0}; $('#stage').querySelectorAll('.ctrl button').forEach(b=>b.classList.toggle('on', b.dataset.m===m)); ['A','B'].forEach(w=>$('#lane'+w).classList.toggle('on', m.includes(w))); frame(t); play=null; },
+};
+
+const LET = [...new Set(D.items.map(it=>it.compEn[0].toUpperCase()))].sort();
+$('#az').innerHTML = `<button class="on" data-l="" style="font-family:Pretendard;font-size:15px">전체</button>` + LET.map(l=>`<button data-l="${l}">${l}</button>`).join('');
+function rows(){ const cur = $('#az .on').dataset.l; const list = D.items.map((it,k)=>({it,k})).filter(x=>!cur||x.it.compEn[0].toUpperCase()===cur);
+  $('#list').innerHTML = list.map(({it,k},j)=>`<button class="irow" data-k="${k}"><span class="n num">${String(k+1).padStart(2,'0')}</span><span><h3>${esc(it.lines.join(' '))}</h3><div class="vs"><b>${esc(it.A.s)}</b> vs <b style="color:var(--red)">${esc(it.B.s)}</b> · ${it.lesson?it.lesson.steps+'단계':'단계 준비 중'}</div></span></button>`).join('');
+  $('#cnt').textContent = `${list.length} / ${D.items.length}`;
+  $('#list').querySelectorAll('.irow').forEach((r,j)=>{ r.onclick=()=>openPair(+r.dataset.k, r); anim(r,[{opacity:0,transform:'translateY(12px)'},{opacity:1,transform:'none'}],{delay:j*35,duration:380,fill:'none'}); });
+  $('#list').scrollTop = 0; }
+$('#az').onclick = e => { const b=e.target.closest('button'); if(!b) return; $('#az').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b)); rows(); };
+function openPair(k, row){ // 줄이 화면 전체로 펼쳐짐
+  const it = D.items[k]; const r=row.getBoundingClientRect(), A=$('#app').getBoundingClientRect();
+  const p=document.createElement('div'); p.className='panel'; Object.assign(p.style,{left:'0px',top:(r.top-A.top)+'px',width:A.width+'px',height:r.height+'px'});
+  p.innerHTML = row.innerHTML; p.style.display='grid'; p.style.gridTemplateColumns='64px 1fr'; p.style.padding='14px 18px'; p.classList.add('irow'); $('#app').appendChild(p);
+  const P=$('#pair'); renderPair(it);
+  anim(p,[{top:(r.top-A.top)+'px',height:r.height+'px'},{top:'0px',height:A.height+'px'}],{duration:480}).finished.then(()=>{ P.classList.remove('hide'); revealPair(); anim(p,[{opacity:1},{opacity:0}],{duration:200}).finished.then(()=>p.remove()); $('#pick').classList.add('hide'); });
+  anim(p.querySelector('h3'),[{opacity:1},{opacity:0}],{duration:250});
+}
+function closePair(){ $('#pick').classList.remove('hide'); anim($('#pair'),[{opacity:1,transform:'none'},{opacity:0,transform:'translateY(24px)'}],{duration:320}).finished.then(()=>{$('#pair').classList.add('hide'); $('#pair').getAnimations().forEach(a=>a.cancel());}); }
+rows();
+</script></body></html>
