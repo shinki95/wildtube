@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>비교 듣기</title>
+<style>
+:root{--bg:#f6f4ef;--card:#fff;--ink:#1d1c1a;--sub:#6b665e;--line:#e4dfd6;--a:#2f5d8a;--b:#a0522d;--c:#5b6b2f;--ok:#3d7a4f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}
+header{padding:18px 18px 8px;max-width:760px;margin:0 auto}
+h1{font-size:21px;margin:0 0 4px}
+h1 a{color:inherit;text-decoration:none}
+.chips{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font-size:14px;cursor:pointer;color:var(--ink)}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip small{opacity:.6;margin-left:4px}
+.chips.row{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+.chips.row .chip{flex:none}
+.search{width:100%;font-size:16px;padding:11px 14px;border:1px solid var(--line);border-radius:12px;margin-top:10px;background:#fff}
+.playerwrap{position:sticky;top:0;z-index:5;background:var(--bg);padding:8px 18px 10px;max-width:760px;margin:0 auto}
+.player{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden}
+.player iframe,#yt{position:absolute;inset:0;width:100%;height:100%}
+.now{font-size:13px;color:var(--sub);margin-top:6px;min-height:20px}
+.now b{color:var(--ink)}
+main{max-width:760px;margin:0 auto;padding:0 18px 80px}
+.intro,.step,.entry{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 16px 14px;margin:12px 0}
+.entry{padding:12px 14px;margin:8px 0;display:flex;gap:10px;align-items:flex-start}
+.entry .body{flex:1;min-width:0}
+.entry .comp{font-size:12px;color:var(--sub)}
+.entry .wk{font-weight:700;font-size:16px;line-height:1.35}
+.entry .vs{font-size:14px;margin-top:2px}
+.entry .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.tag{font-size:12px;border-radius:6px;padding:1px 7px;background:#f0ece3;color:var(--sub)}
+.tag.ready{background:var(--ok);color:#fff}
+.entry .go{flex:none;align-self:center;border:0;border-radius:10px;padding:9px 12px;font-size:14px;cursor:pointer;background:var(--ink);color:#fff;text-decoration:none}
+.entry .go.soft{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.star{flex:none;border:0;background:none;font-size:20px;cursor:pointer;color:#c9c2b5;padding:0 2px;line-height:1.2}
+.star.on{color:#d39a1c}
+.yt{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.yt a{font-size:13px;border-radius:8px;padding:5px 10px;color:#fff;text-decoration:none}
+.grp{font-size:13px;font-weight:700;color:var(--sub);margin:18px 2px 0}
+.step h2{font-size:17px;margin:0 0 6px;display:flex;gap:8px;align-items:baseline}
+.num{font-size:12px;color:#fff;background:var(--ink);border-radius:999px;padding:1px 8px;flex:none}
+.step.done .num{background:var(--ok)}
+.lbl{font-size:12px;font-weight:700;letter-spacing:.02em;color:var(--sub);margin:12px 0 2px}
+.point{background:#f3efe6;border-radius:10px;padding:9px 12px;margin-top:4px}
+.btns{display:flex;gap:8px;margin:12px 0 4px;flex-wrap:wrap}
+.play{flex:1 1 140px;border:0;border-radius:10px;padding:11px 12px;font-size:15px;color:#fff;cursor:pointer;text-align:left}
+.play small{display:block;opacity:.85;font-size:12px}
+.play.A,.yt a.A{background:var(--a)}.play.B,.yt a.B{background:var(--b)}.yt a.C{background:var(--c)}
+.play.heard{outline:3px solid #0002}
+details{margin-top:10px;border-top:1px dashed var(--line);padding-top:8px}
+summary{cursor:pointer;font-weight:700;font-size:14px;color:var(--ink)}
+.bars{margin:10px 0 2px}
+.bar{display:flex;align-items:center;gap:8px;font-size:13px;margin:4px 0}
+.bar .who{width:64px;flex:none;color:var(--sub)}
+.bar .fill{height:12px;border-radius:6px}
+.bar .v{flex:none;width:52px;font-variant-numeric:tabular-nums}
+.src{font-size:13px;color:var(--sub)}
+.src a{color:var(--a)}
+.score{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:8px;margin-top:4px;background:#fff}
+.legend{display:flex;gap:14px;font-size:13px;color:var(--sub);margin-top:6px;flex-wrap:wrap}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+.critic{background:#faf8f3;border-left:3px solid var(--line);padding:4px 12px;margin-top:8px}
+.empty{color:var(--sub);text-align:center;padding:30px 0}
+.hide{display:none}
+</style>
+</head>
+<body>
+<header>
+  <h1><a href="?">비교 듣기</a></h1>
+  <div class="src" id="lead"></div>
+  <div id="controls"></div>
+</header>
+<div class="playerwrap hide" id="pw">
+  <div class="player"><div id="yt"></div></div>
+  <div class="now" id="now">재생할 구간 버튼을 누르세요.</div>
+</div>
+<main id="main"></main>
+
+<script>
+// 데이터는 listen/db/ 에 있다. 새 비교를 더하는 법: listen/CONTRIBUTING.md
+const DB = "listen/db/";
+const OLD = {brahms:"brahms-op118-2", chopin:"chopin-nocturne-20"};
+const GENRE = {all:"전체", classical:"클래식", jazz:"재즈", mine:"내 목록"};
+const WHO = ["A","B","C"];
+const esc = s => String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const md = s => esc(s).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>");
+const paras = a => (a||[]).map(p=>`<p>${md(p)}</p>`).join("");
+const fmt = s => { s=Math.round(s); return Math.floor(s/60)+":"+String(s%60).padStart(2,"0"); };
+const norm = s => String(s||"").toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g,"").replace(/[\s.,'’·\-()/]/g,"");
+const mine = () => JSON.parse(localStorage.getItem("cl:mine")||"[]");
+const setMine = a => localStorage.setItem("cl:mine", JSON.stringify(a));
+
+let CAT=null, L=null, lk=null;
+let player=null, ready=false, pending=null, cur=null, apiLoaded=false;
+const st = {genre:"all", comp:"", q:""};
+
+async function boot(){
+  const p=new URLSearchParams(location.search);
+  CAT = await (await fetch(DB+"catalog.json")).json();
+  let l=p.get("l"); if (OLD[l]) l=OLD[l];
+  st.genre=p.get("g")||"all"; st.comp=p.get("c")||""; st.q=p.get("q")||"";
+  if (l && CAT.entries.find(e=>e.lesson===l)) openLesson(l); else home();
+}
+
+function sync(){
+  const p=new URLSearchParams();
+  if (lk) p.set("l",lk); else { if(st.genre!=="all")p.set("g",st.genre); if(st.comp)p.set("c",st.comp); if(st.q)p.set("q",st.q); }
+  history.replaceState(null,"",p.toString()?"?"+p:location.pathname);
+}
+
+function entryText(e){ return norm([e.composer.en,e.composer.ko,e.work.en,e.work.ko,e.part,...e.performers.map(x=>x.name+" "+(x.en||"")+" "+(x.year||"")),...e.tags].join(" ")); }
+function vsLine(e){ return e.performers.map((x,i)=>`<span style="color:var(--${WHO[i].toLowerCase()})">${WHO[i]}</span> ${esc(x.name)}${x.year?` (${x.year})`:""}`).join(" · "); }
+
+function home(){
+  lk=null; L=null; document.getElementById("pw").classList.add("hide"); if(player&&ready) player.pauseVideo();
+  document.getElementById("lead").textContent = "같은 곡의 두 연주를 나란히 들어 보는 곳. 작곡가나 곡, 연주자로 찾고, ☆로 내 목록에 담으세요. ‘비교 페이지’가 있는 곡은 악보 위치와 구간 듣기, 마디 시간 비교까지 있어요.";
+  const ents = CAT.entries;
+  const inG = e => st.genre==="all" || (st.genre==="mine" ? mine().includes(e.id) : e.genre===st.genre);
+  const comps = {}; ents.filter(inG).forEach(e=>{comps[e.composer.ko]=(comps[e.composer.ko]||0)+1;});
+  const cn = Object.entries(comps).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],"ko"));
+  document.getElementById("controls").innerHTML = `
+    <input class="search" id="q" type="search" placeholder="작곡가, 곡, 연주자 (예: 브람스, 녹턴, 굴드, Coltrane)" value="${esc(st.q)}">
+    <div class="chips">${Object.entries(GENRE).map(([k,v])=>`<button class="chip ${st.genre===k?"on":""}" data-g="${k}">${v}${k==="mine"?`<small>${mine().length}</small>`:""}</button>`).join("")}</div>
+    <div class="chips row" style="margin-top:8px">${cn.map(([c,n])=>`<button class="chip ${st.comp===c?"on":""}" data-c="${esc(c)}">${esc(c)}<small>${n}</small></button>`).join("")}</div>`;
+  document.getElementById("q").addEventListener("input", ev=>{ st.q=ev.target.value; list(); sync(); });
+  list(); sync();
+}
+
+function list(){
+  const q=norm(st.q), my=mine();
+  let ents = CAT.entries.filter(e => (st.genre==="all"||(st.genre==="mine"?my.includes(e.id):e.genre===st.genre)) && (!st.comp||e.composer.ko===st.comp) && (!q||entryText(e).includes(q)));
+  ents.sort((a,b)=>(!!b.lesson)-(!!a.lesson) || a.composer.ko.localeCompare(b.composer.ko,"ko") || a.work.ko.localeCompare(b.work.ko,"ko"));
+  if (!ents.length){ document.getElementById("main").innerHTML = `<div class="empty">찾는 비교가 아직 없어요.<br><a href="${issueUrl(st.q||"새 비교 요청")}" target="_blank" rel="noopener">이 곡 비교 요청하기</a></div>`; return; }
+  const ready_ = ents.filter(e=>e.lesson), rest = ents.filter(e=>!e.lesson);
+  const card = e => {
+    const on = my.includes(e.id);
+    const yt = e.lesson ? "" : `<div class="yt">${e.performers.map((x,i)=>`<a class="${WHO[i]}" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=${encodeURIComponent([e.composer.en,e.work.en,x.en||x.name,x.year||""].join(" ").trim())}">${WHO[i]} 유튜브에서 찾기</a>`).join("")}</div>`;
+    return `<div class="entry"><button class="star ${on?"on":""}" data-star="${e.id}" aria-label="내 목록">${on?"★":"☆"}</button>
+      <div class="body"><div class="comp">${esc(e.composer.ko)} · ${esc(e.composer.en)}</div>
+      <div class="wk">${esc(e.work.ko)}${e.part&&e.part!=="전곡"?` <span style="font-weight:400">${esc(e.part)}</span>`:""}</div>
+      <div class="vs">${vsLine(e)}</div>
+      <div class="meta">${e.lesson?`<span class="tag ready">비교 페이지</span>`:`<span class="tag">짝만 있음</span>`}${e.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>${yt}</div>
+      ${e.lesson?`<a class="go" href="?l=${e.lesson}" data-open="${e.lesson}">열기</a>`:`<a class="go soft" target="_blank" rel="noopener" href="${issueUrl(e.composer.ko+" "+e.work.ko+(e.part?" "+e.part:"")+" 비교 페이지 요청")}">요청</a>`}</div>`;
+  };
+  document.getElementById("main").innerHTML =
+    (ready_.length?`<div class="grp">비교 페이지 ${ready_.length}</div>${ready_.map(card).join("")}`:"") +
+    (rest.length?`<div class="grp">듣는 짝 ${rest.length} (구간 비교는 준비 중, 유튜브에서 바로 찾을 수 있어요)</div>${rest.map(card).join("")}`:"");
+}
+
+function issueUrl(t){ return "https://github.com/shinki95/wildtube/issues/new?title="+encodeURIComponent("[비교 듣기] "+t)+"&body="+encodeURIComponent("곡:\n듣고 싶은 두 연주:\n비교하고 싶은 곳 (선택):\n"); }
+
+async function openLesson(id){
+  lk=id; L = await (await fetch(DB+"lessons/"+id+".json")).json();
+  document.getElementById("lead").textContent = "악보에서 위치를 보고, 설명을 읽고, 그 부분을 A, B 순서로 듣고, 들은 뒤 정리를 펼쳐 보세요. 녹음은 유튜브 영상을 그대로 연결해 그 구간만 재생해요. A는 늘 파란색, B는 늘 갈색이에요.";
+  const lessons = CAT.entries.filter(e=>e.lesson);
+  document.getElementById("controls").innerHTML = `<div class="chips"><a class="chip" href="?">← 목록</a>${lessons.map(e=>`<a class="chip ${e.lesson===id?"on":""}" href="?l=${e.lesson}" data-open="${e.lesson}">${esc(e.composer.ko)} ${esc(e.work.ko.split(" ").slice(0,2).join(" "))}</a>`).join("")}</div>`;
+  document.getElementById("pw").classList.remove("hide");
+  renderLesson(); sync(); loadApi(); window.scrollTo(0,0);
+}
+
+const store = k => "cl:"+lk+":"+k;
+function renderLesson(){
+  const maxOf = s => Math.max(...s.bars.flatMap(b=>[b[1],b[2]]));
+  let h = `<section class="intro"><h2 style="margin:0 0 6px;font-size:18px">${esc(L.title)}</h2>
+    <div class="legend"><span><span class="dot" style="background:var(--a)"></span>A ${esc(L.A.full)}</span><span><span class="dot" style="background:var(--b)"></span>B ${esc(L.B.full)}</span></div>
+    ${paras(L.intro)}
+    ${L.critics?`<div class="lbl">평단에서 보는 두 연주</div><div class="critic">${paras(L.critics)}</div>`:""}
+    <p class="point"><b>오늘의 질문.</b> ${md(L.question)}</p></section>`;
+  L.steps.forEach((s,i)=>{
+    const done = localStorage.getItem(store(i))==="1";
+    h += `<section class="step ${done?"done":""}" id="s${i}"><h2><span class="num">${i+1}</span>${md(s.title)}</h2>
+      ${s.score_img?`<div class="lbl">악보 ${esc(s.bars_label||"")} <span style="font-weight:400">(노란 칸, 누르면 크게)</span></div>
+      <a href="${esc(s.score_img)}" target="_blank" rel="noopener"><img class="score" src="${esc(s.score_img)}" alt="악보 ${esc(s.bars_label||"")}" loading="lazy"></a>`:""}
+      <div class="lbl">설명</div><div>${md(s.explain)}</div>
+      <div class="lbl">들을 포인트</div><div class="point">${md(s.point)}</div>
+      <div class="btns">${s.clips.map(([w,a,b],j)=>`<button class="play ${w}" data-i="${i}" data-j="${j}">${w} ${esc(L[w].name)} 듣기<small>${fmt(a)} ~ ${fmt(b)} (${Math.round(b-a)}초)</small></button>`).join("")}</div>
+      <details ${done?"open":""}><summary>들은 뒤: 무엇이 달랐나</summary>${paras(s.after)}
+        <div class="bars">${s.bars.map(b=>{const m=maxOf(s);return `<div class="lbl" style="margin-top:8px">${esc(b[0])}</div>
+          <div class="bar"><span class="who">${esc(L.A.name)}</span><span class="fill" style="width:${b[1]/m*70}%;background:var(--a)"></span><span class="v">${b[1]}초</span></div>
+          <div class="bar"><span class="who">${esc(L.B.name)}</span><span class="fill" style="width:${b[2]/m*70}%;background:var(--b)"></span><span class="v">${b[2]}초</span></div>`}).join("")}</div>
+      </details></section>`;
+  });
+  h += `<section class="step"><h2><span class="num">끝</span>정리와 전곡 듣기</h2>${paras(L.outro)}
+    <div class="btns"><button class="play A" data-full="A">A ${esc(L.A.name)} 전곡<small>처음부터 끝까지</small></button><button class="play B" data-full="B">B ${esc(L.B.name)} 전곡<small>처음부터 끝까지</small></button></div>
+    <div class="lbl">참고</div><div class="src">${esc(L.measure_note||"")}</div><div class="src">${esc(L.score_credit||"")}</div>
+    <div class="src">구간이 어긋나거나 영상이 안 나오면 <a href="${issueUrl(L.short+" 구간/영상 문제")}" target="_blank" rel="noopener">알려 주세요</a>.</div></section>`;
+  document.getElementById("main").innerHTML = h;
+}
+
+function play(w, start, end, label){
+  const P=L[w]; const opts={videoId:P.youtube, startSeconds:start}; if(end) opts.endSeconds=end;
+  cur={label}; document.getElementById("now").innerHTML = `<b>${w} ${esc(P.full)}</b> · ${esc(label)}`;
+  if (!ready){ pending=opts; return; }
+  player.loadVideoById(opts);
+}
+
+document.addEventListener("click", e=>{
+  const o=e.target.closest("[data-open]"); if(o){ e.preventDefault(); openLesson(o.dataset.open); return; }
+  const g=e.target.closest("[data-g]"); if(g){ st.genre=g.dataset.g; st.comp=""; home(); return; }
+  const c=e.target.closest("[data-c]"); if(c){ st.comp = st.comp===c.dataset.c?"":c.dataset.c; home(); return; }
+  const s=e.target.closest("[data-star]"); if(s){ const a=mine(), id=s.dataset.star; setMine(a.includes(id)?a.filter(x=>x!==id):[...a,id]); home(); return; }
+  const b=e.target.closest(".play"); if(!b||!L) return;
+  if (b.dataset.full){ play(b.dataset.full,0,null,"전곡"); return; }
+  const i=+b.dataset.i, j=+b.dataset.j, [w,a,z]=L.steps[i].clips[j];
+  b.classList.add("heard");
+  play(w, Math.max(0,a), z, `${i+1}. ${L.steps[i].title} (${fmt(a)} ~ ${fmt(z)})`);
+  if (document.querySelectorAll(`#s${i} .play.heard`).length >= L.steps[i].clips.length){ localStorage.setItem(store(i),"1"); document.getElementById("s"+i).classList.add("done"); }
+});
+
+function loadApi(){
+  if (player){ if(ready) player.cueVideoById(L.A.youtube); return; }
+  window.onYouTubeIframeAPIReady = () => {
+    player = new YT.Player("yt", {playerVars:{playsinline:1, rel:0, modestbranding:1}, videoId:L.A.youtube,
+      events:{onReady:()=>{ready=true; if(pending){player.loadVideoById(pending); pending=null;}},
+              onStateChange:ev=>{ if(ev.data===0 && cur) document.getElementById("now").innerHTML += " · 끝"; }}});
+  };
+  if (!apiLoaded){ apiLoaded=true; const sc=document.createElement("script"); sc.src="https://www.youtube.com/iframe_api"; document.head.appendChild(sc); }
+}
+boot();
+</script>
+</body>
+</html>
