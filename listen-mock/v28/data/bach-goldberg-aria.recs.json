@@ -1,0 +1,252 @@
+{
+ "recs": [
+  {
+   "key": "c",
+   "name": "란도프스카",
+   "full": "완다 란도프스카 (1933, HMV 파리 녹음, 플레옐 하프시코드)",
+   "yt": "a7aXL3_kOXY",
+   "cover": "listen/app/img/yt_bach-goldberg-aria_c_sq.jpg",
+   "dur": 138.0,
+   "cost": 0.154,
+   "bt": [
+    2.32,
+    5.97,
+    10.18,
+    13.13,
+    16.92,
+    20.8,
+    24.32,
+    28.38,
+    32.22,
+    35.92,
+    39.52,
+    43.4,
+    47.05,
+    51.12,
+    55.14,
+    59.61,
+    65.4,
+    69.72,
+    73.83,
+    77.29,
+    81.64,
+    85.48,
+    89.68,
+    93.94,
+    98.28,
+    102.59,
+    106.75,
+    110.86,
+    114.84,
+    119.18,
+    123.62,
+    128.48,
+    136.45
+   ],
+   "clips": [
+    [
+     0.0,
+     17.4
+    ],
+    [
+     46.3,
+     67.1
+    ],
+    [
+     64.6,
+     99.0
+    ],
+    [
+     97.8,
+     124.0
+    ],
+    [
+     122.9,
+     137.9
+    ]
+   ],
+   "feel": "처음으로 녹음된 골드베르크로, 크고 묵직한 플레옐 하프시코드에 베이스와 꾸밈음을 두껍게 얹고 앞 도막 끝에서 크게 숨을 쉬어 다섯 가운데 가장 장중하고 옛 시대 냄새가 짙어요.",
+   "refs": [
+    "https://www.thediapason.com/content/harpsichord-news-19",
+    "https://www.npr.org/sections/deceptivecadence/2012/03/19/148927259/beyond-glenn-gould-a-list-of-great-goldberg-variations",
+    "https://theclassicreview.com/best-of/bach-goldberg-variations-the-best-recordings-part-2-harpsichord-versions"
+   ]
+  },
+  {
+   "key": "d",
+   "name": "레온하르트",
+   "full": "구스타프 레온하르트 (1965, 텔데크 하프시코드)",
+   "yt": "EZQBDtxJafU",
+   "cover": "listen/app/img/yt_bach-goldberg-aria_d_sq.jpg",
+   "dur": 146.7,
+   "cost": 0.098,
+   "bt": [
+    0.65,
+    4.67,
+    9.02,
+    12.07,
+    16.37,
+    20.39,
+    24.18,
+    28.43,
+    32.96,
+    36.89,
+    40.73,
+    44.66,
+    49.05,
+    53.12,
+    57.14,
+    61.49,
+    66.9,
+    71.9,
+    76.34,
+    80.55,
+    85.17,
+    89.47,
+    94.24,
+    98.86,
+    103.81,
+    107.97,
+    112.27,
+    116.48,
+    120.46,
+    124.76,
+    128.68,
+    133.31,
+    141.65
+   ],
+   "clips": [
+    [
+     0.0,
+     16.9
+    ],
+    [
+     48.2,
+     68.9
+    ],
+    [
+     66.2,
+     104.5
+    ],
+    [
+     103.3,
+     129.0
+    ],
+    [
+     128.0,
+     146.3
+    ]
+   ],
+   "feel": "옛 방식 하프시코드로 꾸밈음을 하나하나 정성껏 달면서도 군더더기 없이 곧게 걸어, 피아노 녹음들보다 메마르고 담백하지만 은근하게 노래해요.",
+   "refs": [
+    "https://www.rondomagazin.de/rezensionen/goldberg-variationen-bwv-988-gustav-leonhardt-5168",
+    "https://classicalcandor.blogspot.com/2010/01/bach-goldberg-variations-cd-review.html",
+    "http://tel1400.blog.fc2.com/blog-entry-7563.html"
+   ]
+  },
+  {
+   "key": "e",
+   "name": "켐프",
+   "full": "빌헬름 켐프 (1969, 도이치 그라모폰)",
+   "yt": "3mAMnWoqqj8",
+   "cover": "listen/app/img/yt_bach-goldberg-aria_e_sq.jpg",
+   "dur": 118.0,
+   "cost": 0.089,
+   "bt": [
+    38.25,
+    40.55,
+    42.9,
+    45.28,
+    47.55,
+    49.76,
+    52.02,
+    54.46,
+    56.67,
+    58.89,
+    61.05,
+    63.35,
+    65.56,
+    67.82,
+    70.08,
+    72.43,
+    74.92,
+    77.5,
+    79.94,
+    82.24,
+    84.78,
+    87.22,
+    89.67,
+    92.02,
+    94.69,
+    97.55,
+    99.67,
+    102.06,
+    104.28,
+    106.49,
+    108.88,
+    111.65,
+    116.6
+   ],
+   "clips": [
+    [
+     38.2,
+     47.8
+    ],
+    [
+     65.1,
+     75.9
+    ],
+    [
+     74.6,
+     95.2
+    ],
+    [
+     94.4,
+     109.1
+    ],
+    [
+     108.5,
+     117.9
+    ]
+   ],
+   "feel": "다섯 가운데 가장 빠르게 흐르는 연주로, 점음표와 꾸밈음을 걷어 낸 가벼운 선율을 페달의 부드러운 울림에 실어 쉼 없이 앞으로 흘려보내요.",
+   "refs": [
+    "http://www.musicweb-international.com//classrev/2020/May/Bach_Goldberg_survey.pdf",
+    "https://15questions.net/interview/wilhelm-kempff-die-goldberg-variationen-1970"
+   ]
+  }
+ ],
+ "a_check_median_diff": 0.0,
+ "manual_fixes": [
+  {
+   "key": "c",
+   "bar": 16,
+   "from": 60.0,
+   "to": 59.61,
+   "why": "bass D3 downbeat onset at 59.61 (DTW 0.4 s late)"
+  },
+  {
+   "key": "c",
+   "bar": 17,
+   "from": 63.33,
+   "to": 65.4,
+   "why": "DTW put bar 17 inside Landowska long bar-16 cadence trill (bar 17 = 6.4 s); onsets/chroma: D-A at 65.40, E 65.68, F#-A beat 2 66.9, C beat 3 68.3, bar 18 69.7"
+  },
+  {
+   "key": "e",
+   "bar": "1-16",
+   "from": "first pass",
+   "to": "second pass",
+   "why": "Kempff repeats bars 1-16 (only the first half); aligned to unfolded MIDI (cost 0.089), bars 1-16 taken from the repeat so bar 16->17 is continuous; first pass bar1=2.00"
+  },
+  {
+   "key": "c,d",
+   "what": "clip 1 start set to 0.0 (track start, like Brahms example) instead of mapped 2.2 / 0.5"
+  }
+ ],
+ "notes": [
+  "A re-aligned with the original settings (align.py default downbeats, bwv-988-aria.mid, no TRIM_START/BARS_JSON): identical to bt.A (median and max diff 0.0).",
+  "Kempff plays the first half twice (A A B). Aligned to work_multi_bach-goldberg-aria/unfoldA.mid (bars 1-16 written twice), bt = second pass bars 1-16 + bars 17-32, so clip 1 starts at 38.2 s, not at track start.",
+  "Landowska 1933 and Leonhardt 1965 take no repeats (32-bar MIDI, cost 0.154 / 0.098)."
+ ]
+}

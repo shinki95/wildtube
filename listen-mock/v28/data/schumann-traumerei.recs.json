@@ -1,0 +1,236 @@
+{
+ "recs": [
+  {
+   "key": "c",
+   "name": "코르토",
+   "full": "알프레드 코르토 (1953년 5월, 런던 애비 로드 스튜디오, EMI)",
+   "yt": "77N3klSb2gM",
+   "cover": "listen/app/img/yt_schumann-traumerei_c_sq.jpg",
+   "dur": 152.9,
+   "cost": 0.131,
+   "bt": [
+    1.39,
+    5.98,
+    10.07,
+    14.02,
+    19.09,
+    23.69,
+    28.99,
+    32.05,
+    37.03,
+    42.18,
+    46.55,
+    50.5,
+    55.06,
+    59.94,
+    65.33,
+    68.3,
+    73.51,
+    77.92,
+    81.83,
+    85.08,
+    89.77,
+    94.19,
+    98.74,
+    101.35,
+    107.48,
+    112.68,
+    116.96,
+    121.09,
+    126.02,
+    131.32,
+    137.45,
+    142.14,
+    148.42
+   ],
+   "clips": [
+    [
+     0.0,
+     20.4
+    ],
+    [
+     54.4,
+     73.8
+    ],
+    [
+     72.6,
+     90.1
+    ],
+    [
+     89.2,
+     113.0
+    ],
+    [
+     106.7,
+     126.6
+    ],
+    [
+     125.4,
+     152.9
+    ]
+   ],
+   "feel": "다섯 가운데 가장 오래된 모노 녹음으로, 템포를 자유롭게 밀고 당기는 옛 낭만식 루바토와 노래하는 듯한 따뜻한 소리로 꿈을 이야기처럼 들려줘요.",
+   "refs": [
+    "https://www.naxos.com/Handler/GetBackcover.ashx?file=https%3A%2F%2Fcdn.naxos.com%2FSharedFiles%2Fpdf%2Frear%2F8.111327r.pdf",
+    "http://www.musicweb-international.com/classrev/2002/sept02/Alfred_Cortot.htm",
+    "https://www.cortotarchives.org/recordings/206"
+   ]
+  },
+  {
+   "key": "d",
+   "name": "피레스",
+   "full": "마리아 주앙 피레스 (1984년 녹음, 에라토)",
+   "yt": "dzKYJVIlrLc",
+   "cover": "listen/app/img/yt_schumann-traumerei_d_sq.jpg",
+   "dur": 194.4,
+   "cost": 0.091,
+   "bt": [
+    1.57,
+    8.12,
+    14.44,
+    18.71,
+    24.2,
+    30.7,
+    38.04,
+    40.78,
+    46.55,
+    53.0,
+    58.53,
+    62.62,
+    68.11,
+    74.66,
+    82.18,
+    84.97,
+    91.01,
+    97.47,
+    102.21,
+    105.88,
+    112.11,
+    118.48,
+    123.12,
+    126.75,
+    133.95,
+    140.55,
+    147.47,
+    151.79,
+    157.74,
+    165.1,
+    173.35,
+    178.46,
+    186.78
+   ],
+   "clips": [
+    [
+     0.0,
+     26.0
+    ],
+    [
+     67.3,
+     91.5
+    ],
+    [
+     90.0,
+     112.7
+    ],
+    [
+     111.4,
+     141.1
+    ],
+    [
+     133.0,
+     158.5
+    ],
+    [
+     156.9,
+     194.4
+    ]
+   ],
+   "feel": "다섯 가운데 가장 느린 3분 넘는 연주로, 한 음 안에 아이의 순수함과 어른의 그리움을 함께 담아 아주 여리고 깊게 머물다 가요.",
+   "refs": [
+    "https://musicwebinternational.com/2023/08/schumann-kinderszenen-apex/",
+    "https://www.qobuz.com/gb-en/album/schumann-kinderszenen-waldszenen-bunte-blatter-maria-joao-pires/0825646036363"
+   ]
+  },
+  {
+   "key": "e",
+   "name": "슈타이어",
+   "full": "안드레아스 슈타이어 (2007년 녹음, 1837년 에라르 피아노, 하르모니아 문디)",
+   "yt": "ws_hMJsu8TM",
+   "cover": "listen/app/img/yt_schumann-traumerei_e_sq.jpg",
+   "dur": 106.3,
+   "cost": 0.134,
+   "bt": [
+    2.13,
+    5.1,
+    8.31,
+    10.59,
+    14.07,
+    16.77,
+    20.53,
+    22.49,
+    25.93,
+    29.37,
+    32.53,
+    34.81,
+    38.06,
+    40.8,
+    44.24,
+    46.52,
+    50.24,
+    53.26,
+    55.87,
+    58.19,
+    62.19,
+    64.93,
+    67.63,
+    69.77,
+    73.67,
+    76.88,
+    79.9,
+    82.22,
+    85.52,
+    88.96,
+    93.75,
+    97.0,
+    101.79
+   ],
+   "clips": [
+    [
+     0.0,
+     14.8
+    ],
+    [
+     37.6,
+     50.5
+    ],
+    [
+     49.6,
+     62.4
+    ],
+    [
+     61.7,
+     77.1
+    ],
+    [
+     73.2,
+     85.9
+    ],
+    [
+     85.1,
+     106.3
+    ]
+   ],
+   "feel": "슈만 시대의 1837년 에라르 피아노로 다섯 가운데 가장 빠르게 흘러가며, 감상에 기대지 않고 맑고 투명한 소리로 선율과 안쪽 성부를 또렷하게 들려줘요.",
+   "refs": [
+    "https://www.prestomusic.com/classical/products/7977718--schumann-a-tribute-to-bach",
+    "https://www.rondomagazin.de/rezensionen/waldszenen-album-fuer-die-jugend-kinderszenen-7-klavierstuecke-in-fughettenform-u-a-andreas-staier-6217",
+    "https://www.harmoniamundi.com/en/albums/a-tribute-to-j-s-bach"
+   ]
+  }
+ ],
+ "a_check_median_diff": 0.0,
+ "manual_fixes": [
+  "cortot bt[0] 2.08 -> 1.39: MIDI bar 1 downbeat (F4 after C4 pickup at 0.31s) onset is at 1.39s; DTW put it at 2.08s inside the held F",
+  "pires bt[29] 166.61 -> 165.1: MIDI bar 30 downbeat C5 (after E4-F4-A4 rise at 163.2/163.8/164.4s) is at 165.1s; DTW 166.61s was after the next note A5 (166.11s)"
+ ]
+}
