@@ -83,7 +83,7 @@ a{color:inherit}button{font:inherit;color:inherit;background:none;border:0;paddi
 .sheet{position:absolute;left:0;top:0;width:100%;transform-origin:0 0;background:#fbf8f1;box-shadow:0 30px 50px -24px rgba(40,25,10,.5)}
 .sheet img{display:block;width:100%;mix-blend-mode:multiply}
 /* 듣기 판 */
-.deck{position:relative;z-index:2;background:var(--tintbg);transition:background .8s;padding:34px 18px 46px}
+.deck{position:relative;z-index:2;background:var(--tintbg);transition:background .8s;padding:64px 18px 46px}
 .deck .dh{font:600 11px/1 var(--sys);letter-spacing:.24em;color:var(--sub);text-transform:uppercase}
 .deck .dt{font:700 22px/1.3 var(--kr);margin:8px 0 4px}
 .deck .dp{font:15px/1.5 var(--kr);color:#4e4a43;margin:0 0 16px}
@@ -257,10 +257,11 @@ function chapter(k){ const st=L.steps[k], ex=document.querySelectorAll(`#ch${k} 
   tl.to(sheet,{x:()=>geo().tx,y:()=>geo().ty,scale:()=>geo().k,rotationX:0,rotationZ:0,duration:all.length,ease:'power1.inOut'},.9).to({}, {duration:.4});
 }
 /* ---------- 색 ---------- */
-function coverColor(u){ return new Promise(res=>{ const im=new Image(); im.crossOrigin='anonymous'; im.onload=()=>{ try{ const c=document.createElement('canvas'); c.width=c.height=24; const g=c.getContext('2d'); g.drawImage(im,0,0,24,24); const d=g.getImageData(0,0,24,24).data; let best=null,bs=-1;
-   const bins={}; for(let i=0;i<d.length;i+=4){ const r=d[i],gg=d[i+1],b=d[i+2]; const mx=Math.max(r,gg,b),mn=Math.min(r,gg,b); const sat=mx?(mx-mn)/mx:0, v=mx/255; const key=(r>>5)+','+(gg>>5)+','+(b>>5); const w=sat*.8+.2*(v>.2&&v<.92?1:0); bins[key]=bins[key]||{n:0,r:0,g:0,b:0,w:0}; const o=bins[key]; o.n++; o.r+=r; o.g+=gg; o.b+=b; o.w+=w; }
-   for(const o of Object.values(bins)){ if(o.w>bs){ bs=o.w; best=o; } } let [r,gg,b]=[best.r/best.n,best.g/best.n,best.b/best.n]; const l=(r+gg+b)/3; if(l>150){ r*=.62; gg*=.62; b*=.62; } res(`rgb(${r|0},${gg|0},${b|0})`); }catch(e){ res('#6d5a44'); } }; im.onerror=()=>res('#6d5a44'); im.src=u; }); }
-const soft=c=>{ const m=c.match(/\d+/g); if(!m) return '#efe8dc'; const [r,g,b]=m.map(Number); const f=x=>Math.round(x*.16+241*.84); return `rgb(${f(r)},${f(g)},${f(b)})`; };
+function coverColor(u){ return new Promise(res=>{ const im=new Image(); im.crossOrigin='anonymous'; im.onload=()=>{ try{ const c=document.createElement('canvas'); c.width=c.height=32; const g=c.getContext('2d'); g.drawImage(im,0,0,32,32); const d=g.getImageData(0,0,32,32).data; const bins={};
+   for(let i=0;i<d.length;i+=4){ const r=d[i],gg=d[i+1],b=d[i+2]; const mx=Math.max(r,gg,b),mn=Math.min(r,gg,b); const v=mx/255, sat=mx?(mx-mn)/mx:0; if(v<.28||v>.96) continue; const key=(r>>5)+','+(gg>>5)+','+(b>>5); const o=bins[key]||(bins[key]={n:0,r:0,g:0,b:0,w:0}); o.n++; o.r+=r; o.g+=gg; o.b+=b; o.w+=.15+sat*sat*2; }
+   let best=null,bs=-1; for(const o of Object.values(bins)){ if(o.w>bs){ bs=o.w; best=o; } } if(!best) return res('#6d5a44');
+   let [r,gg,b]=[best.r/best.n,best.g/best.n,best.b/best.n]; const lum=.3*r+.59*gg+.11*b; if(lum>165){ const f=150/lum; r*=f; gg*=f; b*=f; } if(lum<75){ r=r*.7+255*.3; gg=gg*.7+255*.3; b=b*.7+255*.3; } res(`rgb(${r|0},${gg|0},${b|0})`); }catch(e){ res('#6d5a44'); } }; im.onerror=()=>res('#6d5a44'); im.src=u; }); }
+const soft=c=>{ const m=(c||'').match(/\d+/g); if(!m) return '#efe8dc'; const [r,g,b]=m.map(Number), base=[243,237,228]; const f=(x,i)=>Math.round(x*.24+base[i]*.76); return `rgb(${f(r,0)},${f(g,1)},${f(b,2)})`; };
 /* ---------- 듣기 ---------- */
 const P={k:null,key:null,playing:false,t:0,raf:0}; let YTP={}, YTk=null, YTready=false, YTq=[];
 function ytAPI(cb){ if(YTready) return cb(); YTq.push(cb); if(window._ytl) return; window._ytl=1; window.onYouTubeIframeAPIReady=()=>{ YTready=true; YTq.splice(0).forEach(f=>f()); }; const s=document.createElement('script'); s.src='https://www.youtube.com/iframe_api'; document.head.appendChild(s); }
