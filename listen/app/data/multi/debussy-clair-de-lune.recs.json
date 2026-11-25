@@ -1,0 +1,404 @@
+{
+ "recs": [
+  {
+   "key": "c",
+   "name": "프랑수아",
+   "full": "상송 프랑수아 (1968, EMI)",
+   "yt": "CaGVBin3asY",
+   "cover": "listen/app/img/yt_debussy-clair-de-lune_c_sq.jpg",
+   "dur": 229.7,
+   "cost": 0.12,
+   "bt": [
+    0.0,
+    2.83,
+    5.52,
+    8.11,
+    10.76,
+    13.35,
+    16.55,
+    19.38,
+    23.46,
+    26.43,
+    29.3,
+    32.6,
+    35.75,
+    38.82,
+    43.08,
+    46.9,
+    49.8,
+    52.82,
+    54.9,
+    57.78,
+    60.88,
+    63.71,
+    66.5,
+    69.55,
+    72.57,
+    75.91,
+    80.41,
+    84.06,
+    86.57,
+    89.26,
+    91.95,
+    94.87,
+    97.51,
+    100.06,
+    103.17,
+    105.77,
+    107.71,
+    109.84,
+    111.84,
+    114.11,
+    116.47,
+    119.02,
+    122.41,
+    125.56,
+    128.34,
+    131.49,
+    134.97,
+    137.2,
+    139.98,
+    142.76,
+    146.8,
+    150.33,
+    153.57,
+    156.39,
+    159.73,
+    162.47,
+    166.04,
+    168.91,
+    172.72,
+    176.7,
+    179.63,
+    182.78,
+    186.77,
+    189.83,
+    193.4,
+    198.67,
+    201.5,
+    204.53,
+    207.5,
+    210.42,
+    215.14,
+    219.65,
+    224.56
+   ],
+   "clips": [
+    [
+     0.0,
+     23.4
+    ],
+    [
+     23.4,
+     54.9
+    ],
+    [
+     54.9,
+     81.9
+    ],
+    [
+     80.4,
+     116.5
+    ],
+    [
+     116.5,
+     148.2
+    ],
+    [
+     172.7,
+     228.0
+    ]
+   ],
+   "feel": "다섯 가운데 가장 빠른 4분이 안 되는 연주로, 즉흥처럼 밀고 당기며 거침없이 흘러가고, 오래된 녹음의 마른 소리 속에서도 달콤하게 꾸미지 않아요.",
+   "refs": [
+    "https://www.radiofrance.fr/francemusique/podcasts/la-tribune-des-critiques-de-disques/suite-bergamasque-de-claude-debussy-5160148",
+    "https://www.allmusic.com/album/debussy-ravel-piano-works-mw0001851240",
+    "https://www.talkclassical.com/threads/your-favorite-claire-de-lune.98132"
+   ]
+  },
+  {
+   "key": "d",
+   "name": "아라우",
+   "full": "클라우디오 아라우 (1991, 필립스)",
+   "yt": "B7uV-HYBx-Y",
+   "cover": "listen/app/img/yt_debussy-clair-de-lune_d_sq.jpg",
+   "dur": 408.0,
+   "cost": 0.107,
+   "bt": [
+    0.0,
+    7.89,
+    13.37,
+    17.59,
+    21.99,
+    26.08,
+    30.72,
+    35.12,
+    41.48,
+    46.49,
+    51.27,
+    56.19,
+    61.48,
+    66.44,
+    72.57,
+    78.69,
+    83.15,
+    87.55,
+    92.7,
+    97.3,
+    100.82,
+    105.09,
+    108.66,
+    112.51,
+    118.03,
+    122.81,
+    129.17,
+    134.97,
+    140.68,
+    146.34,
+    153.25,
+    158.87,
+    164.25,
+    169.58,
+    175.85,
+    181.79,
+    186.8,
+    192.0,
+    196.87,
+    202.62,
+    209.02,
+    213.85,
+    220.07,
+    225.87,
+    231.81,
+    237.79,
+    244.8,
+    250.42,
+    255.89,
+    260.81,
+    267.68,
+    273.43,
+    278.81,
+    283.5,
+    288.88,
+    295.47,
+    301.88,
+    307.03,
+    313.99,
+    319.65,
+    325.17,
+    330.88,
+    337.0,
+    342.76,
+    349.3,
+    357.19,
+    363.69,
+    372.74,
+    377.61,
+    384.81,
+    391.35,
+    399.28,
+    405.49
+   ],
+   "clips": [
+    [
+     0.0,
+     41.5
+    ],
+    [
+     41.5,
+     92.7
+    ],
+    [
+     92.7,
+     131.5
+    ],
+    [
+     129.2,
+     209.1
+    ],
+    [
+     209.1,
+     270.0
+    ],
+    [
+     314.0,
+     408.0
+    ]
+   ],
+   "feel": "다섯 가운데 가장 느린 7분 가까운 연주로, 어둡고 풍성한 소리로 가운데 흐르는 부분에서도 서두르지 않고 길게 엮어 가서, 깊다는 평과 무겁다는 평이 함께 나와요.",
+   "refs": [
+    "https://www.allmusic.com/album/debussy-mw0001846583",
+    "https://classicalguy.substack.com/p/building-a-collection-36-debussys",
+    "https://www.radiofrance.fr/francemusique/podcasts/la-tribune-des-critiques-de-disques/suite-bergamasque-de-claude-debussy-5160148"
+   ]
+  },
+  {
+   "key": "e",
+   "name": "코치시",
+   "full": "졸탄 코치시 (1983, 필립스)",
+   "yt": "XnKsbXW72-8",
+   "cover": "listen/app/img/yt_debussy-clair-de-lune_e_sq.jpg",
+   "dur": 350.9,
+   "cost": 0.117,
+   "bt": [
+    0.0,
+    6.59,
+    11.51,
+    16.29,
+    21.16,
+    25.29,
+    30.99,
+    35.68,
+    42.83,
+    48.86,
+    53.96,
+    59.44,
+    65.01,
+    71.22,
+    78.6,
+    84.2,
+    88.86,
+    93.08,
+    96.65,
+    100.18,
+    103.65,
+    107.04,
+    110.56,
+    113.9,
+    117.47,
+    121.7,
+    128.05,
+    132.46,
+    136.26,
+    139.7,
+    143.64,
+    146.79,
+    150.04,
+    153.19,
+    157.6,
+    161.68,
+    164.41,
+    167.38,
+    169.75,
+    172.71,
+    175.54,
+    178.56,
+    182.08,
+    185.84,
+    188.9,
+    192.05,
+    195.48,
+    198.34,
+    202.02,
+    205.13,
+    210.05,
+    216.26,
+    221.83,
+    226.19,
+    231.81,
+    235.8,
+    242.29,
+    247.3,
+    255.29,
+    261.46,
+    266.42,
+    272.18,
+    278.58,
+    284.24,
+    291.34,
+    300.26,
+    304.09,
+    310.37,
+    314.03,
+    319.93,
+    327.59,
+    335.24,
+    341.26
+   ],
+   "clips": [
+    [
+     0.0,
+     42.8
+    ],
+    [
+     42.8,
+     96.7
+    ],
+    [
+     96.7,
+     129.8
+    ],
+    [
+     128.1,
+     175.6
+    ],
+    [
+     175.6,
+     212.6
+    ],
+    [
+     255.3,
+     345.5
+    ]
+   ],
+   "feel": "걸음은 중간쯤이지만 문장 끝마다 숨을 길게 쉬고, 양손 소리가 맑고 부드럽게 맞물려 깔끔하게 정돈된 달빛으로 들려요.",
+   "refs": [
+    "https://classicalguy.substack.com/p/building-a-collection-36-debussys",
+    "https://www.radiofrance.fr/francemusique/podcasts/la-tribune-des-critiques-de-disques/suite-bergamasque-de-claude-debussy-5160148",
+    "https://www.talkclassical.com/threads/debussy-s-suite-bergamasque.36227"
+   ]
+  }
+ ],
+ "a_check_median_diff": 0.0,
+ "manual_fixes": [
+  {
+   "key": "d",
+   "bar": 5,
+   "from": 20.09,
+   "to": 21.99,
+   "why": "bar 5 start: DTW put it 1.9 s early (inside bar 4 held chord); onset count (9 eighth-note onsets from 21.99) puts bar 5 at 21.99"
+  },
+  {
+   "key": "d",
+   "bar": 70,
+   "from": 383.74,
+   "to": 384.81,
+   "why": "bar 70 start (B5+G#3): first strong onset after bar 69 C#6, followed by 5 sixteenths and C#6 at 386.83"
+  },
+  {
+   "key": "d",
+   "bar": 72,
+   "from": 395.99,
+   "to": 399.28,
+   "why": "bar 72 final chord: DTW landed mid-arpeggio of bar 71; rolled final chord starts 399.28 after 11 arpeggio onsets"
+  },
+  {
+   "key": "c",
+   "bar": 70,
+   "from": 209.86,
+   "to": 210.42,
+   "why": "bar 70 start: strong onset after held C#6, then 5 sixteenths, C#6 at 211.75, E6+G#2 at 213.17"
+  },
+  {
+   "key": "c",
+   "bar": 71,
+   "from": 215.43,
+   "to": 215.14,
+   "why": "bar 71 start (G#6+low C#2): strong onset 215.14, followed by 6 sixteenths + 5 eighths"
+  },
+  {
+   "key": "c",
+   "bar": 72,
+   "from": 220.91,
+   "to": 219.65,
+   "why": "bar 72 final chord: DTW put it at the end of the rolled chord; roll starts 219.65"
+  },
+  {
+   "key": "e",
+   "bar": 72,
+   "from": 331.39,
+   "to": 335.24,
+   "why": "bar 72 final chord: DTW landed mid-arpeggio of bar 71; after 6 sixteenths + 5 eighths the rolled final chord starts 335.24"
+  }
+ ]
+}

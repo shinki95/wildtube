@@ -5,229 +5,308 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
 <title>비교 듣기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Gowun+Batang:wght@400;700&family=Pinyon+Script&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f6f4ef;--card:#fff;--ink:#1d1c1a;--sub:#6b665e;--line:#e4dfd6;--a:#1f3a5f;--b:#9a4a2a;--ok:#3d7a4f;
---sys:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;--st:env(safe-area-inset-top);--sb:env(safe-area-inset-bottom)}
-*{box-sizing:border-box}
-html,body{margin:0;height:100%}
-body{background:#fff;color:var(--ink);font:16px/1.65 var(--sys);-webkit-tap-highlight-color:transparent}
-button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
-.view{position:fixed;inset:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
-.off{display:none!important}
-/* ===== 둘러보기 (최근 판의 애플 뮤직식, 밝은 화면) ===== */
-#browse{background:#fff;padding-bottom:calc(84px + var(--sb))}
-.bwrap{max-width:760px;margin:0 auto;padding-top:var(--st)}
-.lt{font-size:34px;font-weight:800;letter-spacing:-.02em;padding:14px 20px 4px}
-.sh{display:flex;align-items:center;justify-content:space-between;padding:18px 20px 8px}
-.sh b{font-size:22px;font-weight:700;letter-spacing:-.01em}
-.sh span{font-size:22px;color:#8a8a8e}
-.row{display:flex;gap:14px;overflow-x:auto;padding:0 20px 4px;scroll-snap-type:x mandatory;scrollbar-width:none}
-.row::-webkit-scrollbar{display:none}
-.card{flex:none;width:156px;text-align:left;scroll-snap-align:start}
-.duo{position:relative;width:156px;height:156px;border-radius:12px;overflow:hidden;background:#000;box-shadow:0 10px 22px -14px rgba(0,0,0,.6)}
-.duo img{position:absolute;top:0;height:100%;object-fit:cover}
-.duo img.a{left:0;width:62%}
-.duo img.b{right:0;width:76%;clip-path:polygon(38% 0,100% 0,100% 100%,0 100%)}
-.duo .ab{position:absolute;bottom:8px;width:24px;height:24px;border-radius:6px;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;color:#fff}
-.duo .ab.A{left:8px;background:var(--a)}.duo .ab.B{right:8px;background:var(--b)}
-.card b{display:block;font-size:15px;font-weight:600;margin-top:7px;line-height:1.3}
-.card span{display:block;font-size:14px;color:#6e6e73;line-height:1.3}
-.circ{flex:none;width:92px;text-align:center;scroll-snap-align:start}
-.circ i{display:block;width:84px;height:84px;margin:0 auto;border-radius:50%;overflow:hidden;background:#eee}
-.circ i img{width:100%;height:100%;object-fit:cover;display:block}
-.circ b{display:block;font-size:14px;font-weight:500;margin-top:6px;white-space:nowrap}
-.tabbar{position:fixed;left:0;right:0;bottom:0;height:calc(64px + var(--sb));padding-bottom:var(--sb);display:flex;justify-content:space-around;background:rgba(250,250,252,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:.5px solid #e5e5ea;z-index:30}
-.tabbar button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11px;font-weight:600;color:#8a8a8e;min-height:44px}
-.tabbar button.on{color:var(--b)}
-.tabbar svg{width:24px;height:24px}
-.li{display:flex;align-items:center;gap:12px;width:100%;min-height:72px;padding:6px 20px;border-bottom:.5px solid #e5e5ea;text-align:left}
-.li .duo{width:58px;height:58px;border-radius:8px;flex:none}
-.li .duo .ab{width:18px;height:18px;font-size:11px;bottom:4px}.li .duo .ab.A{left:4px}.li .duo .ab.B{right:4px}
-.li b{display:block;font-size:16px;font-weight:600}
-.li span{display:block;font-size:14px;color:#6e6e73}
-.back{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;color:var(--b);font-size:17px}
-.sbox{margin:6px 20px 10px;height:44px;border-radius:12px;background:#f2f2f7;display:flex;align-items:center;gap:8px;padding:0 12px}
-.sbox input{flex:1;border:0;background:none;font:16px var(--sys);outline:none;color:var(--ink);height:44px;min-width:0}
-/* ===== 레슨 = 첫 버전(v0) 그대로 ===== */
-#lesson{background:var(--bg)}
-header.lh{padding:calc(6px + var(--st)) 18px 8px;max-width:760px;margin:0 auto}
-header.lh .bk{display:inline-flex;align-items:center;min-height:44px;font-size:16px;color:var(--a);font-weight:600}
-h1{font-size:21px;margin:0 0 4px}
-.src{font-size:13px;color:var(--sub)}
-.src a{color:var(--a)}
-.playerwrap{position:sticky;top:0;z-index:5;background:var(--bg);padding:8px 18px 10px;max-width:760px;margin:0 auto}
-.player{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden}
-.player .yp{position:absolute;inset:0;visibility:hidden}.player .yp.on{visibility:visible}
-.player .yp iframe,.player .yp>div{width:100%;height:100%;border:0;display:block}
-.player .yerr{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#fff;font-size:15px;text-align:center;background:#222}
-.player .yerr.on{display:flex}
-.player .yerr a{color:#fff;border:1px solid #fff8;border-radius:22px;padding:0 16px;min-height:44px;display:inline-flex;align-items:center;text-decoration:none}
-.now{font-size:13px;color:var(--sub);margin-top:6px;min-height:20px}
+:root{--bg:#f1ede6;--ink:#1d1c1a;--sub:#6b665e;--line:#ddd6ca;--a:#1f3a5f;--b:#9a4a2a;--tint:#6d5a44;--tintbg:#efe8dc;
+--serif:"Cormorant Garamond","Gowun Batang",serif;--kr:"Gowun Batang",serif;--script:"Pinyon Script",cursive;
+--sys:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink)}
+body{font:17px/1.6 var(--kr);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+.top{position:fixed;z-index:50;left:0;right:0;top:0;display:flex;justify-content:space-between;align-items:center;padding:calc(env(safe-area-inset-top) + 10px) 14px 8px;font:600 11px/1 var(--sys);letter-spacing:.16em;mix-blend-mode:difference;color:#fff;pointer-events:none}
+.top a{pointer-events:auto;text-decoration:none;min-height:36px;display:flex;align-items:center}
+/* 장면 공통 */
+.stage{position:relative;height:100vh;height:100svh;overflow:hidden;perspective:1400px}
+.layer{position:absolute;pointer-events:none}
+.big{font:600 clamp(44px,13.5vw,118px)/.88 var(--serif);letter-spacing:.02em;text-transform:uppercase;margin:0}
+.big small{display:block;font-size:.3em;letter-spacing:.14em;margin-top:.6em}
+.scr{font:clamp(30px,9vw,66px)/1.1 var(--script);color:#8a6a46;margin:.25em 0 0 14%;transform:rotate(-6deg)}
+.kick{font:600 11px/1 var(--sys);letter-spacing:.28em;color:var(--sub);margin-bottom:16px;text-transform:uppercase}
+/* 표지 */
+.hero-t{left:0;right:0;top:17svh;text-align:center;padding:0 16px}
+.hero-t .sub{font:16px/1.5 var(--kr);color:var(--sub);margin-top:22px}
+.skip{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom) + 24px);transform:translateX(-50%);font:600 13px/1 var(--sys);text-decoration:none;border-bottom:1px solid;padding-bottom:3px;z-index:5}
+.st{left:22px;right:22px;top:20svh;opacity:0}
+.st p{font:700 clamp(23px,6.3vw,40px)/1.42 var(--kr);margin:0;max-width:13em}
+.objw{position:absolute;left:50%;top:64%;width:0;height:0;transform-style:preserve-3d}
+.obj{position:absolute;transform-style:preserve-3d;will-change:transform}
+.vinyl{width:min(78vw,440px);aspect-ratio:1;border-radius:50%;position:absolute;left:0;top:0;transform:translate(-50%,-50%);box-shadow:0 40px 60px -20px rgba(0,0,0,.45)}
+.disc{position:absolute;inset:0;border-radius:50%;background:repeating-radial-gradient(circle,#121212 0 1.2px,#1d1d1d 1.6px 2.8px);animation:spin 5s linear infinite}
+.disc.stop{animation-play-state:paused}
+.lbl{position:absolute;inset:33%;border-radius:50%;background:var(--lc,#e9dcc3);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font:600 clamp(9px,2.4vw,13px)/1.25 var(--serif);letter-spacing:.12em;color:#2b1f14;text-transform:uppercase}
+.lbl b{font-size:1.45em;letter-spacing:.06em}
+.lbl::after{content:"";width:7%;aspect-ratio:1;border-radius:50%;background:#111;position:absolute}
+.lbl span{position:relative;top:-14%}.lbl i{position:relative;top:14%;font-style:normal}
+.sheen{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 20deg,transparent 0 8%,rgba(255,255,255,.16) 12%,transparent 18% 50%,rgba(255,255,255,.12) 58%,transparent 64%);pointer-events:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.macro{position:absolute;inset:0;opacity:0;overflow:hidden;background:#111}
+.m-lp{position:absolute;inset:0;background:repeating-radial-gradient(circle at -60% 50%,#0f0f0f 0 3px,#222 4px 7px,#151515 8px 10px)}
+.m-lp::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.18) 45%,transparent 60%)}
+.cap2{left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;color:#fff;opacity:0;padding:0 20px}
+.cap2 .e{font:600 clamp(28px,8vw,64px)/1 var(--serif);letter-spacing:.16em;text-transform:uppercase}
+.cap2 .k{font:16px/1.5 var(--kr);margin-top:14px;opacity:.9}
+.cap3{left:0;right:0;bottom:14svh;text-align:center;opacity:0}
+.cap3 p{font:700 clamp(23px,6.4vw,40px)/1.35 var(--kr);margin:0}
+.shelfS{position:absolute;inset:0;background:#1d1c1a;color:#f1ede6;padding:calc(env(safe-area-inset-top) + 70px) 20px 20px;opacity:0;display:flex;flex-direction:column;justify-content:center}
+.shelfS h3{font:600 11px/1 var(--sys);letter-spacing:.24em;color:#a59d8f;margin:0 0 18px}
+.rrow{display:flex;gap:14px;align-items:center;padding:12px 0;border-top:1px solid #3a3733}
+.rrow .cv{width:78px;height:78px;flex:none;background-size:cover;background-position:center;border-radius:2px;box-shadow:0 14px 26px -12px rgba(0,0,0,.6)}
+.rrow .lt{font:600 11px/1 var(--sys);letter-spacing:.18em;color:#a59d8f}
+.rrow .nm{font:600 26px/1.05 var(--serif);margin:4px 0 4px}
+.rrow .fl{font:15px/1.45 var(--kr);color:#d9d2c6}
+.badge{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font:700 11px/1 var(--sys);color:#fff;margin-right:6px;vertical-align:1px}
+/* 글 장면 */
+.tstage{background:var(--bg)}
+.tx{position:absolute;left:22px;right:22px;top:16svh;opacity:0}
+.tx p{font:clamp(20px,5.6vw,30px)/1.6 var(--kr);margin:0;max-width:20em}
+.tx h4{font:600 11px/1 var(--sys);letter-spacing:.24em;color:var(--sub);margin:0 0 14px;text-transform:uppercase}
+.tx .who{font:600 clamp(28px,8vw,48px)/1 var(--serif);margin:0 0 14px}
+.qm{position:absolute;right:-2vw;bottom:-8svh;font:600 60vw/1 var(--serif);color:rgba(0,0,0,.05);pointer-events:none}
+/* 대목 장면 */
+.cstage{background:var(--bg)}
+.ch-n{position:absolute;left:18px;top:calc(env(safe-area-inset-top) + 46px);font:600 clamp(80px,26vw,190px)/.8 var(--serif);color:rgba(29,28,26,.08);pointer-events:none}
+.ctop{position:absolute;left:22px;right:22px;top:15svh}
+.ctit{opacity:0}
+.ctit .k2{font:600 11px/1 var(--sys);letter-spacing:.24em;color:var(--sub)}
+.ctit h2{font:700 clamp(28px,7.6vw,46px)/1.25 var(--kr);margin:10px 0 6px}
+.ctit .bl{font:600 13px/1 var(--sys);color:var(--sub)}
+.form{display:flex;height:22px;margin-top:16px;border-radius:2px;overflow:hidden;position:relative;max-width:520px}
+.form div{border-right:2px solid var(--bg);background:#d8d0c2;font:600 10px/22px var(--sys);color:#6b665e;padding-left:6px;white-space:nowrap;overflow:hidden}
+.form .hl{position:absolute;top:-4px;bottom:-4px;border:2px solid var(--ink);border-radius:3px;background:rgba(29,28,26,.1)}
+.sent{position:absolute;left:0;right:0;top:0;opacity:0}
+.sent p{font:clamp(20px,5.5vw,29px)/1.6 var(--kr);margin:0;max-width:20em}
+.sent.pt p{font-style:italic;padding-left:14px;border-left:3px solid #c9b48f}
+.sent.pt h4{font:600 11px/1 var(--sys);letter-spacing:.24em;color:var(--sub);margin:0 0 12px}
+.sframe{position:absolute;left:4vw;right:4vw;bottom:calc(env(safe-area-inset-bottom) + 4svh);height:40svh;perspective:900px;overflow:hidden;border-radius:3px}
+.sheet{position:absolute;left:0;top:0;width:100%;transform-origin:0 0;background:#fbf8f1;box-shadow:0 30px 50px -24px rgba(40,25,10,.5)}
+.sheet img{display:block;width:100%;mix-blend-mode:multiply}
+/* 듣기 판 */
+.deck{position:relative;z-index:2;background:var(--tintbg);transition:background .8s;padding:64px 18px 46px}
+.deck .dh{font:600 11px/1 var(--sys);letter-spacing:.24em;color:var(--sub);text-transform:uppercase}
+.deck .dt{font:700 22px/1.3 var(--kr);margin:8px 0 4px}
+.deck .dp{font:15px/1.5 var(--kr);color:#4e4a43;margin:0 0 16px}
+.shelf{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 10px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.sp{flex:none;width:86px;scroll-snap-align:start;text-align:left}
+.sp .cv{width:86px;height:86px;background-size:cover;background-position:center;border-radius:2px;box-shadow:0 10px 18px -10px rgba(0,0,0,.5);position:relative;transition:transform .3s}
+.sp .cv em{position:absolute;left:5px;top:5px;width:22px;height:22px;border-radius:50%;background:var(--rc);color:#fff;font:700 11px/22px var(--sys);text-align:center;font-style:normal}
+.sp .nm{font:600 13px/1.2 var(--sys);margin-top:6px}
+.sp .yr{font:12px/1.2 var(--sys);color:var(--sub)}
+.sp.on .cv{transform:translateY(-6px);box-shadow:0 0 0 3px var(--tintbg),0 0 0 5px var(--rc),0 16px 22px -10px rgba(0,0,0,.5)}
+.tt{position:relative;display:flex;align-items:center;gap:16px;margin:14px 0 4px}
+.plinth{position:relative;width:min(56vw,300px);aspect-ratio:1.12;border-radius:14px;background:linear-gradient(145deg,#2b2926,#1a1917);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 20px 30px -18px rgba(0,0,0,.6);flex:none}
+.plat{position:absolute;left:5%;top:6%;width:80%;aspect-ratio:1;border-radius:50%;background:#0c0c0c;box-shadow:0 0 0 3px #3a3733}
+.plat .rec2{position:absolute;inset:2%;border-radius:50%;overflow:hidden}
+.plat .lab{position:absolute;inset:34%;border-radius:50%;background:var(--tint);transition:background .6s;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center}
+.plat .lab b{font:700 15px/1 var(--sys)}
+.plat .lab span{font:600 9px/1.2 var(--sys);letter-spacing:.06em;margin-top:3px;max-width:80%}
+.plat .lab::after{content:"";position:absolute;width:7%;aspect-ratio:1;border-radius:50%;background:#ddd}
+.arm{position:absolute;right:4%;top:6%;width:22%;height:78%;transform-origin:70% 8%;transform:rotate(-24deg);transition:transform .7s cubic-bezier(.4,1.4,.5,1)}
+.arm.on{transform:rotate(4deg)}
+.ctl{display:flex;flex-direction:column;gap:10px;flex:1;min-width:0}
+.pb{min-height:56px;border-radius:99px;background:var(--ink);color:#fff;font:600 16px/1 var(--sys);display:flex;align-items:center;justify-content:center;gap:8px}
+.now{font:13px/1.4 var(--sys);color:#4e4a43}
 .now b{color:var(--ink)}
-main{max-width:760px;margin:0 auto;padding:0 18px calc(40px + var(--sb))}
-.intro,.step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 16px 14px;margin:12px 0}
-.step h2,.intro h2{font-size:17px;margin:0 0 6px;display:flex;gap:8px;align-items:baseline}
-.num{font-size:12px;color:#fff;background:var(--ink);border-radius:999px;padding:1px 8px;flex:none}
-.step.done .num{background:var(--ok)}
-.lbl{font-size:12px;font-weight:700;letter-spacing:.02em;color:var(--sub);margin:12px 0 2px}
-.point{background:#f3efe6;border-radius:10px;padding:9px 12px;margin-top:4px}
-.btns{display:grid;grid-template-columns:1fr 44px 1fr;gap:8px;margin:12px 0 4px}
-.play{border:0;border-radius:10px;padding:11px 12px;font-size:15px;color:#fff;cursor:pointer;text-align:left;min-width:0;min-height:44px;position:relative;overflow:hidden}
-.play small{display:block;opacity:.85;font-size:12px;white-space:nowrap;overflow:hidden;font-variant-numeric:tabular-nums}
-.play.A{background:var(--a)}.play.B{background:var(--b)}
-.play.heard{outline:3px solid #0002}
-.play.on{box-shadow:0 0 0 3px rgba(0,0,0,.25)}
-.play .pr{position:absolute;left:0;bottom:0;height:3px;background:rgba(255,255,255,.75);width:0}
-.swp{border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--sub);font-size:18px;min-height:44px}
-.swp.on{color:var(--ink);border-color:var(--ink)}
-details{margin-top:10px;border-top:1px dashed var(--line);padding-top:8px}
-summary{cursor:pointer;font-weight:700;font-size:14px;color:var(--ink);min-height:44px;display:flex;align-items:center}
-.bars{margin:10px 0 2px}
-.bar{display:flex;align-items:center;gap:8px;font-size:13px;margin:4px 0}
-.bar .who{width:64px;flex:none;color:var(--sub)}
-.bar .fill{height:12px;border-radius:6px}
-.bar .v{flex:none;width:52px;font-variant-numeric:tabular-nums}
-.scw{position:relative;margin-top:4px;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;cursor:pointer}
-.scw img{display:block;width:100%;height:auto}
-.scw .bd{position:absolute;width:4px;margin-left:-2px;border-radius:2px;display:none}
-.scw .bd.on{display:block}
-.scw .bd.A{background:var(--a)}.scw .bd.B{background:var(--b)}
-.scw .bd.ghost{opacity:.6;background:repeating-linear-gradient(180deg,currentColor 0 6px,transparent 6px 10px)!important}
-.scw .bd.A.ghost{color:var(--a)}.scw .bd.B.ghost{color:var(--b)}
-.legend{display:flex;gap:14px;font-size:13px;color:var(--sub);margin-top:6px;flex-wrap:wrap}
-.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
-.others{margin:12px -18px 0}
-.others .sh{padding:8px 18px 8px}.others .sh b{font-size:19px}
-.others .row{padding:0 18px 4px}
+.hintc{font:12px/1.45 var(--sys);color:var(--sub)}
+.score2{position:relative;background:#fbf8f1;padding:8px;border-radius:2px;margin-top:16px}
+.score2 img{display:block;width:100%;mix-blend-mode:multiply}
+.score2 canvas{position:absolute;left:8px;top:8px;pointer-events:none}
+.sleeve{position:relative;width:100%;max-width:420px;aspect-ratio:16/9;background:#000;border-radius:3px;overflow:hidden;margin-top:14px;display:none}
+.sleeve.on{display:block}
+.sleeve>div{position:absolute;inset:0;visibility:hidden}.sleeve>div.on{visibility:visible}
+.sleeve iframe{width:100%;height:100%}
+.after{margin-top:20px;border-top:1px solid rgba(0,0,0,.12);padding-top:14px}
+.after h4{margin:0 0 8px;font:600 11px/1 var(--sys);letter-spacing:.24em;color:var(--sub)}
+.after p{margin:0;font:17px/1.65 var(--kr)}
+.after.lock p{filter:blur(5px);user-select:none}
+.after .open{font:600 13px/1 var(--sys);text-decoration:underline;margin-top:10px;min-height:40px}
+.fly{position:fixed;z-index:80;border-radius:50%;pointer-events:none;background:repeating-radial-gradient(circle,#121212 0 1.2px,#1d1d1d 1.6px 2.8px)}
+.fly i{position:absolute;inset:34%;border-radius:50%;background:var(--c)}
+/* 마무리 */
+.ostage{background:#1d1c1a;color:#f1ede6}
+.ostage .tx p{color:#f1ede6}
+.ostage .tx h4{color:#a59d8f}
+.ovin{position:absolute;left:50%;bottom:-24vw;transform:translateX(-50%);width:110vw;max-width:760px;aspect-ratio:1;opacity:.5}
+.others{background:#1d1c1a;color:#f1ede6;padding:30px 18px calc(env(safe-area-inset-bottom) + 60px)}
+.others h3{font:600 11px/1 var(--sys);letter-spacing:.24em;color:#a59d8f;margin:0 0 16px}
+.og{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.oc{display:block;text-decoration:none;background:#2a2826;border-radius:4px;overflow:hidden}
+.oc .pair{display:flex;height:86px}.oc .pair div{flex:1;background-size:cover;background-position:center}
+.oc .t{font:600 14px/1.3 var(--kr);padding:10px 10px 2px}
+.oc .w{font:12px/1.3 var(--sys);color:#a59d8f;padding:0 10px 12px}
+.oc.cur{outline:2px solid #f1ede6}
+@media (min-width:900px){
+  .st,.tx,.ctop{left:8vw;right:52vw}
+  .sframe{left:50vw;right:4vw;top:16svh;bottom:12svh;height:auto}
+  .objw{top:60%}
+  .deck{padding:50px 8vw}
+  .deck-in{max-width:820px}
+  .og{grid-template-columns:repeat(4,1fr)}
+}
 </style>
 </head>
 <body>
-<section class="view" id="browse"><div class="bwrap" id="bpage"></div></section>
-<section class="view off" id="lesson">
- <header class="lh"><button class="bk" id="bk">‹ 둘러보기</button>
-  <h1>비교 듣기</h1>
-  <div class="src">악보에서 위치를 보고, 설명을 읽고, 그 부분을 A, B 순서로 듣고, 들은 뒤 정리를 펼쳐 보세요. 녹음은 유튜브 영상을 그대로 연결해 그 구간만 재생해요. A는 늘 남색, B는 늘 적갈색이에요. 재생하면 악보 위로 선이 지나가요.</div></header>
- <div class="playerwrap"><div class="player"><div class="yp" id="ypA"><div id="ytA"></div></div><div class="yp" id="ypB"><div id="ytB"></div></div><div class="yerr" id="yerr"><span>이 영상은 지금 재생이 안 돼요</span><a id="yerrl" target="_blank" rel="noopener">유튜브에서 열기</a></div></div><div class="now" id="now">재생할 구간 버튼을 누르세요.</div></div>
- <main id="main"></main>
-</section>
-<nav class="tabbar" id="tabbar"><button class="on" data-tab="home"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4z" fill="#fff"/></svg>둘러보기</button><button data-tab="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>검색</button></nav>
+<div class="top"><a href="#others">비교 듣기</a><span id="ttop"></span></div>
+<main id="app"></main>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script>
-const $=(s,r=document)=>r.querySelector(s);
-const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const fmt=s=>{ s=Math.round(s); return Math.floor(s/60)+':'+String(s%60).padStart(2,'0'); };
-const f1=t=>`${Math.floor(t/60)}:${(t%60).toFixed(1).padStart(4,'0')}`;
-let IDX=null, L=null, P=null, tab='home', sub=null; const cache={}, heard={};
-const pName=n=>String(n).replace(/\s*\d{4}$/,'');
-/* ---------- 둘러보기 ---------- */
-const duo=(s,cls='')=>`<div class="duo ${cls}"><img class="a" src="${s.cA}" alt=""><img class="b" src="${s.cB}" alt=""><span class="ab A">A</span><span class="ab B">B</span></div>`;
-const cardH=s=>`<button class="card" data-id="${s.id}" aria-label="${esc(s.short)} 열기">${duo(s)}<b>${esc(s.short)}</b><span>${esc(s.A)} vs ${esc(s.B)}</span></button>`;
-const liH=s=>`<button class="li" data-id="${s.id}">${duo(s)}<span style="flex:1;min-width:0"><b>${esc(s.short)}</b><span>${esc(s.A)} vs ${esc(s.B)}</span></span></button>`;
-function performers(){ const m=new Map(); IDX.songs.forEach(s=>['A','B'].forEach(w=>{ const n=pName(s[w]); if(!m.has(n)) m.set(n,{name:n,img:w==='A'?s.cA:s.cB}); })); return [...m.values()]; }
-function renderBrowse(){ const B=$('#bpage');
-  if(tab==='search'){ B.innerHTML=`<div class="lt">검색</div><label class="sbox"><span aria-hidden="true">⌕</span><input id="q" type="search" placeholder="곡, 작곡가, 연주자" aria-label="검색"></label><div id="res"></div>`;
-    const run=()=>{ const q=$('#q').value.trim(); const r=IDX.songs.filter(s=>!q||(s.title+s.short+s.A+s.B+s.compName).includes(q)); $('#res').innerHTML=r.map(liH).join('')||'<div class="src" style="padding:0 20px">찾는 곡이 아직 없어요.</div>'; bindSongs(); };
-    $('#q').oninput=run; run(); return; }
-  if(sub){ const list=IDX.songs.filter(s=>sub.type==='comp'?s.comp===sub.key:(pName(s.A)===sub.key||pName(s.B)===sub.key));
-    B.innerHTML=`<button class="back" id="sback">‹ 둘러보기</button><div class="lt" style="padding-top:0">${esc(sub.name)}</div><div class="sh" style="padding-top:4px"><b style="font-size:17px;color:#6e6e73;font-weight:600">비교할 수 있는 곡 ${list.length}편</b></div>${list.map(liH).join('')}`;
-    $('#sback').onclick=()=>{ sub=null; renderBrowse(); }; bindSongs(); return; }
-  B.innerHTML=`<div class="lt">비교 듣기</div>
-   <div class="sh"><b>바로 비교할 수 있어요</b><span>›</span></div><div class="row">${IDX.songs.map(cardH).join('')}</div>
-   <div class="sh"><b>작곡가</b><span>›</span></div><div class="row">${IDX.composers.map(c=>`<button class="circ" data-comp="${c.key}" aria-label="${c.name}"><i><img src="${c.img}" alt=""></i><b>${c.name}</b></button>`).join('')}</div>
-   <div class="sh"><b>연주자</b><span>›</span></div><div class="row">${performers().map(p=>`<button class="circ" data-perf="${esc(p.name)}" aria-label="${esc(p.name)}"><i><img src="${p.img}" alt=""></i><b>${esc(p.name)}</b></button>`).join('')}</div>`;
-  B.querySelectorAll('[data-comp]').forEach(b=>b.onclick=()=>{ const c=IDX.composers.find(x=>x.key===b.dataset.comp); sub={type:'comp',key:c.key,name:c.name}; renderBrowse(); $('#browse').scrollTop=0; });
-  B.querySelectorAll('[data-perf]').forEach(b=>b.onclick=()=>{ sub={type:'perf',key:b.dataset.perf,name:b.dataset.perf}; renderBrowse(); $('#browse').scrollTop=0; });
-  bindSongs(); }
-function bindSongs(){ document.querySelectorAll('#bpage [data-id]').forEach(b=>b.onclick=()=>openSong(b.dataset.id)); }
-$('#tabbar').querySelectorAll('button').forEach(b=>b.onclick=()=>{ tab=b.dataset.tab; sub=null; $('#tabbar').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b)); if(!$('#lesson').classList.contains('off')) closeSong(); renderBrowse(); });
-/* ---------- 레슨 (v0) ---------- */
-async function openSong(id){ stopAll(); L=cache[id]||(cache[id]=await (await fetch('listen/app/data/'+id+'.json')).json()); heard[id] ||= {};
-  P={k:null,who:null,t:0,playing:false,loading:false}; render(); $('#browse').classList.add('off'); $('#tabbar').classList.add('off'); $('#lesson').classList.remove('off'); $('#lesson').scrollTop=0;
-  history.replaceState(null,'','?l='+id); $('#now').textContent='재생할 구간 버튼을 누르세요.'; ytSong(); }
-function closeSong(){ stopAll(); $('#lesson').classList.add('off'); $('#browse').classList.remove('off'); $('#tabbar').classList.remove('off'); history.replaceState(null,'','?'); }
-$('#bk').onclick=closeSong;
-const clip=(k,w)=>{ if(k==='full') return [0,(L.bt&&L.bt[w]?L.bt[w][L.bt[w].length-1]+6:900)]; const s=L.steps[k]; return w==='A'?s.a:s.b; };
-function render(){ const oth=IDX.songs.filter(s=>s.id!==L.id);
-  let h=`<section class="intro"><h2 style="margin:0 0 6px;font-size:18px">${esc(L.title)}</h2>
-    <div class="legend"><span><span class="dot" style="background:var(--a)"></span>A ${esc(L.A.full)}</span><span><span class="dot" style="background:var(--b)"></span>B ${esc(L.B.full)}</span></div>
-    ${L.intro.map(p=>p.startsWith('<p>')?p:`<p>${p}</p>`).join('')}<div class="lbl">평단에서 보는 두 연주</div>${L.critics.map(p=>`<p>${p}</p>`).join('')}</section>`;
-  const maxOf=s=>Math.max(...s.bars.flatMap(b=>[b[1],b[2]]));
-  L.steps.forEach((s,i)=>{ const done=heard[L.id][i]&&heard[L.id][i].A&&heard[L.id][i].B;
-    const btn=w=>{ const c=clip(i,w); return `<button class="play ${w}" data-k="${i}" data-w="${w}">${w} ${esc(L[w].name)} 듣기<small id="ps${w}${i}">${fmt(c[0])} ~ ${fmt(c[1])} (${Math.round(c[1]-c[0])}초)</small><i class="pr" id="pr${w}${i}"></i></button>`; };
-    h+=`<section class="step${done?' done':''}" id="s${i}"><h2><span class="num">${i+1}</span>${esc(s.t)}</h2>
-      <div class="lbl">악보 ${esc(s.bl)} <span style="font-weight:400">(노란 칸${s.sys?', 누르면 그 마디부터':''})</span></div>
-      <div class="scw" data-k="${i}"><img src="${s.img}" alt="악보 ${esc(s.bl)}" loading="lazy"><i class="bd A"></i><i class="bd B"></i></div>
-      <div class="lbl">설명</div><div>${esc(s.ex)}</div>
-      <div class="lbl">들을 포인트</div><div class="point">${esc(s.pt)}</div>
-      <div class="btns">${btn('A')}<button class="swp" data-k="${i}" aria-label="같은 자리에서 다른 연주로">⇄</button>${btn('B')}</div>
-      <details${done?' open':''}><summary>들은 뒤: 무엇이 달랐나</summary>${s.after.map(p=>`<p>${p}</p>`).join('')}
-        ${s.bars&&s.bars.length?`<div class="bars">${s.bars.map(b=>{ const m=maxOf(s); return `<div class="lbl" style="margin-top:8px">${esc(b[0])}</div><div class="bar"><span class="who">${esc(L.A.name)}</span><span class="fill" style="width:${b[1]/m*60}%;background:var(--a)"></span><span class="v">${b[1]}초</span></div><div class="bar"><span class="who">${esc(L.B.name)}</span><span class="fill" style="width:${b[2]/m*60}%;background:var(--b)"></span><span class="v">${b[2]}초</span></div>`; }).join('')}</div>`:''}</details></section>`; });
-  h+=`<section class="step" id="send"><h2><span class="num">끝</span>정리와 전곡 듣기</h2>${L.outro.map(p=>`<p>${p}</p>`).join('')}
-    <div class="btns"><button class="play A" data-k="full" data-w="A">A ${esc(L.A.name)} 전곡<small id="psAfull">처음부터 끝까지</small><i class="pr" id="prAfull"></i></button><button class="swp" data-k="full" aria-label="같은 자리에서 다른 연주로">⇄</button><button class="play B" data-k="full" data-w="B">B ${esc(L.B.name)} 전곡<small id="psBfull">처음부터 끝까지</small><i class="pr" id="prBfull"></i></button></div>
-    <div class="lbl">더 보기</div><div class="src">${esc(L.credit)}</div>
-    <div class="others"><div class="sh"><b>다른 곡 듣기</b><span>›</span></div><div class="row">${oth.map(cardH).join('')}</div></div></section>`;
-  $('#main').innerHTML=h;
-  $('#main').querySelectorAll('.play').forEach(b=>b.onclick=()=>{ const k=b.dataset.k==='full'?'full':+b.dataset.k; select(k); toggle(b.dataset.w); });
-  $('#main').querySelectorAll('.swp').forEach(b=>b.onclick=()=>{ const k=b.dataset.k==='full'?'full':+b.dataset.k; if(P.k!==k||!P.who) return; swapSame(); });
-  $('#main').querySelectorAll('.scw').forEach(b=>b.addEventListener('click',e=>scoreTap(+b.dataset.k,e)));
-  $('#main').querySelectorAll('.others [data-id]').forEach(b=>b.onclick=()=>openSong(b.dataset.id)); }
-function select(k){ if(P.k===k) return; stopAll(); clearBands(P.k); P={k,who:null,t:0,playing:false,loading:false}; }
-/* ---------- 악보 위 선 ---------- */
-function perfPos(bt,t){ if(!bt) return null; if(t<bt[0]){ const beat=(bt[1]-bt[0])/3,p0=bt[0]-beat; return t<p0?null:-1+(t-p0)/beat; } for(let i=0;i<bt.length-1;i++) if(bt[i]<=t&&t<bt[i+1]) return i+(t-bt[i])/(bt[i+1]-bt[i]); return null; }
-const barOf=i=>L.order?L.order[i]:i+1;
-function locate(k,pos){ if(pos===null) return null; const s=L.steps[k]; let n,f; if(pos<0){ n=0; f=pos+1; } else { const i=Math.floor(pos); n=barOf(i); f=pos-i; }
-  if(!s.sys||n===null||n===undefined) return {sys:-1,n}; const hits=[]; s.sys.forEach((y,j)=>{ const b=y.bars.find(b=>b[0]===n); if(b) hits.push([j,b]); });
-  if(!hits.length) return {sys:-1,n}; let [j,b]=hits[0], g=f; if(hits.length>1){ const seg=Math.min(hits.length-1,Math.floor(f*hits.length)); [j,b]=hits[seg]; g=f*hits.length-seg; } return {sys:j,x:b[1]+g*(b[2]-b[1]),n}; }
-function clearBands(k){ if(typeof k!=='number') return; const w=$(`.scw[data-k="${k}"]`); if(w) w.querySelectorAll('.bd').forEach(b=>b.classList.remove('on')); }
-function drawBands(){ const out={}; if(!P||typeof P.k!=='number') return out; const k=P.k, s=L.steps[k], prim=P.who||'A', wrap=$(`.scw[data-k="${k}"]`);
-  ['A','B'].forEach(w=>{ const c=clip(k,w), bt=L.bt&&L.bt[w], tt=Math.min(P.t,c[1]-c[0]); out[w]=P.who&&P.t>0?locate(k,perfPos(bt,c[0]+tt)):null; });
-  if(!wrap||!s.sys) return out;
-  ['A','B'].forEach(w=>{ const b=wrap.querySelector('.bd.'+w), Lx=out[w]; const on=!!(Lx&&Lx.sys>=0); b.classList.toggle('on',on); b.classList.toggle('ghost',w!==prim); if(on){ const y=s.sys[Lx.sys]; b.style.top=(y.y0/s.H*100)+'%'; b.style.height=(y.h/s.H*100)+'%'; b.style.left=(Lx.x/s.W*100)+'%'; } });
-  return out; }
-function scoreTap(k,e){ const s=L.steps[k]; if(!s.sys||!L.bt) return; select(k); const w=P.who||'A', img=$(`.scw[data-k="${k}"] img`), r=img.getBoundingClientRect();
-  const yI=(e.clientY-r.top)/r.height*s.H, xI=(e.clientX-r.left)/r.width*s.W; let sy=s.sys.find(y=>yI>=y.y0&&yI<=y.y0+y.h)||s.sys.reduce((a,y)=>Math.abs(y.y0+y.h/2-yI)<Math.abs(a.y0+a.h/2-yI)?y:a);
-  let b=sy.bars.find(b=>xI>=b[1]&&xI<b[2])||(xI<sy.bars[0][1]?sy.bars[0]:sy.bars[sy.bars.length-1]); const f=Math.max(0,Math.min(.95,(xI-b[1])/(b[2]-b[1]))), n=b[0], bt=L.bt[w], c=clip(k,w);
-  const idx=L.order?L.order.findIndex((v,i)=>v===n&&bt[i]>=c[0]-2):n-1; const tAbs=n===0?Math.max(c[0],bt[0]-(bt[1]-bt[0])/3):(idx>=0&&bt[idx+1]?bt[idx]+f*(bt[idx+1]-bt[idx]):c[0]);
-  playW(w,Math.max(0,Math.min(c[1]-c[0]-0.2,tAbs-c[0]))); }
-/* ---------- 유튜브: 두 플레이어 ---------- */
-const YTP={A:null,B:null}; let YTready=false;
-function ytLoad(){ if(window.YT&&YT.Player){ YTready=true; return; } if($('#ytapi')) return; window.onYouTubeIframeAPIReady=()=>{ YTready=true; ytMake(); }; const s=document.createElement('script'); s.id='ytapi'; s.src='https://www.youtube.com/iframe_api'; document.head.appendChild(s); }
-function ytMake(){ if(!YTready||!L||YTP.A) return; ['A','B'].forEach(w=>{ YTP[w]=new YT.Player('yt'+w,{width:'100%',height:'100%',videoId:L[w].yt,playerVars:{playsinline:1,rel:0,modestbranding:1,controls:1,origin:location.origin},
-  events:{onReady:()=>{ YTP[w]._ok=true; YTP[w]._vid=L[w].yt; },onStateChange:e=>{ if(P&&P.who===w){ if(e.data===1){ P.loading=false; P.playing=true; P.err=null; loop(); endWatch(); } else if((e.data===2||e.data===0)&&P.playing){ P.playing=false; draw(); } } },
-  onError:e=>{ if(P&&P.who===w){ P.err=w; P.loading=false; P.playing=false; $('#yerrl').href=`https://www.youtube.com/watch?v=${L[w].yt}`; $('#yerr').classList.add('on'); draw(); } }}}); }); showP('A'); }
-function ytSong(){ ytLoad(); if(YTP.A&&YTP.A._ok){ ['A','B'].forEach(w=>{ if(YTP[w]._vid!==L[w].yt){ try{ YTP[w].cueVideoById(L[w].yt); }catch(e){} YTP[w]._vid=L[w].yt; } }); } else ytMake(); showP('A'); }
-const ok=w=>YTP[w]&&YTP[w]._ok;
-function showP(w){ ['A','B'].forEach(x=>$('#yp'+x).classList.toggle('on',x===w)); }
-function playW(w,tRel){ if(!P||P.k===null) return; const o=w==='A'?'B':'A', c=clip(P.k,w); if(ok(o)) try{ YTP[o].pauseVideo(); }catch(e){}
-  if(tRel==null) tRel=(P.who===w&&!P.ended&&P.t<c[1]-c[0]-0.3)?P.t:0; P.who=w; P.ended=false; P.err=null; P.t=tRel; P.loading=true; P.playing=false; P.t0=performance.now(); $('#yerr').classList.remove('on'); showP(w);
-  if(ok(w)){ try{ YTP[w].seekTo(c[0]+tRel,true); YTP[w].playVideo(); }catch(e){} } else ytSong();
-  if(typeof P.k==='number') (heard[L.id][P.k] ||= {}); draw(); loop(); }
-function toggle(w){ if(P.who===w&&(P.playing||P.loading)){ pause(); return; } playW(w,null); }
-function pause(){ if(P.who&&ok(P.who)) try{ YTP[P.who].pauseVideo(); }catch(e){} P.playing=false; P.loading=false; cancelAnimationFrame(P.raf); draw(); }
-function stopAll(){ ['A','B'].forEach(w=>{ if(ok(w)) try{ YTP[w].pauseVideo(); }catch(e){} }); if(P){ cancelAnimationFrame(P.raf); clearTimeout(P.eto); P.playing=false; P.loading=false; } }
-function swapSame(){ if(!P||!P.who||!L.bt) return; const from=P.who, to=from==='A'?'B':'A', cf=clip(P.k,from), ct=clip(P.k,to);
-  if(P.playing&&ok(from)) try{ P.t=Math.max(0,YTP[from].getCurrentTime()-cf[0]); }catch(e){}
-  const pos=perfPos(L.bt[from],cf[0]+P.t); let tAbs=ct[0]; if(pos!==null&&pos>=0){ const bt=L.bt[to], i=Math.floor(pos), f=pos-i; if(bt[i+1]) tAbs=bt[i]+f*(bt[i+1]-bt[i]); }
-  playW(to,Math.max(0,Math.min(ct[1]-ct[0]-0.1,tAbs-ct[0]))); }
-function loop(){ cancelAnimationFrame(P.raf); const f=()=>{ if(!P||!P.who) return; if(P.err){ P.playing=false; P.loading=false; draw(); return; } const w=P.who, c=clip(P.k,w), pl=YTP[w];
-  if(ok(w)){ let st=-9,cur=0; try{ st=pl.getPlayerState(); cur=pl.getCurrentTime(); }catch(e){}
-    if(st===1){ if(!P.playing){ P.playing=true; endWatch(); } P.loading=false; P.t=Math.max(0,cur-c[0]); if(cur>=c[1]-0.05){ try{ pl.pauseVideo(); }catch(e){} done(w); return; } }
-    else if((st===2||st===0)&&!P.loading) P.playing=false; else if(P.loading&&performance.now()-P.t0>12000) P.loading=false; }
-  draw(); if(P.playing||P.loading) P.raf=requestAnimationFrame(f); }; P.raf=requestAnimationFrame(f); }
-function endWatch(){ clearTimeout(P.eto); if(!P.playing||!ok(P.who)) return; const w=P.who, c=clip(P.k,w); let cur=0; try{ cur=YTP[w].getCurrentTime(); }catch(e){ return; }
-  if(cur>=c[1]-0.12){ try{ YTP[w].pauseVideo(); }catch(e){} done(w); return; } if(typeof P.k==='number'&&cur-c[0]>10) heard[L.id][P.k][w]=1; P.eto=setTimeout(endWatch,Math.max(30,Math.min(400,(c[1]-cur)*1000-80))); }
-function done(w){ P.playing=false; P.t=clip(P.k,w)[1]-clip(P.k,w)[0]; P.ended=true; if(typeof P.k==='number') heard[L.id][P.k][w]=1; draw(); }
-function draw(){ if(!P||P.k===null) return; const k=P.k, Lx=drawBands(), id=k==='full'?'full':k;
-  ['A','B'].forEach(x=>{ const b=$(`.play.${x}[data-k="${k}"]`); if(!b) return; const on=P.who===x&&(P.playing||P.loading); b.classList.toggle('on',on); if(typeof k==='number'&&heard[L.id][k]&&heard[L.id][k][x]) b.classList.add('heard');
-    const c=clip(k,x), s=$('#ps'+x+id); s.textContent=(P.who===x&&P.loading)?'불러오는 중…':P.err===x?'재생이 안 돼요':(P.who===x&&P.t>0)?`${P.playing?'재생 중':'멈춤'} ${f1(P.t)}${Lx[x]&&Lx[x].n?' · '+Lx[x].n+'마디':''}`:(P.who&&P.t>0&&Lx[x]&&Lx[x].n)?`같은 때 ${Lx[x].n}마디`:(k==='full'?'처음부터 끝까지':`${fmt(c[0])} ~ ${fmt(c[1])} (${Math.round(c[1]-c[0])}초)`);
-    if(s.scrollWidth>s.clientWidth+1&&P.who===x&&P.t>0) s.textContent=`${fmt(P.t)}${Lx[x]&&Lx[x].n?' · '+Lx[x].n+'마디':''}`;
-    const pr=$('#pr'+x+id); if(pr) pr.style.width=(P.who===x?Math.min(100,P.t/(c[1]-c[0])*100):0)+'%'; });
-  const sw=$(`.swp[data-k="${k}"]`); if(sw) sw.classList.toggle('on',!!P.playing);
-  if(typeof k==='number'){ const h=heard[L.id][k]||{}; if(h.A&&h.B){ $('#s'+k).classList.add('done'); } }
-  $('#now').innerHTML=P.who?`<b>${P.who} ${esc(L[P.who].full)}</b> · ${k==='full'?'전곡':(k+1)+'. '+esc(L.steps[k].t)} · ${P.playing?'재생 중':P.loading?'불러오는 중':P.ended?'끝':'멈춤'}`:'재생할 구간 버튼을 누르세요.'; }
-window.__t={ open:id=>openSong(id), home:()=>closeSong(), comp:k=>{ const c=IDX.composers.find(x=>x.key===k); sub={type:'comp',key:k,name:c.name}; renderBrowse(); },
-  sim:(k,w,t)=>{ select(k); P.who=w; P.playing=false; P.t=t; draw(); }, P:()=>P, L:()=>L,
-  ps:()=>{ const w=P&&P.who; let st=null,cur=null,code=null; try{ st=w&&YTP[w].getPlayerState(); cur=w&&+YTP[w].getCurrentTime().toFixed(2); code=w&&YTP[w].getVideoData().errorCode; }catch(e){} return {who:w,playing:P&&P.playing,t:P&&+P.t.toFixed(2),state:st,cur,err:P&&P.err,code}; } };
-(async()=>{ IDX=await (await fetch('listen/app/data/index.json')).json(); renderBrowse(); const q=new URLSearchParams(location.search).get('l'); if(q&&IDX.songs.find(s=>s.id===q)) openSong(q); ytLoad(); })();
+const $=s=>document.querySelector(s), R='';
+const qs=new URLSearchParams(location.search); const SID=qs.get('song')||'brahms-op118-2';
+const EN={'brahms-op118-2':['Brahms','Intermezzo Op.118 Nº2','teneramente','#e7d3b0'],'chopin-nocturne-20':['Chopin','Nocturne Nº20','con gran espressione','#c9d6e8'],'chopin-nocturne-op9-2':['Chopin','Nocturne Op.9 Nº2','espressivo dolce','#efc9c3'],'chopin-prelude-15':['Chopin','Prelude Op.28 Nº15','sostenuto','#b9cdb5'],'debussy-clair-de-lune':['Debussy','Clair de lune','très expressif','#d9d2ec'],'schumann-traumerei':['Schumann','Träumerei','Kinderszenen','#f0dc9a'],'schubert-d899-3':['Schubert','Impromptu D.899 Nº3','Andante','#c4dfe0'],'bach-goldberg-aria':['Bach','Goldberg · Aria','Aria','#e9e4da']};
+const strip=h=>h.replace(/<[^>]+>/g,'').trim();
+const sents=t=>strip(t).split(/(?<=[.?!])\s+(?=[^\s])/).map(x=>x.trim()).filter(Boolean);
+function groups(arr,max=120){ const out=[]; let cur=''; for(const s of arr){ if(cur && (cur+' '+s).length>max){ out.push(cur); cur=s; } else cur=cur?cur+' '+s:s; } if(cur) out.push(cur); return out; }
+const yr=f=>(f.match(/\d{4}/)||[''])[0];
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let L, IDX, RECS=[];
+gsap.registerPlugin(ScrollTrigger);
+
+Promise.all([fetch(R+'listen/app/data/index.json').then(r=>r.json()), fetch(R+'listen/app/data/'+SID+'.json').then(r=>r.json()), fetch('listen/app/data/multi/'+SID+'.recs.json').then(r=>r.ok?r.json():null).catch(()=>null)])
+.then(([ix,d,ex])=>{ IDX=ix.songs; L=d; const s=IDX.find(x=>x.id===SID);
+  const half=(s.line||'').split(/,\s+/); 
+  RECS=[{key:'A',name:d.A.name,full:d.A.full,yt:d.A.yt,cover:d.A.cover,bt:d.bt.A,clips:d.steps.map(x=>x.a),feel:half[0]||'',col:'#1f3a5f'},
+        {key:'B',name:d.B.name,full:d.B.full,yt:d.B.yt,cover:d.B.cover,bt:d.bt.B,clips:d.steps.map(x=>x.b),feel:half.slice(1).join(', ')||'',col:'#9a4a2a'}];
+  if(ex&&ex.recs) ex.recs.forEach((r,i)=>RECS.push({key:String.fromCharCode(67+i),name:r.name,full:r.full,yt:r.yt,cover:r.cover,bt:r.bt,clips:r.clips,feel:r.feel,col:null}));
+  build(s); });
+
+function build(s){ const e=EN[SID]||[L.short,'','','#e7d3b0']; document.title=L.short+' · 비교 듣기'; $('#ttop').textContent=String(s.no).padStart(2,'0')+' / '+String(IDX.length).padStart(2,'0');
+  const N=RECS.length; const NW=['','한','두','세','네','다섯','여섯','일곱','여덟'][N]||String(N);
+  const intro=groups(L.intro.flatMap(sents),95).slice(0,4);
+  let h=`<section class="stage" id="hero">
+   <div class="layer hero-t" id="heroT"><div class="kick">Compare · Listen · Nº ${s.no}</div><h1 class="big">${e[0]}<small>${e[1]}</small></h1><div class="scr">${e[2]}</div><div class="sub">같은 악보, ${NW} 연주</div></div>
+   ${intro.map((t,i)=>`<div class="layer st" id="st${i}"><p>${esc(t)}</p></div>`).join('')}
+   <div class="objw" id="objw"><div class="obj" id="obj"><div class="vinyl"><div class="disc"><div class="lbl" style="--lc:${e[3]}"><span><b>${e[0]}</b></span><i>${e[1]}</i></div></div><div class="sheen"></div></div></div></div>
+   <div class="macro" id="macro"><div class="m-lp"></div></div>
+   <div class="layer cap2" id="cap2"><div class="e">One score</div><div class="k">같은 악보를</div></div>
+   <div class="layer cap3" id="cap3"><p>${NW} 사람이 다르게 쳐요.</p></div>
+   <div class="shelfS" id="shelfS"><h3>${NW} 연주</h3>${RECS.map(r=>`<div class="rrow"><div class="cv" style="background-image:url(${R+r.cover})"></div><div><div class="lt"><span class="badge" style="background:${r.col||'#6d5a44'}" data-k="${r.key}">${r.key}</span>${yr(r.full)}</div><div class="nm">${esc(r.name)}</div><div class="fl">${esc(r.feel)}</div></div></div>`).join('')}</div>
+   <a class="skip" id="skip" href="#ch0">바로 첫 대목으로 ↓</a></section>`;
+  // 평단
+  const crit=[]; L.critics.forEach(c=>{ const m=c.match(/^<b>(.*?)<\/b>\s*/); const who=m?strip(m[1]).replace(/\.$/,''):''; const body=m?c.slice(m[0].length):c; groups(sents(body),130).forEach((t,i)=>crit.push({who:i===0?who:'',t})); });
+  h+=`<section class="stage tstage" id="crit"><div class="qm">“</div>${crit.map((c,i)=>`<div class="layer tx" id="cr${i}"><h4>평단에서는</h4>${c.who?`<div class="who">${esc(c.who)}</div>`:''}<p>${esc(c.t)}</p></div>`).join('')}</section>`;
+  // 대목들
+  L.steps.forEach((st,k)=>{ const ex=groups(sents(st.ex),80);
+    h+=`<section class="stage cstage" id="ch${k}"><div class="ch-n">${String(k+1).padStart(2,'0')}</div>
+     <div class="ctop"><div class="ctit" id="ct${k}"><div class="k2">대목 ${k+1} / ${L.steps.length}</div><h2>${esc(st.t)}</h2><div class="bl">${esc(st.bl)}</div>${formBar(st)}</div>
+      ${ex.map((t,i)=>`<div class="sent" id="se${k}_${i}"><p>${esc(t)}</p></div>`).join('')}
+      <div class="sent pt" id="sp${k}"><h4>이렇게 들어 보세요</h4><p>${esc(st.pt)}</p></div></div>
+     <div class="sframe" id="sf${k}"><div class="sheet" id="sh${k}"><img src="${R+st.img}" alt=""></div></div></section>
+     ${deckHTML(st,k)}`; });
+  // 마무리
+  const outro=groups(L.outro.flatMap(sents),110);
+  h+=`<section class="stage ostage" id="outro"><div class="ovin"><div class="vinyl" style="width:100%;left:50%;top:50%;position:absolute"><div class="disc"><div class="lbl" style="--lc:${e[3]}"><span><b>${e[0]}</b></span><i>${e[1]}</i></div></div><div class="sheen"></div></div></div>${outro.map((t,i)=>`<div class="layer tx" id="ou${i}"><h4>정리</h4><p>${esc(t.replace(/^정리\.\s*/,''))}</p></div>`).join('')}</section>
+   <section class="others" id="others"><h3>다른 곡</h3><div class="og">${IDX.map(x=>`<a class="oc ${x.id===SID?'cur':''}" href="?song=${x.id}"><div class="pair"><div style="background-image:url(${R+x.cA})"></div><div style="background-image:url(${R+x.cB})"></div></div><div class="t">${esc(x.short)}</div><div class="w">${esc(x.A)} · ${esc(x.B)}</div></a>`).join('')}</div>
+   <p style="font:12px/1.5 var(--sys);color:#8b857a;margin-top:22px">${esc(L.credit||'')} · ${esc(L.note||'')}</p></section>`;
+  $('#app').innerHTML=h;
+  RECS.forEach(r=>coverColor(R+r.cover).then(c=>{ if(!r.col) r.col=c; r.tint=c; document.querySelectorAll(`[data-k="${r.key}"]`).forEach(b=>b.style.background=r.col); document.querySelectorAll(`.sp[data-r="${r.key}"]`).forEach(b=>b.style.setProperty('--rc',r.col)); }));
+  anim(intro.length, crit.length, outro.length);
+  L.steps.forEach((st,k)=>wireDeck(k));
+  addEventListener('load',()=>ScrollTrigger.refresh());
+}
+function formBar(st){ if(!L.form||!L.total) return ''; const T=L.total; const segs=L.form.map(f=>`<div style="width:${(f[2]-f[1]+1)/T*100}%">${esc(f[0])}</div>`).join('');
+  const a=Math.max(1,st.rng[0]), b=Math.min(T,st.rng[1]); return `<div class="form">${segs}<span class="hl" style="left:${(a-1)/T*100}%;width:${Math.max(1.5,(b-a+1)/T*100)}%"></span></div>`; }
+function deckHTML(st,k){ return `<section class="deck" id="dk${k}"><div class="deck-in"><div class="dh">듣기 · 대목 ${k+1}</div><div class="dt">${esc(st.t)}</div><p class="dp">음반을 고르면 판이 턴테이블에 올라가요. 듣는 중에 다른 음반을 누르면 같은 마디에서 이어서 바뀌어요.</p>
+   <div class="shelf">${RECS.map(r=>`<button class="sp" data-r="${r.key}" data-k="${k}" style="--rc:${r.col||'#6d5a44'}"><div class="cv" style="background-image:url(${R+r.cover})"><em>${r.key}</em></div><div class="nm">${esc(r.name)}</div><div class="yr">${yr(r.full)}</div></button>`).join('')}</div>
+   <div class="tt"><div class="plinth"><div class="plat"><div class="rec2"><div class="disc stop" id="dd${k}"></div><div class="lab" id="lb${k}"><b>—</b><span>음반을 고르세요</span></div></div></div>
+     <svg class="arm" id="arm${k}" viewBox="0 0 60 200"><circle cx="42" cy="16" r="11" fill="#cfc8bb"/><circle cx="42" cy="16" r="4" fill="#555"/><path d="M42 16 L40 150 L22 178" stroke="#e8e2d6" stroke-width="5" fill="none" stroke-linecap="round"/><rect x="12" y="172" width="18" height="14" rx="2" fill="#cfc8bb" transform="rotate(-30 21 179)"/></svg></div>
+    <div class="ctl"><button class="pb" id="pb${k}">▶ A부터 듣기</button><div class="now" id="nw${k}"></div><div class="hintc">악보 위 진한 선이 지금 소리, 옅은 선은 다른 음반이 같은 시각에 있는 자리예요.</div></div></div>
+   <div class="score2"><img id="si${k}" src="${R+st.img}" alt="악보 ${esc(st.bl)}"><canvas id="cv${k}"></canvas></div>
+   <div class="sleeve" id="sl${k}"></div>
+   <div class="after lock" id="af${k}"><h4>들은 뒤</h4><p>${esc(st.after.join(' '))}</p><button class="open" data-k="${k}">먼저 읽기</button></div></div></section>`; }
+
+/* ---------- 움직임 ---------- */
+function anim(nI,nC,nO){
+  // 표지 + 소개 + 접사 + 음반 줄
+  const tl=gsap.timeline({defaults:{ease:'power2.inOut'},scrollTrigger:{trigger:'#hero',start:'top top',end:'+='+((nI+4)*75)+'%',scrub:.8,pin:true,snap:{snapTo:'labelsDirectional',duration:{min:.25,max:.8},delay:.05,ease:'power2.inOut'}}});
+  const obj='#obj'; gsap.set(obj,{rotationX:58,rotationZ:-8,scale:.9,y:'6vh'});
+  gsap.to('#objw',{y:-10,duration:2.6,yoyo:true,repeat:-1,ease:'sine.inOut'});
+  tl.addLabel('s0',0).to('#heroT',{y:'-22vh',opacity:0,duration:.8},0).to('#skip',{opacity:0,duration:.3},0)
+    .to(obj,{x:'26vw',y:'4vh',rotationX:18,rotationZ:-28,scale:.66,duration:1},0);
+  for(let i=0;i<nI;i++){ const t=i+1; if(i>0) tl.to('#st'+(i-1),{opacity:0,y:-40,duration:.35},t-.55); tl.fromTo('#st'+i,{opacity:0,y:46},{opacity:1,y:0,duration:.45},t-.45).addLabel('i'+i,t); if(i>0) tl.to(obj,{rotationZ:-28-i*25,duration:.8},t-.6); }
+  const m=nI+1; tl.to('#st'+(nI-1),{opacity:0,y:-50,duration:.35},m-.95)
+    .to(obj,{x:0,y:0,rotationX:0,rotationZ:-90,scale:6,duration:.9,ease:'power3.in'},m-.95)
+    .fromTo('#macro',{opacity:0,scale:1.15},{opacity:1,scale:1,duration:.4,ease:'power1.out'},m-.35).set(obj,{opacity:0},m)
+    .fromTo('#cap2',{opacity:0,letterSpacing:'.5em'},{opacity:1,letterSpacing:'0em',duration:.35},m-.2).addLabel('m',m+.1)
+    .to('#cap2',{opacity:0,duration:.25},m+.25).fromTo('#macro',{clipPath:'circle(110% at 50% 42%)'},{clipPath:'circle(27% at 50% 40%)',duration:.8},m+.25)
+    .fromTo('#cap3',{opacity:0,y:30},{opacity:1,y:0,duration:.4},m+.7).addLabel('c',m+1.15)
+    .to('#cap3',{opacity:0,duration:.3},m+1.25).to('#macro',{clipPath:'circle(0% at 50% 40%)',duration:.45,ease:'power2.in'},m+1.25)
+    .fromTo('#shelfS',{opacity:0},{opacity:1,duration:.3},m+1.55)
+    .fromTo('#shelfS .rrow',{x:'110vw'},{x:0,stagger:.12,duration:.6,ease:'power3.out'},m+1.6).addLabel('sh',m+2.5).to({}, {duration:.3});
+  // 글 장면(평단, 마무리)
+  textStage('#crit','cr',nC);
+  L.steps.forEach((st,k)=>chapter(k));
+  textStage('#outro','ou',nO);
+}
+function textStage(sel,pre,n){ const tl=gsap.timeline({defaults:{ease:'power2.inOut'},scrollTrigger:{trigger:sel,start:'top top',end:'+='+(n*70+30)+'%',scrub:.7,pin:true,snap:{snapTo:'labelsDirectional',duration:{min:.2,max:.7},delay:.05}}});
+  for(let i=0;i<n;i++){ if(i>0) tl.to('#'+pre+(i-1),{opacity:0,y:-40,duration:.35},i-.5); tl.fromTo('#'+pre+i,{opacity:0,y:44},{opacity:1,y:0,duration:.45},i-.4).addLabel('t'+i,i); }
+  tl.to({}, {duration:.4}); }
+function hlBox(st){ let x0=1e9,x1=-1,y0=1e9,y1=-1; (st.sys||[]).forEach(s=>s.bars.forEach(b=>{ if(b[0]>=st.rng[0]&&b[0]<=st.rng[1]){ x0=Math.min(x0,b[1]); x1=Math.max(x1,b[2]); y0=Math.min(y0,s.y0); y1=Math.max(y1,s.y0+s.h); } }));
+  if(x1<0) return [0,0,st.W,st.H]; return [x0,y0,x1-x0,y1-y0]; }
+function chapter(k){ const st=L.steps[k], ex=document.querySelectorAll(`#ch${k} .sent:not(.pt)`).length, n=ex+2; const sheet='#sh'+k, fr=$('#sf'+k);
+  const geo=()=>{ const fw=fr.clientWidth, fh=fr.clientHeight, s0=fw/st.W, ih=st.H*s0; const [bx,by,bw,bh]=hlBox(st); const kk=Math.max(1,Math.min(fw*.96/(bw*s0), fh*.9/(bh*s0), 3.4));
+    return {fw,ih,y0:Math.max(0,(fh-ih)/2),tx:fw/2-(bx+bw/2)*s0*kk,ty:fh/2-(by+bh/2)*s0*kk,k:kk}; };
+  const tl=gsap.timeline({defaults:{ease:'power2.inOut'},scrollTrigger:{trigger:'#ch'+k,start:'top top',end:'+='+(n*70)+'%',scrub:.7,pin:true,invalidateOnRefresh:true,snap:{snapTo:'labelsDirectional',duration:{min:.2,max:.7},delay:.05}}});
+  tl.fromTo(sheet,{x:0,y:()=>geo().y0+40,scale:.92,rotationX:38,rotationZ:-4,opacity:0},{y:()=>geo().y0,scale:1,rotationX:12,rotationZ:-2,opacity:1,duration:.5},0)
+    .fromTo('#ct'+k,{opacity:0,y:40},{opacity:1,y:0,duration:.45},0).addLabel('h',.5);
+  const all=[...[...Array(ex)].map((_,i)=>'#se'+k+'_'+i),'#sp'+k];
+  let prev='#ct'+k;
+  all.forEach((id,i)=>{ const t=i+1.4; tl.to(prev,{opacity:0,y:-36,duration:.35},t-.55).fromTo(id,{opacity:0,y:40},{opacity:1,y:0,duration:.45},t-.45).addLabel('e'+i,t); prev=id; });
+  tl.to(sheet,{x:()=>geo().tx,y:()=>geo().ty,scale:()=>geo().k,rotationX:0,rotationZ:0,duration:all.length,ease:'power1.inOut'},.9).to({}, {duration:.4});
+}
+/* ---------- 색 ---------- */
+function coverColor(u){ return new Promise(res=>{ const im=new Image(); im.crossOrigin='anonymous'; im.onload=()=>{ try{ const c=document.createElement('canvas'); c.width=c.height=32; const g=c.getContext('2d'); g.drawImage(im,0,0,32,32); const d=g.getImageData(0,0,32,32).data; const bins={};
+   for(let i=0;i<d.length;i+=4){ const r=d[i],gg=d[i+1],b=d[i+2]; const mx=Math.max(r,gg,b),mn=Math.min(r,gg,b); const v=mx/255, sat=mx?(mx-mn)/mx:0; if(v<.28||v>.96) continue; const key=(r>>5)+','+(gg>>5)+','+(b>>5); const o=bins[key]||(bins[key]={n:0,r:0,g:0,b:0,w:0}); o.n++; o.r+=r; o.g+=gg; o.b+=b; o.w+=.15+sat*sat*2; }
+   let best=null,bs=-1; for(const o of Object.values(bins)){ if(o.w>bs){ bs=o.w; best=o; } } if(!best) return res('#6d5a44');
+   let [r,gg,b]=[best.r/best.n,best.g/best.n,best.b/best.n]; const lum=.3*r+.59*gg+.11*b; if(lum>165){ const f=150/lum; r*=f; gg*=f; b*=f; } if(lum<75){ r=r*.7+255*.3; gg=gg*.7+255*.3; b=b*.7+255*.3; } res(`rgb(${r|0},${gg|0},${b|0})`); }catch(e){ res('#6d5a44'); } }; im.onerror=()=>res('#6d5a44'); im.src=u; }); }
+const soft=c=>{ const m=(c||'').match(/\d+/g); if(!m) return '#efe8dc'; const [r,g,b]=m.map(Number), base=[243,237,228]; const f=(x,i)=>Math.round(x*.24+base[i]*.76); return `rgb(${f(r,0)},${f(g,1)},${f(b,2)})`; };
+/* ---------- 듣기 ---------- */
+const P={k:null,key:null,playing:false,t:0,raf:0}; let YTP={}, YTk=null, YTready=false, YTq=[];
+function ytAPI(cb){ if(YTready) return cb(); YTq.push(cb); if(window._ytl) return; window._ytl=1; window.onYouTubeIframeAPIReady=()=>{ YTready=true; YTq.splice(0).forEach(f=>f()); }; const s=document.createElement('script'); s.src='https://www.youtube.com/iframe_api'; document.head.appendChild(s); }
+function players(k,cb){ if(YTk===k) return cb(); Object.values(YTP).forEach(p=>{ try{p.destroy();}catch(e){} }); YTP={}; document.querySelectorAll('.sleeve').forEach(s=>{ s.innerHTML=''; s.classList.remove('on'); });
+  YTk=k; const sl=$('#sl'+k); sl.classList.add('on'); RECS.forEach(r=>{ const w=document.createElement('div'); w.id=`yw${k}_${r.key}`; const inner=document.createElement('div'); inner.id=`yp${k}_${r.key}`; w.appendChild(inner); sl.appendChild(w); });
+  ytAPI(()=>{ RECS.forEach(r=>{ YTP[r.key]=new YT.Player(`yp${k}_${r.key}`,{width:'100%',height:'100%',videoId:r.yt,playerVars:{playsinline:1,rel:0,modestbranding:1,controls:1,start:Math.floor(r.clips[k][0])},events:{onReady:()=>{ YTP[r.key]._ok=true; if(P.wait===r.key){ P.wait=null; go(); } }}}); }); cb(); }); }
+const ok=key=>YTP[key]&&YTP[key]._ok;
+function rec(key){ return RECS.find(r=>r.key===key); }
+function perfPos(bt,t){ if(!bt||t<bt[0]) return null; for(let i=0;i<bt.length-1;i++) if(t<bt[i+1]) return i+(t-bt[i])/(bt[i+1]-bt[i]); return null; }
+function mapT(fromKey,toKey,k,tRel){ const a=rec(fromKey), b=rec(toKey); const p=perfPos(a.bt,a.clips[k][0]+tRel); if(p===null) return 0; const i=Math.floor(p), f=p-i; if(!b.bt[i+1]) return 0; return Math.max(0,b.bt[i]+f*(b.bt[i+1]-b.bt[i])-b.clips[k][0]); }
+function wireDeck(k){ document.querySelectorAll(`#dk${k} .sp`).forEach(b=>b.onclick=()=>pick(k,b.dataset.r,b));
+  $('#pb'+k).onclick=()=>{ if(P.k===k&&P.playing){ pause(); } else pick(k,P.k===k&&P.key?P.key:'A',null,true); };
+  $(`#af${k} .open`).onclick=e=>{ $('#af'+k).classList.remove('lock'); e.target.remove(); };
+  const im=$('#si'+k); im.onload=()=>draw(k); addEventListener('resize',()=>draw(k)); }
+function pick(k,key,btn,resume){ const r=rec(key); let tRel=0;
+  if(P.k===k&&P.key&&P.key!==key){ // 같은 마디에서 바꾸기
+    let cur=P.t; if(ok(P.key)) try{ cur=Math.max(0,YTP[P.key].getCurrentTime()-rec(P.key).clips[k][0]); }catch(e){} tRel=mapT(P.key,key,k,cur); }
+  else if(P.k===k&&P.key===key) tRel=P.t;
+  if(P.key&&ok(P.key)&&P.key!==key) try{YTP[P.key].pauseVideo();}catch(e){}
+  if(P.k!==null&&P.k!==k) stopUI(P.k);
+  flyRecord(k,key,btn); P.k=k; P.key=key; P.t=tRel; P.playing=true; P.ended=false;
+  const dk=$('#dk'+k); dk.style.setProperty('--tint',r.tint||r.col); dk.style.setProperty('--tintbg',soft(r.tint||r.col||''));
+  $('#lb'+k).innerHTML=`<b>${r.key}</b><span>${esc(r.name)}</span>`; $('#arm'+k).classList.add('on'); $('#dd'+k).classList.remove('stop');
+  document.querySelectorAll(`#dk${k} .sp`).forEach(b=>b.classList.toggle('on',b.dataset.r===key));
+  $('#pb'+k).textContent='❚❚ 멈춤'; $('#nw'+k).innerHTML=`<b>${r.key} ${esc(r.name)}</b> · ${esc(r.full)}`;
+  players(k,()=>{ document.querySelectorAll(`#sl${k}>div`).forEach(w=>w.classList.toggle('on',w.id===`yw${k}_${key}`)); if(ok(key)) go(); else P.wait=key; }); loop(); }
+function go(){ const r=rec(P.key), c=r.clips[P.k]; try{ YTP[P.key].seekTo(c[0]+P.t,true); YTP[P.key].playVideo(); }catch(e){} }
+function pause(){ if(P.key&&ok(P.key)) try{YTP[P.key].pauseVideo();}catch(e){} P.playing=false; stopUI(P.k); draw(P.k); }
+function stopUI(k){ if(k===null) return; $('#arm'+k).classList.remove('on'); $('#dd'+k).classList.add('stop'); $('#pb'+k).textContent='▶ 이어 듣기'; }
+function loop(){ cancelAnimationFrame(P.raf); const f=()=>{ if(!P.playing) return; const r=rec(P.key), c=r.clips[P.k];
+  if(ok(P.key)){ let st=-1,cur=0; try{ st=YTP[P.key].getPlayerState(); cur=YTP[P.key].getCurrentTime(); }catch(e){}
+    if(st===1){ P.t=Math.max(0,cur-c[0]); if(cur>=c[1]-.05){ try{YTP[P.key].pauseVideo();}catch(e){} P.playing=false; P.t=0; stopUI(P.k); $('#pb'+P.k).textContent='▶ 다시 듣기'; const af=$('#af'+P.k); af.classList.remove('lock'); const o=af.querySelector('.open'); if(o) o.remove(); draw(P.k); return; } } }
+  draw(P.k); P.raf=requestAnimationFrame(f); }; P.raf=requestAnimationFrame(f); }
+function xy(st,pos){ const i=Math.floor(pos), f=pos-i; for(const s of st.sys||[]) for(const b of s.bars) if(b[0]===i) return {x:b[1]+f*(b[2]-b[1]),y0:s.y0,h:s.h}; return null; }
+function draw(k){ if(k===null) return; const st=L.steps[k], im=$('#si'+k), cv=$('#cv'+k); if(!im||!im.naturalWidth) return; const w=im.clientWidth,h=im.clientHeight,dpr=devicePixelRatio||1;
+  cv.width=w*dpr; cv.height=h*dpr; cv.style.width=w+'px'; cv.style.height=h+'px'; const g=cv.getContext('2d'); g.scale(dpr,dpr); g.clearRect(0,0,w,h);
+  if(P.k!==k||!P.key) return; const kx=w/st.W, cur=rec(P.key), p0=perfPos(cur.bt,cur.clips[k][0]+P.t); 
+  RECS.forEach(r=>{ const main=r.key===P.key; let pos; if(main) pos=p0; else pos=perfPos(r.bt,r.clips[k][0]+P.t); if(pos===null||pos===undefined) return; const q=xy(st,pos); if(!q) return;
+    g.globalAlpha=main?1:.32; g.fillStyle=r.col||'#555'; g.fillRect(q.x*kx-(main?2:1.5),q.y0*kx,main?4:3,q.h*kx); if(main){ g.globalAlpha=.13; g.fillRect(q.x*kx-26,q.y0*kx,26,q.h*kx); }
+    g.globalAlpha=main?1:.6; g.font='600 10px -apple-system,sans-serif'; g.fillText(r.key,q.x*kx+3,q.y0*kx+10); });
+  g.globalAlpha=1; }
+function flyRecord(k,key,btn){ const r=rec(key); const src=(btn||document.querySelector(`#dk${k} .sp[data-r="${key}"]`)).querySelector('.cv').getBoundingClientRect(); const dst=$(`#dk${k} .plat`).getBoundingClientRect();
+  if(src.bottom<0||src.top>innerHeight) return; const f=document.createElement('div'); f.className='fly'; f.style.setProperty('--c',r.tint||r.col||'#6d5a44'); f.innerHTML='<i></i>'; document.body.appendChild(f);
+  gsap.fromTo(f,{left:src.left,top:src.top,width:src.width,height:src.height,rotation:0,opacity:1},{left:dst.left,top:dst.top,width:dst.width,height:dst.height,rotation:200,duration:.7,ease:'power3.inOut',onComplete:()=>f.remove()});
+  gsap.fromTo(`#dk${k} .rec2`,{scale:.86,opacity:.3},{scale:1,opacity:1,duration:.55,delay:.45,ease:'back.out(2)'}); }
 </script>
 </body>
 </html>

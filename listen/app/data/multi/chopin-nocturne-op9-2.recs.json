@@ -1,0 +1,234 @@
+{
+ "recs": [
+  {
+   "key": "c",
+   "name": "아라우",
+   "full": "클라우디오 아라우 (1978, 필립스)",
+   "yt": "Mg-LX6K6W5o",
+   "cover": "listen/app/img/yt_chopin-nocturne-op9-2_c_sq.jpg",
+   "dur": 286.5,
+   "cost": 0.108,
+   "bt": [
+    3.15,
+    10.92,
+    18.05,
+    24.81,
+    33.65,
+    39.99,
+    47.35,
+    54.38,
+    63.69,
+    70.68,
+    79.06,
+    85.02,
+    93.26,
+    101.78,
+    109.14,
+    116.41,
+    126.23,
+    133.03,
+    140.9,
+    147.09,
+    155.9,
+    164.97,
+    172.14,
+    179.18,
+    189.74,
+    197.09,
+    204.04,
+    212.37,
+    221.96,
+    229.74,
+    236.15,
+    243.99,
+    264.66,
+    271.56,
+    284.75
+   ],
+   "clips": [
+    [
+     0.0,
+     34.1
+    ],
+    [
+     147.1,
+     189.8
+    ],
+    [
+     179.2,
+     222.0
+    ],
+    [
+     212.4,
+     245.0
+    ],
+    [
+     236.1,
+     286.5
+    ]
+   ],
+   "feel": "다섯 가운데 가장 느린 연주로, 깊고 따뜻한 소리에 무게를 실어 한 마디 한 마디를 곱씹듯 진지하고 웅숭깊게 노래해요.",
+   "refs": [
+    "https://www.allmusic.com/album/chopin-the-complete-nocturnes-and-impromptus-mw0001829197",
+    "https://classicalcandor.blogspot.com/2015/12/chopin-nocturnes-cd-review.html",
+    "https://www.prestomusic.com/classical/products/7931573--chopin-the-nocturnes"
+   ]
+  },
+  {
+   "key": "d",
+   "name": "폴리니",
+   "full": "마우리치오 폴리니 (2005, DG)",
+   "yt": "S8YhDR2fOUg",
+   "cover": "listen/app/img/yt_chopin-nocturne-op9-2_d_sq.jpg",
+   "dur": 242.6,
+   "cost": 0.122,
+   "bt": [
+    2.08,
+    8.46,
+    14.85,
+    20.39,
+    27.47,
+    33.76,
+    40.52,
+    46.53,
+    53.61,
+    59.67,
+    66.94,
+    72.62,
+    79.93,
+    87.01,
+    93.77,
+    99.83,
+    107.28,
+    113.43,
+    120.42,
+    125.96,
+    132.95,
+    140.31,
+    147.2,
+    153.22,
+    160.9,
+    167.28,
+    174.69,
+    182.28,
+    189.96,
+    196.16,
+    201.66,
+    206.98,
+    220.25,
+    226.63,
+    238.5
+   ],
+   "clips": [
+    [
+     0.0,
+     27.9
+    ],
+    [
+     125.9,
+     160.9
+    ],
+    [
+     153.2,
+     190.0
+    ],
+    [
+     182.3,
+     207.6
+    ],
+    [
+     201.6,
+     241.5
+    ]
+   ],
+   "feel": "다섯 가운데 가장 빨리 흐르는 연주로, 따뜻함보다 또렷함을 택한 맑고 군더더기 없는 소리로 선율을 한 가닥 실처럼 길게 이어 가요.",
+   "refs": [
+    "https://www.theguardian.com/music/2005/dec/23/classicalmusicandopera.shopping",
+    "https://www.yourclassical.org/episode/2006/06/06/new-classical-tracks-chopin-nocturnes",
+    "https://topear.wordpress.com/2012/05/25/a-reconsideration-of-chopins-nocturnes/"
+   ]
+  },
+  {
+   "key": "e",
+   "name": "호로비츠",
+   "full": "블라디미르 호로비츠 (1957, RCA 모노)",
+   "yt": "vyk-zXj5pLs",
+   "cover": "listen/app/img/yt_chopin-nocturne-op9-2_e_sq.jpg",
+   "dur": 267.9,
+   "cost": 0.134,
+   "bt": [
+    1.15,
+    7.3,
+    14.34,
+    20.77,
+    28.54,
+    35.06,
+    42.14,
+    49.04,
+    56.4,
+    62.55,
+    69.77,
+    75.59,
+    83.46,
+    90.68,
+    97.48,
+    104.52,
+    112.67,
+    118.96,
+    126.18,
+    132.09,
+    139.82,
+    147.28,
+    154.68,
+    162.32,
+    170.37,
+    176.89,
+    185.04,
+    192.08,
+    200.36,
+    207.96,
+    213.46,
+    220.21,
+    243.84,
+    250.76,
+    263.39
+   ],
+   "clips": [
+    [
+     0.0,
+     29.0
+    ],
+    [
+     132.1,
+     170.4
+    ],
+    [
+     162.3,
+     200.4
+    ],
+    [
+     192.1,
+     221.3
+    ],
+    [
+     213.4,
+     266.5
+    ]
+   ],
+   "feel": "가깝고 쨍한 옛 모노 소리 속에서 안쪽 성부와 음색을 도드라지게 살려, 다른 연주들보다 크고 극적인 몸짓으로 노래해요.",
+   "refs": [
+    "https://alexander-arsov.blogspot.com/search/label/RCA",
+    "http://audio-music.info/htm/c/Chopin_Frederic_Francois_Piano_Music.htm",
+    "https://classical-pianists.net/generation-viii/vladimir-horowitz/chronology-3/"
+   ]
+  }
+ ],
+ "a_check_median_diff": 0.0,
+ "manual_fixes": [
+  "arrau bar33: 261.91 -> 264.66 (DTW put bar 33 inside the cadenza; Eb-major chroma jump and low-bass (60-170 Hz) onset at 264.66)",
+  "arrau bar34: 277.39 -> 271.56 (bar 34 downbeat = Eb chord after the 12 eighths of bar 33; then high chord 274.02, final low chord 277.37)",
+  "horowitz bar34: 255.98 -> 250.76 (DTW put bar 34 on the final chord (255.86); downbeat chord 250.76, high chord 252.75, final 255.86)",
+  "all three: first clip start set to 0.0 (A clip starts at 0.0; linear map would cut the pickup note, e.g. Arrau pickup sounds at 1.74 s but mapped start was 2.1)",
+  "note on A (not changed): existing bt.A bar 34 = 254.87 sits on the second chord of bar 34 (high chord), true bar-34 downbeat in Rubinstein is about 252.82; new recordings use the true downbeat (Pollini DTW 226.63 already on it)"
+ ]
+}
