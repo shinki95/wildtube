@@ -173,16 +173,16 @@ Promise.all([fetch(R+'listen/app/data/index.json').then(r=>r.json()), fetch(R+'l
   build(s); });
 
 function build(s){ const e=EN[SID]||[L.short,'','','#e7d3b0']; document.title=L.short+' · 비교 듣기'; $('#ttop').textContent=String(s.no).padStart(2,'0')+' / '+String(IDX.length).padStart(2,'0');
-  const N=RECS.length;
+  const N=RECS.length; const NW=['','한','두','세','네','다섯','여섯','일곱','여덟'][N]||String(N);
   const intro=groups(L.intro.flatMap(sents),95).slice(0,4);
   let h=`<section class="stage" id="hero">
-   <div class="layer hero-t" id="heroT"><div class="kick">Compare · Listen · Nº ${s.no}</div><h1 class="big">${e[0]}<small>${e[1]}</small></h1><div class="scr">${e[2]}</div><div class="sub">같은 악보, ${N===2?'두':N+'개의'} 연주</div></div>
+   <div class="layer hero-t" id="heroT"><div class="kick">Compare · Listen · Nº ${s.no}</div><h1 class="big">${e[0]}<small>${e[1]}</small></h1><div class="scr">${e[2]}</div><div class="sub">같은 악보, ${NW} 연주</div></div>
    ${intro.map((t,i)=>`<div class="layer st" id="st${i}"><p>${esc(t)}</p></div>`).join('')}
    <div class="objw" id="objw"><div class="obj" id="obj"><div class="vinyl"><div class="disc"><div class="lbl" style="--lc:${e[3]}"><span><b>${e[0]}</b></span><i>${e[1]}</i></div></div><div class="sheen"></div></div></div></div>
    <div class="macro" id="macro"><div class="m-lp"></div></div>
    <div class="layer cap2" id="cap2"><div class="e">One score</div><div class="k">같은 악보를</div></div>
-   <div class="layer cap3" id="cap3"><p>${N===2?'두 사람이':N+'명이'} 다르게 쳐요.</p></div>
-   <div class="shelfS" id="shelfS"><h3>${N}개의 연주</h3>${RECS.map(r=>`<div class="rrow"><div class="cv" style="background-image:url(${R+r.cover})"></div><div><div class="lt"><span class="badge" style="background:${r.col||'#6d5a44'}" data-k="${r.key}">${r.key}</span>${yr(r.full)}</div><div class="nm">${esc(r.name)}</div><div class="fl">${esc(r.feel)}</div></div></div>`).join('')}</div>
+   <div class="layer cap3" id="cap3"><p>${NW} 사람이 다르게 쳐요.</p></div>
+   <div class="shelfS" id="shelfS"><h3>${NW} 연주</h3>${RECS.map(r=>`<div class="rrow"><div class="cv" style="background-image:url(${R+r.cover})"></div><div><div class="lt"><span class="badge" style="background:${r.col||'#6d5a44'}" data-k="${r.key}">${r.key}</span>${yr(r.full)}</div><div class="nm">${esc(r.name)}</div><div class="fl">${esc(r.feel)}</div></div></div>`).join('')}</div>
    <a class="skip" id="skip" href="#ch0">바로 첫 대목으로 ↓</a></section>`;
   // 평단
   const crit=[]; L.critics.forEach(c=>{ const m=c.match(/^<b>(.*?)<\/b>\s*/); const who=m?strip(m[1]).replace(/\.$/,''):''; const body=m?c.slice(m[0].length):c; groups(sents(body),130).forEach((t,i)=>crit.push({who:i===0?who:'',t})); });
