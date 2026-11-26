@@ -232,6 +232,7 @@ let FEED = LS.get('feed', null);
 let QUEUE = LS.get('fq', []);
 const R = LS.get('react', {});          // id -> {like:1, save:1, meh:1}
 const SEEN = new Set(LS.get('seenIds', []));
+const SEEN0 = new Set(SEEN);   // 11/26 사장님 "읽고 바로 사라져 어색": 순서는 연 시점 기준으로 고정, 방금 본 건 제자리에서 흐리게만. 다음에 열 때 뒤로 감
 const LAST = LS.get('lastVisit', 0);
 let TAB = 'home', FILTER = 'all';
 
@@ -292,21 +293,21 @@ function items(){
   if (!FEED) return [];
   const all = ALL().filter(x => !(R[x.id]||{}).meh);
   const FK = { video:['study','video'], game:['game'], read:['visual','read','disc'], myread:['read'] };
-  if (FILTER.startsWith('t:')) return all.filter(x => x.kind==='study' && x.topic===FILTER.slice(2)).sort((a,b)=> SEEN.has(a.id)-SEEN.has(b.id));
-  if (FILTER !== 'all') return all.filter(x => (FK[FILTER]||[FILTER]).includes(x.kind)).sort((a,b)=> (SEEN.has(a.id)-SEEN.has(b.id)) || ((b.ts||0)-(a.ts||0)));
+  if (FILTER.startsWith('t:')) return all.filter(x => x.kind==='study' && x.topic===FILTER.slice(2)).sort((a,b)=> SEEN0.has(a.id)-SEEN0.has(b.id));
+  if (FILTER !== 'all') return all.filter(x => (FK[FILTER]||[FILTER]).includes(x.kind)).sort((a,b)=> (SEEN0.has(a.id)-SEEN0.has(b.id)) || ((b.ts||0)-(a.ts||0)));
   // 섞기: 물어본 것(최근) 먼저 2개, 그 뒤 영상·읽을거리·물어본 것 번갈아. 좋아요 받은 결 앞으로.
   const reads = FEED.reads.filter(x=>!(R[x.id]||{}).meh);
   const likedSec = new Set(reads.filter(r=>(R[r.id]||{}).like||(R[r.id]||{}).save).map(r=>r.section.split(' · ')[0]));
-  reads.sort((a,b)=> (SEEN.has(a.id)-SEEN.has(b.id)) || (likedSec.has(b.section.split(' · ')[0]) - likedSec.has(a.section.split(' · ')[0])) || (b.ts-a.ts));
-  const sw = x => SEEN.has(x.id) || (FEED.watched||[]).includes(x.id);
+  reads.sort((a,b)=> (SEEN0.has(a.id)-SEEN0.has(b.id)) || (likedSec.has(b.section.split(' · ')[0]) - likedSec.has(a.section.split(' · ')[0])) || (b.ts-a.ts));
+  const sw = x => SEEN0.has(x.id) || (FEED.watched||[]).includes(x.id);
   const vids = FEED.videos.filter(x=>!(R[x.id]||{}).meh).sort((a,b)=> (sw(a)-sw(b)) || (upT(b.up)-upT(a.up)) || (hash(a.id+FEED.built)%97 - hash(b.id+FEED.built)%97));
   const games = (FEED.games||[]).filter(x=>!(R[x.id]||{}).meh).sort((a,b)=> gameDue(b) - gameDue(a));
   const insights = (FEED.insights||[]).filter(x=>!(R[x.id]||{}).meh);
-  const disc = (FEED.disc||[]).filter(x=>!(R[x.id]||{}).meh && !SEEN.has(x.id)).concat((FEED.disc||[]).filter(x=>!(R[x.id]||{}).meh && SEEN.has(x.id)));
+  const disc = (FEED.disc||[]).filter(x=>!(R[x.id]||{}).meh && !SEEN0.has(x.id)).concat((FEED.disc||[]).filter(x=>!(R[x.id]||{}).meh && SEEN0.has(x.id)));
   // 공부 영상: 주제별로 번갈아(안 본 것 먼저)
   // 11/21 사장님 "피드가 별로": 주제를 무작위로 돌리던 것 -> 점수순(본 시간·좋아요·시연/장면·제목 품질·따라보는 채널), 같은 주제는 연달아 안 나오게
   const sp = (FEED.studies||[]).filter(x=>!(R[x.id]||{}).meh && !x.explore);
-  const WATCHED = new Set(FEED.watched||[]), done = x => SEEN.has(x.id) || WATCHED.has(x.id) || (R[x.id]||{}).like || (R[x.id]||{}).save;
+  const WATCHED = new Set(FEED.watched||[]), done = x => SEEN0.has(x.id) || WATCHED.has(x.id) || (R[x.id]||{}).like || (R[x.id]||{}).save;
   const rk = x => (x.rank||5) - (done(x)?100:0) - (x.ok===false?3:0) + (hash(x.id+FEED.built)%10)/20;
   sp.sort((a,b)=> rk(b)-rk(a));
   const studies = [], recentT = [];
@@ -317,11 +318,11 @@ function items(){
     const x = sp.splice(Math.max(0, bi), 1)[0]; studies.push(x); cntT[x.topic] = (cntT[x.topic]||0) + 1; recentT.push(x.topic); if (recentT.length > 3) recentT.shift();
   }
   const arts = []; while (reads.length || disc.length) { if (reads.length) arts.push(reads.shift()); if (disc.length) arts.push(disc.shift()); }
-  const vis = (FEED.visuals||[]).filter(x=>!(R[x.id]||{}).meh).sort((a,b)=> SEEN.has(a.id)-SEEN.has(b.id));
+  const vis = (FEED.visuals||[]).filter(x=>!(R[x.id]||{}).meh).sort((a,b)=> SEEN0.has(a.id)-SEEN0.has(b.id));
   vis.slice(1).forEach((v,i)=> arts.splice(Math.min(arts.length, 3 + i*6), 0, v));
   const out = [];
   if (insights.length) out.push(insights[0]);
-  (FEED.results||[]).filter(x=>!(R[x.id]||{}).meh && !SEEN.has(x.id)).forEach(x => out.unshift(x));   // 결과 비교(내 프롬프트 vs 전문가) 안 본 것 맨 위
+  (FEED.results||[]).filter(x=>!(R[x.id]||{}).meh && !SEEN0.has(x.id)).forEach(x => out.unshift(x));   // 결과 비교(내 프롬프트 vs 전문가) 안 본 것 맨 위
   const firstGame = games.length && gameDue(games[0]) ? games.shift() : null;
   let n = 0;
   while (studies.length || vids.length || arts.length || games.length) {
@@ -334,7 +335,7 @@ function items(){
   if (vis[0]) out.splice(Math.min(9, out.length), 0, vis[0]);   // 한 장 그림: 11/21 두 장 다 ✕ 받아서 세 번째 칸 -> 열 번째 칸
   if (firstGame) out.splice(Math.min(4, out.length), 0, firstGame);   // 영상 먼저, 게임은 네 번째
   // 새로운 것 칸: 10칸 중 1칸(관심 주제 밖, 안 본 것 먼저). 11/19
-  const ex = (FEED.studies||[]).filter(x => x.explore && !(R[x.id]||{}).meh).sort((a,b)=> SEEN.has(a.id)-SEEN.has(b.id));
+  const ex = (FEED.studies||[]).filter(x => x.explore && !(R[x.id]||{}).meh).sort((a,b)=> SEEN0.has(a.id)-SEEN0.has(b.id));
   for (let p = 9; ex.length && p <= out.length; p += 10) out.splice(p, 0, ex.shift());
   return out;
   return out;
@@ -348,7 +349,7 @@ function todayReads(){
   const L = (FEED.reads||[]).filter(x => !(R[x.id]||{}).meh);
   const liked = new Set(L.filter(r=>(R[r.id]||{}).like||(R[r.id]||{}).save).map(r=>r.section.split(' · ')[0]));
   const fresh = L.filter(r => Date.now()/1000 - r.ts < 36*3600);
-  return (fresh.length >= 5 ? fresh : L.slice(0, 15)).sort((a,b)=> (SEEN.has(a.id)-SEEN.has(b.id)) || (liked.has(b.section.split(' · ')[0]) - liked.has(a.section.split(' · ')[0])) || (b.ts-a.ts)).slice(0, 20);
+  return (fresh.length >= 5 ? fresh : L.slice(0, 15)).sort((a,b)=> (SEEN0.has(a.id)-SEEN0.has(b.id)) || (liked.has(b.section.split(' · ')[0]) - liked.has(a.section.split(' · ')[0])) || (b.ts-a.ts)).slice(0, 20);
 }
 function wireRd(){
   const rd = $('#main .rd'); if (!rd) return;
@@ -627,7 +628,7 @@ function openStory(key, at=0){
   let slides = [], name = '', av = '';
   if (key === 'asks') { name = '오늘 물어본 것'; slides = FEED.asks.filter(a=>Date.now()/1000-a.ts<36*3600); if (!slides.length) slides = FEED.asks.slice(0,6); slides = slides.map(x=>({x, bg: ASK_GRADS[hash(x.id)%ASK_GRADS.length], t: x.q, b: x.a || (x.follow.find(f=>f.a)||{}).a || '', cta: [['슬랙 스레드', x.link]]})); }
   else if (key.startsWith('s:')) { const slug = key.slice(2); const t = (FEED.studyTopics||[]).find(t=>t.slug===slug); name = t.title;
-    const vs = (FEED.studies||[]).filter(v=>v.topic===slug).sort((a,b)=> (SEEN.has(a.id)-SEEN.has(b.id)) || (upT(b.up)-upT(a.up)));
+    const vs = (FEED.studies||[]).filter(v=>v.topic===slug).sort((a,b)=> (SEEN0.has(a.id)-SEEN0.has(b.id)) || (upT(b.up)-upT(a.up)));
     slides = vs.map(x=>({x, bg:'#111', vid:x.vid, k:`${x.channel} · ${x.minutes}분${x.up?' · '+upAgo(x.up):''}`, t:x.title, b:'', cta:[['주제 빼기', '#rm:'+slug]]})); }
   else if (key === 'reads') { name = '오늘 온 읽을거리'; slides = todayReads().map(x=>({x, read:1, bg: x.img ? `linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.72) 40%,rgba(0,0,0,.9)),url('${x.img}') center/cover,${secGrad(x.section)}` : secGrad(x.section), k: x.section + (x.note ? ' · '+x.note : ''), t: hook(x), b: '', cta: [x.url?['원문', x.url]:null, ['슬랙', x.thread]].filter(Boolean)})); }
   else { const slug = key.slice(2); const t = FEED.topics.find(t=>t.slug===slug); name = t.title.split(' · ')[0];
@@ -652,6 +653,7 @@ function showSlide(){
   if (s.vid) $('#svv').onclick = () => { SV.paused = true; $('#svv').innerHTML = `<iframe src="${embed(s.vid, s.x.scenes?.[0]?.t||0)}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`; };
   const box = $('#sv .box'); box.onpointerdown = e => { if (!e.target.closest('a,button,iframe,#svv')) SV.hold = true; }; box.onpointerup = () => SV.hold = false;
   clearInterval(SV.timer); SV.start = Date.now(); SV.paused = false; let el = 0;
+  if (s.read) { const bar = $('#sv .bars i:nth-child('+(i+1)+') b'); if (bar) bar.style.width = '100%'; return; }   // 11/26 읽을거리는 저절로 안 넘김, 눌러서 넘김
   const dur = s.read ? 16000 : Math.min(14000, 5000 + (s.t.length + (s.b||'').length) * 25);
   SV.timer = setInterval(() => { if (SV.paused || SV.hold) return; el += 50; const p = Math.min(100, el/dur*100); const bar = $('#sv .bars i:nth-child('+(i+1)+') b'); if (bar) bar.style.width = p+'%'; if (p >= 100) go(1); }, 50);
 }
